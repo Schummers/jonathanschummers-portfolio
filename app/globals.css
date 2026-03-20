@@ -1,26 +1,193 @@
 @import "tailwindcss";
 
+/* ============================================
+   DESIGN TOKENS — Portfolio Jonathan Schummers
+   Spec: docs/superpowers/specs/2026-03-20-design-system-design.md
+   ============================================ */
+
+/*
+  Architecture:
+  - :root uses --sem-* prefix for semantic custom properties
+  - @theme inline maps --sem-* → --color-* for Tailwind utility classes
+  - This avoids circular variable references in Tailwind v4
+*/
+
+/* --- Light mode (default) --- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Semantic colors */
+  --sem-bg: #fafafa;
+  --sem-fg: #18181b;
+  --sem-muted: #52525c;
+  --sem-subtle: #71717b;
+  --sem-faint: #9f9fa9;
+  --sem-border: #e4e4e7;
+  --sem-border-strong: #d4d4d8;
+  --sem-surface: #f4f4f5;
+  --sem-invert-bg: #18181b;
+  --sem-invert-fg: #fafafa;
+
+  /* Accent */
+  --sem-accent-subtle: #d4e3ff;
+  --sem-accent-muted: #3670f5;
+  --sem-accent: #0A4CF0;
+  --sem-accent-hover: #0839b8;
+  --sem-accent-text: #0A4CF0;
+
+  /* Spacing — base 8px */
+  --sem-space-xs: 8px;
+  --sem-space-sm: 16px;
+  --sem-space-md: 24px;
+  --sem-space-lg: 32px;
+  --sem-space-xl: 48px;
+  --sem-space-2xl: 64px;
+  --sem-space-3xl: 96px;
+  --sem-space-4xl: 128px;
+
+  /* Radius */
+  --sem-radius-none: 0px;
+  --sem-radius-sm: 1px;
+  --sem-radius-pill: 3px;
+
+  /* Motion — duration and easing separated for Tailwind compatibility */
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-slow: 400ms;
+  --ease-default: ease-out;
+
+  /* Disabled */
+  --sem-disabled-bg: #e4e4e7;
+  --sem-disabled-fg: #9f9fa9;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* --- Dark mode --- */
+.dark {
+  --sem-bg: #09090b;
+  --sem-fg: #e4e4e7;
+  --sem-muted: #9f9fa9;
+  --sem-subtle: #71717b;
+  --sem-faint: #52525c;
+  --sem-border: #3f3f47;
+  --sem-border-strong: #52525c;
+  --sem-surface: #27272a;
+  --sem-invert-bg: #fafafa;
+  --sem-invert-fg: #18181b;
+
+  /* Accent — adjusted for contrast on dark bg */
+  --sem-accent-text: #6d9dfa;
+  --sem-accent: #0A4CF0;
+  --sem-accent-hover: #0839b8;
+  --sem-accent-subtle: #d4e3ff;
+  --sem-accent-muted: #3670f5;
+
+  /* Disabled */
+  --sem-disabled-bg: #3f3f47;
+  --sem-disabled-fg: #52525c;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not(.light) {
+    --sem-bg: #09090b;
+    --sem-fg: #e4e4e7;
+    --sem-muted: #9f9fa9;
+    --sem-subtle: #71717b;
+    --sem-faint: #52525c;
+    --sem-border: #3f3f47;
+    --sem-border-strong: #52525c;
+    --sem-surface: #27272a;
+    --sem-invert-bg: #fafafa;
+    --sem-invert-fg: #18181b;
+    --sem-accent-text: #6d9dfa;
+    --sem-accent: #0A4CF0;
+    --sem-accent-hover: #0839b8;
+    --sem-accent-subtle: #d4e3ff;
+    --sem-accent-muted: #3670f5;
+    --sem-disabled-bg: #3f3f47;
+    --sem-disabled-fg: #52525c;
   }
 }
 
+/* --- Tailwind v4 theme registration --- */
+@theme inline {
+  /* Colors → generates bg-*, text-*, border-* utilities */
+  --color-bg: var(--sem-bg);
+  --color-fg: var(--sem-fg);
+  --color-muted: var(--sem-muted);
+  --color-subtle: var(--sem-subtle);
+  --color-faint: var(--sem-faint);
+  --color-border: var(--sem-border);
+  --color-border-strong: var(--sem-border-strong);
+  --color-surface: var(--sem-surface);
+  --color-invert-bg: var(--sem-invert-bg);
+  --color-invert-fg: var(--sem-invert-fg);
+  --color-accent: var(--sem-accent);
+  --color-accent-hover: var(--sem-accent-hover);
+  --color-accent-text: var(--sem-accent-text);
+  --color-accent-subtle: var(--sem-accent-subtle);
+  --color-accent-muted: var(--sem-accent-muted);
+  --color-disabled-bg: var(--sem-disabled-bg);
+  --color-disabled-fg: var(--sem-disabled-fg);
+
+  /* Spacing → generates p-*, m-*, gap-* utilities */
+  --spacing-xs: var(--sem-space-xs);
+  --spacing-sm: var(--sem-space-sm);
+  --spacing-md: var(--sem-space-md);
+  --spacing-lg: var(--sem-space-lg);
+  --spacing-xl: var(--sem-space-xl);
+  --spacing-2xl: var(--sem-space-2xl);
+  --spacing-3xl: var(--sem-space-3xl);
+  --spacing-4xl: var(--sem-space-4xl);
+
+  /* Radius → generates rounded-* utilities */
+  --radius-none: var(--sem-radius-none);
+  --radius-sm: var(--sem-radius-sm);
+  --radius-pill: var(--sem-radius-pill);
+
+  /* Fonts */
+  --font-display: var(--font-space-grotesk);
+  --font-body: var(--font-manrope);
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+
+  img, video {
+    filter: none !important;
+  }
+}
+
+/* --- Global focus-visible (spec section 4.6) --- */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--sem-fg);
+  outline-offset: 2px;
+}
+
+/* --- Hover inversion pattern (spec section 4.3) --- */
+.hover-invert {
+  transition: background-color var(--dur-base) var(--ease-default),
+              color var(--dur-base) var(--ease-default);
+}
+.hover-invert img {
+  filter: grayscale(1);
+  transition: filter var(--dur-slow) var(--ease-default);
+}
+@media (hover: hover) {
+  .hover-invert:hover {
+    background-color: var(--sem-invert-bg);
+    color: var(--sem-invert-fg);
+  }
+  .hover-invert:hover img {
+    filter: grayscale(0);
+  }
+}
+
+/* --- Base styles --- */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--sem-bg);
+  color: var(--sem-fg);
+  font-family: var(--font-body), sans-serif;
 }
