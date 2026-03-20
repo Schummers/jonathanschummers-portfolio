@@ -26,11 +26,11 @@
 ```
 **Nav** : Work · About · Contact + CTA persistant
 
-### Etape 2 — Direction visuelle & Design System (2-3h)
-- [ ] Explorer 2-3 directions visuelles (visual companion)
-- [ ] Choisir typographie, palette, spacing, shadows, animations
-- [ ] Implementer en CSS variables + Tailwind config
-- [ ] Creer composants de base (Nav, Footer, Button, Card)
+### Etape 2 — Direction visuelle & Design System (2-3h) ✅
+- [x] Explorer 2-3 directions visuelles (visual companion)
+- [x] Choisir typographie, palette, spacing, shadows, animations
+- [x] Implementer en CSS variables + Tailwind config
+- [x] Creer composants de base (Button, Tag, BlueprintShell, DarkModeToggle)
 
 ### Etape 3 — Homepage section par section (4-5h)
 Pour chaque section : wireframe → choix → implementation → validation
@@ -62,6 +62,8 @@ Pour chaque section : wireframe → choix → implementation → validation
 - [ ] Contact : CTA, email, liens sociaux, statut dispo
 
 ### Etape 7 — QA & Polish (1.5h)
+- [ ] Re-tester les polices (Sora, Manrope) avec le contenu reel — valider lisibilite et hierarchie
+- [ ] Evaluer si JetBrains Mono apporte quelque chose pour les tags/labels techniques (optionnel, pas dans le design system de base)
 - [ ] Responsive (375px, 768px, 1440px)
 - [ ] Lighthouse (Perf >90, A11y >95, SEO >95)
 - [ ] Animations, transitions, hover states
