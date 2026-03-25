@@ -12,9 +12,9 @@ export function Tag({
       className={cn(
         "inline-block",
         "border border-border-strong",
-        "rounded-pill",
-        "px-[10px] py-[4px]",
-        "font-body font-semibold text-label uppercase tracking-label",
+        "rounded-[4px]",
+        "px-[12px] py-[6px]",
+        "font-body font-normal text-tag leading-tag",
         "text-text-secondary",
         className
       )}

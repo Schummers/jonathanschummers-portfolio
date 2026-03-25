@@ -80,6 +80,7 @@
   --sem-text-body: 16px;
   --sem-text-body-sm: 14px;
   --sem-text-label: 12px;
+  --sem-text-tag: 12px;
 
   /* Typography leading */
   --sem-leading-hero: 0.92;
@@ -88,6 +89,7 @@
   --sem-leading-h3: 1.3;
   --sem-leading-body: 1.65;
   --sem-leading-body-sm: 1.5;
+  --sem-leading-tag: 1.4;
 
   /* Typography tracking */
   --sem-tracking-hero: -0.03em;
@@ -289,6 +291,7 @@ button:focus-visible {
 .text-body { font-size: var(--sem-text-body); }
 .text-body-sm { font-size: var(--sem-text-body-sm); }
 .text-label { font-size: var(--sem-text-label); }
+.text-tag { font-size: var(--sem-text-tag); }
 
 .leading-hero { line-height: var(--sem-leading-hero); }
 .leading-h1 { line-height: var(--sem-leading-h1); }
@@ -296,6 +299,7 @@ button:focus-visible {
 .leading-h3 { line-height: var(--sem-leading-h3); }
 .leading-body { line-height: var(--sem-leading-body); }
 .leading-body-sm { line-height: var(--sem-leading-body-sm); }
+.leading-tag { line-height: var(--sem-leading-tag); }
 
 .tracking-hero { letter-spacing: var(--sem-tracking-hero); }
 .tracking-h2 { letter-spacing: var(--sem-tracking-h2); }
