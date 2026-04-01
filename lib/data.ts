@@ -20,7 +20,7 @@ export const projects: Project[] = [
     description:
       "Redesigned the app in dark mode. New diagnostic dashboard for production loss, integrated alerting system, and automated reporting for plant business owners, saving operators 3x30 min per day.",
     metric: "+23% kWh/operator",
-    company: "Total Energy Digital Factory — NOD",
+    company: "TotalEnergies — Digital Factory",
     tags: ["Product Design", "Dark Mode", "Industry"],
     image: "/images/Hero/NOD.webp",
     type: "featured",
@@ -72,7 +72,7 @@ export const projects: Project[] = [
     title:
       "Reduced refinery pipe leaks by 6% with a corrosion risk tool deployed to 500 inspectors across 4 sites",
     metric: "-6% leaks · 500 users · 4 sites",
-    company: "Total Energy Digital Factory — SMINT",
+    company: "TotalEnergies — Digital Factory",
     tags: ["Product Design", "Data", "Industry"],
     image: "/images/Hero/SMART.webp",
     type: "compact",
