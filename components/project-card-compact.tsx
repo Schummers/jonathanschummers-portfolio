@@ -1,16 +1,13 @@
 import Image from "next/image";
 import { Tag } from "@/components/tag";
+import { BrowserFrame } from "@/components/browser-frame";
 import type { Project } from "@/lib/data";
 
-const DEFAULT_IMAGE = "/images/Experiences/Smartintegrity/Principal.webp";
-
 export function ProjectCardCompact({ project }: { project: Project }) {
-  const imageSrc = project.image || DEFAULT_IMAGE;
-
   return (
     <a
       href={`/work/${project.slug}`}
-      className="hover-subtle flex gap-xl border-b border-border px-xl py-md max-md:px-md md:max-lg:px-lg"
+      className="group hover-subtle flex gap-xl border-b border-border px-xl py-md max-md:px-md md:max-lg:px-lg"
     >
       {/* Text left */}
       <div className="flex-1 flex flex-col justify-center gap-sm">
@@ -31,16 +28,33 @@ export function ProjectCardCompact({ project }: { project: Project }) {
         </div>
       </div>
 
-      {/* Thumbnail right */}
-      <div className="w-[236px] shrink-0 py-md overflow-hidden max-md:hidden">
-        <Image
-          src={imageSrc}
-          alt={project.title}
-          width={236}
-          height={135}
-          className="w-full h-full object-cover"
-        />
-      </div>
+      {/* Thumbnail right — with browser frame + perspective on hover */}
+      {project.image && (
+        <div className="w-[236px] shrink-0 py-md overflow-visible max-md:hidden [perspective:1200px]">
+          {project.browserUrl ? (
+            <BrowserFrame
+              url={project.browserUrl}
+              className="transition-transform duration-[400ms] ease-out group-hover:[transform:rotateY(8deg)_rotateX(2deg)]"
+            >
+              <Image
+                src={project.image}
+                alt={project.title}
+                width={236}
+                height={135}
+                className="w-full h-auto block"
+              />
+            </BrowserFrame>
+          ) : (
+            <Image
+              src={project.image}
+              alt={project.title}
+              width={236}
+              height={135}
+              className="w-full h-full object-cover"
+            />
+          )}
+        </div>
+      )}
     </a>
   );
 }
