@@ -5,8 +5,7 @@ import type { Project } from "@/lib/data";
 
 export function ProjectCardCompact({ project }: { project: Project }) {
   return (
-    <a
-      href={`/work/${project.slug}`}
+    <div
       className="group hover-subtle flex gap-xl border-b border-border px-xl py-md max-md:px-md md:max-lg:px-lg md:min-h-[200px]"
     >
       {/* Text left */}
@@ -55,6 +54,6 @@ export function ProjectCardCompact({ project }: { project: Project }) {
           )}
         </div>
       )}
-    </a>
+    </div>
   );
 }

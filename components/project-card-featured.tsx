@@ -1,7 +1,5 @@
 import Image from "next/image";
 import { Tag } from "@/components/tag";
-import { Button } from "@/components/button";
-import { ArrowRightIcon } from "@heroicons/react/16/solid";
 import { BrowserFrame } from "@/components/browser-frame";
 import { BforBankShowcase } from "@/components/bforbank-showcase";
 import type { Project } from "@/lib/data";
@@ -61,8 +59,7 @@ function FeaturedImage({ project }: { project: Project }) {
 
 export function ProjectCardFeatured({ project }: { project: Project }) {
   return (
-    <a
-      href={`/work/${project.slug}`}
+    <div
       className="hover-subtle block border-b border-border"
     >
       {/* Desktop: 2-col grid | Mobile: single column flex */}
@@ -112,12 +109,6 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
               </p>
             )}
 
-            <div className="max-md:hidden">
-              <Button variant="outline">
-                Read case study
-                <ArrowRightIcon className="ml-xs size-3.5" />
-              </Button>
-            </div>
           </div>
 
           {/* Image column — desktop only */}
@@ -127,6 +118,6 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
 
         </div>
       </div>
-    </a>
+    </div>
   );
 }
