@@ -20,13 +20,13 @@ function FeaturedImage({ project }: { project: Project }) {
     return (
       <BrowserFrame url={project.browserUrl}>
         {isScroll ? (
-          <div className="group/scroll h-[320px] overflow-hidden">
+          <div className="group/scroll h-[400px] overflow-hidden">
             <Image
               src={project.image}
               alt={project.title}
               width={640}
               height={1200}
-              className="w-full object-cover object-top transition-transform duration-[6000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover/scroll:[transform:translateY(calc(-100%+320px))]"
+              className="w-full object-cover object-top transition-transform duration-[6000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover/scroll:[transform:translateY(calc(-100%+400px))]"
             />
           </div>
         ) : (
@@ -78,7 +78,14 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
               </h2>
             </div>
 
-            {/* Image — inline on mobile (between title and tags) */}
+            {/* Tags */}
+            <div className="flex flex-wrap gap-sm">
+              {project.tags.map((tag) => (
+                <Tag key={tag}>{tag}</Tag>
+              ))}
+            </div>
+
+            {/* Image — inline on mobile (after tags, before description) */}
             {project.image && (
               <div className="relative h-[240px] overflow-hidden md:hidden">
                 <Image
@@ -90,13 +97,6 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
                 />
               </div>
             )}
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-sm">
-              {project.tags.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
-              ))}
-            </div>
 
             {/* Divider, Description, CTA — desktop only */}
             <hr className="w-1/2 border-t border-border m-0 max-md:hidden" />

@@ -54,8 +54,8 @@ export function About() {
               </p>
             </div>
           </div>
-          <div className="mt-lg flex gap-sm justify-center">
-            <IPhoneFrame showHomeIndicator className="w-[45%] max-w-[200px]">
+          <div className="mt-lg flex gap-[40px]">
+            <IPhoneFrame className="w-[240px] shrink-0">
               <Image
                 src="/images/Hero/WattHunter/IMG_6432.webp"
                 alt="WattHunter app screenshot"
@@ -64,7 +64,7 @@ export function About() {
                 className="w-full h-auto block"
               />
             </IPhoneFrame>
-            <IPhoneFrame showHomeIndicator className="w-[45%] max-w-[200px]">
+            <IPhoneFrame className="w-[240px] shrink-0">
               <Image
                 src="/images/Hero/WattHunter/IMG_6438.webp"
                 alt="WattHunter app screenshot"

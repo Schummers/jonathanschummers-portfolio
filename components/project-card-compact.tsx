@@ -7,7 +7,7 @@ export function ProjectCardCompact({ project }: { project: Project }) {
   return (
     <a
       href={`/work/${project.slug}`}
-      className="group hover-subtle flex gap-xl border-b border-border px-xl py-md max-md:px-md md:max-lg:px-lg"
+      className="group hover-subtle flex gap-xl border-b border-border px-xl py-lg max-md:px-md max-md:py-md md:max-lg:px-lg"
     >
       {/* Text left */}
       <div className="flex-1 flex flex-col justify-center gap-sm">

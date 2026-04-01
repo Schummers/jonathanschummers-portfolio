@@ -36,11 +36,11 @@ const HOVER_OFFSETS = [-100, 40, -80, 30];
 
 export function BforBankShowcase() {
   return (
-    <div className="group relative h-[320px] md:h-[480px] overflow-hidden flex gap-[12px] md:gap-[16px]">
+    <div className="group relative h-[320px] md:h-[480px] overflow-hidden flex items-center gap-[20px] md:gap-[24px] py-[24px]">
       {COLUMNS.map((screens, colIndex) => (
         <div
           key={colIndex}
-          className={`${colIndex >= 2 ? "hidden md:flex" : "flex"} flex-1 flex-col gap-[12px] md:gap-[16px] transition-transform duration-[5000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]`}
+          className={`${colIndex >= 2 ? "hidden md:flex" : "flex"} flex-1 flex-col gap-[20px] md:gap-[24px] transition-transform duration-[8000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]`}
           style={{
             transform: `translateY(${INITIAL_OFFSETS[colIndex]}px)`,
           }}
@@ -60,11 +60,21 @@ export function BforBankShowcase() {
         </div>
       ))}
 
-      {/* Fade edges top and bottom */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[60px] bg-gradient-to-b from-background to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[60px] bg-gradient-to-t from-background to-transparent z-10" />
+      {/* Fade edges — gradient from background color to transparent */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[48px] z-10"
+        style={{
+          background: "linear-gradient(to bottom, var(--sem-bg) 0%, var(--sem-bg) 20%, transparent 100%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[48px] z-10"
+        style={{
+          background: "linear-gradient(to top, var(--sem-bg) 0%, var(--sem-bg) 20%, transparent 100%)",
+        }}
+      />
 
-      {/* Hover animations via CSS — group-hover shifts each column */}
+      {/* Hover animations via CSS */}
       <style>{`
         .group:hover [data-col="0"] { transform: translateY(${HOVER_OFFSETS[0]}px) !important; }
         .group:hover [data-col="1"] { transform: translateY(${HOVER_OFFSETS[1]}px) !important; }
