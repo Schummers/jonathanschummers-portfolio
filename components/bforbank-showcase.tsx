@@ -36,7 +36,7 @@ const HOVER_OFFSETS = [-100, 40, -80, 30];
 
 export function BforBankShowcase() {
   return (
-    <div className="group relative h-[320px] md:h-[480px] overflow-hidden rounded-[12px] bg-zinc-900 dark:bg-zinc-800 p-[16px] md:p-[24px] flex gap-[12px] md:gap-[16px]">
+    <div className="group relative h-[320px] md:h-[480px] overflow-hidden flex gap-[12px] md:gap-[16px]">
       {COLUMNS.map((screens, colIndex) => (
         <div
           key={colIndex}
@@ -59,6 +59,10 @@ export function BforBankShowcase() {
           ))}
         </div>
       ))}
+
+      {/* Fade edges top and bottom */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[60px] bg-gradient-to-b from-background to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[60px] bg-gradient-to-t from-background to-transparent z-10" />
 
       {/* Hover animations via CSS — group-hover shifts each column */}
       <style>{`

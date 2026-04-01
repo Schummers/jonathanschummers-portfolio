@@ -7,7 +7,7 @@ export function About() {
     <Section id="about" className="!p-0">
       <div className="grid md:grid-cols-2">
         {/* Left — My journey */}
-        <div className="px-xl py-xl2 max-md:px-md max-md:py-xl">
+        <div className="px-xl py-xl2 max-md:px-md max-md:py-xl flex flex-col justify-between">
           <div className="flex flex-col gap-md">
             <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
               My journey
@@ -54,8 +54,8 @@ export function About() {
               </p>
             </div>
           </div>
-          <div className="mt-lg flex gap-xs md:gap-sm overflow-hidden">
-            <IPhoneFrame showHomeIndicator className="min-w-0 flex-1">
+          <div className="mt-lg flex gap-sm justify-center">
+            <IPhoneFrame showHomeIndicator className="w-[45%] max-w-[200px]">
               <Image
                 src="/images/Hero/WattHunter/IMG_6432.webp"
                 alt="WattHunter app screenshot"
@@ -64,16 +64,7 @@ export function About() {
                 className="w-full h-auto block"
               />
             </IPhoneFrame>
-            <IPhoneFrame showHomeIndicator className="min-w-0 flex-1">
-              <Image
-                src="/images/Hero/WattHunter/IMG_6433.webp"
-                alt="WattHunter app screenshot"
-                width={400}
-                height={800}
-                className="w-full h-auto block"
-              />
-            </IPhoneFrame>
-            <IPhoneFrame showHomeIndicator className="min-w-0 flex-1">
+            <IPhoneFrame showHomeIndicator className="w-[45%] max-w-[200px]">
               <Image
                 src="/images/Hero/WattHunter/IMG_6438.webp"
                 alt="WattHunter app screenshot"

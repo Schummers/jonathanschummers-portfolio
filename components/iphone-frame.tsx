@@ -14,21 +14,24 @@ export function IPhoneFrame({
   return (
     <div
       className={cn(
-        "bg-zinc-900 dark:bg-zinc-800 rounded-[20px] p-[6px] shadow-[0_8px_32px_rgba(0,0,0,0.12)]",
+        "relative rounded-[clamp(24px,8%,45px)] shadow-[0_0_2px_2px_rgba(255,255,255,0.1)] border-[clamp(4px,1.5%,8px)] border-zinc-900",
         className
       )}
     >
       {/* Dynamic Island */}
-      <div className="relative z-10 mx-auto w-[28%] max-w-[72px] h-[14px] bg-black rounded-full" />
+      <div className="absolute top-[4px] left-1/2 -translate-x-1/2 w-[25%] max-w-[90px] h-[clamp(10px,3.5%,22px)] bg-zinc-900 rounded-full z-20" />
 
-      {/* Viewport — negative top margin so content tucks under the island */}
-      <div className="rounded-[16px] overflow-hidden -mt-[7px]">
+      {/* Inner border glow */}
+      <div className="absolute -inset-px border-[2px] border-zinc-700/40 rounded-[clamp(20px,7%,37px)] pointer-events-none" />
+
+      {/* Screen viewport */}
+      <div className="relative w-full h-full rounded-[clamp(18px,6.5%,37px)] overflow-hidden">
         {children}
       </div>
 
       {/* Home indicator (optional) */}
       {showHomeIndicator && (
-        <div className="mx-auto mt-[6px] mb-[2px] w-[36%] max-w-[80px] h-[3px] bg-white rounded-full" />
+        <div className="absolute bottom-[3px] left-1/2 -translate-x-1/2 w-[28%] max-w-[80px] h-[3px] bg-white/80 rounded-full z-20" />
       )}
     </div>
   );

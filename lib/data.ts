@@ -24,7 +24,7 @@ export const projects: Project[] = [
     tags: ["Product Design", "Dark Mode", "Industry"],
     image: "/images/Hero/NOD.webp",
     type: "featured",
-    browserUrl: "app.nod-factory.com/dashboard",
+    browserUrl: "nod.com",
     mockupType: "browser-scroll",
   },
   {
@@ -39,7 +39,7 @@ export const projects: Project[] = [
     image: "/images/Experiences/Smartintegrity/Principal.webp",
     type: "featured",
     hidden: true,
-    browserUrl: "app.valoris.lu",
+    browserUrl: "valoris.lu",
     mockupType: "browser",
   },
   {
@@ -64,7 +64,7 @@ export const projects: Project[] = [
     tags: ["UX Research", "Design Thinking", "ERP Construction"],
     image: "/images/Hero/SPIES.webp",
     type: "compact",
-    browserUrl: "spie-batignolles.intranet/reports",
+    browserUrl: "spie-batignolles.com",
     mockupType: "browser",
   },
   {
@@ -76,7 +76,7 @@ export const projects: Project[] = [
     tags: ["Product Design", "Data", "Industry"],
     image: "/images/Hero/SMART.webp",
     type: "compact",
-    browserUrl: "smint.totalenergies.net",
+    browserUrl: "smint.com",
     mockupType: "browser",
   },
   {

@@ -10,26 +10,26 @@ export function BrowserFrame({ url, children, className }: BrowserFrameProps) {
   return (
     <div
       className={cn(
-        "rounded-[12px] overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.08)]",
+        "rounded-[8px] overflow-hidden border border-border",
         className
       )}
     >
-      {/* Chrome bar */}
-      <div className="flex items-center gap-[8px] bg-surface border-b border-border px-[12px] py-[8px]">
+      {/* Chrome bar — thin single line */}
+      <div className="flex items-center gap-[6px] bg-surface border-b border-border px-[8px] py-[5px]">
         {/* Traffic light dots */}
-        <div className="flex gap-[5px]">
-          <span className="size-[8px] rounded-full bg-[#ef4444]" />
-          <span className="size-[8px] rounded-full bg-[#f59e0b]" />
-          <span className="size-[8px] rounded-full bg-[#22c55e]" />
+        <div className="flex gap-[4px]">
+          <span className="size-[6px] rounded-full bg-[#ef4444]" />
+          <span className="size-[6px] rounded-full bg-[#f59e0b]" />
+          <span className="size-[6px] rounded-full bg-[#22c55e]" />
         </div>
-        {/* URL bar */}
-        <div className="flex-1 rounded-[4px] bg-background px-[10px] py-[4px] text-[11px] text-text-tertiary truncate">
+        {/* URL */}
+        <span className="text-[10px] text-text-tertiary truncate">
           {url}
-        </div>
+        </span>
       </div>
 
       {/* Viewport */}
-      <div className="bg-background">
+      <div>
         {children}
       </div>
     </div>

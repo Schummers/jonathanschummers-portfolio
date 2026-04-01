@@ -30,11 +30,11 @@ export function ProjectCardCompact({ project }: { project: Project }) {
 
       {/* Thumbnail right — with browser frame + perspective on hover */}
       {project.image && (
-        <div className="w-[236px] shrink-0 py-md overflow-visible max-md:hidden [perspective:1200px]">
+        <div className="w-[280px] shrink-0 py-xs overflow-visible max-md:hidden [perspective:1200px]">
           {project.browserUrl ? (
             <BrowserFrame
               url={project.browserUrl}
-              className="transition-transform duration-[400ms] ease-out group-hover:[transform:rotateY(8deg)_rotateX(2deg)]"
+              className="transition-transform duration-[400ms] ease-out group-hover:[transform:rotateY(-6deg)_rotateX(3deg)]"
             >
               <Image
                 src={project.image}
