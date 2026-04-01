@@ -79,7 +79,7 @@ export function CtaFinal() {
             </a>
             <a
               href="mailto:jonathan.schummers@gmail.com"
-              className="font-body text-body-sm text-text-secondary underline underline-offset-[3px] transition-colors duration-[var(--dur-fast)] ease-out [@media(hover:hover){&:hover}]:text-text-primary"
+              className="font-body text-body-sm text-text-secondary transition-colors duration-[var(--dur-fast)] ease-out [@media(hover:hover){&:hover}]:text-text-primary"
             >
               jonathan.schummers@gmail.com
             </a>

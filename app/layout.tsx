@@ -18,9 +18,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Jonathan Schummers — Product Designer",
+  title: "Jonathan Schummers - Product Designer",
   description:
-    "Jonathan Schummers — Senior Product Designer. Research, design, and code.",
+    "Jonathan Schummers - Senior Product Designer. Research, design, and code.",
 };
 
 export default function RootLayout({

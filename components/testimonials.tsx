@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function Testimonials() {
   return (
-    <section className="border-b border-border-strong bg-invert-bg px-xl py-xl2 max-md:px-md max-md:py-xl md:max-lg:px-lg">
+    <section className="border-b border-border-strong bg-invert-bg px-xl py-xl max-md:px-md max-md:py-xl md:max-lg:px-lg">
       <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
         Testimonials
       </p>

@@ -41,7 +41,7 @@ export function Hero() {
 
           {/* CTA */}
           <div className="mt-lg">
-            <Button href="#contact" size="xl">
+            <Button href="https://calendly.com/jonathan-schummers/discovery-call" size="xl">
               Get in touch
               <ArrowUpRightIcon className="ml-xs size-5" />
             </Button>
