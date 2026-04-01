@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Section } from "@/components/blueprint-shell";
+import { IPhoneFrame } from "@/components/iphone-frame";
 
 export function About() {
   return (
@@ -14,7 +15,7 @@ export function About() {
             <div className="max-w-[500px] space-y-sm">
               <p className="font-body text-body leading-body text-text-primary">
                 I started in user research, with two master&apos;s degrees in
-                experimental methodology, ergonomics, and cognitive psychology —
+                experimental methodology, ergonomics, and cognitive psychology,
                 plus several client research projects during my consulting years.
               </p>
               <p className="font-body text-body leading-body text-text-primary">
@@ -24,7 +25,7 @@ export function About() {
                 Always embedded in a product team.
               </p>
               <p className="font-body text-body leading-body text-text-primary">
-                Going freelance changed everything. I went all-in on AI — not
+                Going freelance changed everything. I went all-in on AI, not
                 just for design, but for research, product thinking, and
                 development. I broadened into product management and started
                 coding what I design.
@@ -54,27 +55,33 @@ export function About() {
             </div>
           </div>
           <div className="mt-lg flex gap-sm overflow-hidden">
-            <Image
-              src="/images/Hero/WattHunter/IMG_6432.webp"
-              alt="WattHunter app screenshot"
-              width={400}
-              height={800}
-              className="min-w-0 flex-1"
-            />
-            <Image
-              src="/images/Hero/WattHunter/IMG_6433.webp"
-              alt="WattHunter app screenshot"
-              width={400}
-              height={800}
-              className="min-w-0 flex-1"
-            />
-            <Image
-              src="/images/Hero/WattHunter/IMG_6438.webp"
-              alt="WattHunter app screenshot"
-              width={400}
-              height={800}
-              className="min-w-0 flex-1"
-            />
+            <IPhoneFrame showHomeIndicator className="min-w-0 flex-1">
+              <Image
+                src="/images/Hero/WattHunter/IMG_6432.webp"
+                alt="WattHunter app screenshot"
+                width={400}
+                height={800}
+                className="w-full h-auto block"
+              />
+            </IPhoneFrame>
+            <IPhoneFrame showHomeIndicator className="min-w-0 flex-1">
+              <Image
+                src="/images/Hero/WattHunter/IMG_6433.webp"
+                alt="WattHunter app screenshot"
+                width={400}
+                height={800}
+                className="w-full h-auto block"
+              />
+            </IPhoneFrame>
+            <IPhoneFrame showHomeIndicator className="min-w-0 flex-1">
+              <Image
+                src="/images/Hero/WattHunter/IMG_6438.webp"
+                alt="WattHunter app screenshot"
+                width={400}
+                height={800}
+                className="w-full h-auto block"
+              />
+            </IPhoneFrame>
           </div>
         </div>
       </div>
