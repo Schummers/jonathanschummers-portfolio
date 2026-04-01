@@ -54,7 +54,7 @@ export function About() {
               </p>
             </div>
           </div>
-          <div className="mt-lg flex gap-sm overflow-hidden">
+          <div className="mt-lg flex gap-xs md:gap-sm overflow-hidden">
             <IPhoneFrame showHomeIndicator className="min-w-0 flex-1">
               <Image
                 src="/images/Hero/WattHunter/IMG_6432.webp"
