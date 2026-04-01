@@ -4,39 +4,34 @@ import Image from "next/image";
 import { IPhoneFrame } from "@/components/iphone-frame";
 
 const COLUMNS = [
-  // Col 1 — moves UP on hover
   [
-    "/images/Hero/Bforbank/IMG_2622.webp",   // Offer selection
-    "/images/Hero/Bforbank/IMG_2632.webp",   // Password step
+    "/images/Hero/Bforbank/IMG_2622.webp",
+    "/images/Hero/Bforbank/IMG_2632.webp",
   ],
-  // Col 2 — moves DOWN on hover
   [
-    "/images/Hero/Bforbank/IMG_2625.webp",   // Category select
-    "/images/Hero/Bforbank/IMG_2623.webp",   // Card view
-    "/images/Hero/Bforbank/IMG_2635.webp",   // Email step
+    "/images/Hero/Bforbank/IMG_2625.webp",
+    "/images/Hero/Bforbank/IMG_2623.webp",
+    "/images/Hero/Bforbank/IMG_2635.webp",
   ],
-  // Col 3 — moves UP on hover
   [
-    "/images/Hero/Bforbank/Frame 1597884611.webp", // Home/Balance
-    "/images/Hero/Bforbank/IMG_2628.webp",         // Transactions
-    "/images/Hero/Bforbank/IMG_2636-1.webp",       // Fiscal info
+    "/images/Hero/Bforbank/Frame 1597884611.webp",
+    "/images/Hero/Bforbank/IMG_2628.webp",
+    "/images/Hero/Bforbank/IMG_2636-1.webp",
   ],
-  // Col 4 — moves DOWN on hover
   [
-    "/images/Hero/Bforbank/IMG_2636.webp",       // Country select
-    "/images/Hero/Bforbank/IMG_3216 3.webp",     // Transfer confirm
+    "/images/Hero/Bforbank/IMG_2636.webp",
+    "/images/Hero/Bforbank/IMG_3216 3.webp",
   ],
 ];
 
-// Initial Y offsets (staggered for visual rhythm)
 const INITIAL_OFFSETS = [0, -60, -30, -80];
-
-// Hover Y offsets (alternating up/down movement)
 const HOVER_OFFSETS = [-100, 40, -80, 30];
 
 export function BforBankShowcase() {
   return (
-    <div className="group relative h-[320px] md:h-[480px] overflow-hidden flex items-center gap-[20px] md:gap-[24px] py-[24px]">
+    <div
+      className="bfor-showcase relative h-[320px] md:h-[480px] overflow-hidden flex items-center gap-[20px] md:gap-[24px] py-[24px]"
+    >
       {COLUMNS.map((screens, colIndex) => (
         <div
           key={colIndex}
@@ -44,7 +39,7 @@ export function BforBankShowcase() {
           style={{
             transform: `translateY(${INITIAL_OFFSETS[colIndex]}px)`,
           }}
-          data-col={colIndex}
+          data-bfor-col={colIndex}
         >
           {screens.map((src) => (
             <IPhoneFrame key={src} className="shrink-0">
@@ -60,26 +55,29 @@ export function BforBankShowcase() {
         </div>
       ))}
 
-      {/* Fade edges — gradient from background color to transparent */}
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[48px] z-10"
-        style={{
-          background: "linear-gradient(to bottom, var(--sem-bg) 0%, var(--sem-bg) 20%, transparent 100%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[48px] z-10"
-        style={{
-          background: "linear-gradient(to top, var(--sem-bg) 0%, var(--sem-bg) 20%, transparent 100%)",
-        }}
-      />
+      {/* Fade edges — uses CSS var that switches on parent card hover */}
+      <div className="bfor-fade-top pointer-events-none absolute inset-x-0 top-0 h-[48px] z-10" />
+      <div className="bfor-fade-bottom pointer-events-none absolute inset-x-0 bottom-0 h-[48px] z-10" />
 
-      {/* Hover animations via CSS */}
       <style>{`
-        .group:hover [data-col="0"] { transform: translateY(${HOVER_OFFSETS[0]}px) !important; }
-        .group:hover [data-col="1"] { transform: translateY(${HOVER_OFFSETS[1]}px) !important; }
-        .group:hover [data-col="2"] { transform: translateY(${HOVER_OFFSETS[2]}px) !important; }
-        .group:hover [data-col="3"] { transform: translateY(${HOVER_OFFSETS[3]}px) !important; }
+        .bfor-fade-top {
+          background: linear-gradient(to bottom, var(--sem-bg) 0%, var(--sem-bg) 20%, transparent 100%);
+          transition: background 0.3s;
+        }
+        .bfor-fade-bottom {
+          background: linear-gradient(to top, var(--sem-bg) 0%, var(--sem-bg) 20%, transparent 100%);
+          transition: background 0.3s;
+        }
+        .hover-subtle:hover .bfor-fade-top {
+          background: linear-gradient(to bottom, var(--sem-surface) 0%, var(--sem-surface) 20%, transparent 100%);
+        }
+        .hover-subtle:hover .bfor-fade-bottom {
+          background: linear-gradient(to top, var(--sem-surface) 0%, var(--sem-surface) 20%, transparent 100%);
+        }
+        .hover-subtle:hover [data-bfor-col="0"] { transform: translateY(${HOVER_OFFSETS[0]}px) !important; }
+        .hover-subtle:hover [data-bfor-col="1"] { transform: translateY(${HOVER_OFFSETS[1]}px) !important; }
+        .hover-subtle:hover [data-bfor-col="2"] { transform: translateY(${HOVER_OFFSETS[2]}px) !important; }
+        .hover-subtle:hover [data-bfor-col="3"] { transform: translateY(${HOVER_OFFSETS[3]}px) !important; }
       `}</style>
     </div>
   );
