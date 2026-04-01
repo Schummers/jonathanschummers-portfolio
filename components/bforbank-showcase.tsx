@@ -36,11 +36,11 @@ const HOVER_OFFSETS = [-100, 40, -80, 30];
 
 export function BforBankShowcase() {
   return (
-    <div className="group relative h-[480px] overflow-hidden rounded-[12px] bg-zinc-900 dark:bg-zinc-800 p-[24px] flex gap-[16px]">
+    <div className="group relative h-[320px] md:h-[480px] overflow-hidden rounded-[12px] bg-zinc-900 dark:bg-zinc-800 p-[16px] md:p-[24px] flex gap-[12px] md:gap-[16px]">
       {COLUMNS.map((screens, colIndex) => (
         <div
           key={colIndex}
-          className="flex flex-1 flex-col gap-[16px] transition-transform duration-[5000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+          className={`${colIndex >= 2 ? "hidden md:flex" : "flex"} flex-1 flex-col gap-[12px] md:gap-[16px] transition-transform duration-[5000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]`}
           style={{
             transform: `translateY(${INITIAL_OFFSETS[colIndex]}px)`,
           }}
