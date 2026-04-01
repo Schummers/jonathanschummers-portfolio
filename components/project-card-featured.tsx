@@ -2,7 +2,57 @@ import Image from "next/image";
 import { Tag } from "@/components/tag";
 import { Button } from "@/components/button";
 import { ArrowRightIcon } from "@heroicons/react/16/solid";
+import { BrowserFrame } from "@/components/browser-frame";
+import { BforBankShowcase } from "@/components/bforbank-showcase";
 import type { Project } from "@/lib/data";
+
+function FeaturedImage({ project }: { project: Project }) {
+  if (project.mockupType === "mobile-grid") {
+    return <BforBankShowcase />;
+  }
+
+  if (!project.image) return null;
+
+  // Browser frame wrapper (scroll or static)
+  if (project.browserUrl) {
+    const isScroll = project.mockupType === "browser-scroll";
+
+    return (
+      <BrowserFrame url={project.browserUrl}>
+        {isScroll ? (
+          <div className="group/scroll h-[320px] overflow-hidden">
+            <Image
+              src={project.image}
+              alt={project.title}
+              width={640}
+              height={1200}
+              className="w-full object-cover object-top transition-transform duration-[6000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover/scroll:[transform:translateY(calc(-100%+320px))]"
+            />
+          </div>
+        ) : (
+          <Image
+            src={project.image}
+            alt={project.title}
+            width={640}
+            height={755}
+            className="w-full object-cover object-top"
+          />
+        )}
+      </BrowserFrame>
+    );
+  }
+
+  // Fallback: raw image (no mockup)
+  return (
+    <Image
+      src={project.image}
+      alt={project.title}
+      width={640}
+      height={755}
+      className="object-cover object-top w-full"
+    />
+  );
+}
 
 export function ProjectCardFeatured({ project }: { project: Project }) {
   return (
@@ -14,9 +64,8 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
       <div className="md:h-[560px] overflow-hidden">
         <div className="max-md:flex max-md:flex-col md:grid md:grid-cols-2">
 
-          {/* Text column — on desktop contains everything, on mobile only company+title+image+tags */}
+          {/* Text column */}
           <div className="flex flex-col gap-md pt-xl2 pb-xl2 px-xl max-md:px-md max-md:pt-md max-md:pb-lg md:max-lg:px-lg">
-
             {/* Company + Title */}
             <div className="flex flex-col gap-xs">
               {project.company && (
@@ -67,17 +116,9 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
           </div>
 
           {/* Image column — desktop only */}
-          {project.image && (
-            <div className="relative overflow-hidden pt-xl2 px-xl max-md:hidden">
-              <Image
-                src={project.image}
-                alt={project.title}
-                width={640}
-                height={755}
-                className="object-cover object-top w-full"
-              />
-            </div>
-          )}
+          <div className="relative overflow-hidden pt-xl2 px-xl max-md:hidden">
+            <FeaturedImage project={project} />
+          </div>
 
         </div>
       </div>
