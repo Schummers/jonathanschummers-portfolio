@@ -16,12 +16,12 @@ export function Hero() {
 
           {/* Tagline — H1 */}
           <h1 className="mt-sm font-display text-h1 font-bold leading-h1 tracking-h2 text-text-primary">
-            Freelance product designer for proptech &amp; fintech SaaS.
+            Freelance product designer (6y+).
           </h1>
 
           {/* Subtitle — H2 */}
           <p className="mt-lg font-display text-h2 font-bold leading-h2 tracking-h2 text-text-primary">
-            I research, strategize, and design.
+            I research, strategize, and design for proptech &amp; fintech SaaS.
           </p>
 
           {/* Body text */}
