@@ -75,7 +75,7 @@
 
   /* Typography scale — Desktop (>1024px) defaults */
   --sem-text-hero: 56px;
-  --sem-text-h1: 48px;
+  --sem-text-h1: 40px;
   --sem-text-h2: 32px;
   --sem-text-h3: 24px;
   --sem-text-h4: 18px;
@@ -105,7 +105,7 @@
 @media (max-width: 1024px) {
   :root {
     --sem-text-hero: 48px;
-    --sem-text-h1: 40px;
+    --sem-text-h1: 36px;
     --sem-text-h2: 28px;
     --sem-text-h3: 22px;
   }
@@ -115,7 +115,7 @@
 @media (max-width: 767px) {
   :root {
     --sem-text-hero: 40px;
-    --sem-text-h1: 36px;
+    --sem-text-h1: 32px;
     --sem-text-h2: 24px;
     --sem-text-h3: 20px;
     --sem-text-body-lg: 16px;
