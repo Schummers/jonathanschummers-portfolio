@@ -10,72 +10,62 @@ order: 2
 
 ## Headline
 
-I helped build the best onboarding journey according to the 2023 Google UX Benchmark
+Ranked #1 onboarding out of 51 banks by the 2023 Google UX Benchmark
 
 ## Subtitle
 
-My first solo project with a client focused on the onboarding process and account overview for the new BforBank app as part of their global rebranding
+Led the design of BforBank's new customer onboarding — balancing neobank simplicity with traditional banking compliance to create a fast, intuitive acquisition journey.
 
 ## Context & Objectives
 
-- My first solo project with the client.
-- BforBank was undertaking a complete overhaul of its positioning, branding, app, and offers, which was more of a creation of an entirely new product than a simple redesign.
-- I worked for 5 months on the new customer onboarding journey in the mobile app (Onboarding = EER), as well as 2 month on the "Account Overview."
-- The goal was to design an onboarding process that optimizes the acquisition of new clients, with a target duration of ten minutes to ensure a quick experience and reduce drop-offs.
-- After these 5 months, all consultants and freelancers were replaced by a new agency with which a new partnership was established.
+### Problem
 
-## Challenges
+68% of European consumers abandoned a financial onboarding in 2021 (Signicat, "Battle to Onboard"). BforBank was rebuilding its entire product from scratch — new positioning, branding, app, and offers. The challenge: design an onboarding that feels as fast as a neobank while collecting all the data a real bank legally needs for KYC and fraud detection.
 
-- The biggest challenge with the EER was finding a balance between legal and compliance constraints on one hand, and creating a journey that provides an optimal experience for users on the other. For example, we had to fight and conduct a study to ensure that the identifier would be the email address rather than a client ID.
-- Another challenge was collecting enough information to detect fraudsters without overly complicating the onboarding process, to avoid discouraging potential users.
-- Another challenge was determining the best order for the different stages of the EER, such as selecting the offer, phone enrollment, entering additional data, etc. We had to move some steps as early as possible to be able to prompt users if they hadn't completed their registration, while maintaining the flow of the journey.
+### Target audience
 
-## Target & Method
+Consumers who want the simplicity of a neobank with the security and advantages of a traditional bank.
 
-During my assignment, the team was still working on BforBank's positioning. Our directives were to provide a user experience comparable to the best neobanks, while remaining a true online bank, which was our unique value proposition.
+### My role
 
-Our method was mainly based on the business expertise of the product team members, as well as competitor benchmarking. I did not conduct any user research during my assignment.
+Lead Designer on the onboarding, supervised by the Head of Design. I worked with the product team (PO, developers), marketing for offer management, and legal & compliance for KYC requirements and fraud detection.
 
-## Product Team
+## How I solved this problem
 
-- I was integrated into the "Onboarding" product team and later into the "Account Overview" team.
-- We were supposed to work in SAFe, but we were in "Sprint 0" throughout the duration of my assignment.
-- I was the solo designer for the EER team, but each of my designs was reviewed and challenged by the Lead UX of BforBank.
+### 1. Documented competitor onboarding journeys to give the team a permanent reference
 
-## Impact
+Captured every screen from around 10 bank and neobank onboarding flows, organized in Google Drive folders with a comparative Excel highlighting key differentiators. Since onboarding flows can only be experienced once, this gave the whole team permanent, searchable access to competitor reference material.
 
-Since I was not a member of the team during the product launch, it is difficult for me to fully assess the impact of the new application. However, based on the information I was able to gather:
+### 2. Mapped every onboarding step with product, compliance, and legal
 
-- Sylvain Gaboriaud, Chief Marketing Officer (CMO) of BforBank: "For new prospects or clients, it's proven by the numbers: the first acquisition figures show that our value proposition and new identity have found their audience among the French."
-- Google UX Benchmark: BforBank awarded the best customer onboarding journey. To determine this, UX experts test and study the acquisition journeys of dozens of companies in the banking, insurance, and credit sectors. In 2023, Google experts analyzed and ranked 51 companies based on 18 criteria, such as app and website speed, customer journey, user experience, and more.
+Defined all required sections — offer selection, phone enrollment, document collection, identity verification, e-signature, additional data entry, card ordering, insurance cross-sell, and adding money — and identified what information each step required and why.
 
-## Personal Development
+### 3. Designed wireframes focused on one question per screen
 
-- This project allowed me to develop my skills in mobile design, as well as gain insight into the banking sector (BTC) and, more specifically, the legal constraints within the industry.
-- I was very efficient in execution, but upon reflection, I realized that I lacked proactivity in product strategy and user research to help guide decisions between certain assumptions.
-- This experience also made me realize the importance of clearly defining a vision and effectively communicating it to all the teams involved.
+The goal wasn't fewer screens — it was making each screen instantly understandable and the overall journey feel fast and intuitive. Each screen presented one clear question with easy-to-reach actions, so users could progress quickly without cognitive overload.
+
+### 4. Ran 3 compliance workshops to reduce upfront information
+
+Worked with legal and compliance to identify which data was truly mandatory at onboarding versus what could be deferred to first login, third login, or later. Significantly reduced the amount of information required upfront while keeping acceptable risk levels for KYC and fraud detection. Coordinated with account management teams to define exactly when each deferred piece of information would be collected.
+
+### 5. Prototyped and user-tested step ordering in Figma
+
+Built Figma prototypes to run two rounds of user testing. The first tested comprehension — whether users understood the information being requested. The second tested different step sequences: where to place offer selection (beginning vs. end), whether to group card ordering with insurance cross-sell, and whether to split additional data collection into multiple blocks.
+
+### 6. Applied the design system from wireframes to pixel-perfect UI
+
+Collaborated with an external agency on the design system, then applied it to transition all wireframes into production-ready, pixel-perfect screens.
+
+## What we delivered
+
+- Complete onboarding journey from wireframes to production-ready UI
+- Competitor benchmark documentation covering 10+ banks with every screen captured and organized
+- Reduced upfront data requirements through 3 compliance workshops, deferring non-critical collection to post-onboarding
+- Figma prototypes and user tests validating step ordering and comprehension
+- A shift in the bank's mindset: users can access the app before verification is complete — managing the wait rather than blocking access
 
 ## Images
 
-![Carte virtuelle](/images/Experiences/Bforbank/Carte%20virtuelle.webp)
-![Carte virtuelle 1](/images/Experiences/Bforbank/Carte%20virtuelle-1.webp)
-![Carte virtuelle 2](/images/Experiences/Bforbank/Carte%20virtuelle-2.webp)
-![Carte virtuelle 1-1](/images/Experiences/Bforbank/Carte%20virtuelle-1-1.webp)
-![Carte virtuelle 2-1](/images/Experiences/Bforbank/Carte%20virtuelle-2-1.webp)
-![Carte virtuelle 11](/images/Experiences/Bforbank/Carte%20virtuelle-11.webp)
-![EER Adresse mail](/images/Experiences/Bforbank/EER-%20Parcours%20nominal%20-%20Adresse%20mail%203%20-%2016.webp)
-![EER Creation MDP](/images/Experiences/Bforbank/EER-%20Parcours%20nominal%20-%20Cr%C3%A9ation%20MDP%20-%2029.webp)
-![EER Recherche Nationalites](/images/Experiences/Bforbank/EER-%20Parcours%20nominal%20-%20Recherche%20Nationalit%C3%A9s%20-%2044%20bis.webp)
-![EER Recherche Nationalites 1](/images/Experiences/Bforbank/EER-%20Parcours%20nominal%20-%20Recherche%20Nationalit%C3%A9s%20-%2044%20bis-1.webp)
-![EER US person 44](/images/Experiences/Bforbank/EER-%20Parcours%20nominal%20-%20US%20person%20-%2044.webp)
-![EER US person 45](/images/Experiences/Bforbank/EER-%20Parcours%20nominal%20-%20US%20person%20-%2045.webp)
-![EER Situation pro 49](/images/Experiences/Bforbank/EER-%20Parcours%20nominal%20-%20Situation%20pro%20-%2049.webp)
-![EER Situation pro 50](/images/Experiences/Bforbank/EER-%20Parcours%20nominal%20-%20Situation%20pro%20-%2050.webp)
-![EER Carte virtuelle 57](/images/Experiences/Bforbank/EER-%20Parcours%20nominal%20-%20carte%20virtuelle%20-%2057.webp)
-![EER Carte virtuelle 58](/images/Experiences/Bforbank/EER-%20Parcours%20nominal%20-%20carte%20virtuelle%20-%2058.webp)
-![EER ZZ](/images/Experiences/Bforbank/EER-%20Parcours%20nominal%20-%20ZZ.webp)
-![EER ZZ 1](/images/Experiences/Bforbank/EER-%20Parcours%20nominal%20-%20ZZ-1.webp)
-![Image 55](/images/Experiences/Bforbank/image%2055.webp)
 ![Photo 1](/images/Experiences/Bforbank/IMG_2622.webp)
 ![Photo 2](/images/Experiences/Bforbank/IMG_2623.webp)
 ![Photo 3](/images/Experiences/Bforbank/IMG_2625.webp)
@@ -83,5 +73,3 @@ Since I was not a member of the team during the product launch, it is difficult 
 ![Photo 5](/images/Experiences/Bforbank/IMG_2632.webp)
 ![Photo 6](/images/Experiences/Bforbank/IMG_2635.webp)
 ![Photo 7](/images/Experiences/Bforbank/IMG_2636.webp)
-![Photo 8](/images/Experiences/Bforbank/IMG_3215%202.webp)
-![Photo 9](/images/Experiences/Bforbank/IMG_3216%202.webp)

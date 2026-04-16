@@ -56,8 +56,8 @@ The goal is to increase revenue and reduce operating expenses (OPEX):
 
 - 6% reduction in type 2 leaks after one year of use at the pilot site, compared to the previous three years.
 - Solution deployed to 500 users across 4 sites in 3 countries.
-- Inspectors — 82% DAU, 3 sessions/day per active user
-- Process engineers — 65% WAU, 1.5 sessions/week per active user
+- Inspectors: 82% DAU, 3 sessions/day per active user
+- Process engineers: 65% WAU, 1.5 sessions/week per active user
 - Integrated 5 tools into an Azure cloud data lake to accelerate data access for other refinery projects.
 
 ## Images

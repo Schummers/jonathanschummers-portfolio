@@ -27,17 +27,31 @@ const COLUMNS = [
 const INITIAL_OFFSETS = [0, -60, -30, -80];
 const HOVER_OFFSETS = [-100, 40, -80, 30];
 
-export function BforBankShowcase() {
+// Case study hero: smaller phones, more gaps, see 1 full screen + peek top/bottom
+const COMPACT_INITIAL_OFFSETS = [0, -40, -20, -50];
+
+interface BforBankShowcaseProps {
+  compact?: boolean;
+}
+
+export function BforBankShowcase({ compact = false }: BforBankShowcaseProps) {
+  const offsets = compact ? COMPACT_INITIAL_OFFSETS : INITIAL_OFFSETS;
+  const containerClass = compact
+    ? "bfor-showcase relative h-[320px] md:h-[420px] overflow-hidden flex items-center gap-[48px] md:gap-[56px] py-[40px] px-[24px] md:px-[48px]"
+    : "bfor-showcase relative h-[320px] md:h-[480px] overflow-hidden flex items-center gap-[20px] md:gap-[24px] py-[24px]";
+  const colGapClass = compact
+    ? "gap-[48px] md:gap-[56px]"
+    : "gap-[20px] md:gap-[24px]";
+
   return (
-    <div
-      className="bfor-showcase relative h-[320px] md:h-[480px] overflow-hidden flex items-center gap-[20px] md:gap-[24px] py-[24px]"
-    >
+    <div className={containerClass}>
       {COLUMNS.map((screens, colIndex) => (
         <div
           key={colIndex}
-          className={`${colIndex >= 2 ? "hidden md:flex" : "flex"} flex-1 flex-col gap-[20px] md:gap-[24px] transition-transform duration-[12000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]`}
+          className={`${colIndex >= 2 ? "hidden md:flex" : "flex"} flex-1 flex-col ${colGapClass} transition-transform duration-[12000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]`}
           style={{
-            transform: `translateY(${INITIAL_OFFSETS[colIndex]}px)`,
+            transform: `translateY(${offsets[colIndex]}px)`,
+            maxWidth: compact ? "140px" : undefined,
           }}
           data-bfor-col={colIndex}
         >
@@ -46,8 +60,8 @@ export function BforBankShowcase() {
               <Image
                 src={src}
                 alt="BforBank app screen"
-                width={300}
-                height={650}
+                width={compact ? 200 : 300}
+                height={compact ? 433 : 650}
                 className="w-full h-auto block"
               />
             </IPhoneFrame>
@@ -55,7 +69,7 @@ export function BforBankShowcase() {
         </div>
       ))}
 
-      {/* Fade edges — uses CSS var that switches on parent card hover */}
+      {/* Fade edges */}
       <div className="bfor-fade-top pointer-events-none absolute inset-x-0 top-0 h-[48px] z-10" />
       <div className="bfor-fade-bottom pointer-events-none absolute inset-x-0 bottom-0 h-[48px] z-10" />
 

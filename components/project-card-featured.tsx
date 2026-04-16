@@ -1,8 +1,11 @@
+import Link from "next/link";
 import Image from "next/image";
 import { Tag } from "@/components/tag";
 import { BrowserFrame } from "@/components/browser-frame";
 import { BforBankShowcase } from "@/components/bforbank-showcase";
 import type { Project } from "@/lib/data";
+
+const SLUGS_WITH_CASE_STUDY = ["bforbank"];
 
 function FeaturedImage({ project }: { project: Project }) {
   if (project.mockupType === "mobile-grid") {
@@ -58,9 +61,14 @@ function FeaturedImage({ project }: { project: Project }) {
 }
 
 export function ProjectCardFeatured({ project }: { project: Project }) {
+  const hasCase = SLUGS_WITH_CASE_STUDY.includes(project.slug);
+  const Wrapper = hasCase ? Link : "div";
+  const wrapperProps = hasCase ? { href: `/work/${project.slug}` } : {};
+
   return (
-    <div
-      className="hover-subtle block border-b border-border"
+    <Wrapper
+      {...wrapperProps as any}
+      className={`hover-subtle block border-b border-border ${hasCase ? "cursor-pointer" : ""}`}
     >
       {/* Desktop: 2-col grid | Mobile: single column flex */}
       <div className="md:h-[560px] overflow-hidden">
@@ -118,6 +126,6 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
 
         </div>
       </div>
-    </div>
+    </Wrapper>
   );
 }
