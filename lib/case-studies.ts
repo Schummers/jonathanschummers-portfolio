@@ -81,11 +81,9 @@ export function getCaseStudy(slug: string): CaseStudy | null {
   };
 }
 
-export function getAllCaseStudySlugs(): string[] {
-  if (!fs.existsSync(CASE_STUDIES_DIR)) return [];
+/* Only these slugs generate public pages */
+const PUBLISHED_SLUGS = ["bforbank"];
 
-  return fs
-    .readdirSync(CASE_STUDIES_DIR)
-    .filter((file) => file.endsWith(".md"))
-    .map((file) => file.replace(".md", ""));
+export function getAllCaseStudySlugs(): string[] {
+  return PUBLISHED_SLUGS;
 }

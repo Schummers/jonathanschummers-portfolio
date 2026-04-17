@@ -1,27 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
 import { cn } from "@/lib/cn";
 
 export function BackBar() {
   const [visible, setVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     function handleScroll() {
       const currentY = window.scrollY;
-      if (currentY < lastScrollY || currentY < 100) {
-        setVisible(true);
-      } else {
-        setVisible(false);
-      }
-      setLastScrollY(currentY);
+      setVisible(currentY < lastScrollY.current || currentY < 100);
+      lastScrollY.current = currentY;
     }
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   return (
     <div
