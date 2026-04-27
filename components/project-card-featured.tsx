@@ -4,8 +4,7 @@ import { Tag } from "@/components/tag";
 import { BrowserFrame } from "@/components/browser-frame";
 import { BforBankShowcase } from "@/components/bforbank-showcase";
 import type { Project } from "@/lib/data";
-
-const SLUGS_WITH_CASE_STUDY = ["bforbank"];
+import { PUBLISHED_SLUGS } from "@/lib/case-studies";
 
 function FeaturedImage({ project }: { project: Project }) {
   if (project.mockupType === "mobile-grid") {
@@ -61,7 +60,7 @@ function FeaturedImage({ project }: { project: Project }) {
 }
 
 export function ProjectCardFeatured({ project }: { project: Project }) {
-  const hasCase = SLUGS_WITH_CASE_STUDY.includes(project.slug);
+  const hasCase = PUBLISHED_SLUGS.includes(project.slug);
   const Wrapper = hasCase ? Link : "div";
   const wrapperProps = hasCase ? { href: `/work/${project.slug}` } : {};
 

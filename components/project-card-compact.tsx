@@ -1,12 +1,19 @@
+import Link from "next/link";
 import Image from "next/image";
 import { Tag } from "@/components/tag";
 import { BrowserFrame } from "@/components/browser-frame";
 import type { Project } from "@/lib/data";
+import { PUBLISHED_SLUGS } from "@/lib/case-studies";
 
 export function ProjectCardCompact({ project }: { project: Project }) {
+  const hasCase = PUBLISHED_SLUGS.includes(project.slug);
+  const Wrapper = hasCase ? Link : "div";
+  const wrapperProps = hasCase ? { href: `/work/${project.slug}` } : {};
+
   return (
-    <div
-      className="group hover-subtle flex gap-xl border-b border-border px-xl py-md max-md:px-md md:max-lg:px-lg md:min-h-[200px]"
+    <Wrapper
+      {...wrapperProps as any}
+      className={`group hover-subtle flex gap-xl border-b border-border px-xl py-md max-md:px-md md:max-lg:px-lg md:min-h-[200px] ${hasCase ? "cursor-pointer" : ""}`}
     >
       {/* Text left */}
       <div className="flex-1 flex flex-col justify-center gap-sm">
@@ -54,6 +61,6 @@ export function ProjectCardCompact({ project }: { project: Project }) {
           )}
         </div>
       )}
-    </div>
+    </Wrapper>
   );
 }
