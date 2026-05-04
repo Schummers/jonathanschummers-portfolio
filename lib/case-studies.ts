@@ -14,10 +14,17 @@ export interface CaseStudyFrontmatter {
   order: number;
 }
 
+export interface CaseStudyStep {
+  heading: string;
+  content: string;
+  images: { alt: string; src: string }[];
+}
+
 export interface CaseStudySection {
   heading: string;
   content: string;
   images: { alt: string; src: string }[];
+  steps: CaseStudyStep[];
 }
 
 export interface CaseStudy {
@@ -28,40 +35,67 @@ export interface CaseStudy {
 function parseMarkdownSections(markdown: string): CaseStudySection[] {
   const lines = markdown.split("\n");
   const sections: CaseStudySection[] = [];
-  let currentHeading = "";
-  let contentLines: string[] = [];
-  let images: { alt: string; src: string }[] = [];
+
+  let sectionHeading = "";
+  let sectionContent: string[] = [];
+  let sectionImages: { alt: string; src: string }[] = [];
+  let steps: CaseStudyStep[] = [];
+
+  let stepHeading = "";
+  let stepContent: string[] = [];
+  let stepImages: { alt: string; src: string }[] = [];
+  let inStep = false;
+
+  function flushStep() {
+    if (!inStep) return;
+    steps.push({
+      heading: stepHeading,
+      content: stepContent.join("\n").trim(),
+      images: stepImages,
+    });
+    stepHeading = "";
+    stepContent = [];
+    stepImages = [];
+    inStep = false;
+  }
+
+  function flushSection() {
+    if (!sectionHeading) return;
+    flushStep();
+    sections.push({
+      heading: sectionHeading,
+      content: sectionContent.join("\n").trim(),
+      images: sectionImages,
+      steps,
+    });
+    sectionHeading = "";
+    sectionContent = [];
+    sectionImages = [];
+    steps = [];
+  }
 
   for (const line of lines) {
     if (line.startsWith("## ")) {
-      if (currentHeading) {
-        sections.push({
-          heading: currentHeading,
-          content: contentLines.join("\n").trim(),
-          images,
-        });
-      }
-      currentHeading = line.replace("## ", "").trim();
-      contentLines = [];
-      images = [];
+      flushSection();
+      sectionHeading = line.replace("## ", "").trim();
+    } else if (line.startsWith("### ")) {
+      flushStep();
+      stepHeading = line.replace("### ", "").trim();
+      inStep = true;
     } else {
       const imgMatch = line.match(/!\[([^\]]*)\]\(([^)]+)\)/);
       if (imgMatch) {
-        images.push({ alt: imgMatch[1], src: decodeURIComponent(imgMatch[2]) });
+        const img = { alt: imgMatch[1], src: decodeURIComponent(imgMatch[2]) };
+        if (inStep) stepImages.push(img);
+        else sectionImages.push(img);
       } else {
-        contentLines.push(line);
+        if (inStep) stepContent.push(line);
+        else sectionContent.push(line);
       }
     }
   }
 
-  if (currentHeading) {
-    sections.push({
-      heading: currentHeading,
-      content: contentLines.join("\n").trim(),
-      images,
-    });
-  }
-
+  flushSection();
   return sections;
 }
 

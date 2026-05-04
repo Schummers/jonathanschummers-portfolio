@@ -10,6 +10,7 @@ import { Button } from "@/components/button";
 import { Footer } from "@/components/footer";
 import { ArrowUpRightIcon } from "@heroicons/react/16/solid";
 import { getCaseStudy, getAllCaseStudySlugs } from "@/lib/case-studies";
+import type { CaseStudyStep } from "@/lib/case-studies";
 import { projects } from "@/lib/data";
 import { IPhoneFrame } from "@/components/iphone-frame";
 
@@ -33,7 +34,6 @@ const SECTION_MAP: Record<string, { id: string; label: string }> = {
   // Delivered group
   "What we delivered": { id: "delivered", label: "What we delivered" },
   "Product Team": { id: "delivered", label: "What we delivered" },
-  Impact: { id: "delivered", label: "What we delivered" },
   "Personal Development": { id: "delivered", label: "What we delivered" },
   Reflections: { id: "delivered", label: "What we delivered" },
   // Skip
@@ -41,10 +41,7 @@ const SECTION_MAP: Record<string, { id: string; label: string }> = {
 };
 
 /* Sections to skip entirely */
-const SKIP_SECTIONS = ["Headline", "Subtitle", "Scope", "Images"];
-
-/* Sections that map to KEY_RESULTS display */
-const KEY_RESULT_SECTIONS = ["Impact"];
+const SKIP_SECTIONS = ["Headline", "Subtitle", "Scope", "Images", "Impact"];
 
 interface ProcessedSection {
   id: string;
@@ -53,20 +50,17 @@ interface ProcessedSection {
     heading: string;
     content: string;
     images: { alt: string; src: string }[];
+    steps: CaseStudyStep[];
   }[];
 }
 
 function processSections(
-  sections: { heading: string; content: string; images: { alt: string; src: string }[] }[]
+  sections: { heading: string; content: string; images: { alt: string; src: string }[]; steps: CaseStudyStep[] }[]
 ) {
   const headline =
     sections.find((s) => s.heading === "Headline")?.content || "";
   const subtitle =
     sections.find((s) => s.heading === "Subtitle")?.content || "";
-
-  // Collect all images from the Images section
-  const imageSection = sections.find((s) => s.heading === "Images");
-  const allImages = imageSection?.images || [];
 
   // Group sections into the 3 main blocks
   const grouped: ProcessedSection[] = [
@@ -87,6 +81,7 @@ function processSections(
         heading: section.heading,
         content: section.content,
         images: section.images,
+        steps: section.steps,
       });
     }
   }
@@ -94,11 +89,21 @@ function processSections(
   // Remove empty groups
   const filteredGroups = grouped.filter((g) => g.subsections.length > 0);
 
-  return { headline, subtitle, allImages, groups: filteredGroups };
+  return { headline, subtitle, groups: filteredGroups };
+}
+
+/* Parse **bold** inline markdown */
+function renderInline(text: string): React.ReactNode {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
 }
 
 function renderContent(text: string) {
-  // Split into paragraphs and render lists
   const blocks = text.split("\n\n").filter(Boolean);
 
   return blocks.map((block, i) => {
@@ -114,7 +119,7 @@ function renderContent(text: string) {
               key={j}
               className="font-body text-body leading-body text-text-primary pl-md relative before:absolute before:left-0 before:top-[0.65em] before:h-[5px] before:w-[5px] before:rounded-full before:bg-text-secondary"
             >
-              {item.replace(/^- /, "")}
+              {renderInline(item.replace(/^- /, ""))}
             </li>
           ))}
         </ul>
@@ -131,7 +136,7 @@ function renderContent(text: string) {
               key={j}
               className="font-body text-body leading-body text-text-primary"
             >
-              {item.replace(/^\d+\.\s/, "")}
+              {renderInline(item.replace(/^\d+\.\s/, ""))}
             </li>
           ))}
         </ol>
@@ -145,7 +150,7 @@ function renderContent(text: string) {
           key={i}
           className="mt-lg font-display text-h3 font-bold leading-h3 tracking-h3 text-text-primary"
         >
-          {trimmed.replace("### ", "")}
+          {renderInline(trimmed.replace("### ", ""))}
         </h3>
       );
     }
@@ -156,10 +161,83 @@ function renderContent(text: string) {
         key={i}
         className="mt-sm font-body text-body leading-body text-text-primary"
       >
-        {trimmed}
+        {renderInline(trimmed)}
       </p>
     );
   });
+}
+
+/* Render images for a step — layout depends on count */
+function renderStepImages(images: { alt: string; src: string }[]) {
+  if (images.length === 0) return null;
+
+  // 4+ images → 4-column row
+  if (images.length >= 4) {
+    return (
+      <div className="mt-md grid grid-cols-4 gap-sm max-md:grid-cols-2">
+        {images.slice(0, 4).map((img, i) => (
+          <figure key={i}>
+            <Image
+              src={img.src}
+              alt={img.alt}
+              width={200}
+              height={150}
+              className="w-full object-cover"
+            />
+            {img.alt && (
+              <figcaption className="mt-xs font-body text-label text-text-tertiary">
+                {img.alt}
+              </figcaption>
+            )}
+          </figure>
+        ))}
+      </div>
+    );
+  }
+
+  // 2 images → side by side, same height
+  if (images.length === 2) {
+    return (
+      <div className="mt-md grid grid-cols-2 gap-md max-md:grid-cols-1">
+        {images.map((img, i) => (
+          <figure key={i}>
+            <div className="h-[240px] overflow-hidden">
+              <Image
+                src={img.src}
+                alt={img.alt}
+                width={420}
+                height={240}
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+            {img.alt && (
+              <figcaption className="mt-xs font-body text-label text-text-tertiary">
+                {img.alt}
+              </figcaption>
+            )}
+          </figure>
+        ))}
+      </div>
+    );
+  }
+
+  // 1 image → full width
+  return (
+    <figure className="mt-md">
+      <Image
+        src={images[0].src}
+        alt={images[0].alt}
+        width={640}
+        height={400}
+        className="w-full h-auto"
+      />
+      {images[0].alt && (
+        <figcaption className="mt-xs font-body text-label text-text-tertiary">
+          {images[0].alt}
+        </figcaption>
+      )}
+    </figure>
+  );
 }
 
 export async function generateStaticParams() {
@@ -195,20 +273,14 @@ export default async function CaseStudyPage({
   if (!study) notFound();
 
   const project = projects.find((p) => p.slug === slug);
-  const { headline, subtitle, allImages, groups } = processSections(
-    study.sections
-  );
+  const { headline, subtitle, groups } = processSections(study.sections);
 
   const tocItems = [
     ...groups.map((g) => ({ id: g.id, label: g.label })),
     { id: "interested", label: "Book a call" },
   ];
 
-  // Select a few key images to display between sections
   const heroImage = study.frontmatter.heroImage;
-  const contextImages = allImages.slice(0, 2);
-  const howImages = allImages.slice(2, 6);
-  const deliveredImages = allImages.slice(6, 10);
 
   return (
     <>
@@ -255,27 +327,24 @@ export default async function CaseStudyPage({
           </section>
         )}
 
-        {/* 3-column layout: left margin | content (with inner borders) | right margin */}
-        {/* The inner vertical borders create the 864px content column visually */}
+        {/* 3-column layout */}
         <div className="flex max-lg:block">
-          {/* Left column: TOC area — 204px with right border */}
+          {/* Left column: TOC */}
           <div className="hidden lg:block w-[calc((100%-864px)/2)] min-w-[140px] shrink-0 border-r border-border">
             <div className="sticky top-20 px-xl py-xl">
               <CaseStudyToc items={tocItems} />
             </div>
           </div>
 
-          {/* Center column: 864px max content */}
+          {/* Center column: 864px max */}
           <div className="flex-1 lg:max-w-[864px]">
             {/* Title + Tags + Key Results */}
             <section className="border-b border-border px-xl py-xl max-md:px-md md:max-lg:px-lg">
               <div className="mx-auto max-w-[640px]">
-                {/* Title first — H2 size */}
                 <h1 className="font-display text-h2 font-bold leading-h2 tracking-h2 text-text-primary">
                   {project?.title || headline}
                 </h1>
 
-                {/* Tags row — below title */}
                 <div className="mt-md flex flex-wrap gap-sm">
                   {project?.company && <Tag>{project.company}</Tag>}
                   <Tag>{study.frontmatter.duration}</Tag>
@@ -284,14 +353,12 @@ export default async function CaseStudyPage({
                   ))}
                 </div>
 
-                {/* Subtitle */}
                 {subtitle && (
                   <p className="mt-sm font-body text-body-lg leading-body text-text-secondary">
                     {subtitle}
                   </p>
                 )}
 
-                {/* Key Results — subtle background, no stroke */}
                 {project?.metric && (
                   <div className="mt-lg bg-surface px-md py-md">
                     <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
@@ -300,7 +367,6 @@ export default async function CaseStudyPage({
                     <p className="mt-xs font-display text-h3 font-bold leading-h3 text-text-primary">
                       {project.metric}
                     </p>
-                    {/* BforBank: Google UX Benchmark proof image */}
                     {slug === "bforbank" && (
                       <div className="mt-md">
                         <Image
@@ -317,103 +383,92 @@ export default async function CaseStudyPage({
               </div>
             </section>
 
-            {/* Mobile TOC — inline */}
+            {/* Mobile TOC */}
             <div className="py-md px-xl border-b border-border lg:hidden max-md:px-md">
               <CaseStudyToc items={tocItems} />
             </div>
 
             {/* Content sections */}
             {groups.map((group, groupIndex) => (
-              <section
-                key={group.id}
-                id={group.id}
-              >
-                {/* Section separator — full 864px width (no padding) */}
-                {groupIndex > 0 && (
-                  <hr className="border-t border-border" />
-                )}
+              <section key={group.id} id={group.id}>
+                {groupIndex > 0 && <hr className="border-t border-border" />}
 
                 <div className="px-xl py-xl max-md:px-md md:max-lg:px-lg">
-                <div className="mx-auto max-w-[640px]">
-                  {/* Section label */}
-                  <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
-                    {group.label}
-                  </p>
+                  <div className="mx-auto max-w-[640px]">
+                    {/* Section label */}
+                    <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
+                      {group.label}
+                    </p>
 
-                  {/* Subsections */}
-                  {group.subsections.map((sub, subIndex) => {
-                    const showHeading =
-                      sub.heading.toLowerCase() !== group.label.toLowerCase() &&
-                      !sub.heading.toLowerCase().startsWith(group.label.toLowerCase());
+                    {/* Subsections */}
+                    {group.subsections.map((sub, subIndex) => {
+                      const showHeading =
+                        sub.heading.toLowerCase() !== group.label.toLowerCase() &&
+                        !sub.heading.toLowerCase().startsWith(group.label.toLowerCase());
 
-                    return (
-                      <div key={subIndex} className={subIndex === 0 ? "mt-md" : "mt-xl2"}>
-                        {subIndex > 0 && (
-                          <hr className="border-t border-border mb-xl2" />
-                        )}
+                      return (
+                        <div key={subIndex} className={subIndex === 0 ? "mt-md" : "mt-xl2"}>
+                          {subIndex > 0 && (
+                            <hr className="border-t border-border mb-xl2" />
+                          )}
 
-                        {showHeading && (
-                          <h3 className="font-display text-body-lg font-bold leading-body text-text-primary">
-                            {sub.heading}
-                          </h3>
-                        )}
+                          {showHeading && (
+                            <h3 className="font-display text-body-lg font-bold leading-body text-text-primary">
+                              {sub.heading}
+                            </h3>
+                          )}
 
-                        <div className={showHeading ? "mt-xs" : ""}>{renderContent(sub.content)}</div>
-                      </div>
-                    );
-                  })}
-                </div>
+                          {/* Section-level content (before any ### steps) */}
+                          <div className={showHeading ? "mt-xs" : ""}>
+                            {renderContent(sub.content)}
+                          </div>
 
-                {/* Images — full padding-area width (outside 640px text) */}
-                {(() => {
-                  const isBforBank = slug === "bforbank";
+                          {/* Section-level images (before steps) */}
+                          {renderStepImages(sub.images)}
 
-                  // BforBank: only show images in "delivered" section, with iPhone frames
-                  if (isBforBank) {
-                    if (group.id !== "delivered") return null;
+                          {/* BforBank: iPhone grid in delivered section */}
+                          {slug === "bforbank" && group.id === "delivered" && sub.steps.length === 0 && (
+                            <div className="mt-xl grid grid-cols-2 gap-lg max-md:grid-cols-1 mx-auto max-w-[480px]">
+                              {sub.images.map((img, i) => (
+                                <IPhoneFrame key={i}>
+                                  <Image
+                                    src={img.src}
+                                    alt={img.alt}
+                                    width={300}
+                                    height={650}
+                                    className="w-full h-auto block"
+                                  />
+                                </IPhoneFrame>
+                              ))}
+                            </div>
+                          )}
 
-                    return (
-                      <div className="mt-xl grid grid-cols-2 gap-lg max-md:grid-cols-1 mx-auto max-w-[480px]">
-                        {allImages.map((img, i) => (
-                          <IPhoneFrame key={i}>
-                            <Image
-                              src={img.src}
-                              alt={img.alt}
-                              width={300}
-                              height={650}
-                              className="w-full h-auto block"
-                            />
-                          </IPhoneFrame>
-                        ))}
-                      </div>
-                    );
-                  }
-
-                  // Default: distribute images across sections
-                  const sectionImages = [
-                    ...group.subsections.flatMap((s) => s.images),
-                    ...(group.id === "context" ? contextImages : []),
-                    ...(group.id === "how" ? howImages : []),
-                    ...(group.id === "delivered" ? deliveredImages : []),
-                  ].slice(0, 4);
-
-                  if (sectionImages.length === 0) return null;
-
-                  return (
-                    <div className="mt-xl grid grid-cols-2 gap-md max-md:grid-cols-1">
-                      {sectionImages.map((img, i) => (
-                        <Image
-                          key={i}
-                          src={img.src}
-                          alt={img.alt}
-                          width={420}
-                          height={280}
-                          className="w-full object-cover"
-                        />
-                      ))}
-                    </div>
-                  );
-                })()}
+                          {/* Steps (### subsections) */}
+                          {sub.steps.map((step, stepIdx) => (
+                            <div
+                              key={stepIdx}
+                              className={
+                                stepIdx === 0 && sub.content
+                                  ? "mt-lg"
+                                  : stepIdx === 0
+                                  ? ""
+                                  : "mt-xl2"
+                              }
+                            >
+                              {stepIdx > 0 && (
+                                <hr className="border-t border-border mb-xl2" />
+                              )}
+                              <h3 className="font-display text-body-lg font-bold leading-body text-text-primary">
+                                {step.heading}
+                              </h3>
+                              <div className="mt-xs">{renderContent(step.content)}</div>
+                              {renderStepImages(step.images)}
+                            </div>
+                          ))}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </section>
             ))}
@@ -430,9 +485,7 @@ export default async function CaseStudyPage({
                     Let&apos;s talk about this project or anything else.
                   </p>
                   <div className="mt-lg">
-                    <Button
-                      href="https://calendly.com/jonathan-schummers/discovery-call"
-                    >
+                    <Button href="https://calendly.com/jonathan-schummers/discovery-call">
                       Book a call
                       <ArrowUpRightIcon className="ml-xs size-3.5" />
                     </Button>
@@ -442,7 +495,7 @@ export default async function CaseStudyPage({
             </section>
           </div>
 
-          {/* Right column: empty for symmetry — with left border */}
+          {/* Right column: symmetry */}
           <div className="hidden lg:block w-[calc((100%-864px)/2)] min-w-[140px] shrink-0 border-l border-border" />
         </div>
       </BlueprintShell>

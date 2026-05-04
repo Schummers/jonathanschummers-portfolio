@@ -22,7 +22,7 @@ export const projects: Project[] = [
       "Redesigned the app in dark mode. New diagnostic dashboard for production loss, integrated alerting system, and automated reporting for plant business owners, saving operators 3x30 min per day.",
     metric: "+23% kWh/operator",
     company: "TotalEnergies — Digital Factory",
-    tags: ["Product Design", "Dark Mode", "Industry"],
+    tags: ["Product Designer", "B2B SaaS", "Energy"],
     image: "/images/Hero/NOD.webp",
     type: "featured",
     browserUrl: "nod.com",
