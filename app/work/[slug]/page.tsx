@@ -326,18 +326,18 @@ export default async function CaseStudyPage({
         )}
 
         {/* 3-column layout */}
-        <div className="flex max-lg:block">
+        <div className="flex max-xl:block">
           {/* Left column: TOC */}
-          <div className="hidden lg:block w-[calc((100%-864px)/2)] min-w-[140px] shrink-0 border-r border-border">
+          <div className="hidden xl:block w-[calc((100%-864px)/2)] min-w-[140px] shrink-0 border-r border-border">
             <div className="sticky top-20 px-xl py-xl">
               <CaseStudyToc items={tocItems} />
             </div>
           </div>
 
           {/* Center column: 864px max */}
-          <div className="flex-1 lg:max-w-[864px]">
+          <div className="flex-1 xl:max-w-[864px]">
             {/* Title + Tags + Key Results */}
-            <section className="border-b border-border px-xl py-xl max-md:px-md md:max-lg:px-lg">
+            <section className="border-b border-border px-xl py-xl max-md:px-md md:max-xl:px-lg">
               <div className="mx-auto max-w-[640px]">
                 <h1 className="font-display text-h2 font-bold leading-h2 tracking-h2 text-text-primary">
                   {project?.title || headline}
@@ -382,7 +382,7 @@ export default async function CaseStudyPage({
             </section>
 
             {/* Mobile TOC */}
-            <div className="py-md px-xl border-b border-border lg:hidden max-md:px-md">
+            <div className="py-md px-xl border-b border-border xl:hidden max-md:px-md">
               <CaseStudyToc items={tocItems} />
             </div>
 
@@ -391,7 +391,7 @@ export default async function CaseStudyPage({
               <section key={group.id} id={group.id}>
                 {groupIndex > 0 && <hr className="border-t border-border" />}
 
-                <div className="px-xl py-xl max-md:px-md md:max-lg:px-lg">
+                <div className="px-xl py-xl max-md:px-md md:max-xl:px-lg">
                   <div className="mx-auto max-w-[640px]">
                     {/* Section label */}
                     <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
@@ -468,7 +468,7 @@ export default async function CaseStudyPage({
             {/* Book a call CTA */}
             <section id="interested">
               <hr className="border-t border-border" />
-              <div className="px-xl py-xl max-md:px-md md:max-lg:px-lg">
+              <div className="px-xl py-xl max-md:px-md md:max-xl:px-lg">
                 <div className="mx-auto max-w-[640px]">
                   <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
                     Book a call
@@ -488,7 +488,7 @@ export default async function CaseStudyPage({
           </div>
 
           {/* Right column: symmetry */}
-          <div className="hidden lg:block w-[calc((100%-864px)/2)] min-w-[140px] shrink-0 border-l border-border" />
+          <div className="hidden xl:block w-[calc((100%-864px)/2)] min-w-[140px] shrink-0 border-l border-border" />
         </div>
       </BlueprintShell>
       <Footer />
