@@ -7,13 +7,20 @@ import { PUBLISHED_SLUGS } from "@/lib/case-studies";
 
 export function ProjectCardCompact({ project }: { project: Project }) {
   const hasCase = PUBLISHED_SLUGS.includes(project.slug);
-  const Wrapper = hasCase ? Link : "div";
-  const wrapperProps = hasCase ? { href: `/work/${project.slug}` } : {};
+  const hasExternal = !!project.externalUrl;
+  const isClickable = hasCase || hasExternal;
+
+  const Wrapper = isClickable ? Link : "div";
+  const wrapperProps = isClickable
+    ? hasExternal
+      ? { href: project.externalUrl!, target: "_blank", rel: "noopener noreferrer" }
+      : { href: `/work/${project.slug}` }
+    : {};
 
   return (
     <Wrapper
       {...wrapperProps as any}
-      className={`group hover-subtle flex gap-xl border-b border-border px-xl py-md max-md:px-md md:max-lg:px-lg md:min-h-[200px] ${hasCase ? "cursor-pointer" : ""}`}
+      className={`group hover-subtle flex gap-xl border-b border-border px-xl py-md max-md:px-md md:max-lg:px-lg md:min-h-[200px] ${isClickable ? "cursor-pointer" : ""}`}
     >
       {/* Text left */}
       <div className="flex-1 flex flex-col justify-center gap-sm">
