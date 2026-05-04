@@ -83,6 +83,7 @@
   --sem-text-body-sm: 14px;
   --sem-text-label: 14px;
   --sem-text-tag: 12px;
+  --sem-text-caption: 12px;  /* image captions — italic, normal weight */
 
   /* Leading */
   --sem-leading-hero: 0.92;
@@ -245,6 +246,8 @@
   --text-label--line-height: var(--sem-leading-body-sm);
   --text-tag: var(--sem-text-tag);
   --text-tag--line-height: var(--sem-leading-tag);
+  --text-caption: var(--sem-text-caption);
+  --text-caption--line-height: var(--sem-leading-tag);
 
   /* Tracking */
   --tracking-hero: var(--sem-tracking-hero);

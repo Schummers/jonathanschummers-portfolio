@@ -122,6 +122,7 @@ Tailles en pixels desktop (>1024px). Voir [3.4 Responsive](#34-responsive) pour 
 | `text-body-sm` | `--sem-text-body-sm` | **14px** | 1.5 | normal | Captions, métadonnées |
 | `text-label` | `--sem-text-label` | **14px** | 1.5 | 0.08em (uppercase) | Labels de section ("Key results", "Testimonials") |
 | `text-tag` | `--sem-text-tag` | **12px** | 16px | normal | Texte des Tag components |
+| `text-caption` | `--sem-text-caption` | **12px** | 16px | normal | Captions d'images — toujours combiné avec `italic font-normal text-text-tertiary` |
 
 > **Tags font-weight et casse.** Les tags utilisent `font-medium` (500) en casse normale, sans tracking custom — style "chips éditoriaux", pas "labels techniques".
 
