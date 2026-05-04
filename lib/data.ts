@@ -10,6 +10,7 @@ export interface Project {
   hidden?: boolean;
   browserUrl?: string;
   mockupType?: "browser" | "browser-scroll" | "mobile-grid" | "iphone";
+  externalUrl?: string;
 }
 
 export const projects: Project[] = [
@@ -90,5 +91,6 @@ export const projects: Project[] = [
     type: "compact",
     browserUrl: "malaama.org",
     mockupType: "browser",
+    externalUrl: "https://malaama.org",
   },
 ];

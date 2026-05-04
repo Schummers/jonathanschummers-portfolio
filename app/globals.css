@@ -256,7 +256,13 @@
 }
 
 /* --- Custom variant: hover réservé aux pointeurs (pas mobile) --- */
-@custom-variant hover-supported (@media (hover: hover) { &:hover; });
+@custom-variant hover-supported {
+  @media (hover: hover) {
+    &:hover {
+      @slot;
+    }
+  }
+}
 
 /* --- Reduced motion --- */
 @media (prefers-reduced-motion: reduce) {
