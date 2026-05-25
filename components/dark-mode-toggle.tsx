@@ -28,7 +28,7 @@ export function DarkModeToggle({ className }: { className?: string }) {
   return (
     <button
       onClick={toggle}
-      aria-label={dark ? "Activer le mode clair" : "Activer le mode sombre"}
+      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       className={cn(
         "p-xs",
         "text-text-primary transition-colors duration-[var(--dur-fast)] ease-out",

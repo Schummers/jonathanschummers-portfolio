@@ -115,8 +115,27 @@ export async function generateMetadata({
     study.sections.find((s) => s.heading === "Headline")?.content || "";
 
   return {
-    title: `${study.frontmatter.title} - Jonathan Schummers`,
+    title: study.frontmatter.title,
     description: headline,
+    openGraph: {
+      type: "article",
+      title: study.frontmatter.title,
+      description: headline,
+      images: [
+        {
+          url: study.frontmatter.heroImage,
+          width: 1400,
+          height: 700,
+          alt: study.frontmatter.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: study.frontmatter.title,
+      description: headline,
+      images: [study.frontmatter.heroImage],
+    },
   };
 }
 
@@ -223,9 +242,9 @@ export default async function CaseStudyPage({
                 <div className="px-xl py-xl max-md:px-md md:max-xl:px-lg">
                   <div className="mx-auto max-w-content">
                     {/* Section label */}
-                    <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
+                    <h2 className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
                       {group.label}
-                    </p>
+                    </h2>
 
                     {/* Subsections */}
                     {group.subsections.map((sub, subIndex) => {
@@ -343,9 +362,9 @@ export default async function CaseStudyPage({
               <hr className="border-t border-border" />
               <div className="px-xl py-xl max-md:px-md md:max-xl:px-lg">
                 <div className="mx-auto max-w-content">
-                  <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
+                  <h2 className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
                     Book a call
-                  </p>
+                  </h2>
                   <p className="mt-md font-display text-h3 font-bold leading-h3 tracking-h3 text-text-primary">
                     Let&apos;s talk about this project or anything else.
                   </p>
