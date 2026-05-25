@@ -331,10 +331,14 @@ Métadonnée non-interactive (rôle, durée, secteur, technologie).
 - Font: `text-tag` (12px), `font-medium` (500), `font-body` (Manrope)
 - Casse: normale (pas d'uppercase)
 - Tracking: normal (pas de letter-spacing custom)
-- Couleurs: `text-text-secondary` sur `bg-surface`
-- Padding: `px-[10px] py-[6px]`
+- Couleur texte: `text-text-secondary`
+- Fond: transparent (pas de `bg-*`)
+- Bordure: `border border-border-strong` (1px)
+- Padding: `px-[10px] py-[6px]` (10/6, exception assumée à la grille 8px — valeurs Figma exactes)
 - Radius: `rounded-md` (8px)
 - Pas d'état hover (non-interactif)
+
+> **Style outline, pas filled.** Le tag est volontairement transparent + bordure (look éditorial) pour rester lisible sur les 3 fonds usuels: `bg-bg`, `bg-surface` (cards au hover) et `bg-invert-bg`. Une variante filled disparaîtrait au hover des cards.
 
 ### 9.3 Hover patterns
 
@@ -504,6 +508,10 @@ a:focus-visible, button:focus-visible {
   --sem-accent-muted: #3670f5;
   --sem-accent-subtle: #d4e3ff;
 
+  /* Layout — case study widths */
+  --sem-case-prose: 640px;    /* colonne contenu (texte, bullets, images) */
+  --sem-case-center: 864px;   /* colonne centrale du layout 3 colonnes */
+
   /* Spacing — base 8px */
   --sem-space-xs: 8px;
   --sem-space-sm: 16px;
@@ -543,6 +551,7 @@ a:focus-visible, button:focus-visible {
   --sem-text-body-sm: 14px;
   --sem-text-label: 14px;
   --sem-text-tag: 12px;
+  --sem-text-caption: 12px;  /* captions d'images — italic, weight normal */
 
   /* Leading */
   --sem-leading-hero: 0.92;
@@ -650,6 +659,10 @@ a:focus-visible, button:focus-visible {
   --spacing-3xl: var(--sem-space-3xl);
   --spacing-4xl: var(--sem-space-4xl);
 
+  /* Layout — case study */
+  --width-content: var(--sem-case-prose);
+  --width-center: var(--sem-case-center);
+
   /* Radius */
   --radius-none: var(--sem-radius-none);
   --radius-sm: var(--sem-radius-sm);
@@ -681,6 +694,8 @@ a:focus-visible, button:focus-visible {
   --text-label--line-height: var(--sem-leading-body-sm);
   --text-tag: var(--sem-text-tag);
   --text-tag--line-height: var(--sem-leading-tag);
+  --text-caption: var(--sem-text-caption);
+  --text-caption--line-height: var(--sem-leading-tag);
 
   /* Tracking */
   --tracking-hero: var(--sem-tracking-hero);
@@ -764,6 +779,7 @@ Issues de l'audit code↔spec de mai 2026 (cf. branche `docs/design-system`):
 | B1 | `text-tag` font-size | 12px (vs spec 11px) |
 | B2 | `--sem-tracking-label` | 0.08em (spec wins, vs code 0.07em) |
 | B7-B9 | Style des tags | Medium + casse normale + pas de tracking custom (chips éditoriaux) |
+| B10 | Tag — fond vs bordure | **Outline gagne** (transparent + border-strong) — testé visuellement, le filled disparaissait sur cards au hover (audit mai 2026) |
 | C1 | `--sem-space-xl2: 72px` | Ajouté (utilisé par les featured cards) |
 | C2 | `--sem-radius-md: 8px` | Officialisé (override Tailwind 6px → 8px) |
 | C3 | Tag radius | `rounded-md` (8px) au lieu de `rounded-pill` (3px) |
