@@ -42,3 +42,7 @@ next-env.d.ts
 .DS_Store
 .superpowers/
 .playwright-mcp/
+
+# Claude Code — local-only settings
+.claude/settings.local.json
+.claude/worktrees/
