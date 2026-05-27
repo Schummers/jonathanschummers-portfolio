@@ -7,7 +7,7 @@ Portfolio web freelance de Jonathan Schummers, Product Designer.
 ## Stack
 
 Next.js 16 (App Router) · React 19 · Tailwind v4 · TypeScript · case studies en markdown.
-Design system documenté dans [`docs/archive/2026-05-25-design-system-original.md`](docs/archive/2026-05-25-design-system-original.md).
+Design system documenté dans [`DESIGN.md`](DESIGN.md). Référence historique : [`docs/archive/2026-05-25-design-system-original.md`](docs/archive/2026-05-25-design-system-original.md).
 
 ## Développement
 
