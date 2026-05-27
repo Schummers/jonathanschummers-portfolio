@@ -13,4 +13,4 @@ jobs:
           node-version: '24'
       - name: Run design system check
         run: node scripts/check-design.mjs
-        continue-on-error: true
+        continue-on-error: false
