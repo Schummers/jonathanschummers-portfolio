@@ -206,7 +206,7 @@ export default async function CaseStudyPage({
         {/* 3-column layout */}
         <div className="flex max-xl:block">
           {/* Left column: TOC */}
-          <div className="hidden xl:block w-[calc((100%-var(--sem-case-center))/2)] min-w-[140px] shrink-0 border-r border-border">
+          <div className="hidden xl:block w-[calc((100%-var(--case-center))/2)] min-w-[140px] shrink-0 border-r border-border">
             <div className="sticky top-20 px-xl py-xl">
               <CaseStudyToc items={tocItems} />
             </div>
@@ -380,7 +380,7 @@ export default async function CaseStudyPage({
           </div>
 
           {/* Right column: symmetry */}
-          <div className="hidden xl:block w-[calc((100%-var(--sem-case-center))/2)] min-w-[140px] shrink-0 border-l border-border" />
+          <div className="hidden xl:block w-[calc((100%-var(--case-center))/2)] min-w-[140px] shrink-0 border-l border-border" />
         </div>
       </BlueprintShell>
       <Footer />

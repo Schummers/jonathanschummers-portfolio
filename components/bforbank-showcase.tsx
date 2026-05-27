@@ -61,18 +61,18 @@ export function BforBankShowcase() {
 
       <style>{`
         .bfor-fade-top {
-          background: linear-gradient(to bottom, var(--sem-bg) 0%, var(--sem-bg) 20%, transparent 100%);
+          background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 20%, transparent 100%);
           transition: background 0.3s;
         }
         .bfor-fade-bottom {
-          background: linear-gradient(to top, var(--sem-bg) 0%, var(--sem-bg) 20%, transparent 100%);
+          background: linear-gradient(to top, var(--bg) 0%, var(--bg) 20%, transparent 100%);
           transition: background 0.3s;
         }
         .hover-subtle:hover .bfor-fade-top {
-          background: linear-gradient(to bottom, var(--sem-surface) 0%, var(--sem-surface) 20%, transparent 100%);
+          background: linear-gradient(to bottom, var(--surface) 0%, var(--surface) 20%, transparent 100%);
         }
         .hover-subtle:hover .bfor-fade-bottom {
-          background: linear-gradient(to top, var(--sem-surface) 0%, var(--sem-surface) 20%, transparent 100%);
+          background: linear-gradient(to top, var(--surface) 0%, var(--surface) 20%, transparent 100%);
         }
         .hover-subtle:hover [data-bfor-col="0"] { transform: translateY(${HOVER_OFFSETS[0]}px) !important; }
         .hover-subtle:hover [data-bfor-col="1"] { transform: translateY(${HOVER_OFFSETS[1]}px) !important; }

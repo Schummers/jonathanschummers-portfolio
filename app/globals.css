@@ -7,7 +7,7 @@
 
 /*
   Architecture:
-  - :root expose les tokens sémantiques (--sem-...)
+  - :root expose les tokens sémantiques (--...)
   - @theme inline mappe ces tokens vers les utilitaires Tailwind v4
     (--color-..., --spacing-..., --text-..., etc.)
 */
@@ -15,60 +15,61 @@
 /* --- Light mode (default) --- */
 :root {
   /* Texte */
-  --sem-text-primary: #18181b;    /* zinc-900 */
-  --sem-text-secondary: #71717b;  /* zinc-500 */
-  --sem-text-tertiary: #9f9fa9;   /* zinc-400 */
-  --sem-fg: #18181b;              /* alias technique pour body color + focus outline */
+  --text-primary: #18181b;    /* zinc-900 */
+  --text-secondary: #71717b;  /* zinc-500 */
+  --text-tertiary: #9f9fa9;   /* zinc-400 */
+  --fg: #18181b;              /* alias technique pour body color + focus outline */
 
   /* Backgrounds & borders */
-  --sem-bg: #fafafa;              /* zinc-50 */
-  --sem-surface: #f4f4f5;         /* zinc-100 */
-  --sem-border: #e4e4e7;          /* zinc-200 */
-  --sem-border-strong: #d4d4d8;   /* zinc-300 */
-  --sem-invert-bg: #18181b;       /* zinc-900 */
-  --sem-invert-fg: #fafafa;       /* zinc-50 */
+  --bg: #fafafa;              /* zinc-50 */
+  --surface: #f4f4f5;         /* zinc-100 */
+  --border: #e4e4e7;          /* zinc-200 */
+  --border-strong: #d4d4d8;   /* zinc-300 */
+  --invert-bg: #18181b;       /* zinc-900 */
+  --invert-fg: #fafafa;       /* zinc-50 */
 
   /* Bouton primary */
-  --sem-btn-primary: #1e1e21;       /* zinc-850 (custom) */
-  --sem-btn-primary-hover: #09090b; /* zinc-950 */
-  --sem-btn-primary-fg: #fafafa;    /* zinc-50 */
+  --btn-primary: #1e1e21;       /* zinc-850 (custom) */
+  --btn-primary-hover: #09090b; /* zinc-950 */
+  --btn-primary-fg: #fafafa;    /* zinc-50 */
 
   /* Disabled */
-  --sem-disabled-bg: #e4e4e7;
-  --sem-disabled-fg: #9f9fa9;
+  --disabled-bg: #e4e4e7;
+  --disabled-fg: #9f9fa9;
 
   /* Accent */
-  --sem-accent: #0A4CF0;
-  --sem-accent-hover: #0839b8;
-  --sem-accent-text: #0A4CF0;
-  --sem-accent-muted: #3670f5;
-  --sem-accent-subtle: #d4e3ff;
+  --accent: #0A4CF0;
+  --accent-hover: #0839b8;
+  --accent-text: #0A4CF0;
+  --accent-muted: #3670f5;
+  --accent-subtle: #d4e3ff;
 
   /* Layout — case study widths */
-  --sem-case-prose: 640px;    /* colonne contenu (texte, bullets, images) */
-  --sem-case-center: 864px;   /* colonne centrale du layout 3 colonnes */
+  --case-prose: 640px;    /* colonne contenu (texte, bullets, images) */
+  --case-center: 864px;   /* colonne centrale du layout 3 colonnes */
+  --blueprint-max: 1400px;   /* max content width (BlueprintShell) */
 
   /* Spacing — base 8px */
-  --sem-space-xs: 8px;
-  --sem-space-sm: 16px;
-  --sem-space-md: 24px;
-  --sem-space-lg: 32px;
-  --sem-space-xl: 48px;
-  --sem-space-2xl: 64px;
-  --sem-space-xl2: 72px;    /* 9 × 8px — featured card top/bottom padding */
-  --sem-space-3xl: 96px;
-  --sem-space-4xl: 128px;
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-xl2: 72px;    /* 9 × 8px — featured card top/bottom padding */
+  --space-3xl: 96px;
+  --space-4xl: 128px;
 
   /* Radius */
-  --sem-radius-none: 0px;
-  --sem-radius-sm: 1px;
-  --sem-radius-pill: 3px;
-  --sem-radius-md: 8px;     /* override Tailwind default 6px → 8px (tags, chips) */
-  --sem-radius-frame-browser: 6px;
-  --sem-radius-frame-iphone: 16px;
+  --radius-none: 0px;
+  --radius-sm: 1px;
+  --radius-pill: 3px;
+  --radius-md: 8px;     /* override Tailwind default 6px → 8px (tags, chips) */
+  --radius-frame-browser: 6px;
+  --radius-frame-iphone: 16px;
 
   /* Ombres */
-  --sem-shadow-mockup: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-mockup: 0 2px 8px rgba(0, 0, 0, 0.06);
 
   /* Motion */
   --dur-fast: 150ms;
@@ -77,193 +78,194 @@
   --ease-default: ease-out;
 
   /* Typographie — sizes desktop (>1024px) */
-  --sem-text-hero: 56px;
-  --sem-text-h1: 48px;
-  --sem-text-h2: 32px;
-  --sem-text-h3: 24px;
-  --sem-text-h4: 18px;
-  --sem-text-body-lg: 18px;
-  --sem-text-body: 16px;
-  --sem-text-body-sm: 14px;
-  --sem-text-label: 14px;
-  --sem-text-tag: 12px;
-  --sem-text-caption: 12px;  /* image captions — italic, normal weight */
+  --text-hero: 56px;
+  --text-h1: 48px;
+  --text-h2: 32px;
+  --text-h3: 24px;
+  --text-h4: 18px;
+  --text-body-lg: 18px;
+  --text-body: 16px;
+  --text-body-sm: 14px;
+  --text-label: 14px;
+  --text-tag: 12px;
+  --text-caption: 12px;  /* image captions — italic, normal weight */
 
   /* Leading */
-  --sem-leading-hero: 0.92;
-  --sem-leading-h1: 1.1;
-  --sem-leading-h2: 1.2;
-  --sem-leading-h3: 1.3;
-  --sem-leading-h4: 1.3;
-  --sem-leading-body: 1.65;
-  --sem-leading-body-sm: 1.5;
-  --sem-leading-tag: 16px;   /* pixel value sur grille 8px */
+  --leading-hero: 0.92;
+  --leading-h1: 1.1;
+  --leading-h2: 1.2;
+  --leading-h3: 1.3;
+  --leading-h4: 1.3;
+  --leading-body: 1.65;
+  --leading-body-sm: 1.5;
+  --leading-tag: 16px;   /* pixel value sur grille 8px */
 
   /* Tracking */
-  --sem-tracking-hero: -0.03em;
-  --sem-tracking-h1: -0.02em;
-  --sem-tracking-h2: -0.02em;
-  --sem-tracking-h3: -0.01em;
-  --sem-tracking-h4: -0.02em;
-  --sem-tracking-label: 0.08em;
+  --tracking-hero: -0.03em;
+  --tracking-h1: -0.02em;
+  --tracking-h2: -0.02em;
+  --tracking-h3: -0.01em;
+  --tracking-h4: -0.02em;
+  --tracking-label: 0.08em;
 }
 
 /* --- Responsive typography — Tablet --- */
 @media (max-width: 1024px) {
   :root {
-    --sem-text-hero: 48px;
-    --sem-text-h1: 40px;
-    --sem-text-h2: 28px;
-    --sem-text-h3: 22px;
+    --text-hero: 48px;
+    --text-h1: 40px;
+    --text-h2: 28px;
+    --text-h3: 22px;
   }
 }
 
 /* --- Responsive typography — Mobile --- */
 @media (max-width: 767px) {
   :root {
-    --sem-text-hero: 40px;
-    --sem-text-h1: 36px;
-    --sem-text-h2: 24px;
-    --sem-text-h3: 20px;
-    --sem-text-body-lg: 16px;
+    --text-hero: 40px;
+    --text-h1: 36px;
+    --text-h2: 24px;
+    --text-h3: 20px;
+    --text-body-lg: 16px;
   }
 }
 
 /* --- Dark mode (classe explicite) --- */
 .dark {
   /* Texte */
-  --sem-text-primary: #e4e4e7;
-  --sem-text-secondary: #9f9fa9;
-  --sem-text-tertiary: #71717b;
-  --sem-fg: #e4e4e7;
+  --text-primary: #e4e4e7;
+  --text-secondary: #9f9fa9;
+  --text-tertiary: #71717b;
+  --fg: #e4e4e7;
 
   /* Backgrounds & borders */
-  --sem-bg: #09090b;
-  --sem-surface: #27272a;
-  --sem-border: #3f3f47;
-  --sem-border-strong: #52525c;
-  --sem-invert-bg: #fafafa;
-  --sem-invert-fg: #18181b;
+  --bg: #09090b;
+  --surface: #27272a;
+  --border: #3f3f47;
+  --border-strong: #52525c;
+  --invert-bg: #fafafa;
+  --invert-fg: #18181b;
 
   /* Bouton primary */
-  --sem-btn-primary: #ececee;
-  --sem-btn-primary-hover: #fafafa;
-  --sem-btn-primary-fg: #09090b;
+  --btn-primary: #ececee;
+  --btn-primary-hover: #fafafa;
+  --btn-primary-fg: #09090b;
 
   /* Disabled */
-  --sem-disabled-bg: #3f3f47;
-  --sem-disabled-fg: #52525c;
+  --disabled-bg: #3f3f47;
+  --disabled-fg: #52525c;
 
   /* Accent — text adjusted for contrast on dark bg */
-  --sem-accent-text: #6d9dfa;
+  --accent-text: #6d9dfa;
 }
 
 /* --- Dark mode (préférence système, sauf override .light) --- */
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --sem-text-primary: #e4e4e7;
-    --sem-text-secondary: #9f9fa9;
-    --sem-text-tertiary: #71717b;
-    --sem-fg: #e4e4e7;
+    --text-primary: #e4e4e7;
+    --text-secondary: #9f9fa9;
+    --text-tertiary: #71717b;
+    --fg: #e4e4e7;
 
-    --sem-bg: #09090b;
-    --sem-surface: #27272a;
-    --sem-border: #3f3f47;
-    --sem-border-strong: #52525c;
-    --sem-invert-bg: #fafafa;
-    --sem-invert-fg: #18181b;
+    --bg: #09090b;
+    --surface: #27272a;
+    --border: #3f3f47;
+    --border-strong: #52525c;
+    --invert-bg: #fafafa;
+    --invert-fg: #18181b;
 
-    --sem-btn-primary: #ececee;
-    --sem-btn-primary-hover: #fafafa;
-    --sem-btn-primary-fg: #09090b;
+    --btn-primary: #ececee;
+    --btn-primary-hover: #fafafa;
+    --btn-primary-fg: #09090b;
 
-    --sem-disabled-bg: #3f3f47;
-    --sem-disabled-fg: #52525c;
+    --disabled-bg: #3f3f47;
+    --disabled-fg: #52525c;
 
-    --sem-accent-text: #6d9dfa;
+    --accent-text: #6d9dfa;
   }
 }
 
 /* --- Tailwind v4 theme registration --- */
 @theme inline {
   /* Couleurs */
-  --color-bg: var(--sem-bg);
-  --color-fg: var(--sem-fg);                          /* alias technique */
-  --color-text-primary: var(--sem-text-primary);
-  --color-text-secondary: var(--sem-text-secondary);
-  --color-text-tertiary: var(--sem-text-tertiary);
-  --color-surface: var(--sem-surface);
-  --color-border: var(--sem-border);
-  --color-border-strong: var(--sem-border-strong);
-  --color-invert-bg: var(--sem-invert-bg);
-  --color-invert-fg: var(--sem-invert-fg);
-  --color-btn-primary: var(--sem-btn-primary);
-  --color-btn-primary-hover: var(--sem-btn-primary-hover);
-  --color-btn-primary-fg: var(--sem-btn-primary-fg);
-  --color-disabled-bg: var(--sem-disabled-bg);
-  --color-disabled-fg: var(--sem-disabled-fg);
-  --color-accent: var(--sem-accent);
-  --color-accent-hover: var(--sem-accent-hover);
-  --color-accent-text: var(--sem-accent-text);
-  --color-accent-muted: var(--sem-accent-muted);
-  --color-accent-subtle: var(--sem-accent-subtle);
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);                          /* alias technique */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-invert-bg: var(--invert-bg);
+  --color-invert-fg: var(--invert-fg);
+  --color-btn-primary: var(--btn-primary);
+  --color-btn-primary-hover: var(--btn-primary-hover);
+  --color-btn-primary-fg: var(--btn-primary-fg);
+  --color-disabled-bg: var(--disabled-bg);
+  --color-disabled-fg: var(--disabled-fg);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-text: var(--accent-text);
+  --color-accent-muted: var(--accent-muted);
+  --color-accent-subtle: var(--accent-subtle);
 
   /* Spacing */
-  --spacing-xs: var(--sem-space-xs);
-  --spacing-sm: var(--sem-space-sm);
-  --spacing-md: var(--sem-space-md);
-  --spacing-lg: var(--sem-space-lg);
-  --spacing-xl: var(--sem-space-xl);
-  --spacing-2xl: var(--sem-space-2xl);
-  --spacing-xl2: var(--sem-space-xl2);
-  --spacing-3xl: var(--sem-space-3xl);
-  --spacing-4xl: var(--sem-space-4xl);
+  --spacing-xs: var(--space-xs);
+  --spacing-sm: var(--space-sm);
+  --spacing-md: var(--space-md);
+  --spacing-lg: var(--space-lg);
+  --spacing-xl: var(--space-xl);
+  --spacing-2xl: var(--space-2xl);
+  --spacing-xl2: var(--space-xl2);
+  --spacing-3xl: var(--space-3xl);
+  --spacing-4xl: var(--space-4xl);
 
   /* Layout — case study */
-  --width-content: var(--sem-case-prose);
-  --width-center: var(--sem-case-center);
+  --width-content: var(--case-prose);
+  --width-center: var(--case-center);
+  --width-blueprint: var(--blueprint-max);
 
   /* Radius */
-  --radius-none: var(--sem-radius-none);
-  --radius-sm: var(--sem-radius-sm);
-  --radius-pill: var(--sem-radius-pill);
-  --radius-md: var(--sem-radius-md);
+  --radius-none: var(--radius-none);
+  --radius-sm: var(--radius-sm);
+  --radius-pill: var(--radius-pill);
+  --radius-md: var(--radius-md);
 
   /* Fonts */
   --font-display: var(--font-space-grotesk);
   --font-body: var(--font-manrope);
 
   /* Typo sizes + leading */
-  --text-hero: var(--sem-text-hero);
-  --text-hero--line-height: var(--sem-leading-hero);
-  --text-h1: var(--sem-text-h1);
-  --text-h1--line-height: var(--sem-leading-h1);
-  --text-h2: var(--sem-text-h2);
-  --text-h2--line-height: var(--sem-leading-h2);
-  --text-h3: var(--sem-text-h3);
-  --text-h3--line-height: var(--sem-leading-h3);
-  --text-h4: var(--sem-text-h4);
-  --text-h4--line-height: var(--sem-leading-h4);
-  --text-body-lg: var(--sem-text-body-lg);
-  --text-body-lg--line-height: var(--sem-leading-body);
-  --text-body: var(--sem-text-body);
-  --text-body--line-height: var(--sem-leading-body);
-  --text-body-sm: var(--sem-text-body-sm);
-  --text-body-sm--line-height: var(--sem-leading-body-sm);
-  --text-label: var(--sem-text-label);
-  --text-label--line-height: var(--sem-leading-body-sm);
-  --text-tag: var(--sem-text-tag);
-  --text-tag--line-height: var(--sem-leading-tag);
-  --text-caption: var(--sem-text-caption);
-  --text-caption--line-height: var(--sem-leading-tag);
+  --text-hero: var(--text-hero);
+  --text-hero--line-height: var(--leading-hero);
+  --text-h1: var(--text-h1);
+  --text-h1--line-height: var(--leading-h1);
+  --text-h2: var(--text-h2);
+  --text-h2--line-height: var(--leading-h2);
+  --text-h3: var(--text-h3);
+  --text-h3--line-height: var(--leading-h3);
+  --text-h4: var(--text-h4);
+  --text-h4--line-height: var(--leading-h4);
+  --text-body-lg: var(--text-body-lg);
+  --text-body-lg--line-height: var(--leading-body);
+  --text-body: var(--text-body);
+  --text-body--line-height: var(--leading-body);
+  --text-body-sm: var(--text-body-sm);
+  --text-body-sm--line-height: var(--leading-body-sm);
+  --text-label: var(--text-label);
+  --text-label--line-height: var(--leading-body-sm);
+  --text-tag: var(--text-tag);
+  --text-tag--line-height: var(--leading-tag);
+  --text-caption: var(--text-caption);
+  --text-caption--line-height: var(--leading-tag);
 
   /* Tracking */
-  --tracking-hero: var(--sem-tracking-hero);
-  --tracking-h1: var(--sem-tracking-h1);
-  --tracking-h2: var(--sem-tracking-h2);
-  --tracking-h3: var(--sem-tracking-h3);
-  --tracking-h4: var(--sem-tracking-h4);
-  --tracking-label: var(--sem-tracking-label);
+  --tracking-hero: var(--tracking-hero);
+  --tracking-h1: var(--tracking-h1);
+  --tracking-h2: var(--tracking-h2);
+  --tracking-h3: var(--tracking-h3);
+  --tracking-h4: var(--tracking-h4);
+  --tracking-label: var(--tracking-label);
 }
 
 /* --- Custom variant: hover réservé aux pointeurs (pas mobile) --- */
@@ -290,7 +292,7 @@
 /* --- Global focus-visible --- */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--sem-fg);
+  outline: 2px solid var(--fg);
   outline-offset: 2px;
 }
 
@@ -300,13 +302,13 @@ button:focus-visible {
 }
 @media (hover: hover) {
   .hover-subtle:hover {
-    background-color: var(--sem-surface);
+    background-color: var(--surface);
   }
 }
 
 /* --- Base styles --- */
 body {
-  background-color: var(--sem-bg);
-  color: var(--sem-fg);
+  background-color: var(--bg);
+  color: var(--fg);
   font-family: var(--font-body), sans-serif;
 }

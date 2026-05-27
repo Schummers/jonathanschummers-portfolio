@@ -10,7 +10,7 @@ export function BrowserFrame({ url, children, className }: BrowserFrameProps) {
   return (
     <div
       className={cn(
-        "rounded-[var(--sem-radius-frame-browser)] overflow-hidden border border-border-strong/50 shadow-[var(--sem-shadow-mockup)]",
+        "rounded-[var(--radius-frame-browser)] overflow-hidden border border-border-strong/50 shadow-[var(--shadow-mockup)]",
         className
       )}
     >
