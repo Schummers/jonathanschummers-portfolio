@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "ds:check": "node scripts/check-design.mjs"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
