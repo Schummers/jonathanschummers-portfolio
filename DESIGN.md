@@ -41,15 +41,16 @@ colors:
   disabled-fg:    "#9f9fa9"
 
 typography:
-  hero:    { fontFamily: Space Grotesk, fontSize: 56px, fontWeight: 700, lineHeight: 0.92, letterSpacing: -0.03em }
-  h1:      { fontFamily: Space Grotesk, fontSize: 48px, fontWeight: 700, lineHeight: 1.1,  letterSpacing: -0.02em }
-  h2:      { fontFamily: Space Grotesk, fontSize: 32px, fontWeight: 500, lineHeight: 1.2,  letterSpacing: -0.02em }
-  h3:      { fontFamily: Space Grotesk, fontSize: 24px, fontWeight: 500, lineHeight: 1.3,  letterSpacing: -0.01em }
-  h4:      { fontFamily: Space Grotesk, fontSize: 18px, fontWeight: 500, lineHeight: 1.3,  letterSpacing: -0.02em }
-  body-lg: { fontFamily: Manrope,       fontSize: 18px, fontWeight: 400, lineHeight: 1.65 }
-  body:    { fontFamily: Manrope,       fontSize: 16px, fontWeight: 400, lineHeight: 1.65 }
-  body-sm: { fontFamily: Manrope,       fontSize: 14px, fontWeight: 400, lineHeight: 1.5 }
-  label:   { fontFamily: Manrope,       fontSize: 14px, fontWeight: 500, lineHeight: 1.5,  letterSpacing: 0.08em }
+  # lineHeight en px absolus, alignés sur grille 4px (pas de ratios → pas de virgules en sortie)
+  hero:    { fontFamily: Space Grotesk, fontSize: 56px, fontWeight: 700, lineHeight: 60px, letterSpacing: -0.03em }
+  h1:      { fontFamily: Space Grotesk, fontSize: 48px, fontWeight: 700, lineHeight: 52px, letterSpacing: -0.02em }
+  h2:      { fontFamily: Space Grotesk, fontSize: 32px, fontWeight: 500, lineHeight: 40px, letterSpacing: -0.02em }
+  h3:      { fontFamily: Space Grotesk, fontSize: 24px, fontWeight: 500, lineHeight: 32px, letterSpacing: -0.01em }
+  h4:      { fontFamily: Space Grotesk, fontSize: 18px, fontWeight: 500, lineHeight: 24px, letterSpacing: -0.02em }
+  body-lg: { fontFamily: Manrope,       fontSize: 18px, fontWeight: 400, lineHeight: 28px }
+  body:    { fontFamily: Manrope,       fontSize: 16px, fontWeight: 400, lineHeight: 24px }
+  body-sm: { fontFamily: Manrope,       fontSize: 14px, fontWeight: 400, lineHeight: 20px }
+  label:   { fontFamily: Manrope,       fontSize: 14px, fontWeight: 500, lineHeight: 20px, letterSpacing: 0.08em }
   tag:     { fontFamily: Manrope,       fontSize: 12px, fontWeight: 500, lineHeight: 16px }
   caption: { fontFamily: Manrope,       fontSize: 12px, fontWeight: 400, lineHeight: 16px }
 
@@ -124,19 +125,21 @@ Color tokens are role-based and Linear-style (no `--sem-` or `--color-` namespac
 
 ## Typography
 
-| Token | Family | Size (desktop) | Weight | Line | Tracking | Use |
-|---|---|---|---|---|---|---|
-| `{typography.hero}` | Space Grotesk | 56px | 700 | 0.92 | −0.03em | Homepage hero only |
-| `{typography.h1}` | Space Grotesk | 48px | 700 | 1.1 | −0.02em | Page H1 |
-| `{typography.h2}` | Space Grotesk | 32px | 500 | 1.2 | −0.02em | Section titles |
-| `{typography.h3}` | Space Grotesk | 24px | 500 | 1.3 | −0.01em | Sub-titles, key-results |
-| `{typography.h4}` | Space Grotesk | 18px | 500 | 1.3 | −0.02em | Small titles in cards |
-| `{typography.body-lg}` | Manrope | 18px | 400 | 1.65 | normal | Lead paragraphs |
-| `{typography.body}` | Manrope | 16px | 400 | 1.65 | normal | Default body |
-| `{typography.body-sm}` | Manrope | 14px | 400 | 1.5 | normal | Captions, meta |
-| `{typography.label}` | Manrope | 14px | 500 | 1.5 | 0.08em (uppercase) | Section labels |
-| `{typography.tag}` | Manrope | 12px | 500 | 16px | normal | Tag chips |
-| `{typography.caption}` | Manrope | 12px | 400 | 16px | normal | Image captions (italic) |
+Line-heights are stored as **absolute pixel values** (not unitless ratios) so every typo lands on the 4px grid and components keep round heights. Implicit ratio shown for reference only.
+
+| Token | Family | Size (desktop) | Weight | Line (px) | _Ratio_ | Tracking | Use |
+|---|---|---|---|---|---|---|---|
+| `{typography.hero}` | Space Grotesk | 56px | 700 | 60px | _1.07_ | −0.03em | Homepage hero only |
+| `{typography.h1}` | Space Grotesk | 48px | 700 | 52px | _1.08_ | −0.02em | Page H1 |
+| `{typography.h2}` | Space Grotesk | 32px | 500 | 40px | _1.25_ | −0.02em | Section titles |
+| `{typography.h3}` | Space Grotesk | 24px | 500 | 32px | _1.33_ | −0.01em | Sub-titles, key-results |
+| `{typography.h4}` | Space Grotesk | 18px | 500 | 24px | _1.33_ | −0.02em | Small titles in cards |
+| `{typography.body-lg}` | Manrope | 18px | 400 | 28px | _1.56_ | normal | Lead paragraphs |
+| `{typography.body}` | Manrope | 16px | 400 | 24px | _1.50_ | normal | Default body |
+| `{typography.body-sm}` | Manrope | 14px | 400 | 20px | _1.43_ | normal | Captions, meta |
+| `{typography.label}` | Manrope | 14px | 500 | 20px | _1.43_ | 0.08em (uppercase) | Section labels |
+| `{typography.tag}` | Manrope | 12px | 500 | 16px | _1.33_ | normal | Tag chips |
+| `{typography.caption}` | Manrope | 12px | 400 | 16px | _1.33_ | normal | Image captions (italic) |
 
 **Responsive.** Tablet (`≤1024px`) and mobile (`≤767px`) reduce hero / H1 / H2 / H3 sizes by 1–2 steps. Body sizes are unchanged except `body-lg` which collapses to `body` on mobile. The shifts are implemented as media-query overrides in `app/globals.css`.
 
