@@ -9,7 +9,7 @@ export function CtaFinal() {
     <Section id="contact" className="!p-0">
       <div className="grid md:grid-cols-2">
         {/* Photo — landscape crop of hero image, hidden on mobile */}
-        <div className="hidden max-h-[500px] overflow-hidden border-r border-border md:block">
+        <div className="hidden max-h-128 overflow-hidden border-r border-border md:block">
           <Image
             src="/images/Hero/Profil.webp"
             alt="Jonathan Schummers"

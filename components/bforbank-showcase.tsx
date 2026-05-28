@@ -30,12 +30,12 @@ const HOVER_OFFSETS = [-100, 40, -80, 30];
 export function BforBankShowcase() {
   return (
     <div
-      className="bfor-showcase relative h-[320px] md:h-[480px] overflow-hidden flex items-center gap-[20px] md:gap-[24px] py-[24px]"
+      className="bfor-showcase relative h-80 md:h-120 overflow-hidden flex items-center gap-5 md:gap-md py-md"
     >
       {COLUMNS.map((screens, colIndex) => (
         <div
           key={colIndex}
-          className={`${colIndex >= 2 ? "hidden md:flex" : "flex"} flex-1 flex-col gap-[20px] md:gap-[24px] transition-transform duration-[12000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]`}
+          className={`${colIndex >= 2 ? "hidden md:flex" : "flex"} flex-1 flex-col gap-5 md:gap-md transition-transform duration-[12000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]`}
           style={{
             transform: `translateY(${INITIAL_OFFSETS[colIndex]}px)`,
           }}
@@ -56,8 +56,8 @@ export function BforBankShowcase() {
       ))}
 
       {/* Fade edges — uses CSS var that switches on parent card hover */}
-      <div className="bfor-fade-top pointer-events-none absolute inset-x-0 top-0 h-[48px] z-10" />
-      <div className="bfor-fade-bottom pointer-events-none absolute inset-x-0 bottom-0 h-[48px] z-10" />
+      <div className="bfor-fade-top pointer-events-none absolute inset-x-0 top-0 h-xl z-10" />
+      <div className="bfor-fade-bottom pointer-events-none absolute inset-x-0 bottom-0 h-xl z-10" />
 
       <style>{`
         .bfor-fade-top {

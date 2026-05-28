@@ -167,6 +167,10 @@ export default async function CaseStudyPage({
         {/* Hero */}
         {slug === "bforbank" ? (
           <section className="border-b border-border">
+            {/* bforbank-only fluid grid: clamp(8px,1.5vw,24px) keeps the 7-column
+                IPhoneFrame strip visually balanced across viewports without
+                triggering layout reflows at breakpoints. Intentional exception
+                to the token scale. */}
             <div className="grid grid-cols-7 gap-[clamp(8px,1.5vw,24px)] px-xl py-xl max-md:px-md max-md:py-md">
               {[
                 "/images/Experiences/Bforbank/IMG_2625.webp",
@@ -206,7 +210,7 @@ export default async function CaseStudyPage({
         {/* 3-column layout */}
         <div className="flex max-xl:block">
           {/* Left column: TOC */}
-          <div className="hidden xl:block w-[calc((100%-var(--case-center))/2)] min-w-[140px] shrink-0 border-r border-border">
+          <div className="hidden xl:block w-[calc((100%-var(--case-center))/2)] min-w-36 shrink-0 border-r border-border">
             <div className="sticky top-20 px-xl py-xl">
               <CaseStudyToc items={tocItems} />
             </div>
@@ -307,6 +311,10 @@ export default async function CaseStudyPage({
                                   </div>
                                   <div className="mt-lg flex gap-xl justify-center">
                                     <figure className="flex flex-col">
+                                      {/* bforbank step 6: fixed 600px height preserves the
+                                          1:1 side-by-side comparison ratio between the
+                                          original screenshot and the redesigned screen.
+                                          Inline style intentional — one-off layout. */}
                                       <Image
                                         src={step.images[0].src}
                                         alt={step.images[0].alt}
@@ -321,6 +329,8 @@ export default async function CaseStudyPage({
                                     </figure>
                                     <figure className="flex flex-col">
                                       <IPhoneFrame>
+                                        {/* bforbank step 6: same fixed height as above
+                                            for the iPhone-framed redesign. */}
                                         <Image
                                           src={step.images[1].src}
                                           alt={step.images[1].alt}
@@ -380,7 +390,7 @@ export default async function CaseStudyPage({
           </div>
 
           {/* Right column: symmetry */}
-          <div className="hidden xl:block w-[calc((100%-var(--case-center))/2)] min-w-[140px] shrink-0 border-l border-border" />
+          <div className="hidden xl:block w-[calc((100%-var(--case-center))/2)] min-w-36 shrink-0 border-l border-border" />
         </div>
       </BlueprintShell>
       <Footer />

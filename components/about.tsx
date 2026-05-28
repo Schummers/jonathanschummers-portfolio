@@ -12,7 +12,7 @@ export function About() {
             <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
               My journey
             </p>
-            <div className="max-w-[500px] space-y-sm">
+            <div className="max-w-prose-narrow space-y-sm">
               <p className="font-body text-body leading-body text-text-primary">
                 I started in user research, with two master&apos;s degrees in
                 experimental methodology, ergonomics, and cognitive psychology,
@@ -46,7 +46,7 @@ export function About() {
             <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
               Side project
             </p>
-            <div className="max-w-[500px]">
+            <div className="max-w-prose-narrow">
               <p className="font-body text-body leading-body text-text-primary">
                 Outside of work, I&apos;m a cycling obsessive. After 8 years
                 playing fantasy cycling with the same group of friends, I
@@ -54,9 +54,9 @@ export function About() {
               </p>
             </div>
           </div>
-          <div className="mt-lg flex gap-[40px] max-md:flex-col max-md:gap-md">
-            <IPhoneFrame className="w-[240px] shrink-0 max-md:w-full">
-              <div className="bg-[#0B1013] pt-[16px] pb-[6px]">
+          <div className="mt-lg flex gap-lg-plus max-md:flex-col max-md:gap-md">
+            <IPhoneFrame className="w-60 shrink-0 max-md:w-full">
+              <div className="bg-text-primary pt-sm pb-2xs">
                 <Image
                   src="/images/Hero/WattHunter/IMG_6432.webp"
                   alt="WattHunter app screenshot"
@@ -66,8 +66,8 @@ export function About() {
                 />
               </div>
             </IPhoneFrame>
-            <IPhoneFrame className="w-[240px] shrink-0 max-md:w-full">
-              <div className="bg-[#0B1013] pt-[16px] pb-[6px]">
+            <IPhoneFrame className="w-60 shrink-0 max-md:w-full">
+              <div className="bg-text-primary pt-sm pb-2xs">
                 <Image
                   src="/images/Hero/WattHunter/IMG_6438.webp"
                   alt="WattHunter app screenshot"

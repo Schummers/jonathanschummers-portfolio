@@ -67,7 +67,7 @@ export function CaseStudyHeader({
                   href="https://www.bforbank.com/blog/parlons-vous-et-nous/google-ux-benchmark-bforbank-elue-meilleur-parcours-client"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline hover:text-text-secondary transition-colors"
+                  className="underline hover-supported:text-text-secondary transition-colors"
                 >
                   Google Finance UX Benchmark 2023, BforBank
                 </a>

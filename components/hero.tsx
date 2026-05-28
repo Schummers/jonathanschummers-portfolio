@@ -25,7 +25,7 @@ export function Hero() {
           </p>
 
           {/* Body text */}
-          <div className="mt-md max-w-[520px]">
+          <div className="mt-md max-w-prose-narrow">
             <p className="font-body text-body-lg leading-body text-text-primary">
               What drives me: solving hard problems, shipping fast, and
               iterating until it works.

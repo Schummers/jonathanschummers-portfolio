@@ -227,6 +227,11 @@
 
 /* --- Tailwind v4 theme registration --- */
 @theme inline {
+  /* Base spacing unit — required so native Tailwind utilities (w-36, h-80, etc.)
+     compute correctly against the 4px grid even though we override the
+     sémantic --spacing-* paliers below. */
+  --spacing: 4px;
+
   /* Couleurs */
   --color-bg: var(--bg);
   --color-fg: var(--fg);                          /* alias technique */
@@ -271,11 +276,28 @@
   --spacing-container: var(--container-px);
   --spacing-section: var(--section-py);
 
+  /* Spacing aliases for max-w/min-w/h utilities that need a name without
+     colliding with either the sémantic spacing palette (lg, 3xl, etc., which
+     Tailwind v4 reuses for max-w-{name}) or Tailwind's default --container-*
+     values (e.g. `prose` defaults to 65ch). */
+  --spacing-blueprint: var(--blueprint-max);        /* 1400px — BlueprintShell, Nav, Footer */
+  --spacing-prose-narrow: 32rem;                     /* 512px — hero, about, card description */
+  --spacing-prose-wide: 48rem;                       /* 768px — testimonials blockquote */
+
   /* Radius */
   --radius-none: var(--radius-none);
   --radius-sm: var(--radius-sm);
   --radius-pill: var(--radius-pill);
   --radius-md: var(--radius-md);
+  --radius-frame-browser: var(--radius-frame-browser);
+  --radius-frame-iphone: var(--radius-frame-iphone);
+
+  /* Shadows */
+  --shadow-mockup: var(--shadow-mockup);
+
+  /* Note: Tailwind v4 does not expose `--duration-*` as a utility namespace, so
+     durations stay referenced via `duration-[var(--dur-fast)]` brackets in JSX.
+     The ds:check regex ignores brackets containing `var(...)`, so this is safe. */
 
   /* Fonts */
   --font-display: var(--font-space-grotesk);

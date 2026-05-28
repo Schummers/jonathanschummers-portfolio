@@ -25,7 +25,7 @@ export function CaseStudyContent({ text }: { text: string }) {
               {items.map((item, j) => (
                 <li
                   key={j}
-                  className="font-body text-body leading-body text-text-primary pl-md relative before:absolute before:left-0 before:top-[0.65em] before:h-[5px] before:w-[5px] before:rounded-full before:bg-text-secondary"
+                  className="font-body text-body leading-body text-text-primary pl-md relative before:absolute before:left-0 before:top-[0.65em] before:size-1 before:rounded-full before:bg-text-secondary"
                 >
                   {renderInline(item.replace(/^- /, ""))}
                 </li>

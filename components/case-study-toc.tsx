@@ -34,7 +34,7 @@ export function CaseStudyToc({ items }: { items: TocItem[] }) {
   return (
     <>
       {/* Desktop: sticky sidebar */}
-      <nav className="hidden xl:block sticky top-36 self-start w-[204px] shrink-0">
+      <nav className="hidden xl:block sticky top-36 self-start w-52 shrink-0">
         <ul className="flex flex-col gap-xs">
           {items.map((item) => (
             <li key={item.id}>
