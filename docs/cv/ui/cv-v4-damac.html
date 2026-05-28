@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Jonathan Schummers — Senior Product Designer (v4 · DAMAC)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     Tokens — synced with portfolio DS
+     Strict 8px grid for spacing
+     v4 DAMAC: more whitespace, tagline-led storytelling, inline stack
+     ============================================ */
+  :root {
+    --text-primary: #18181b;
+    --text-secondary: #52525c;
+    --text-tertiary: #71717b;
+    --text-faint: #9f9fa9;
+    --bg: #fafafa;
+    --surface: #f4f4f5;
+    --surface-raised: #ececef;
+    --border: #e4e4e7;
+
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'Manrope', system-ui, sans-serif;
+
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 40px;
+    --space-6: 48px;
+    --space-7: 64px;
+    --space-8: 80px;
+  }
+
+  @page { size: A4; margin: 16mm 16mm; }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 9.5pt;
+    line-height: 1.5;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 16mm 16mm;
+    margin: 0 auto;
+  }
+
+  @media screen {
+    body { box-shadow: 0 0 24px rgba(0,0,0,0.08); margin: 24px auto; }
+  }
+
+  /* ============================================
+     HEADER
+     ============================================ */
+  .header {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: var(--space-3);
+    align-items: center;
+    margin-bottom: var(--space-6);
+  }
+
+  .photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-faint);
+    font-size: 7pt;
+    overflow: hidden;
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  .identity .name {
+    font-family: var(--font-display);
+    font-size: 20pt;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+  .identity .role {
+    font-family: var(--font-body);
+    font-size: 10.5pt;
+    font-weight: 500;
+    margin-top: 6px;
+    color: var(--text-primary);
+  }
+  .identity .credential {
+    font-size: 9pt;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  .contact {
+    text-align: right;
+    font-size: 8.5pt;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+  .contact a { color: var(--text-secondary); text-decoration: none; }
+  .contact .phone { color: var(--text-primary); font-weight: 500; }
+
+  /* ============================================
+     SUMMARY
+     ============================================ */
+  .summary-block {
+    margin-bottom: var(--space-6);
+  }
+  .summary-block .section-label {
+    margin-bottom: var(--space-1);
+  }
+  .summary {
+    font-family: var(--font-body);
+    font-size: 10.5pt;
+    line-height: 1.6;
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+  .summary strong {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  /* ============================================
+     BODY GRID
+     ============================================ */
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 50mm;
+    gap: var(--space-5);
+  }
+
+  .section-label {
+    font-family: var(--font-display);
+    font-size: 8pt;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+  }
+
+  /* ============================================
+     MAIN — Experience (v4: tagline-led + inline stack)
+     ============================================ */
+  .main h2.section-label { margin-bottom: var(--space-3); }
+
+  .experience-item {
+    margin-bottom: var(--space-5);
+    page-break-inside: avoid;
+  }
+  .experience-item:last-child { margin-bottom: 0; }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-1);
+    margin-bottom: 4px;
+  }
+  .exp-company {
+    font-family: var(--font-display);
+    font-size: 11pt;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.005em;
+  }
+  .exp-period {
+    font-size: 8.5pt;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .exp-meta {
+    font-size: 9pt;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-1);
+    line-height: 1.45;
+  }
+  .exp-meta .role-name {
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .exp-meta .sep {
+    color: var(--text-faint);
+    margin: 0 6px;
+  }
+
+  /* NEW: Tagline — one-line story per experience */
+  .exp-tagline {
+    font-size: 9.75pt;
+    line-height: 1.5;
+    color: var(--text-primary);
+    font-weight: 500;
+    margin-top: var(--space-1);
+    margin-bottom: var(--space-1);
+  }
+
+  .exp-bullets { list-style: none; margin-top: 6px; }
+  .exp-bullets li {
+    position: relative;
+    padding-left: 12px;
+    font-size: 9.5pt;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+  }
+  .exp-bullets li:last-child { margin-bottom: 0; }
+  .exp-bullets li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 4px;
+    height: 4px;
+    background: var(--text-secondary);
+  }
+  .exp-bullets li strong { font-weight: 600; }
+
+  /* NEW: Stack inline — tools per experience */
+  .exp-stack {
+    margin-top: var(--space-1);
+    padding-top: 6px;
+    font-size: 8pt;
+    color: var(--text-tertiary);
+    line-height: 1.5;
+    font-family: var(--font-body);
+    letter-spacing: 0.01em;
+  }
+  .exp-stack .stack-label {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-right: 6px;
+    font-size: 7.5pt;
+  }
+  .exp-stack .stack-items {
+    color: var(--text-secondary);
+  }
+
+  /* Sub-experiences (Avanade children) */
+  .experience-sub {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-2);
+    padding-left: var(--space-2);
+    border-left: 1px solid var(--border);
+  }
+  .experience-sub:last-child { margin-bottom: 0; }
+  .experience-sub .exp-company {
+    font-size: 10pt;
+    font-weight: 600;
+  }
+  .experience-sub .exp-period { font-size: 8pt; }
+  .experience-sub .exp-tagline {
+    font-size: 9.25pt;
+    margin-top: 6px;
+    margin-bottom: 4px;
+  }
+
+  /* ============================================
+     SIDEBAR
+     ============================================ */
+  .sidebar { font-size: 8.5pt; color: var(--text-secondary); }
+
+  .sidebar-section { margin-bottom: var(--space-4); }
+  .sidebar-section:last-child { margin-bottom: 0; }
+
+  .sidebar-section.section-education {
+    margin-top: var(--space-1);
+  }
+
+  .sidebar-section.cert-highlight {
+    background: var(--surface);
+    padding: var(--space-2);
+    border-radius: 8px;
+  }
+  .sidebar-section.cert-highlight .section-label {
+    color: var(--text-primary);
+  }
+
+  .sidebar .item { margin-bottom: var(--space-1); }
+  .sidebar .item:last-child { margin-bottom: 0; }
+
+  .sidebar .item .title {
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: 1.4;
+    font-size: 8.5pt;
+  }
+  .sidebar .item .org {
+    color: var(--text-tertiary);
+    font-size: 7.5pt;
+    line-height: 1.45;
+    margin-top: 1px;
+  }
+
+  .langs-inline {
+    font-size: 8.5pt;
+    line-height: 1.6;
+  }
+  .langs-inline .lang {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  .langs-inline .level {
+    color: var(--text-tertiary);
+    margin-left: 4px;
+    font-weight: 400;
+  }
+
+  /* Real Estate spotlight — DAMAC version: insider edge front-and-center */
+  .sidebar-section.realestate-highlight {
+    background: var(--surface);
+    padding: var(--space-2);
+    border-radius: 8px;
+  }
+  .sidebar-section.realestate-highlight .section-label {
+    color: var(--text-primary);
+  }
+  .sidebar-section.realestate-highlight .item .title {
+    line-height: 1.4;
+  }
+  .sidebar-section.realestate-highlight .item .detail {
+    color: var(--text-tertiary);
+    font-size: 7.5pt;
+    line-height: 1.45;
+    margin-top: 1px;
+  }
+
+  @media print {
+    body { box-shadow: none; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="photo">PHOTO</div>
+    <div class="identity">
+      <div class="name">Jonathan Schummers</div>
+      <div class="role">Senior Product Designer</div>
+      <div class="credential">Real estate insider · Data-driven · AI-native</div>
+    </div>
+    <div class="contact">
+      <div class="phone">+33 6 95 25 40 82</div>
+      <div>jonathan.schummers@gmail.com</div>
+      <div><a href="https://linkedin.com/in/jonathanschummers">linkedin.com/in/jonathanschummers</a></div>
+      <div><a href="https://jonathanschummers.vercel.app">jonathanschummers.vercel.app</a></div>
+    </div>
+  </header>
+
+  <!-- SUMMARY -->
+  <section class="summary-block">
+    <h2 class="section-label">Profile</h2>
+    <p class="summary">
+      Senior Product Designer with <strong>6 years shipping 0→1 SaaS</strong> in industry, finance and proptech — at TotalEnergies, BforBank and Spie Batignolles via Avanade (<strong>Accenture-Microsoft JV</strong>). <strong>Data-driven and AI-native</strong>, building <strong>Valoris</strong>, my own property management SaaS, while managing a <strong>15-property family rental portfolio</strong>. Licensed real estate professional in Luxembourg.
+    </p>
+  </section>
+
+  <!-- BODY -->
+  <div class="body-grid">
+
+    <!-- MAIN -->
+    <main class="main">
+      <h2 class="section-label">Experience</h2>
+
+      <!-- VALORIS -->
+      <article class="experience-item">
+        <div class="exp-header">
+          <div class="exp-company">Valoris</div>
+          <div class="exp-period">2025 — present · 1 yr</div>
+        </div>
+        <div class="exp-meta">
+          <span class="role-name">Founder &amp; Product Designer</span><span class="sep">·</span>Property management SaaS for individual landlords (solo build)<span class="sep">·</span>Luxembourg
+        </div>
+        <p class="exp-tagline">
+          AI-native solo build of a proptech SaaS — research, design and frontend coded end-to-end with Cursor + Claude Code, informed by my own 15-property family rental portfolio.
+        </p>
+        <ul class="exp-bullets">
+          <li>Designing and building a SaaS that automates <strong>rent roll, tax reporting and yield tracking</strong> via document-extraction pipelines.</li>
+          <li>Insider research with landlords across Luxembourg and France — turning real-world rental ops pain points into shipped features.</li>
+          <li>End-to-end ownership: discovery, product strategy, design system, frontend implementation, GTM positioning.</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="stack-label">Stack</span><span class="stack-items">Figma · Cursor · Claude Code · Notion · Obsidian</span>
+        </div>
+      </article>
+
+      <!-- TOTALENERGIES -->
+      <article class="experience-item">
+        <div class="exp-header">
+          <div class="exp-company">TotalEnergies — Total Digital Factory</div>
+          <div class="exp-period">Dec 2021 — Nov 2024 · 3 yrs</div>
+        </div>
+        <div class="exp-meta">
+          <span class="role-name">Senior Product Designer</span><span class="sep">·</span>Internal product studio of TotalEnergies (oil &amp; gas major), via Avanade<span class="sep">·</span>Paris
+        </div>
+        <p class="exp-tagline">
+          Sole designer on 4 industrial SaaS used by <strong>500+ field operators across 4 sites</strong> — owned discovery, design system and data-driven iteration in a 20-person studio.
+        </p>
+        <ul class="exp-bullets">
+          <li><strong>+23% kWh tracked per operator</strong> — revamped a power-plant monitoring SaaS in dark mode (diagnostic dashboard, integrated alerting, automated reporting).</li>
+          <li><strong>−6% refinery pipe leaks</strong> — corrosion risk tool deployed to 500 inspectors across 4 sites.</li>
+          <li><strong>Concept → MVP → multi-country scale</strong> on 4 SaaS, mentoring junior designers and consultants.</li>
+          <li>Discovery at scale: 60+ user interviews, 11 personas, 9 user journeys, 70+ usability tests; live iteration via Hotjar &amp; CloudWatch.</li>
+          <li>Built a dark-mode design system (~20 reusable components) consumed across squads.</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="stack-label">Stack</span><span class="stack-items">Figma · Hotjar · CloudWatch · Miro · Notion</span>
+        </div>
+      </article>
+
+      <!-- AVANADE PARENT -->
+      <article class="experience-item">
+        <div class="exp-header">
+          <div class="exp-company">Avanade — Accenture-Microsoft JV</div>
+          <div class="exp-period">Jan 2020 — Jun 2025 · 5.5 yrs</div>
+        </div>
+        <div class="exp-meta">
+          <span class="role-name">Product Designer · earlier missions</span><span class="sep">·</span>Digital innovation consulting (60,000+ employees globally)<span class="sep">·</span>Paris
+        </div>
+
+        <article class="experience-sub">
+          <div class="exp-header">
+            <div class="exp-company">BforBank</div>
+            <div class="exp-period">5 mo · 2021</div>
+          </div>
+          <div class="exp-meta">Online bank, Crédit Agricole subsidiary</div>
+          <p class="exp-tagline">
+            Mobile banking onboarding ranked <strong>#1 on Google's UX Benchmark 2023</strong> — full account opening in 10 minutes.
+          </p>
+          <ul class="exp-bullets">
+            <li>Owned customer onboarding and account overview flows: <strong>84+ screens</strong>, balancing KYC and compliance with conversion-optimized journeys.</li>
+            <li>Worked alongside product, compliance and engineering on a regulated B2C product with luxury-grade UX standards.</li>
+          </ul>
+        </article>
+
+        <article class="experience-sub">
+          <div class="exp-header">
+            <div class="exp-company">Spie Batignolles</div>
+            <div class="exp-period">11 mo · Jul 2020 — May 2021</div>
+          </div>
+          <div class="exp-meta">French construction major (~6,000 employees)</div>
+          <p class="exp-tagline">
+            Digitalised activity reporting on construction sites — <strong>desktop + mobile, 60 + 12 screens</strong>, validated through 16 field workshops.
+          </p>
+          <ul class="exp-bullets">
+            <li>Cut manual data entry on construction sites — redesigned the activity report through field workshops with foremen and superintendents.</li>
+            <li>Digitalised personnel &amp; equipment tracking and procurement; discovery via 12 interviews, 4 personas, 4 journeys, 12 usability tests.</li>
+          </ul>
+        </article>
+
+        <div class="exp-stack" style="margin-top: var(--space-2);">
+          <span class="stack-label">Stack</span><span class="stack-items">Figma · Maze · Miro · Notion</span>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-section realestate-highlight">
+        <h3 class="section-label">Real Estate</h3>
+        <div class="item">
+          <div class="title">Licensed Real Estate Professional</div>
+          <div class="detail">House of Training, Luxembourg</div>
+        </div>
+        <div class="item">
+          <div class="title">15-property family rental portfolio</div>
+          <div class="detail">Operating insider, Luxembourg</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="section-label">Certifications</h3>
+        <div class="item">
+          <div class="title">Professional Scrum Product Owner I</div>
+          <div class="org">Scrum.org</div>
+        </div>
+        <div class="item">
+          <div class="title">Professional Scrum with UX</div>
+          <div class="org">Scrum.org</div>
+        </div>
+        <div class="item">
+          <div class="title">AI for Designers</div>
+          <div class="org">Interaction Design Foundation</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section section-education">
+        <h3 class="section-label">Education</h3>
+        <div class="item">
+          <div class="title">Master Human-Machine Interactions</div>
+          <div class="org">Université Lumière Lyon 2 · 2019–2020</div>
+        </div>
+        <div class="item">
+          <div class="title">Master Cognitive Psychology</div>
+          <div class="org">Université Paris Descartes · 2017–2019</div>
+        </div>
+        <div class="item">
+          <div class="title">Bachelor Psychology</div>
+          <div class="org">Université Paris Descartes · 2014–2017</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="section-label">Teaching</h3>
+        <div class="item">
+          <div class="title">UX Research lecturer</div>
+          <div class="org">Université Paris Cité · since 2023</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="section-label">Languages</h3>
+        <div class="langs-inline">
+          <div><span class="lang">French</span><span class="level">native</span></div>
+          <div><span class="lang">English</span><span class="level">professional</span></div>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+</body>
+</html>

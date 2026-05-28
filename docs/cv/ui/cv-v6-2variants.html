@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CV v6 — 2 variants (green-tinted vs blue-tinted labels)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --text-primary: #18181b;
+    --text-secondary: #52525c;
+    --text-tertiary: #71717b;
+    --text-faint: #9f9fa9;
+    --bg: #fafafa;
+    --surface: #f4f4f5;
+    --surface-raised: #ececef;
+    --border: #e4e4e7;
+
+    /* Tinted label colors (overridden per variant) */
+    --label-green: #1c3a2e;   /* very dark forest green */
+    --label-blue:  #1c2e4a;   /* very dark navy */
+
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'Manrope', system-ui, sans-serif;
+
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 40px;
+  }
+
+  @page { size: A4; margin: 14mm 14mm; }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  html, body {
+    background: #ececef;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 9.5pt;
+    line-height: 1.5;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+
+  /* Page wrapper */
+  .variant-label {
+    max-width: 210mm;
+    margin: 32px auto 8px;
+    padding: 0 8px;
+    color: var(--text-secondary);
+    font-family: var(--font-display);
+    font-size: 11pt;
+    font-weight: 600;
+  }
+  .variant-label .num {
+    color: var(--text-tertiary);
+    font-weight: 500;
+    margin-right: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 9pt;
+  }
+  .variant-desc {
+    max-width: 210mm;
+    margin: 0 auto 16px;
+    padding: 0 8px;
+    color: var(--text-tertiary);
+    font-size: 9pt;
+    line-height: 1.5;
+  }
+  .cv-page {
+    background: var(--bg);
+    width: 210mm;
+    min-height: 297mm;
+    padding: 14mm;
+    margin: 0 auto 32px;
+    box-shadow: 0 0 24px rgba(0,0,0,0.08);
+  }
+
+  /* Variant tinted accent for section labels (NOT stack label) */
+  .cv-v-green .section-label,
+  .cv-v-green .stack-label--tinted {
+    color: var(--label-green);
+  }
+  .cv-v-blue .section-label,
+  .cv-v-blue .stack-label--tinted {
+    color: var(--label-blue);
+  }
+
+  /* ============================================
+     SEPARATORS
+     - small dot `·` for inline separators (date · duration, role · loc, etc.)
+     - small rounded square for the BIG separator between company name + descriptor
+     - rounded square for bullet markers
+     ============================================ */
+  .sep-dot {
+    color: var(--text-faint);
+    margin: 0 6px;
+    font-weight: 400;
+  }
+  .sep-sq-big {
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    background: var(--text-secondary);
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+    margin: 0 10px;
+    border-radius: 0.5px;
+    flex-shrink: 0;
+  }
+
+  /* ============================================
+     HEADER
+     ============================================ */
+  .header {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: var(--space-3);
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+  .photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-faint);
+    font-size: 7pt;
+  }
+  .identity .name {
+    font-family: var(--font-display);
+    font-size: 20pt;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.025em;
+  }
+  .identity .role-line {
+    font-family: var(--font-body);
+    font-size: 10.5pt;
+    font-weight: 500;
+    margin-top: 6px;
+    color: var(--text-primary);
+  }
+  .identity .credential {
+    font-size: 9pt;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+  .contact {
+    text-align: right;
+    font-size: 8.5pt;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+  .contact a { color: var(--text-secondary); text-decoration: none; }
+  .contact .phone { color: var(--text-primary); font-weight: 500; }
+
+  /* ============================================
+     SUMMARY
+     ============================================ */
+  .summary-block { margin-bottom: var(--space-4); }
+  .summary-block .section-label { margin-bottom: var(--space-1); }
+  .summary {
+    font-family: var(--font-body);
+    font-size: 10pt;
+    line-height: 1.6;
+    color: var(--text-primary);
+  }
+  .summary strong { font-weight: 600; }
+
+  /* ============================================
+     BODY GRID
+     ============================================ */
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 50mm;
+    gap: var(--space-4);
+  }
+
+  .section-label {
+    font-family: var(--font-display);
+    font-size: 8pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: var(--space-2);
+  }
+  .main h2.section-label { margin-bottom: var(--space-3); }
+
+  /* ============================================
+     EXPERIENCE BLOCK
+     ============================================ */
+  .experience-item {
+    margin-bottom: 28px;
+    page-break-inside: avoid;
+  }
+  .experience-item:last-child { margin-bottom: 0; }
+
+  /* Row 1 — company [big-sq] descriptor | period · duration */
+  .exp-row-1 {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-bottom: 6px;
+  }
+  .exp-name-block {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+  .exp-company {
+    font-family: var(--font-display);
+    font-size: 13pt;
+    font-weight: 700;
+    letter-spacing: -0.018em;
+    color: var(--text-primary);
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .exp-descriptor {
+    font-family: var(--font-display);
+    font-size: 13pt;
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    color: var(--text-primary);
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .exp-period {
+    font-size: 8.5pt;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Row 2 — role italic (LEFT) and location (RIGHT, same line) */
+  .exp-row-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin-bottom: var(--space-1);
+  }
+  .exp-role {
+    font-size: 10pt;
+    font-style: italic;
+    color: var(--text-primary);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .exp-location {
+    font-size: 9pt;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    font-style: normal;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Tagline */
+  .exp-tagline {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 10pt;
+    line-height: 1.5;
+    margin-top: 6px;
+    margin-bottom: var(--space-1);
+  }
+  .exp-tagline strong { font-weight: 700; }
+
+  /* Bullets — text in tertiary, marker = rounded square */
+  .exp-bullets { list-style: none; margin-top: 6px; }
+  .exp-bullets li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 9.5pt;
+    line-height: 1.6;
+    margin-bottom: 5px;
+    color: var(--text-tertiary);
+  }
+  .exp-bullets li:last-child { margin-bottom: 0; }
+  .exp-bullets li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 4px;
+    height: 4px;
+    background: var(--text-tertiary);
+    border-radius: 1px;   /* slight rounded corners on bullet square */
+  }
+  .exp-bullets li strong {
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  /* Stack */
+  .exp-stack {
+    margin-top: var(--space-1);
+    padding-top: 6px;
+    font-size: 8pt;
+    line-height: 1.5;
+    color: var(--text-tertiary);
+  }
+  .exp-stack .stack-label {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-right: 6px;
+    font-size: 7.5pt;
+  }
+  .exp-stack .stack-items { color: var(--text-secondary); }
+
+  /* Sub-experience (Avanade children) */
+  .experience-sub {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-2);
+    padding-left: var(--space-2);
+    border-left: 1px solid var(--border);
+  }
+  .experience-sub:last-child { margin-bottom: 0; }
+  .experience-sub .exp-company { font-size: 11pt; font-weight: 700; }
+  .experience-sub .exp-descriptor { font-size: 11pt; font-weight: 500; }
+  .experience-sub .exp-period { font-size: 8pt; }
+  .experience-sub .exp-role { font-size: 9pt; }
+  .experience-sub .exp-tagline { margin-top: 4px; margin-bottom: 4px; font-size: 9.5pt; }
+
+  /* ============================================
+     SIDEBAR
+     ============================================ */
+  .sidebar { font-size: 8.5pt; color: var(--text-secondary); }
+  .sidebar-section { margin-bottom: var(--space-4); }
+  .sidebar-section:last-child { margin-bottom: 0; }
+  .sidebar-section.section-education { margin-top: var(--space-1); }
+  .sidebar-section.realestate-highlight {
+    background: var(--surface);
+    padding: var(--space-2);
+    border-radius: 8px;
+  }
+  .sidebar .item { margin-bottom: var(--space-1); }
+  .sidebar .item:last-child { margin-bottom: 0; }
+  .sidebar .item .title {
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: 1.4;
+    font-size: 8.5pt;
+  }
+  .sidebar .item .org,
+  .sidebar .item .detail {
+    color: var(--text-tertiary);
+    font-size: 7.5pt;
+    line-height: 1.45;
+    margin-top: 1px;
+  }
+  .langs-inline { font-size: 8.5pt; line-height: 1.6; }
+  .langs-inline .lang { color: var(--text-primary); font-weight: 500; }
+  .langs-inline .level { color: var(--text-tertiary); margin-left: 4px; }
+
+  @media print {
+    body { background: white; }
+    .cv-page { box-shadow: none; margin: 0; }
+    .variant-label, .variant-desc { display: none; }
+    .cv-page { page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====================================================================
+     V-GREEN — Section labels in dark forest green
+     ==================================================================== -->
+<div class="variant-label"><span class="num">V-A</span>Section labels in dark forest green (#1c3a2e)</div>
+<p class="variant-desc">Tous les section labels (PROFILE, EXPERIENCE, REAL ESTATE, etc.) en vert très foncé. STACK reste en gris neutre. Localisation alignée à droite sur la même ligne que le rôle (italique 10pt). Bullets en tertiary avec marqueur carré arrondi 4×4px.</p>
+
+<div class="cv-page cv-v-green">
+  <header class="header">
+    <div class="photo">PHOTO</div>
+    <div class="identity">
+      <div class="name">Jonathan Schummers</div>
+      <div class="role-line">Senior Product Designer</div>
+      <div class="credential">Real estate insider <span class="sep-dot">·</span>Data-driven <span class="sep-dot">·</span>AI-native</div>
+    </div>
+    <div class="contact">
+      <div class="phone">+33 6 95 25 40 82</div>
+      <div>jonathan.schummers@gmail.com</div>
+      <div><a href="https://linkedin.com/in/jonathanschummers">linkedin.com/in/jonathanschummers</a></div>
+      <div><a href="https://jonathanschummers.vercel.app">jonathanschummers.vercel.app</a></div>
+    </div>
+  </header>
+
+  <section class="summary-block">
+    <h2 class="section-label">Profile</h2>
+    <p class="summary">
+      Senior Product Designer with <strong>6 years on 0→1 SaaS</strong> in industry, finance and now proptech. Currently building <strong>Valoris</strong>, my own <strong>property management SaaS for individual landlords</strong>: data-driven and AI-native, with research, design and frontend coded solo using Cursor and Claude Code. Licensed real estate professional in Luxembourg, managing a 15-property family rental portfolio. Past missions via Avanade (Accenture-Microsoft JV): TotalEnergies, BforBank, Spie Batignolles.
+    </p>
+  </section>
+
+  <div class="body-grid">
+    <main class="main">
+      <h2 class="section-label">Experience</h2>
+
+      <article class="experience-item">
+        <div class="exp-row-1">
+          <div class="exp-name-block">
+            <span class="exp-company">Valoris</span>
+            <span class="sep-sq-big"></span>
+            <span class="exp-descriptor">Real Estate SaaS</span>
+          </div>
+          <div class="exp-period">2025 – present <span class="sep-dot">·</span> 9 mo</div>
+        </div>
+        <div class="exp-row-2">
+          <span class="exp-role">Founder, Product Designer &amp; Product Manager</span>
+          <span class="exp-location">Luxembourg</span>
+        </div>
+        <p class="exp-tagline">
+          Building the <strong>personal AI assistant</strong> for individual landlords: an <strong>agent-first workflow</strong> for rent roll, fiscal reporting and yield tracking, designed and coded solo.
+        </p>
+        <ul class="exp-bullets">
+          <li>Pivoted from a documentation tool to an <strong>agent-first AI workflow</strong> after research surfaced that landlords want guidance, not just storage. Validated through user interviews and <strong>Meta ads campaigns</strong>.</li>
+          <li>Repositioned target market from <strong>Luxembourg to France</strong> based on research-led signal of demand.</li>
+          <li>Insider perspective via the <strong>15-property family rental portfolio</strong> I personally manage in Luxembourg.</li>
+          <li>Solo build: discovery, product strategy, design system, frontend coded with <strong>Cursor + Claude Code</strong>.</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="stack-label">Stack</span><span class="stack-items">Figma <span class="sep-dot">·</span> Cursor <span class="sep-dot">·</span> Claude Code <span class="sep-dot">·</span> Notion <span class="sep-dot">·</span> Meta Ads</span>
+        </div>
+      </article>
+
+      <article class="experience-item">
+        <div class="exp-row-1">
+          <div class="exp-name-block">
+            <span class="exp-company">TotalEnergies</span>
+            <span class="sep-sq-big"></span>
+            <span class="exp-descriptor">Total Digital Factory</span>
+          </div>
+          <div class="exp-period">2022 – 2024 <span class="sep-dot">·</span> 3 yrs</div>
+        </div>
+        <div class="exp-row-2">
+          <span class="exp-role">Senior Product Designer &amp; Proxy Product Owner</span>
+          <span class="exp-location">Paris</span>
+        </div>
+        <p class="exp-tagline">
+          Sole designer on <strong>4 industrial SaaS</strong> used by <strong>500+ field operators across 4 sites</strong>: ML-powered tools for energy ops, owned discovery, design system and roadmap in a 20-person studio.
+        </p>
+        <ul class="exp-bullets">
+          <li><strong>Smart Integrity</strong> (corrosion-prevention SaaS): co-designed the <strong>data mapping</strong> unifying 4 industrial databases (PIA + 3 others) feeding a <strong>machine learning</strong> corrosion model. <strong>−6% refinery pipe leaks</strong>, deployed to 500 inspectors across 4 refineries.</li>
+          <li><strong>Nob</strong> (renewable-fleet monitoring): designed the <strong>ML loss-prediction</strong> interface for the entire French wind &amp; solar fleet. Predicts kWh loss and €-loss in real time to prioritise on-site interventions. <strong>+23% kWh tracked per operator</strong>.</li>
+          <li>Acted as <strong>proxy Product Owner</strong> alongside business-expert POs: roadmap definition, user-story writing, backlog management, product slicing, adoption tracking.</li>
+          <li>Discovery at scale: 60+ user interviews, 11 personas, 70+ usability tests; live iteration via Hotjar and CloudWatch.</li>
+          <li>Built a dark-mode <strong>design system</strong> (~20 reusable components) consumed across squads.</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="stack-label">Stack</span><span class="stack-items">Figma <span class="sep-dot">·</span> Hotjar <span class="sep-dot">·</span> CloudWatch <span class="sep-dot">·</span> Miro <span class="sep-dot">·</span> Notion</span>
+        </div>
+      </article>
+
+      <article class="experience-item">
+        <div class="exp-row-1">
+          <div class="exp-name-block">
+            <span class="exp-company">Avanade</span>
+            <span class="sep-sq-big"></span>
+            <span class="exp-descriptor">Accenture-Microsoft JV</span>
+          </div>
+          <div class="exp-period">2020 – 2025 <span class="sep-dot">·</span> 2.5 yrs</div>
+        </div>
+        <div class="exp-row-2">
+          <span class="exp-role">Product Designer, earlier missions</span>
+          <span class="exp-location">Paris</span>
+        </div>
+
+        <article class="experience-sub">
+          <div class="exp-row-1">
+            <div class="exp-name-block">
+              <span class="exp-company">BforBank</span>
+              <span class="sep-sq-big"></span>
+              <span class="exp-descriptor">Crédit Agricole's online bank</span>
+            </div>
+            <div class="exp-period">2021 <span class="sep-dot">·</span> 5 mo</div>
+          </div>
+          <p class="exp-tagline">
+            Mobile banking onboarding ranked <strong>#1 on Google's UX Benchmark 2023</strong>: full account opening in 10 minutes.
+          </p>
+          <ul class="exp-bullets">
+            <li>Owned customer onboarding and account-overview flows: <strong>84+ screens</strong>, balancing KYC and compliance with conversion-optimised journeys.</li>
+            <li>Worked alongside product, compliance and engineering on a regulated B2C product with luxury-grade UX standards.</li>
+          </ul>
+        </article>
+
+        <article class="experience-sub">
+          <div class="exp-row-1">
+            <div class="exp-name-block">
+              <span class="exp-company">Spie Batignolles</span>
+              <span class="sep-sq-big"></span>
+              <span class="exp-descriptor">French construction major</span>
+            </div>
+            <div class="exp-period">2020 – 2021 <span class="sep-dot">·</span> 11 mo</div>
+          </div>
+          <p class="exp-tagline">
+            Digitalised activity reporting on construction sites: <strong>desktop + mobile, 60 + 12 screens</strong>, validated through <strong>16 field workshops</strong>.
+          </p>
+          <ul class="exp-bullets">
+            <li>Cut manual data entry: redesigned the activity report through field workshops with foremen and superintendents.</li>
+            <li>Digitalised personnel and equipment tracking and procurement; discovery via 12 interviews, 4 personas, 12 usability tests.</li>
+          </ul>
+        </article>
+
+        <div class="exp-stack" style="margin-top: var(--space-2);">
+          <span class="stack-label">Stack</span><span class="stack-items">Figma <span class="sep-dot">·</span> Maze <span class="sep-dot">·</span> Miro <span class="sep-dot">·</span> Notion</span>
+        </div>
+      </article>
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-section realestate-highlight">
+        <h3 class="section-label">Real Estate</h3>
+        <div class="item">
+          <div class="title">Licensed Real Estate Professional</div>
+          <div class="detail">House of Training, Luxembourg</div>
+        </div>
+        <div class="item">
+          <div class="title">15-property family rental portfolio</div>
+          <div class="detail">Operating insider, Luxembourg</div>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <h3 class="section-label">Certifications</h3>
+        <div class="item"><div class="title">Professional Scrum Product Owner I</div><div class="org">Scrum.org</div></div>
+        <div class="item"><div class="title">Professional Scrum with UX</div><div class="org">Scrum.org</div></div>
+        <div class="item"><div class="title">AI for Designers</div><div class="org">Interaction Design Foundation</div></div>
+      </div>
+      <div class="sidebar-section section-education">
+        <h3 class="section-label">Education</h3>
+        <div class="item"><div class="title">Master Human-Machine Interactions</div><div class="org">Université Lumière Lyon 2 <span class="sep-dot">·</span> 2019–2020</div></div>
+        <div class="item"><div class="title">Master Cognitive Psychology</div><div class="org">Université Paris Descartes <span class="sep-dot">·</span> 2017–2019</div></div>
+        <div class="item"><div class="title">Bachelor Psychology</div><div class="org">Université Paris Descartes <span class="sep-dot">·</span> 2014–2017</div></div>
+      </div>
+      <div class="sidebar-section">
+        <h3 class="section-label">Teaching</h3>
+        <div class="item"><div class="title">UX Research lecturer</div><div class="org">Université Paris Cité <span class="sep-dot">·</span> since 2023</div></div>
+      </div>
+      <div class="sidebar-section">
+        <h3 class="section-label">Languages</h3>
+        <div class="langs-inline">
+          <div><span class="lang">French</span><span class="level">native</span></div>
+          <div><span class="lang">English</span><span class="level">professional</span></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- ====================================================================
+     V-BLUE — Section labels in dark navy
+     ==================================================================== -->
+<div class="variant-label"><span class="num">V-B</span>Section labels in dark navy (#1c2e4a)</div>
+<p class="variant-desc">Identique à V-A, sauf la couleur des section labels qui est en bleu marine très foncé. Tout le reste est strictement identique pour comparer le seul effet de la teinte.</p>
+
+<div class="cv-page cv-v-blue">
+  <header class="header">
+    <div class="photo">PHOTO</div>
+    <div class="identity">
+      <div class="name">Jonathan Schummers</div>
+      <div class="role-line">Senior Product Designer</div>
+      <div class="credential">Real estate insider <span class="sep-dot">·</span>Data-driven <span class="sep-dot">·</span>AI-native</div>
+    </div>
+    <div class="contact">
+      <div class="phone">+33 6 95 25 40 82</div>
+      <div>jonathan.schummers@gmail.com</div>
+      <div><a href="https://linkedin.com/in/jonathanschummers">linkedin.com/in/jonathanschummers</a></div>
+      <div><a href="https://jonathanschummers.vercel.app">jonathanschummers.vercel.app</a></div>
+    </div>
+  </header>
+
+  <section class="summary-block">
+    <h2 class="section-label">Profile</h2>
+    <p class="summary">
+      Senior Product Designer with <strong>6 years on 0→1 SaaS</strong> in industry, finance and now proptech. Currently building <strong>Valoris</strong>, my own <strong>property management SaaS for individual landlords</strong>: data-driven and AI-native, with research, design and frontend coded solo using Cursor and Claude Code. Licensed real estate professional in Luxembourg, managing a 15-property family rental portfolio. Past missions via Avanade (Accenture-Microsoft JV): TotalEnergies, BforBank, Spie Batignolles.
+    </p>
+  </section>
+
+  <div class="body-grid">
+    <main class="main">
+      <h2 class="section-label">Experience</h2>
+
+      <article class="experience-item">
+        <div class="exp-row-1">
+          <div class="exp-name-block">
+            <span class="exp-company">Valoris</span>
+            <span class="sep-sq-big"></span>
+            <span class="exp-descriptor">Real Estate SaaS</span>
+          </div>
+          <div class="exp-period">2025 – present <span class="sep-dot">·</span> 9 mo</div>
+        </div>
+        <div class="exp-row-2">
+          <span class="exp-role">Founder, Product Designer &amp; Product Manager</span>
+          <span class="exp-location">Luxembourg</span>
+        </div>
+        <p class="exp-tagline">
+          Building the <strong>personal AI assistant</strong> for individual landlords: an <strong>agent-first workflow</strong> for rent roll, fiscal reporting and yield tracking, designed and coded solo.
+        </p>
+        <ul class="exp-bullets">
+          <li>Pivoted from a documentation tool to an <strong>agent-first AI workflow</strong> after research surfaced that landlords want guidance, not just storage. Validated through user interviews and <strong>Meta ads campaigns</strong>.</li>
+          <li>Repositioned target market from <strong>Luxembourg to France</strong> based on research-led signal of demand.</li>
+          <li>Insider perspective via the <strong>15-property family rental portfolio</strong> I personally manage in Luxembourg.</li>
+          <li>Solo build: discovery, product strategy, design system, frontend coded with <strong>Cursor + Claude Code</strong>.</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="stack-label">Stack</span><span class="stack-items">Figma <span class="sep-dot">·</span> Cursor <span class="sep-dot">·</span> Claude Code <span class="sep-dot">·</span> Notion <span class="sep-dot">·</span> Meta Ads</span>
+        </div>
+      </article>
+
+      <article class="experience-item">
+        <div class="exp-row-1">
+          <div class="exp-name-block">
+            <span class="exp-company">TotalEnergies</span>
+            <span class="sep-sq-big"></span>
+            <span class="exp-descriptor">Total Digital Factory</span>
+          </div>
+          <div class="exp-period">2022 – 2024 <span class="sep-dot">·</span> 3 yrs</div>
+        </div>
+        <div class="exp-row-2">
+          <span class="exp-role">Senior Product Designer &amp; Proxy Product Owner</span>
+          <span class="exp-location">Paris</span>
+        </div>
+        <p class="exp-tagline">
+          Sole designer on <strong>4 industrial SaaS</strong> used by <strong>500+ field operators across 4 sites</strong>: ML-powered tools for energy ops, owned discovery, design system and roadmap in a 20-person studio.
+        </p>
+        <ul class="exp-bullets">
+          <li><strong>Smart Integrity</strong> (corrosion-prevention SaaS): co-designed the <strong>data mapping</strong> unifying 4 industrial databases (PIA + 3 others) feeding a <strong>machine learning</strong> corrosion model. <strong>−6% refinery pipe leaks</strong>, deployed to 500 inspectors across 4 refineries.</li>
+          <li><strong>Nob</strong> (renewable-fleet monitoring): designed the <strong>ML loss-prediction</strong> interface for the entire French wind &amp; solar fleet. Predicts kWh loss and €-loss in real time to prioritise on-site interventions. <strong>+23% kWh tracked per operator</strong>.</li>
+          <li>Acted as <strong>proxy Product Owner</strong> alongside business-expert POs: roadmap definition, user-story writing, backlog management, product slicing, adoption tracking.</li>
+          <li>Discovery at scale: 60+ user interviews, 11 personas, 70+ usability tests; live iteration via Hotjar and CloudWatch.</li>
+          <li>Built a dark-mode <strong>design system</strong> (~20 reusable components) consumed across squads.</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="stack-label">Stack</span><span class="stack-items">Figma <span class="sep-dot">·</span> Hotjar <span class="sep-dot">·</span> CloudWatch <span class="sep-dot">·</span> Miro <span class="sep-dot">·</span> Notion</span>
+        </div>
+      </article>
+
+      <article class="experience-item">
+        <div class="exp-row-1">
+          <div class="exp-name-block">
+            <span class="exp-company">Avanade</span>
+            <span class="sep-sq-big"></span>
+            <span class="exp-descriptor">Accenture-Microsoft JV</span>
+          </div>
+          <div class="exp-period">2020 – 2025 <span class="sep-dot">·</span> 2.5 yrs</div>
+        </div>
+        <div class="exp-row-2">
+          <span class="exp-role">Product Designer, earlier missions</span>
+          <span class="exp-location">Paris</span>
+        </div>
+
+        <article class="experience-sub">
+          <div class="exp-row-1">
+            <div class="exp-name-block">
+              <span class="exp-company">BforBank</span>
+              <span class="sep-sq-big"></span>
+              <span class="exp-descriptor">Crédit Agricole's online bank</span>
+            </div>
+            <div class="exp-period">2021 <span class="sep-dot">·</span> 5 mo</div>
+          </div>
+          <p class="exp-tagline">
+            Mobile banking onboarding ranked <strong>#1 on Google's UX Benchmark 2023</strong>: full account opening in 10 minutes.
+          </p>
+          <ul class="exp-bullets">
+            <li>Owned customer onboarding and account-overview flows: <strong>84+ screens</strong>, balancing KYC and compliance with conversion-optimised journeys.</li>
+            <li>Worked alongside product, compliance and engineering on a regulated B2C product with luxury-grade UX standards.</li>
+          </ul>
+        </article>
+
+        <article class="experience-sub">
+          <div class="exp-row-1">
+            <div class="exp-name-block">
+              <span class="exp-company">Spie Batignolles</span>
+              <span class="sep-sq-big"></span>
+              <span class="exp-descriptor">French construction major</span>
+            </div>
+            <div class="exp-period">2020 – 2021 <span class="sep-dot">·</span> 11 mo</div>
+          </div>
+          <p class="exp-tagline">
+            Digitalised activity reporting on construction sites: <strong>desktop + mobile, 60 + 12 screens</strong>, validated through <strong>16 field workshops</strong>.
+          </p>
+          <ul class="exp-bullets">
+            <li>Cut manual data entry: redesigned the activity report through field workshops with foremen and superintendents.</li>
+            <li>Digitalised personnel and equipment tracking and procurement; discovery via 12 interviews, 4 personas, 12 usability tests.</li>
+          </ul>
+        </article>
+
+        <div class="exp-stack" style="margin-top: var(--space-2);">
+          <span class="stack-label">Stack</span><span class="stack-items">Figma <span class="sep-dot">·</span> Maze <span class="sep-dot">·</span> Miro <span class="sep-dot">·</span> Notion</span>
+        </div>
+      </article>
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-section realestate-highlight">
+        <h3 class="section-label">Real Estate</h3>
+        <div class="item">
+          <div class="title">Licensed Real Estate Professional</div>
+          <div class="detail">House of Training, Luxembourg</div>
+        </div>
+        <div class="item">
+          <div class="title">15-property family rental portfolio</div>
+          <div class="detail">Operating insider, Luxembourg</div>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <h3 class="section-label">Certifications</h3>
+        <div class="item"><div class="title">Professional Scrum Product Owner I</div><div class="org">Scrum.org</div></div>
+        <div class="item"><div class="title">Professional Scrum with UX</div><div class="org">Scrum.org</div></div>
+        <div class="item"><div class="title">AI for Designers</div><div class="org">Interaction Design Foundation</div></div>
+      </div>
+      <div class="sidebar-section section-education">
+        <h3 class="section-label">Education</h3>
+        <div class="item"><div class="title">Master Human-Machine Interactions</div><div class="org">Université Lumière Lyon 2 <span class="sep-dot">·</span> 2019–2020</div></div>
+        <div class="item"><div class="title">Master Cognitive Psychology</div><div class="org">Université Paris Descartes <span class="sep-dot">·</span> 2017–2019</div></div>
+        <div class="item"><div class="title">Bachelor Psychology</div><div class="org">Université Paris Descartes <span class="sep-dot">·</span> 2014–2017</div></div>
+      </div>
+      <div class="sidebar-section">
+        <h3 class="section-label">Teaching</h3>
+        <div class="item"><div class="title">UX Research lecturer</div><div class="org">Université Paris Cité <span class="sep-dot">·</span> since 2023</div></div>
+      </div>
+      <div class="sidebar-section">
+        <h3 class="section-label">Languages</h3>
+        <div class="langs-inline">
+          <div><span class="lang">French</span><span class="level">native</span></div>
+          <div><span class="lang">English</span><span class="level">professional</span></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+</body>
+</html>
