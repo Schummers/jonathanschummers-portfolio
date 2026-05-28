@@ -47,7 +47,7 @@ export function ProjectCardCompact({ project }: { project: Project }) {
           {project.browserUrl ? (
             <BrowserFrame
               url={project.browserUrl}
-              className="transition-transform duration-[400ms] ease-out group-hover:[transform:rotateY(-6deg)_rotateX(3deg)]"
+              className="transition-transform duration-[var(--dur-slow)] ease-out group-hover:[transform:rotateY(-6deg)_rotateX(3deg)]"
             >
               <Image
                 src={project.image}
