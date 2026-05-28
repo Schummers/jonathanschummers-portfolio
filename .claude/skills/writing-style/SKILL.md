@@ -133,7 +133,20 @@ underdeveloped. Cut Situation, expand Action.
 - Cover letter: micro-STAR, 3-4 lines per example, 2-3 examples in a 1-page letter.
 - LinkedIn experience bullet: mini-STAR collapsed into one sentence (one bullet = one story).
 - Application questionnaire: full STAR, 200-300 words.
-- Portfolio case study: full STAR, expanded with decisions and trade-offs.
+- Portfolio case study: STAR rendered as 3 visible blocks with the portfolio's
+  established labels.
+  - **Context & Objectives** = Situation + Task. Sub-headings "Problem",
+    "Target audience", "My role".
+  - **How I solved this problem** = Action. Numbered list (1, 2, 3...) of
+    named approaches with method, decision, and trade-off.
+  - **What we delivered** = Result. Bullet list of concrete deliverables and
+    outcomes.
+  - Above the body, surface the strongest Result as a **Headline** (one
+    quantified sentence) and a **Subtitle** (one factual sentence on the
+    approach).
+  - Allocation rule still applies: Action block ≥ 50% of total length.
+  - Voice calibration: read 1-2 existing case studies in `content/case-studies/`
+    (e.g. `bforbank.md`) before drafting to match the rhythm.
 
 **Re-read test for STAR text.** Before sending, check four things:
 1. Does "I" dominate over "we"? If "we" dominates, rewrite.
