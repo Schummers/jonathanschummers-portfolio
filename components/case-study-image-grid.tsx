@@ -13,7 +13,7 @@ export function CaseStudyImageGrid({ images }: { images: ImageItem[] }) {
       <div className="mt-lg -mx-xl max-md:-mx-md overflow-x-auto">
         <div className="flex gap-sm px-xl max-md:px-md pb-sm" style={{ width: "max-content" }}>
           {images.map((img, i) => (
-            <figure key={i} className="shrink-0 w-[180px]">
+            <figure key={i} className="shrink-0 w-44">
               <Image
                 src={img.src}
                 alt={img.alt}

@@ -20,7 +20,7 @@ export function ProjectCardCompact({ project }: { project: Project }) {
   return (
     <Wrapper
       {...wrapperProps as any}
-      className={`group hover-subtle flex gap-xl border-b border-border px-xl py-md max-md:px-md md:max-lg:px-lg md:min-h-[200px] ${isClickable ? "cursor-pointer" : ""}`}
+      className={`group hover-subtle flex gap-xl border-b border-border px-xl py-md max-md:px-md md:max-lg:px-lg md:min-h-52 ${isClickable ? "cursor-pointer" : ""}`}
     >
       {/* Text left */}
       <div className="flex-1 flex flex-col justify-center gap-sm">
@@ -43,7 +43,7 @@ export function ProjectCardCompact({ project }: { project: Project }) {
 
       {/* Thumbnail right — with browser frame + perspective on hover */}
       {project.image && (
-        <div className="w-[280px] shrink-0 py-[16px] overflow-visible max-md:hidden [perspective:1200px]">
+        <div className="w-72 shrink-0 py-sm overflow-visible max-md:hidden [perspective:1200px]">
           {project.browserUrl ? (
             <BrowserFrame
               url={project.browserUrl}

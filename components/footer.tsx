@@ -9,7 +9,7 @@ const navLinks = [
 export function Footer() {
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex max-w-[1400px] flex-col items-center gap-md border-x border-border px-xl py-xl max-md:px-md md:flex-row md:justify-between md:max-lg:px-lg">
+      <div className="mx-auto flex max-w-[var(--blueprint-max)] flex-col items-center gap-md border-x border-border px-xl py-xl max-md:px-md md:flex-row md:justify-between md:max-lg:px-lg">
         <div className="flex gap-lg">
           {navLinks.map((link) => (
             <a

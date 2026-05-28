@@ -13,7 +13,7 @@ export function Testimonials() {
           alt="Sandie Blanchaud"
           width={157}
           height={191}
-          className="w-[157px] self-stretch object-cover max-md:h-[200px] max-md:w-full max-md:self-auto"
+          className="w-40 self-stretch object-cover max-md:h-52 max-md:w-full max-md:self-auto"
         />
 
         <div className="flex flex-col gap-xs px-lg py-md max-md:px-md">
@@ -26,7 +26,7 @@ export function Testimonials() {
             </span>
           </div>
 
-          <blockquote className="max-w-[745px]">
+          <blockquote className="max-w-[var(--case-prose)]">
             <p className="font-body text-body italic text-text-primary">
               &ldquo;Strongly autonomous during the discovery phase on highly
               complex technical and strategic topics. During the build phase,

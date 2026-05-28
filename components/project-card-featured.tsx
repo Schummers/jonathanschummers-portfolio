@@ -20,7 +20,7 @@ function FeaturedImage({ project }: { project: Project }) {
     return (
       <BrowserFrame url={project.browserUrl}>
         {isScroll ? (
-          <div className="h-[400px] overflow-hidden">
+          <div className="h-100 overflow-hidden">
             <Image
               src={project.image}
               alt={project.title}
@@ -28,6 +28,9 @@ function FeaturedImage({ project }: { project: Project }) {
               height={1200}
               className="nod-scroll-img w-full object-cover object-top transition-transform duration-[10000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]"
             />
+            {/* Long-duration scroll animation: 10s preserved as-is — bracket value
+                stays because it's not in the design token scale (intentionally a
+                one-off long animation for the nod project card). */}
             <style>{`
               .hover-subtle:hover .nod-scroll-img {
                 transform: translateY(calc(-100% + 400px));
@@ -70,7 +73,7 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
       className={`hover-subtle block border-b border-border ${hasCase ? "cursor-pointer" : ""}`}
     >
       {/* Desktop: 2-col grid | Mobile: single column flex */}
-      <div className="md:h-[560px] overflow-hidden">
+      <div className="md:h-140 overflow-hidden">
         <div className="max-md:flex max-md:flex-col md:grid md:grid-cols-2">
 
           {/* Text column */}
@@ -96,7 +99,7 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
 
             {/* Image — inline on mobile (after tags, before description) */}
             {project.image && (
-              <div className="relative h-[240px] overflow-hidden md:hidden">
+              <div className="relative h-60 overflow-hidden md:hidden">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -111,7 +114,7 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
             <hr className="w-1/2 border-t border-border m-0 max-md:hidden" />
 
             {project.description && (
-              <p className="font-body text-body leading-body text-text-secondary max-w-[500px] max-md:hidden">
+              <p className="font-body text-body leading-body text-text-secondary max-w-[var(--case-prose)] max-md:hidden">
                 {project.description}
               </p>
             )}

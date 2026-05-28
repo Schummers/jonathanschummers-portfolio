@@ -9,7 +9,7 @@ export function IPhoneFrame({ children, className }: IPhoneFrameProps) {
   return (
     <div
       className={cn(
-        "rounded-[var(--radius-frame-iphone)] border-2 border-text-primary overflow-hidden",
+        "rounded-frame-iphone border-2 border-text-primary overflow-hidden",
         className
       )}
     >
