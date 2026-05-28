@@ -22,7 +22,7 @@ export function Nav() {
         "bg-bg/95 backdrop-blur-sm"
       )}
     >
-      <div className="mx-auto flex h-16 max-w-blueprint items-center justify-between border-x border-border px-xl max-md:px-md md:max-lg:px-lg">
+      <div className="mx-auto flex h-16 max-w-[var(--blueprint-max)] items-center justify-between border-x border-border px-xl max-md:px-md md:max-lg:px-lg">
         <a
           href="#"
           className="font-display text-h4 font-bold tracking-h2 text-text-primary"
@@ -57,7 +57,7 @@ export function Nav() {
 
       {open && (
         <div className="border-b border-border bg-bg md:hidden">
-          <div className="mx-auto max-w-blueprint border-x border-border px-xl py-lg max-md:px-md">
+          <div className="mx-auto max-w-[var(--blueprint-max)] border-x border-border px-xl py-lg max-md:px-md">
             {navLinks.map((link) => (
               <a
                 key={link.href}

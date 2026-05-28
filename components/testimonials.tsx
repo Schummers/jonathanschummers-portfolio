@@ -26,7 +26,7 @@ export function Testimonials() {
             </span>
           </div>
 
-          <blockquote className="max-w-prose-wide">
+          <blockquote className="max-w-[var(--case-prose)]">
             <p className="font-body text-body italic text-text-primary">
               &ldquo;Strongly autonomous during the discovery phase on highly
               complex technical and strategic topics. During the build phase,

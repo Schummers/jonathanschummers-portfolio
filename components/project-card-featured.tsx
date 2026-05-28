@@ -114,7 +114,7 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
             <hr className="w-1/2 border-t border-border m-0 max-md:hidden" />
 
             {project.description && (
-              <p className="font-body text-body leading-body text-text-secondary max-w-prose-narrow max-md:hidden">
+              <p className="font-body text-body leading-body text-text-secondary max-w-[var(--case-prose)] max-md:hidden">
                 {project.description}
               </p>
             )}

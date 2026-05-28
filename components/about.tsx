@@ -12,7 +12,7 @@ export function About() {
             <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
               My journey
             </p>
-            <div className="max-w-prose-narrow space-y-sm">
+            <div className="max-w-[var(--case-prose)] space-y-sm">
               <p className="font-body text-body leading-body text-text-primary">
                 I started in user research, with two master&apos;s degrees in
                 experimental methodology, ergonomics, and cognitive psychology,
@@ -46,7 +46,7 @@ export function About() {
             <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
               Side project
             </p>
-            <div className="max-w-prose-narrow">
+            <div className="max-w-[var(--case-prose)]">
               <p className="font-body text-body leading-body text-text-primary">
                 Outside of work, I&apos;m a cycling obsessive. After 8 years
                 playing fantasy cycling with the same group of friends, I

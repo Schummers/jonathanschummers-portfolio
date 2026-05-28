@@ -276,14 +276,6 @@
   --spacing-container: var(--container-px);
   --spacing-section: var(--section-py);
 
-  /* Spacing aliases for max-w/min-w/h utilities that need a name without
-     colliding with either the sémantic spacing palette (lg, 3xl, etc., which
-     Tailwind v4 reuses for max-w-{name}) or Tailwind's default --container-*
-     values (e.g. `prose` defaults to 65ch). */
-  --spacing-blueprint: var(--blueprint-max);        /* 1400px — BlueprintShell, Nav, Footer */
-  --spacing-prose-narrow: 32rem;                     /* 512px — hero, about, card description */
-  --spacing-prose-wide: 48rem;                       /* 768px — testimonials blockquote */
-
   /* Radius */
   --radius-none: var(--radius-none);
   --radius-sm: var(--radius-sm);
