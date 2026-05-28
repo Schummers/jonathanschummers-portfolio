@@ -1,3 +1,12 @@
+<!--
+[!WARNING]
+Document archivé — exploration du format Google DESIGN.md, pas une spec active.
+
+Snapshot du 27 mai 2026 utilisé pour évaluer l'adoption du format Google (Material 3 surface roles : surface-container-low/high, on-surface, etc.). Le DS final adopte le format Google mais conserve la nomenclature Linear-style sans préfixe — voir /DESIGN.md à la racine pour l'état actuel.
+
+Conservé pour traçabilité de la décision de format. Ne pas s'y référer pour du code neuf.
+-->
+
 ---
 name: Blueprint Portfolio
 colors:

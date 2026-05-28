@@ -1,3 +1,12 @@
+> [!WARNING]
+> **Document archivé — remplacé par [/DESIGN.md](../../DESIGN.md) le 2026-05-28.**
+>
+> Spec initiale du 20 mars 2026. État du DS **deux migrations en arrière** : pré-consolidation mai 2026 (qui a résolu 31 incohérences) et pré-migration v2 (qui a retiré le préfixe `--sem-*` et corrigé le dark mode au mirror Zinc). Manquent tous les tokens introduits depuis : `container-px`, `section-py`, `space-none`, `space-2xs`, `space-lg-plus`, `text-on-accent`.
+>
+> Conservé pour traçabilité historique. **Ne pas s'y référer pour du code neuf** : voir `/DESIGN.md` à la racine.
+
+---
+
 # Design System — Portfolio Jonathan Schummers
 
 > Spec validee le 2026-03-20. Reference pour l'implementation en etape 2 de la roadmap.

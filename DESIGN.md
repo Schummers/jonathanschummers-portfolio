@@ -20,9 +20,10 @@ colors:
   invert-fg:      "#fafafa"
 
   # Text
-  text-primary:   "#18181b"
-  text-secondary: "#71717b"
-  text-tertiary:  "#9f9fa9"
+  text-primary:    "#18181b"
+  text-secondary:  "#71717b"
+  text-tertiary:   "#9f9fa9"
+  text-on-accent:  "#ffffff"   # text/icons posed on bg-accent (brand button)
 
   # Brand accent
   accent:         "#0A4CF0"
@@ -55,15 +56,18 @@ typography:
   caption: { fontFamily: Manrope,       fontSize: 12px, fontWeight: 400, lineHeight: 16px }
 
 spacing:
-  xs:   8px
-  sm:   16px
-  md:   24px
-  lg:   32px
-  xl:   48px
-  2xl:  64px
-  xl2:  72px        # featured cards (9 × 8)
-  3xl:  96px
-  4xl:  128px
+  none:     0px         # annule un gap hérité
+  2xs:      4px         # padding inline fin, gap icône-texte
+  xs:       8px
+  sm:       16px
+  md:       24px
+  lg:       32px
+  lg-plus:  40px        # entre lg=32 et xl=48
+  xl:       48px
+  2xl:      64px
+  xl2:      72px        # featured cards (9 × 8)
+  3xl:      96px
+  4xl:      128px
 
 rounded:
   none:           0px
@@ -87,11 +91,23 @@ layout:
   case-center:    864px
   blueprint-max:  1400px
 
+  # Container padding (horizontal : viewport ↔ BlueprintShell)
+  # Utiliser px-container (Tailwind) — bascule responsive automatique
+  container-px-mobile:   24px       # ≤ 767px
+  container-px-tablet:   32px       # 768-1024px
+  container-px-desktop:  48px       # ≥ 1025px
+
+  # Section padding (vertical : entre sections empilées)
+  # Utiliser py-section (Tailwind). About garde son override xl2 (72px desktop).
+  section-py-mobile:    48px
+  section-py-tablet:    48px
+  section-py-desktop:   48px
+
 components:
   button-primary:        { backgroundColor: "{colors.btn-primary}",        textColor: "{colors.btn-primary-fg}", typography: "{typography.body}", rounded: "{rounded.sm}", padding: "12px 24px" }
   button-primary-hover:  { backgroundColor: "{colors.btn-primary-hover}",  textColor: "{colors.btn-primary-fg}" }
-  button-brand:          { backgroundColor: "{colors.accent}",             textColor: "#ffffff",                 typography: "{typography.body}", rounded: "{rounded.sm}", padding: "12px 24px" }
-  button-brand-hover:    { backgroundColor: "{colors.accent-hover}",       textColor: "#ffffff" }
+  button-brand:          { backgroundColor: "{colors.accent}",             textColor: "{colors.text-on-accent}", typography: "{typography.body}", rounded: "{rounded.sm}", padding: "12px 24px" }
+  button-brand-hover:    { backgroundColor: "{colors.accent-hover}",       textColor: "{colors.text-on-accent}" }
   button-outline:        { backgroundColor: "transparent",                  textColor: "{colors.text-primary}",  typography: "{typography.body}", rounded: "{rounded.sm}", padding: "12px 24px" }
   button-outline-hover:  { backgroundColor: "{colors.surface}",             textColor: "{colors.text-primary}" }
   tag:                   { backgroundColor: "transparent",                  textColor: "{colors.text-secondary}", typography: "{typography.tag}", rounded: "{rounded.md}", padding: "6px 10px" }
@@ -149,8 +165,30 @@ The portfolio runs on a single vertical blueprint:
 
 - **Max width**: `{layout.blueprint-max}` (1400px), enforced by `<BlueprintShell>`.
 - **Vertical rails**: `border-x border-border` on the shell, creating the editorial framing.
-- **Section padding (horizontal)**: 24px mobile, 32px tablet, 48px desktop. Use spacing tokens (`px-md`, `px-lg`, `px-xl`).
+- **Container padding (horizontal)**: `{layout.container-px-mobile}` (24px ≤767), `{layout.container-px-tablet}` (32px 768-1024), `{layout.container-px-desktop}` (48px ≥1025). The active token `--container-px` switches automatically via media queries — use the single utility **`px-container`** in JSX. Do not compose `px-md md:px-lg lg:px-xl` manually anymore.
+- **Section padding (vertical)**: `{layout.section-py-mobile}` / `-tablet` / `-desktop` — all 48px (the dominant rhythm of the home). Use **`py-section`**. About keeps its `py-xl2` (72px desktop) override as a deliberate outlier for the most narrative section.
 - **Case-study grid (desktop ≥1280px)**: a 3-column layout where the centre column is `{layout.case-center}` (864px) and the inner prose is constrained to `{layout.case-prose}` (640px).
+
+## Spacing
+
+Base 8px scale with two 4px sub-paliers (`2xs` and `lg-plus`). Every token lands on the 4px grid — this is non-negotiable, so headings, paddings, and gaps stay aligned.
+
+| Token | Value | Utility | Typical use |
+|---|---|---|---|
+| `{spacing.none}` | 0px | `p-none`, `gap-none` | Cancel an inherited gap (semantic intent). |
+| `{spacing.2xs}` | 4px | `p-2xs`, `gap-2xs` | Icon-to-text gap, fine inline padding. |
+| `{spacing.xs}` | 8px | `p-xs`, `gap-xs` | Tight clusters (label + value, badges). |
+| `{spacing.sm}` | 16px | `p-sm`, `gap-sm` | Default gap between siblings. |
+| `{spacing.md}` | 24px | `p-md`, `gap-md` | Default section gutter, card-to-card. |
+| `{spacing.lg}` | 32px | `p-lg`, `gap-lg` | Tablet container padding. |
+| `{spacing.lg-plus}` | 40px | `p-lg-plus`, `gap-lg-plus` | In-between for rhythms that don't fit 32 or 48. |
+| `{spacing.xl}` | 48px | `p-xl`, `gap-xl` | Desktop container padding, default section padding. |
+| `{spacing.2xl}` | 64px | `p-2xl`, `gap-2xl` | Generous breaks. |
+| `{spacing.xl2}` | 72px | `p-xl2`, `gap-xl2` | About-card vertical padding (9 × 8). |
+| `{spacing.3xl}` | 96px | `p-3xl`, `gap-3xl` | Hero / featured breathing room. |
+| `{spacing.4xl}` | 128px | `p-4xl`, `gap-4xl` | Page-level vertical rhythm. |
+
+The 3 sub-paliers (`none`, `2xs`, `lg-plus`) exist to give the system enough granularity for the IA — and you — to hit the right rhythm without resorting to arbitrary brackets.
 
 ## Shapes
 
@@ -180,7 +218,18 @@ The system has full dark-mode parity. The dark theme is activated by the `dark` 
 
 **Source of truth.** The light values live in this file's YAML frontmatter; the dark values live in `app/globals.css` under the `.dark { ... }` block. The light mode is the privileged design — dark is a deliberate overlay, not a mirror-image.
 
-**Mode-neutral tokens.** All spacing, rounded, motion, layout, and accent base tokens (`accent`, `accent-hover`, `accent-muted`, `accent-subtle`) are the same in both modes. Only the surfaces, text colors, borders, button-primary palette, disabled palette, and `accent-text` swap.
+**Mode-neutral tokens.** All spacing, rounded, motion, layout, and accent base tokens (`accent`, `accent-hover`, `accent-muted`, `accent-subtle`, `text-on-accent`) are the same in both modes. Only the surfaces, text colors, borders, button-primary palette, disabled palette, and `accent-text` swap.
+
+**Mirror par index Zinc.** Surfaces and borders follow a **positional mirror** in the Tailwind Zinc palette (light step N ↔ dark step (1000-N)). This is **not** a hex inversion — perceptual contrast on dark canvases is non-symmetric, so a literal inversion produces tonal jumps that feel too loud. The mirror pattern (May 2026 fix) :
+
+| Token | Light | Dark |
+|---|---|---|
+| `bg` | zinc-50 (`#fafafa`) | zinc-950 (`#09090b`) |
+| `surface` | zinc-100 (`#f4f4f5`) | zinc-900 (`#18181b`) |
+| `border` | zinc-200 (`#e4e4e7`) | zinc-800 (`#27272a`) |
+| `border-strong` | zinc-300 (`#d4d4d8`) | zinc-700 (`#3f3f47`) |
+
+Same index distance from the extreme of the palette on both sides, no skipped steps.
 
 **No `modes:` YAML extension.** We deliberately do not encode dark mode in this file's frontmatter. Inventing a custom YAML extension on an alpha spec would risk a collision when Google ships an official mode mechanism.
 
@@ -198,6 +247,8 @@ The `hover-supported:` custom variant gates every `:hover` rule behind `@media (
 ## Do's and Don'ts
 
 - **Do** use the semantic Tailwind utilities (`bg-bg`, `text-text-primary`, `border-border`, `px-md`, `rounded-md`).
+- **Do** use `px-container` and `py-section` for section padding (responsive baked into the CSS variable) rather than composing `px-md md:px-lg lg:px-xl` manually.
+- **Do** use `text-text-on-accent` for text/icons posed on `bg-accent` (brand button, accent banners) — never hardcode `#ffffff`.
 - **Don't** inline raw hex codes (`text-[#18181b]`, `bg-[#fafafa]`). Use the token utility.
 - **Don't** inline arbitrary pixel values (`px-[24px]`, `gap-[16px]`, `rounded-[8px]`). Use spacing/rounded tokens.
 - **Do** compose className strings with the `cn()` helper (`lib/cn.ts`).

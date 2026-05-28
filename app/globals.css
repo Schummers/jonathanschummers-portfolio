@@ -2,7 +2,7 @@
 
 /* ============================================
    DESIGN TOKENS — Portfolio Jonathan Schummers
-   Source de vérité: docs/DESIGN_SYSTEM.md
+   Source de vérité déclarative: /DESIGN.md (racine)
    ============================================ */
 
 /*
@@ -43,17 +43,36 @@
   --accent-text: #0A4CF0;
   --accent-muted: #3670f5;
   --accent-subtle: #d4e3ff;
+  --text-on-accent: #ffffff;  /* texte/icônes posés sur bg-accent (brand button) */
 
   /* Layout — case study widths */
   --case-prose: 640px;    /* colonne contenu (texte, bullets, images) */
   --case-center: 864px;   /* colonne centrale du layout 3 colonnes */
   --blueprint-max: 1400px;   /* max content width (BlueprintShell) */
 
-  /* Spacing — base 8px */
+  /* Container padding (horizontal : viewport → BlueprintShell)
+     L'actif `--container-px` est patché par les media queries plus bas. */
+  --container-px-mobile: 24px;
+  --container-px-tablet: 32px;
+  --container-px-desktop: 48px;
+  --container-px: var(--container-px-desktop);
+
+  /* Section padding (vertical : entre sections empilées)
+     L'actif `--section-py` est patché par les media queries plus bas.
+     Default rhythm = 48px à tous les breakpoints. About override à xl2 (72px). */
+  --section-py-mobile: 48px;
+  --section-py-tablet: 48px;
+  --section-py-desktop: 48px;
+  --section-py: var(--section-py-desktop);
+
+  /* Spacing — base 8px (4px pour les sub-paliers) */
+  --space-none: 0px;
+  --space-2xs: 4px;
   --space-xs: 8px;
   --space-sm: 16px;
   --space-md: 24px;
   --space-lg: 32px;
+  --space-lg-plus: 40px; /* entre lg=32 et xl=48 */
   --space-xl: 48px;
   --space-2xl: 64px;
   --space-xl2: 72px;    /* 9 × 8px — featured card top/bottom padding */
@@ -111,7 +130,7 @@
   --tracking-label: 0.08em;
 }
 
-/* --- Responsive typography — Tablet --- */
+/* --- Responsive — Tablet --- */
 @media (max-width: 1024px) {
   :root {
     --text-hero: 48px;
@@ -123,10 +142,14 @@
     --leading-h1: 44px;
     --leading-h2: 36px;
     --leading-h3: 28px;
+
+    /* Layout — bascule sur les valeurs tablet */
+    --container-px: var(--container-px-tablet);
+    --section-py: var(--section-py-tablet);
   }
 }
 
-/* --- Responsive typography — Mobile --- */
+/* --- Responsive — Mobile --- */
 @media (max-width: 767px) {
   :root {
     --text-hero: 40px;
@@ -140,6 +163,10 @@
     --leading-h2: 32px;
     --leading-h3: 28px;
     --leading-body-lg: 24px;
+
+    /* Layout — bascule sur les valeurs mobile */
+    --container-px: var(--container-px-mobile);
+    --section-py: var(--section-py-mobile);
   }
 }
 
@@ -151,11 +178,11 @@
   --text-tertiary: #71717b;
   --fg: #e4e4e7;
 
-  /* Backgrounds & borders */
-  --bg: #09090b;
-  --surface: #27272a;
-  --border: #3f3f47;
-  --border-strong: #52525c;
+  /* Backgrounds & borders — mirror par index Zinc (bg=50/950, surface=100/900, border=200/800, border-strong=300/700) */
+  --bg: #09090b;            /* zinc-950 */
+  --surface: #18181b;       /* zinc-900 (était #27272a / zinc-800) */
+  --border: #27272a;        /* zinc-800 (était #3f3f47 / zinc-700) */
+  --border-strong: #3f3f47; /* zinc-700 (était #52525c / zinc-600) */
   --invert-bg: #fafafa;
   --invert-fg: #18181b;
 
@@ -180,10 +207,10 @@
     --text-tertiary: #71717b;
     --fg: #e4e4e7;
 
-    --bg: #09090b;
-    --surface: #27272a;
-    --border: #3f3f47;
-    --border-strong: #52525c;
+    --bg: #09090b;            /* zinc-950 */
+    --surface: #18181b;       /* zinc-900 */
+    --border: #27272a;        /* zinc-800 */
+    --border-strong: #3f3f47; /* zinc-700 */
     --invert-bg: #fafafa;
     --invert-fg: #18181b;
 
@@ -221,22 +248,28 @@
   --color-accent-text: var(--accent-text);
   --color-accent-muted: var(--accent-muted);
   --color-accent-subtle: var(--accent-subtle);
+  --color-text-on-accent: var(--text-on-accent);
 
   /* Spacing */
+  --spacing-none: var(--space-none);
+  --spacing-2xs: var(--space-2xs);
   --spacing-xs: var(--space-xs);
   --spacing-sm: var(--space-sm);
   --spacing-md: var(--space-md);
   --spacing-lg: var(--space-lg);
+  --spacing-lg-plus: var(--space-lg-plus);
   --spacing-xl: var(--space-xl);
   --spacing-2xl: var(--space-2xl);
   --spacing-xl2: var(--space-xl2);
   --spacing-3xl: var(--space-3xl);
   --spacing-4xl: var(--space-4xl);
 
-  /* Layout — case study */
+  /* Layout — case study + container/section actifs (responsive) */
   --width-content: var(--case-prose);
   --width-center: var(--case-center);
   --width-blueprint: var(--blueprint-max);
+  --spacing-container: var(--container-px);
+  --spacing-section: var(--section-py);
 
   /* Radius */
   --radius-none: var(--radius-none);

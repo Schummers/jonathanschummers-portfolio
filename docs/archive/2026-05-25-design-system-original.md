@@ -1,3 +1,12 @@
+> [!WARNING]
+> **Document archivé — remplacé par [/DESIGN.md](../../DESIGN.md) le 2026-05-28.**
+>
+> Ce snapshot reflète l'état du design system **avant la migration v2** : nomenclature préfixée `--sem-*` (remplacée par `--*` sans préfixe), valeurs dark mode pré-fix (`--surface: #27272a`, `--border: #3f3f47`, `--border-strong: #52525c` — ajustées d'un cran Zinc en mai 2026), absence des tokens `container-px`, `section-py`, `space-none`, `space-2xs`, `space-lg-plus`, `text-on-accent`.
+>
+> Conservé pour traçabilité historique. **Ne pas s'y référer pour du code neuf** : voir `/DESIGN.md` à la racine.
+
+---
+
 # Design System — Portfolio Jonathan Schummers
 
 > **Source de vérité unique.** Toute évolution du design system passe d'abord par ce fichier, puis par le code (`app/globals.css` + composants).
