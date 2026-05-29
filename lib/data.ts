@@ -63,7 +63,7 @@ export const projects: Project[] = [
     metric: "16 workshops · 12 user tests",
     company: "Spies Batignolles",
     tags: ["UX Research", "Design Thinking", "ERP Construction"],
-    image: "/images/Hero/SPIES.webp",
+    image: "/images/Hero/spie-bat-hero.webp",
     type: "compact",
     browserUrl: "spie-batignolles.com",
     mockupType: "browser",
