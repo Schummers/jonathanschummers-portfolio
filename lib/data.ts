@@ -59,7 +59,7 @@ export const projects: Project[] = [
   {
     slug: "spie-bat",
     title:
-      "Cut manual data entry on construction sites by redesigning the activity report with 16 field workshops",
+      "Designed a construction app connecting site crews' real workflows to a complex ERP, replacing 3 legacy tools with a single interface to manage personnel, equipment and procurement",
     metric: "16 workshops · 12 user tests",
     company: "Spies Batignolles",
     tags: ["UX Research", "Design Thinking", "ERP Construction"],

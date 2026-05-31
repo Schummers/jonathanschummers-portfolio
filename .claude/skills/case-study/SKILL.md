@@ -5,13 +5,11 @@ description: |
   mission's raw data. Use whenever Jonathan wants to write, regenerate, or
   improve a case study, project write-up, or portfolio project page, or when
   consolidating a mission's scattered material (old portfolio text, screenshots,
-  brain dump) into one clean narrative. Drives an ordered question-and-answer
-  workflow (brain dump first, then Context, then How I solved, then What we
-  delivered, then Headline and Subtitle last), produces the compact
-  emoji-anchored format with photos interleaved per step, and calls the
-  writing-style skill for voice. Owns the dual-file architecture: working
-  source in content/missions/<slug>.md, prod render in
-  content/case-studies/<slug>-v2.md.
+  brain dump) into one clean narrative. Runs an ordered question-and-answer
+  workflow, produces a compact format with short self-carrying step titles and
+  photos interleaved per step, and calls the writing-style skill for voice.
+  Owns the dual-file architecture: working source in content/missions/<slug>.md,
+  prod render in content/case-studies/<slug>-v2.md.
 allowed-tools:
   - Read
   - Edit
@@ -24,54 +22,62 @@ allowed-tools:
 
 # Case Study generation — Jonathan Schummers
 
-## What this skill does
-
 Turns a mission's raw material into a published portfolio case study, through a
 structured conversation. It does NOT invent content. Jonathan supplies the
 substance (brain dump + raw data); this skill structures, sequences, and
-polishes it.
+polishes it. For voice and banned vocabulary, defer to the `writing-style`
+skill.
 
-For voice, banned vocabulary, and AI-slop avoidance, this skill **defers to the
-`writing-style` skill** (the AI-writing red flags and the hard banned list).
+## How Jonathan works (apply throughout)
+
+1. **Brain dump first, structure second.** Never write the narrative before
+   Jonathan has dumped what he remembers and wants to highlight.
+2. **Always offer at least two options.** For any wording choice (title,
+   problem framing, bullet), propose two and let him pick or amend. Never a
+   single take, never more than three.
+3. **Generation order is fixed:** Context → How I solved → What we delivered →
+   Headline last. A tight headline can only be written once the body exists.
+4. **Short, self-carrying titles.** Each step title reads as a complete thought
+   on its own, but stays short (aim ~6-10 words). Reading only the titles tells
+   the whole story. Long titles are a failure.
+5. **No emojis** anywhere in the output.
+6. **Photos interleaved** under the step they illustrate, not in a trailing
+   gallery. Not every step needs one.
+7. **Compact.** Short paragraphs, no filler, no separation padding.
 
 ## Dual-file architecture
 
-Each mission has two files:
-
 | File | Role |
 |---|---|
-| `content/missions/<slug>.md` | **Working source.** Frontmatter (data atoms for CV/LinkedIn/Malt) + body in sections: raw data (v0 + brain dump), assets (photos with descriptions), generated narrative. The single source of truth. |
-| `content/case-studies/<slug>-v2.md` | **Prod render.** Frontmatter (title, slug, duration, tags, thumbnail, heroImage, order) + the generated narrative only. Read by `lib/case-studies.ts` for the live portfolio page. |
+| `content/missions/<slug>.md` | Working source: frontmatter (data atoms) + raw data (v0 + brain dump) + assets + the generated narrative. Single source of truth. |
+| `content/case-studies/<slug>-v2.md` | Prod render: frontmatter + the narrative only. Read by `lib/case-studies.ts` for the live page. |
 
-The case study in the prod file is generated from the working source. When the
-source changes, regenerate the prod file. Keep them in sync manually until a
-loader migration removes the duplication.
+Note: the page **title** is driven by `lib/data.ts` (`project.title`), not the
+markdown Headline. When the headline changes, update `lib/data.ts` too.
 
-## Jonathan's working rules (do not skip)
+## Workflow
 
-Learned from the Spie Batignolles build. These are non-negotiable:
+0. **Gather.** Read the working source. Find scattered material (old case-study
+   files, `_archive/`, portfolio components, screenshots in `public/images/`).
+   List what exists, flag gaps.
+1. **Brain dump.** Ask Jonathan for his vision. Clean the speech-to-text into
+   structured prose. Save it in the working source. Validate before moving on.
+2. **Assets.** List every image. Describe each. Rename to
+   `<slug>-<type>-<descriptor>.webp` (type = app / research / hero). Update code
+   refs. Record old path to new path plus a description in the working source.
+3. **Context.** Draft Problem, then Target audience, then Team, then Key
+   results. Two options each. Lock before moving on.
+4. **How I solved.** First lock the step outline (5-7 short self-carrying
+   titles). Then deep-dive each step: one short paragraph + which photo goes
+   under it. Two options on each title.
+5. **What we delivered.** 4-6 bullets, artefacts and outcomes.
+6. **Headline.** Generate last, from everything written. Two options, lock.
+   Then update `lib/data.ts` title.
+7. **Write both files.** Narrative into the working source and the prod file.
+   Update frontmatter data atoms (CV bullets, metrics, tags) once locked.
+8. **Verify.** Confirm the page renders (images load, no 404). Commit.
 
-1. **Brain dump first, structure second.** Start by asking Jonathan to dump
-   everything he remembers and wants to highlight (voice, raw, unstructured).
-   Clean it into structured prose. Store it in the working source under the raw
-   data section. Never write the narrative before the brain dump exists.
-2. **Generation order is fixed:** Context → How I solved → What we delivered →
-   **Headline + Subtitle last**. A tight headline can only be written once the
-   body exists. Never generate the headline first.
-3. **One option at a time, not three.** Propose one strong draft per field (two
-   max when genuinely split). Jonathan validates or amends, then move on.
-   Do not flood with A/B/C/D choices.
-4. **Self-carrying titles.** Each step title must read as a complete thought.
-   Test: reading only the H3 titles tells the whole story (method + outcome).
-   Titles can be long if they stay legible.
-5. **Photos interleaved per step.** Place the relevant image directly under the
-   step it illustrates, not in a trailing gallery. Not every step needs one.
-6. **Compact emoji-anchored Context.** Use the format below, not deep nesting.
-7. **Surface key results up front AND in the recap.** Metrics appear in Key
-   results (Context) and again in What we delivered. Outcomes in Key results,
-   artefacts in What we delivered. Keep the distinction clean.
-
-## Output format (locked contract)
+## Output spec (the locked contract)
 
 ### Frontmatter (prod file)
 
@@ -87,78 +93,58 @@ order: <int>
 ---
 ```
 
-### Body sections (in order)
+### Body order
 
 ```
-## Headline                  (~15-25 words, written LAST; method + outcome + transformation)
-## Subtitle                  (~35-45 words, more context: method + adoption risk + scope)
-
-## Context & Objectives
-### ⁉️ Problem               (one paragraph ~60-80 words, opens on the stakes, ends on the real challenge)
-### 🎯 Target audience       (1 line: who they are + what they do)
-### 👯 Team                  (1 line: "1 X + Me (Y), inside a Z")
-### 🔑 Key results           (2-4 outcome bullets, never artefacts)
-
-## How I solved this problem
-### 1. <self-carrying title> (verb-led, past tense)
-   ![alt](path)             (interleaved photo if relevant)
-   <one paragraph ~50-100 words>
-### 2. ...                   (5-7 steps total, research → align → co-design → design → test → handoff)
-
-## What we delivered         (4-6 bullets: artefacts + quantified outcomes, bold the lead noun)
+## Headline
+## Context & Objectives   (Problem, Target audience, Team, Key results)
+## How I solved this problem   (5-7 numbered steps)
+## What we delivered
 ```
 
-See `reference-examples.md` (same folder) for worked examples of the compact
-format (PayFit, AB Tasty, banking loan flow).
+No Subtitle section. Lead Context with the Problem.
 
-## Workflow
+### Headline
+One sentence, drives the page title and SEO. States what was built and the
+transformation. No metric-stuffing, no emoji.
+Example: `Designed an intuitive SaaS that bridges field workers to a complex ERP, replacing 3 legacy tools with one simple interface.`
 
-### Phase 0. Gather raw material
-Read the mission's working source. Find scattered material: old case-study
-files (current and `_archive/`), portfolio components, screenshots in
-`public/images/`. List what exists, flag gaps.
+### Context & Objectives
+Four short blocks, no emojis, no deep nesting.
 
-### Phase 1. Brain dump
-Ask Jonathan to dump his vision: why this project matters now, the stakes, the
-method, what to highlight, which photos illustrate which step. Clean the
-speech-to-text into structured French prose. Save under the raw data section of
-the working source. Validate with Jonathan before proceeding.
+- **Problem** — one paragraph (~60-80 words). Open on the stakes, end on the
+  real challenge. Example opener: "Spie was rolling out a new ERP... The real
+  challenge was not the software. It was adoption."
+- **Target audience** — one line: who they are + what they do daily.
+  Example: `Construction site managers and foremen who log their crews' hours, equipment use and material orders every day.`
+- **Team** — one line: `1 Lead UX/UI Designer (+10 yrs) + Me, inside a ~10-person ERP implementation team.`
+- **Key results** — 2-4 bullets, **outcomes only** (never artefacts). This is
+  where impact metrics live. Renders as a card.
+  Example: `4 modules harmonised in one interface, all data centralised in a single ERP, replacing 3 legacy tools.`
 
-### Phase 2. Assets
-List every image for the project. OCR / describe each one. Rename to
-`<slug>-<type>-<descriptor>.webp` (type = app / research / hero). Update all
-code references. Write an assets section in the working source: old path → new
-path + a description per image.
+### How I solved this problem
+5-7 numbered steps, research to handoff. Each step:
+- **Title:** short verb-led phrase, self-carrying, ~6-10 words. Past tense.
+  Good: `Mapped the on-site ecosystem to find the key users`
+  Bad (too long): `Mapped the on-site ecosystem to identify the stakeholders and the two key users who fill the report every day`
+- **Body:** one short paragraph (~50-90 words). It continues the title, it
+  never repeats it. Do not open the paragraph by restating the title's words
+  (no "We ran 12 interviews..." under a title that already says "Ran 12
+  interviews"). Start mid-thought.
+- **Photo:** interleaved if one illustrates the step. Not mandatory.
 
-### Phase 3. Context block
-Propose Problem, then Target audience, then Team, then Key results. One draft
-each. Lock before moving on. (Key results may be deferred to Phase 5 if metrics
-depend on later phases.)
-
-### Phase 4. How I solved this problem
-First lock the step outline (5-7 self-carrying titles). Then deep-dive each
-step: one paragraph + which photo goes under it. One step at a time.
-
-### Phase 5. What we delivered + Key results
-4-6 bullets, artefacts and outcomes. Finalise Key results in the Context block.
-
-### Phase 6. Headline + Subtitle
-Generate last, from everything written. Propose one or two, lock.
-
-### Phase 7. Write both files
-Write the narrative into the working source (generated narrative section) and
-into the prod file. Update frontmatter data atoms (CV bullets, metrics, tags)
-once the narrative is locked.
-
-### Phase 8. Verify
-Run `ds:check` if it touches UI. Confirm the portfolio page renders (images
-load, no 404). Commit.
+### What we delivered
+4-6 bullets. Artefacts plus quantified outcomes. Bold the lead noun.
+Example: `**A new SaaS replacing 3 legacy tools** with one harmonised interface adapted to daily site usage.`
+The visual recap (a grid of the project's screens and deliverables) renders
+below this section.
 
 ## Re-read test before shipping
 
-1. Reading only the H3 step titles tells the whole story.
-2. Key results are outcomes; What we delivered are artefacts. No overlap.
-3. Every metric appears in at least two places (Key results + body).
-4. No hard-banned word anywhere (run the `writing-style` audit).
-5. Photos are interleaved, not dumped in a trailing gallery.
-6. It sounds like Jonathan, not a consultant.
+1. Reading only the step titles tells the whole story.
+2. Titles are short (~6-10 words), not full sentences.
+3. Key results are outcomes; What we delivered are artefacts. No overlap.
+4. Every metric appears in at least two places.
+5. No emoji, no em dash, no hard-banned word (run the writing-style audit).
+6. Photos are interleaved, relevant to their step.
+7. It sounds like Jonathan, not a consultant.
