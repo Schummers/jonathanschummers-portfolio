@@ -10,10 +10,12 @@ description: |
   not explicitly ask for "style review". Enforces ~22 AI-writing patterns
   from Wikipedia's "Signs of AI writing" (no em dashes, no "pivotal" or
   "showcasing", no copula avoidance, no rule of three, no persuasive tropes,
-  no filler phrases), a tight banned-vocabulary list, preferred action
-  verbs, the bullet formula (action + scope + tool + metric, max ~200
-  characters), and the STAR framework (Situation, Task, Action, Result)
-  for case studies and cover letters. Two-pass draft, audit, final loop.
+  no filler phrases), a two-tier banned-vocabulary list (hard banned vs soft
+  banned) with per-channel calibration, preferred action verbs, the bullet
+  formula (action + scope + tool + metric, max ~200 characters), and STAR for
+  cover letters and questionnaires. Two-pass draft, audit, final loop. For
+  portfolio case studies, the case-study skill owns the workflow and calls
+  this skill for voice.
 allowed-tools:
   - Read
   - Edit
