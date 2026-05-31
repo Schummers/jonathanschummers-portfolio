@@ -26,9 +26,14 @@ Led the design of BforBank's new customer onboarding, balancing neobank simplici
 
 Consumers who want the simplicity of a neobank with the security and advantages of a traditional bank.
 
-### My role
+### Team
 
 Lead Designer on the onboarding, supervised by the Head of Design. I worked with the product team (PO, developers), marketing for offer management, and legal & compliance for KYC requirements and fraud detection.
+
+### Key results
+
+- Ranked **#1 out of 51 banks** in the 2023 Google Finance UX Benchmark, ahead of every neobank and traditional bank reviewed
+- Reduced the data required upfront across **3 compliance workshops**, deferring non-critical KYC to post-onboarding without raising fraud risk
 
 ## How I solved this problem
 

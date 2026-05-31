@@ -26,9 +26,14 @@ Refinery leaks caused by corrosion shut down production for millions of euros pe
 
 13 main inspectors at the pilot refinery, plus 30 inspectors planned across additional sites. Process engineers also use the tool weekly to monitor IOWs and their downstream effects.
 
-### My role
+### Team
 
 Sole Product Designer in a Scrum squad: 1 PO, 1 PM, 1 Scrum Master, 1 Tech Lead, 3 full-stack developers, 2 data engineers, 1 data scientist. Discovery and delivery over 18 months, with multi-site rollout coordination.
+
+### Key results
+
+- Cut type-2 corrosion leaks by **6% in one year** at the pilot refinery versus the previous three years, by targeting inspections where risk data flagged them
+- Deployed to **500 inspectors across 4 sites in 3 countries**, reaching 82% daily active use at the pilot refinery
 
 ## How I solved this problem
 

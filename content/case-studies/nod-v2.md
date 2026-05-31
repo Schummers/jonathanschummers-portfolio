@@ -28,9 +28,14 @@ Operators couldn't complete a diagnosis without leaving the app. For almost ever
 
 9 control center operators supervising hundreds of multi-energy assets (solar, wind, hydro) at TotalEnergies. They work in shifts, monitoring plant performance and handling incidents in real time.
 
-### My role
+### Team
 
 Sole Product Designer in a Scrum squad (1 PO, 3 full-stack developers, 2 data engineers). I joined after the previous designer left without documentation. Discovery and delivery over 16 months.
+
+### Key results
+
+- Increased energy tracked per operator by **+23% kWh in 12 months** by bringing diagnostic data inline so operators stopped leaving the app mid-incident
+- Made the dashboard fully responsive from 14" to 40", after which **6 of 9 operators** adopted laptops as their default monitor
 
 ## How I solved this problem
 

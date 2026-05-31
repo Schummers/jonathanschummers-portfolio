@@ -6,6 +6,7 @@ import { BlueprintShell } from "@/components/blueprint-shell";
 import { BackBar } from "@/components/back-bar";
 import { CaseStudyToc } from "@/components/case-study-toc";
 import { CaseStudyHeader } from "@/components/case-study-header";
+import { CaseStudyContext } from "@/components/case-study-context";
 import { CaseStudyStep } from "@/components/case-study-step";
 import { CaseStudyContent } from "@/components/case-study-content";
 import { CaseStudyImageGrid } from "@/components/case-study-image-grid";
@@ -149,12 +150,20 @@ export default async function CaseStudyPage({
   if (!study) notFound();
 
   const project = projects.find((p) => p.slug === slug);
-  const { headline, subtitle, groups } = processSections(study.sections);
+  const { headline, groups } = processSections(study.sections);
 
   const tocItems = [
     ...groups.map((g) => ({ id: g.id, label: g.label })),
     { id: "interested", label: "Book a call" },
   ];
+
+  /* Context is rendered inline with the header as one continuous flow.
+     The remaining groups (how, delivered) keep the separated-section layout. */
+  const contextGroup = groups.find((g) => g.id === "context");
+  const contextSteps = contextGroup
+    ? contextGroup.subsections.flatMap((s) => s.steps)
+    : [];
+  const contentGroups = groups.filter((g) => g.id !== "context");
 
   const heroImage = study.frontmatter.heroImage;
 
@@ -218,30 +227,33 @@ export default async function CaseStudyPage({
 
           {/* Center column: 864px max */}
           <div className="flex-1 xl:max-w-center">
-            {/* Title + Tags + Key Results */}
-            <section className="border-b border-border px-xl py-xl max-md:px-md md:max-xl:px-lg">
-              <CaseStudyHeader
-                company={project?.company}
-                title={project?.title || headline}
-                duration={study.frontmatter.duration}
-                tags={study.frontmatter.tags}
-                subtitle={subtitle}
-                metric={project?.metric}
-                slug={slug}
-              />
-            </section>
-
-            {/* Mobile TOC */}
+            {/* Mobile TOC — sits above the title so the header → Context flow
+                stays continuous on mobile (hidden on desktop, left rail instead) */}
             <div className="py-md px-xl border-b border-border xl:hidden max-md:px-md md:max-xl:px-lg">
               <div className="mx-auto max-w-content">
                 <CaseStudyToc items={tocItems} />
               </div>
             </div>
 
+            {/* Header + Context, one continuous flow (no label, no separator) */}
+            <section id="context" className="px-xl py-xl max-md:px-md md:max-xl:px-lg">
+              <CaseStudyHeader
+                company={project?.company}
+                title={project?.title || headline}
+                duration={study.frontmatter.duration}
+                tags={study.frontmatter.tags}
+              />
+              {contextSteps.length > 0 && (
+                <div className="mt-lg">
+                  <CaseStudyContext steps={contextSteps} slug={slug} />
+                </div>
+              )}
+            </section>
+
             {/* Content sections */}
-            {groups.map((group, groupIndex) => (
+            {contentGroups.map((group) => (
               <section key={group.id} id={group.id}>
-                {groupIndex > 0 && <hr className="border-t border-border" />}
+                <hr className="border-t border-border" />
 
                 <div className="px-xl py-xl max-md:px-md md:max-xl:px-lg">
                   <div className="mx-auto max-w-content">
