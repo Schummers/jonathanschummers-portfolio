@@ -96,14 +96,37 @@ pourrions envisager".
 section matching the target channel and match the cadence, recurring phrases,
 and register observed there. Recent samples reflect current voice.
 
-### Banned vocabulary (hard cut)
-**Boasting:** passionate, spearheaded, data-driven (in summary), agile (adj),
-lean, results-focused, remarkable, innovative, impactful, proven track record,
-seamlessly, robust, cutting-edge, world-class, leverage, synergies,
-game-changer, disruptive.
+### Banned vocabulary (two tiers, channel-calibrated)
 
-**Soft verbs:** crafted, drove, owned (without metric immediately after),
-facilitated, participated in, contributed to, helped, assisted, supported.
+The point is to never sound like AI, not to ban logical words. Two tiers.
+
+**🔴 HARD BANNED — never, in any channel.** These are the AI-slop tells a
+recruiter spots in 20 seconds:
+
+spearheaded, leverage, robust, cutting-edge, world-class, seamlessly,
+synergies, game-changer, disruptive, passionate, impactful, proven track
+record, delve, realm, intricate, pivotal, showcase, showcasing, testament,
+tapestry, underscore, foster, garner, nestled, boasts, renowned,
+in the heart of.
+
+**🟡 SOFT BANNED — avoid by default, allowed when factually justified in a
+narrative.** Filler verbs and tired adjectives that read junior when used as a
+crutch, but are fine when they state a real fact:
+
+crafted, drove, owned (without a metric right after), facilitated,
+participated in, contributed to, helped, assisted, supported, data-driven,
+innovative, agile (as adjective), lean, results-focused, remarkable.
+
+**✅ NOT banned (common false positives).** These are plain factual verbs. Use
+freely: shaped, handed off, harmonised, shipped, designed, mapped, built,
+ran, validated, iterated.
+
+**Channel calibration.**
+- **CV, Malt, cover letter:** hard + soft both banned. Dense, ATS-tokenised,
+  zero filler.
+- **Case study, LinkedIn experience, portfolio:** only hard banned. Soft words
+  allowed when they carry a real fact in the narrative (e.g. "facilitated 16
+  workshops" is fine; "facilitated synergies" is not).
 
 ### Preferred verbs
 Designed, Analyzed, Led, Built, Shipped, Deployed, Reduced, Increased, Scaled,
@@ -116,43 +139,21 @@ Orchestrated, Moderated, Navigated. "Initiated and launched" beats "Launched".
 Hard cap: **~200 characters per bullet** (≈ 2 lines on a standard CV
 layout). If a bullet exceeds 200 chars, split or cut.
 
-### STAR framework (case studies, cover letters, application questionnaires)
+### Longer narratives (cover letters, questionnaires)
 
-For any narrative longer than a CV bullet, structure with STAR. Allocation
-matters as much as the letters:
+For any narrative longer than a CV bullet, structure with STAR (Situation /
+Task / Action / Result). Allocation: Situation 10-15%, Task 10-15%, Action
+50-60%, Result 15-20%. If Action is under 50%, the story is underdeveloped:
+cut Situation, expand Action.
 
-- **S. Situation** (10-15%). Context, role, scale. One sentence.
-- **T. Task** (10-15%). The specific responsibility, not the team's mandate. One sentence.
-- **A. Action** (50-60%). The decision, the method, the obstacles handled. The core.
-- **R. Result** (15-20%). Quantified impact, plus systemic impact when relevant.
-
-**Allocation rule.** If Action is under 50% of the total, the story is
-underdeveloped. Cut Situation, expand Action.
-
-**Channel adaptation.**
 - Cover letter: micro-STAR, 3-4 lines per example, 2-3 examples in a 1-page letter.
-- LinkedIn experience bullet: mini-STAR collapsed into one sentence (one bullet = one story).
+- LinkedIn experience bullet: mini-STAR collapsed into one sentence.
 - Application questionnaire: full STAR, 200-300 words.
-- Portfolio case study: STAR rendered as 3 visible blocks with the portfolio's
-  established labels.
-  - **Context & Objectives** = Situation + Task. Sub-headings "Problem",
-    "Target audience", "My role".
-  - **How I solved this problem** = Action. Numbered list (1, 2, 3...) of
-    named approaches with method, decision, and trade-off.
-  - **What we delivered** = Result. Bullet list of concrete deliverables and
-    outcomes.
-  - Above the body, surface the strongest Result as a **Headline** (one
-    quantified sentence) and a **Subtitle** (one factual sentence on the
-    approach).
-  - Allocation rule still applies: Action block ≥ 50% of total length.
-  - Voice calibration: read 1-2 existing case studies in `content/case-studies/`
-    (e.g. `bforbank.md`) before drafting to match the rhythm.
 
-**Re-read test for STAR text.** Before sending, check four things:
-1. Does "I" dominate over "we"? If "we" dominates, rewrite.
-2. Is there a number or concrete fact in R? If not, dig deeper.
-3. Is Action at least 50% of the text? If not, develop.
-4. Could an outsider understand the stakes without context? If not, trim S.
+**Portfolio case studies use a dedicated process.** See the `case-study`
+skill, which owns the full generation workflow (brain dump, ordered Q&A,
+compact format, photo placement). This skill (`writing-style`) only governs
+the voice once the case-study skill calls it.
 
 ## Output format
 
