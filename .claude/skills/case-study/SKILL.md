@@ -32,8 +32,7 @@ substance (brain dump + raw data); this skill structures, sequences, and
 polishes it.
 
 For voice, banned vocabulary, and AI-slop avoidance, this skill **defers to the
-`writing-style` skill**. Case studies use the softer channel calibration (only
-hard-banned words forbidden, soft words allowed when they carry a real fact).
+`writing-style` skill** (the AI-writing red flags and the hard banned list).
 
 ## Dual-file architecture
 
