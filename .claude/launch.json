@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "autoPort": true
+    },
+    {
+      "name": "static-docs",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["/Users/jonathanschummers/Documents/jonathan/docs/cv/ui/_preview-server.cjs"],
+      "port": 8099
     }
   ]
 }

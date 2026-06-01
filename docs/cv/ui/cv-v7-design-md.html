@@ -20,8 +20,8 @@
      ============================================================ */
   :root {
     --text-primary:   #18181b;
-    --text-secondary: #71717b;
-    --text-tertiary:  #9f9fa9;
+    --text-secondary: #686871;  /* darkened ~8% from DS #71717b for CV legibility */
+    --text-tertiary:  #92929b;  /* darkened ~8% from DS #9f9fa9 for CV legibility */
     --accent-cv:      #0E86AF;
     --bg:      #fafafa;
     --surface: #f4f4f5;
@@ -45,9 +45,9 @@
     --page-w: 794px;
     --page-h: 1123px;
     --page-margin: 40px;
-    --col-gap: 48px;
-    --sidebar-w: 216px;
-    --main-w: 450px;          /* 714 - 48 - 216 */
+    --col-gap: 32px;
+    --sidebar-w: 232px;
+    --main-w: 450px;          /* 714 - 32 - 232 */
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -88,9 +88,10 @@
   /* cv-meta */ .role     { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
   /* cv-meta */ .location { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); }
   /* cv-meta */ .period   { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); white-space: nowrap; }
-  /* cv-body */ .summary  { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-primary); margin-bottom: var(--2xs); }
+  /* cv-body */ .summary  { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-primary); margin-bottom: var(--sm); }
                 .summary em { font-style: italic; }
-  /* cv-body */ .bullet   { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-primary); }
+  /* cv-body */ .bullet   { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); }
+                .bullet strong { font-weight: 500; color: var(--text-primary); }
   /* cv-body */ .side-strong { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); }
   /* cv-meta */ .side-item   { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
   .faint { color: var(--text-tertiary); }
@@ -127,7 +128,7 @@
   .xp-head { display: flex; flex-direction: column; gap: var(--2xs); margin-bottom: var(--xs); }
   .xp-line { display: flex; justify-content: space-between; align-items: baseline; gap: var(--xs); }
   .bullets { display: flex; flex-direction: column; gap: var(--xs); }
-  .bullets li { list-style: none; display: flex; gap: 6px; align-items: baseline; }
+  .bullets li { list-style: none; display: flex; gap: var(--2xs); align-items: baseline; }
   .bullets li::before { content: "•"; flex: 0 0 auto; color: var(--text-tertiary); font-size: 10px; }
 
   /* ---- SIDEBAR ---- */
@@ -181,12 +182,10 @@
               <div class="xp-line"><span class="co">Valoris</span><span class="period">2025 - present</span></div>
               <div class="xp-line"><span class="role">Founder · Product Designer</span><span class="location">Luxembourg</span></div>
             </div>
-            <p class="summary">Lorem ipsum dolor sit amet, consectetur <em>adipiscing elit</em>, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+            <p class="summary">I delivered on scope and on time across the full design process for enterprise clients like BforBank, Sodexo, Chanel, and Schneider Electric.</p>
             <ul class="bullets">
-              <li><span class="bullet">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</span></li>
-              <li><span class="bullet">Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip commodo.</span></li>
-              <li><span class="bullet">Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore fugiat nulla pariatur.</span></li>
-              <li><span class="bullet">Excepteur sint occaecat cupidatat non proident sunt culpa deserunt mollit anim laborum.</span></li>
+              <li><span class="bullet">Designed BforBank's mobile app onboarding (84 screens); the flow ranked <strong>first of 51 banks</strong> in Google's 2023 Finance UX benchmark.</span></li>
+              <li><span class="bullet">Co-designed Spie Batignolles' construction app (60 screens), connecting site crews' workflows to a complex ERP and replacing <strong>3 legacy tools with a single interface</strong>.</span></li>
             </ul>
           </div>
 
@@ -195,26 +194,22 @@
               <div class="xp-line"><span class="co">TotalEnergies · Digital Factory</span><span class="period">Dec 2021 - Nov 2024</span></div>
               <div class="xp-line"><span class="role">Senior Product Designer</span><span class="location">Paris</span></div>
             </div>
-            <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <em>eiusmod tempor</em> incididunt ut labore et dolore magna aliqua.</p>
+            <p class="summary">I delivered on scope and on time across the full design process for enterprise clients like BforBank, Sodexo, Chanel, and Schneider Electric.</p>
             <ul class="bullets">
-              <li><span class="bullet">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</span></li>
-              <li><span class="bullet">Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip commodo consequat.</span></li>
-              <li><span class="bullet">Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore fugiat nulla pariatur.</span></li>
-              <li><span class="bullet">Excepteur sint occaecat cupidatat non proident sunt culpa deserunt mollit anim laborum id.</span></li>
+              <li><span class="bullet">Designed BforBank's mobile app onboarding (84 screens); the flow ranked <strong>first of 51 banks</strong> in Google's 2023 Finance UX benchmark.</span></li>
+              <li><span class="bullet">Co-designed Spie Batignolles' construction app (60 screens), connecting site crews' workflows to a complex ERP and replacing <strong>3 legacy tools with a single interface</strong>.</span></li>
             </ul>
           </div>
 
           <div class="xp">
             <div class="xp-head">
-              <div class="xp-line"><span class="co">Avanade · Accenture Microsoft JV</span><span class="period">Jan 2020 - Jun 2022</span></div>
+              <div class="xp-line"><span class="co">Avanade · Accenture-Microsoft JV</span><span class="period">Jan 2020 - Jun 2022</span></div>
               <div class="xp-line"><span class="role">Product Designer</span><span class="location">Paris</span></div>
             </div>
-            <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <em>tempor incididunt</em> ut labore et dolore.</p>
+            <p class="summary">I delivered on scope and on time across the full design process for enterprise clients like BforBank, Sodexo, Chanel, and Schneider Electric.</p>
             <ul class="bullets">
-              <li><span class="bullet">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</span></li>
-              <li><span class="bullet">Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip commodo.</span></li>
-              <li><span class="bullet">Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore fugiat nulla pariatur.</span></li>
-              <li><span class="bullet">Excepteur sint occaecat cupidatat non proident sunt culpa deserunt mollit anim laborum id.</span></li>
+              <li><span class="bullet">Designed BforBank's mobile app onboarding (84 screens); the flow ranked <strong>first of 51 banks</strong> in Google's 2023 Finance UX benchmark.</span></li>
+              <li><span class="bullet">Co-designed Spie Batignolles' construction app (60 screens), connecting site crews' workflows to a complex ERP and replacing <strong>3 legacy tools with a single interface</strong>.</span></li>
             </ul>
           </div>
 

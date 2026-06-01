@@ -1,6 +1,26 @@
-# Notes — Contenu expériences (à injecter après arbitrage layout)
+# Notes — Contenu expériences (design v7 verrouillé)
 
-> Capture des nouveaux éléments de contenu donnés en session. À transformer en bullets/taglines une fois le layout des blocs arbitré.
+> Source de contenu pour le profil + les 3 blocs expérience du CV.
+> Layout arbitré et figé : `docs/cv/ui/cv-v7-design-md.html` (A4 strict, 1 page, 2 colonnes).
+> Dernière mise à jour : 2026-06-01 — alignement sur la structure v7 + challenge contre les research (`docs/research/cv-market/`).
+
+## Structure v7 (référence)
+
+- **Header** : photo · nom · titre `Senior Product Designer with PM skills (6y+)` · Luxembourg · portfolio + LinkedIn + email.
+- **Profile** : bloc pleine largeur, 1 paragraphe `.lead` (~3 lignes, ~330 caractères max).
+- **Expérience** (colonne principale, 3 blocs) : Valoris · TotalEnergies — Digital Factory · Avanade.
+- **Sidebar** : Real Estate Expertise (card) → Certifications → Teaching → Education → Languages. **Plus de section Tools** : les outils s'embarquent dans les bullets (cf. challenge §7).
+
+Structure d'un bloc XP en v7 :
+
+```
+[Société]              [Période]
+[Rôle · ]              [Ville]
+[Phrase summary — primary, em autorisé]
+• bullet 1 … • bullet 4
+```
+
+✅ **Descriptif société = pas de ligne dédiée.** Décision : le descriptif est porté par la **ligne société elle-même** (`TotalEnergies · Digital Factory`, `Avanade · Accenture-Microsoft JV`). Suffisant pour la lisibilité internationale, pas de ligne contexte en plus.
 
 ---
 
@@ -42,9 +62,16 @@ Pour chaque expérience importante (TotalEnergies notamment), structurer les bul
 
 → **Le bloc PROFILE (résumé) en haut du CV doit être réorienté autour de "property management SaaS for individual landlords"**. C'est une instruction sur le top-of-CV, pas seulement sur le bullet Valoris.
 
-À retravailler dans la v5 :
-> Draft profile pivoté :
-> "Senior Product Designer with **6 years on 0→1 SaaS** in industry, finance and now proptech — building **Valoris**, a property management SaaS for individual landlords. Data-driven and AI-native: research, design and frontend coded with Cursor + Claude Code. Licensed real estate professional in Luxembourg, managing a 15-property family rental portfolio. Past clients via Avanade (Accenture-Microsoft JV): TotalEnergies, BforBank, Spie Batignolles."
+**⚠️ Ancien draft (périmé — mots bannis + redondances v7) :**
+> "Senior Product Designer with 6 years on 0→1 SaaS in industry, finance and now proptech — building Valoris... **Data-driven and AI-native**... Licensed real estate professional... Past clients **via Avanade: TotalEnergies**, BforBank, Spie Batignolles."
+
+Problèmes (cf. challenge §7) : `data-driven` + `AI-native` sont bannis par la research ; le header v7 affiche déjà le titre et la sidebar le statut RE (redondance) ; « TotalEnergies via Avanade » est faux (bloc XP séparé).
+
+**Draft base ✅ VALIDÉ (research-clean, ~330 car., 3 needles tech / impact / forward) :**
+> "Product designer and founder building Valoris, an AI assistant for landlords managing their own property. Six years on 0→1 software in energy, heavy industry, and finance: a refinery tool used by 500 inspectors, a bank onboarding ranked first of 51 in Google's 2023 benchmark. Now I research, design, and code with Cursor and Claude Code."
+
+**Variante Dubai (remonte le combo real estate — cf. playbook §7) :**
+> "Licensed real estate professional and product designer building Valoris, an AI assistant for landlords managing their own property. Six years shipping 0→1 software, now applied to proptech, plus a 15-property family rental portfolio I run in Luxembourg. I research, design, and code with Cursor and Claude Code."
 
 ### TBD — éléments à compléter après cette session
 
@@ -221,13 +248,134 @@ Alternative plus courte :
 
 ### Forme
 
-1. **Layout de bloc expérience** → arbitrage via `CV_layout_tests.html` (10 variantes)
+1. ~~**Layout de bloc expérience**~~ → ✅ **résolu** : v7 verrouillée (`cv-v7-design-md.html`).
+   Reste ouvert : ligne descriptif société (cf. §7.3) + accent `#0E86AF` vs décision monochrome Gulf (cf. §7.2).
 
 ### Contenu
 
-2. **Title Valoris** : `Founder` seul, ou `Founder · Product Designer & Product Manager` ?
+2. **Title Valoris** : `Founder` seul, ou `Founder · Product Designer & Product Manager` ? → v7 affiche `Founder · Product Designer`.
 3. **Tagline Valoris** : drafted A / B / C ?
 4. **Tagline TotalEnergies** : version dense (proxy PO + ML projects) ou version courte (juste les 2 projets phares Nob + Smart Integrity) ?
-5. **Niveau de détail ML** : on assume "machine learning" en clair dans les bullets ou on reste à "data-driven" ?
+5. **Niveau de détail ML** : on assume "machine learning" en clair dans les bullets (~~ou "data-driven"~~ — banni, cf. §7.1).
 6. **Pivot Valoris** : on raconte explicitement le pivot Luxembourg → France + documentation → agent-first, ou on garde implicite ?
 7. **Méthode Meta ads pour validation** : on le sort en bullet (signal d'autonomie research + GTM) ou trop niche ?
+
+---
+
+## 7. Challenge research (2026-06-01) — confronté à `docs/research/cv-market/`
+
+> Les research (`ats-2026`, `senior-pd-pm-playbook`, `dubai-real-estate-freelance`) confirment certains choix et en contredisent d'autres. Verdicts :
+
+### 7.1 Vocabulaire banni — à corriger dans tous les drafts
+Bannis explicitement (coupés en <20 s par les recruteurs, poids ATS nul) : **data-driven, AI-native, spearheaded, passionate, agile, lean, results-focused, proven track record**, + le « AI slop » (delve, pivotal, showcasing, intricate, realm).
+→ Les 3 drafts de profil existants (notes §0.4, playbook §3.2, context-handoff §5.1) utilisent tous `data-driven` et/ou `AI-native`. Bannis. Profil base réécrit en §0.4.
+
+### 7.2 v7 = version « direct human / Gulf », PAS version ATS
+`ats-2026` est catégorique : 2 colonnes + photo + couleur + labels créatifs = score parsing effondré (cas réel : 35/100 sur Greenhouse). La v7 est parfaite pour **transmission directe** (Marco → Gargash/DAMAC, marché Gulf où la photo est attendue). Pour toute candidature via plateforme/ATS → **2e version single-colonne, texte brut, sans photo, sans couleur** (même contenu, deux skins).
+→ ✅ **2 colonnes conservées** + accent `#0E86AF` **conservé** (la décision « monochrome pour Gulf » du context-handoff §6 est annulée).
+→ TODO : produire la variante ATS single-col quand on candidate hors-réseau.
+
+### 7.3 Descriptif société — ✅ résolu
+Hustle Badger : « hirers didn't recognise any of the companies » → contexte employeur nécessaire à l'international. **Décision : porté par la ligne société** (`TotalEnergies · Digital Factory`, `Avanade · Accenture-Microsoft JV`), pas de ligne contexte séparée. Suffisant.
+
+### 7.4 Formule de bullet — confirmée
+Verbe d'action + scope (users/sites/pays) + outil/méthode nommé + métrique. Pas de liste de responsabilités, pas de bullet sans chiffre, 2 lignes max, 2-5 bullets/rôle. Aligné avec le skill `writing-style`. La structure « contexte projet / contribution J. » (§0) reste valable, MAIS le bullet « contexte » doit aussi porter une métrique ou migrer dans le descriptif société (sinon c'est de la description, pas un achievement).
+
+### 7.5 IA : nommer les outils, montrer la boucle, jamais « ChatGPT »
+La research valide l'angle Valoris : Cursor + Claude Code + MCP, avec une boucle métier fermée + métrique (ex. « X transcripts/itération, discovery passée d'une semaine à une demi-journée »). Ne jamais écrire « ChatGPT » ni « prompt engineering » seul. → Taglines Valoris (§1) bien orientées ; ajouter une métrique de gain.
+
+### 7.6 Certifications PSPO — nuance
+Hustle Badger coupe le PSPO sur un CV PM stratégique (lit « delivery-focused »). Ici le PSPO sert l'angle « PM skills / proxy PO » (titre v7). → Garder pour les cibles design+PM / proxy-PO ; reconsidérer pour un poste purement stratégie produit.
+
+### 7.7 Real estate dans le profil (cibles Gulf)
+playbook §7 : citer la licence RE + le portefeuille familial **dans le summary**, pas en certif perdue, pour les cibles immobilier/family office. → Justifie la **variante Dubai du profil** (§0.4).
+
+### 7.8 Tailoring obligatoire
+Règle d'or des 3 sources : jamais de CV neutre. Une variante header + profil + ordre des bullets par cible (Gargash fractional / DAMAC CDI interne / freelance proptech EU). Le profil base sert de tronc commun.
+
+---
+
+## 8. Arc narratif + compétences transverses (brain dump 2026-06-01)
+
+### Principe directeur
+- **Clarté > exhaustivité.** Moins énumérer de projets, plus faire ressortir les **points communs** (les compétences récurrentes).
+- **Densité sémantique ATS.** Chaque compétence transverse = un keyword qui doit apparaître **littéralement** quelque part : `user research`, `workshop facilitation`, `UX/UI design`, `Scrum`, `design system`, `data pipeline`, `data mapping`, `product management`, `roadmap`, `backlog`.
+- **Outils embarqués dans le texte**, jamais en liste flottante (pas de section Tools — cf. §7.5).
+
+### Arc en 3 temps
+| Bloc | Ce que ça raconte |
+|---|---|
+| **Avanade** | *J'ai appris le métier* : product design = user research + design UX/UI + Scrum, sur des clients enterprise multiples. La fondation craft. |
+| **TotalEnergies — Digital Factory** | *Vibe startup 0→1 dans une major* : sole designer + **proxy PO**, produits **très data / ML** (pipelines, data mapping), impact business mesuré. |
+| **Valoris** | *Full ownership PM + PD* : workflow **100% data + IA** (Cursor, Claude Code), research → strategy → design → frontend, solo. |
+
+→ Progression lisible : apprendre le craft → l'étendre + prendre l'ownership produit sur du data/ML complexe → tout porter de bout en bout avec l'IA.
+
+### Compétences transverses à couvrir (et où)
+| Compétence (keyword) | Avanade | Total | Valoris |
+|---|:--:|:--:|:--:|
+| User research (interviews, tests) | ● | ● | ● |
+| Workshop facilitation (Lean UX, Design Studio) | ○ | ● | ○ |
+| UX/UI design | ● | ● | ● |
+| Scrum / agile delivery | ● | ● | |
+| Design system | ● (foundations) | ● | ● (solo) |
+| Data : pipelines, data mapping, ML interfaces | | ● | ● |
+| « Data-driven » (sans le mot — dire : metrics-led, instrumented, ML-powered) | ○ | ● | ● |
+| IA dans le workflow (Cursor, Claude Code, MCP) | | | ● |
+| Product management (roadmap, backlog, user stories, slicing, proxy PO) | ○ | ● | ● |
+
+● = porteur principal · ○ = secondaire
+
+> ⚠️ **« Data-driven » est banni (§7.1)** mais le *concept* est central pour Total + Valoris. Le dire autrement : `built on data pipelines`, `data mapping`, `ML-powered`, `metrics fed the roadmap`, `instrumented with analytics`.
+> ⚠️ **Valoris manque de métriques dures** (cf. §1) : combler avec scope validé (interviews FR+LU, campagnes Meta ads, vitesse de build solo).
+
+---
+
+## 9. Contenu validé par bloc (destiné à la v7)
+
+### Avanade · Accenture-Microsoft JV — Product Designer · Paris · Jan 2020 - Jun 2022
+
+**Summary ✅ validé :**
+> I delivered on scope and on time across the full design process for enterprise clients like BforBank, Sodexo, Chanel, and Schneider Electric.
+
+> ⚠️ La parenthèse skills (`user research, workshop facilitation, visual design, design systems`) a été retirée pour gagner de l'espace. **Keywords ATS perdus** — à récupérer ailleurs : `research` revient chez Total/Valoris, `design system` aussi, mais `workshop facilitation` n'apparaît plus nulle part. À surveiller pour la variante ATS.
+
+**Bullets ✅ validés :**
+- Designed BforBank's mobile app onboarding (84 screens); the flow ranked **first of 51 banks** in Google's 2023 Finance UX benchmark.
+- Co-designed Spie Batignolles' construction app (60 screens), connecting site crews' workflows to a complex ERP and replacing **3 legacy tools with a single interface** (50/50 with another designer).
+
+**Décision finale :** intro gardée lean (pas de « in agile squads ») — Scrum/agile reste couvert implicitement par « enterprise clients » + le contexte squads de Total.
+
+---
+
+## 10. Décisions design v7 (session 2026-06-01)
+
+> Toutes appliquées dans `docs/cv/ui/cv-v7-design-md.html`. La réconciliation avec le DS canonique (`globals.css`) est repoussée à plus tard.
+
+### Typo
+| Élément | Réglage final | Token |
+|---|---|---|
+| Profile `.lead` | 12px / 400 / primary (testé en 14px puis **remis en body**) | `--text-cv-body` |
+| Société `.co` | 14px / 600 / primary, Space Grotesk (porte le descriptif : `TotalEnergies · Digital Factory`, `Avanade · Accenture-Microsoft JV`) | `--text-body-sm` |
+| Rôle `.role` | 11px / 400 / secondary | `--text-cv-meta` |
+| Période / Ville | 11px / 400 / tertiary | `--text-cv-meta` |
+| Summary `.summary` | 12px / 400 / **primary** | `--text-cv-body` |
+| Bullet `.bullet` | 12px / 400 / **secondary** (bullets discrets) | `--text-cv-body` |
+| Métrique `.bullet strong` | **500 / primary** (pop par la couleur sombre sur le gris) | — |
+
+→ Hiérarchie intra-bloc portée par la **couleur** (summary primary ressort, bullets gris reculent) + les métriques sombres en ancre de scan. Pas de jeu sur la taille/poids de la summary.
+
+### Spacing / layout
+- Summary → bullets : **16px** (`--sm`)
+- Puce → texte : **4px** (`--2xs`)
+- Gap colonnes : **32px** (`--lg`)
+- Sidebar : **232px** (+16px), main : **450px**
+
+### Override couleur (hors DS — à réconcilier plus tard)
+- `--text-secondary` : `#71717b` → **`#686871`** (−8%)
+- `--text-tertiary` : `#9f9fa9` → **`#92929b`** (−8%)
+- Raison : gain de lisibilité des bullets gris + lignes meta. Le DS d'origine (handoff) prévoyait même `#52525c` pour secondary.
+
+### Dette technique à nettoyer
+- Mini serveur de preview jetable : `docs/cv/ui/_preview-server.cjs` + entrée `static-docs` dans `.claude/launch.json` → **à supprimer en fin de projet CV**.
+- Override couleur + valeurs off-DS → décider si on les remonte dans le DS ou si elles restent spécifiques au CV.
