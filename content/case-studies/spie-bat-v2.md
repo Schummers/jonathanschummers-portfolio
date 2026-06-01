@@ -1,22 +1,12 @@
 ---
-title: "Spie Batignolles"
-slug: "spie-bat"
-duration: "11 months"
-tags: ["UX", "Design Thinking", "Construction", "ERP", "Workshops"]
-thumbnail: "/images/Experiences/SPIE Bat/spie-bat-app-purchase-request.webp"
 heroImage: "/images/Hero/spie-bat-hero.webp"
-order: 5
 ---
-
-## Headline
-
-Designed a construction app connecting site crews' real workflows to a complex ERP, replacing 3 legacy tools with a single interface to manage personnel, equipment and procurement
 
 ## Context & Objectives
 
 ### Problem
 
-Spie Batignolles was rolling out a new ERP and used it to harmonise its activity report across 4 modules (Personnel Tracking, Equipment Tracking, Procurement, Project Monitoring). The business goals were clear: cut manual data entry, speed up procurement, give site managers real-time monitoring. The real challenge was not the software. It was adoption. A top-down redesign would be bypassed by site crews who have their own way of working.
+Spie Batignolles ran on legacy tools and an aging ERP that slowed procurement and scattered data across modules. The value of a new system was obvious; adoption was not. The crews feeding the data log hours, equipment, and material orders on site, and they won't touch an ERP. The real challenge was designing an app layer that meets site users' needs while staying compliant with the ERP's architecture.
 
 ### Target audience
 
@@ -24,7 +14,9 @@ Construction site managers and foremen who log their crews' hours, equipment use
 
 ### Team
 
-1 Lead UX/UI Designer (+10 yrs) + Me (UX/UI Designer), inside a ~10-person ERP implementation team.
+- 1 Lead UX/UI Designer (+10 yrs)
+- Me as UX/UI Designer
+- ~10-person ERP implementation team
 
 ### Key results
 

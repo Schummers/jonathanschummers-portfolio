@@ -1,20 +1,6 @@
 ---
-title: "BforBank"
-slug: "bforbank"
-duration: "5 months"
-tags: ["UX", "Mobile", "Banking", "Onboarding"]
-thumbnail: "/images/Experiences/Bforbank/Carte virtuelle.webp"
 heroImage: "/images/Hero/BFOR.webp"
-order: 2
 ---
-
-## Headline
-
-Ranked #1 onboarding out of 51 banks by the 2023 Google UX Benchmark
-
-## Subtitle
-
-Led the design of BforBank's new customer onboarding, balancing neobank simplicity with traditional banking compliance to create a fast, intuitive acquisition journey.
 
 ## Context & Objectives
 
@@ -28,7 +14,10 @@ Consumers who want the simplicity of a neobank with the security and advantages 
 
 ### Team
 
-Lead Designer on the onboarding, supervised by the Head of Design. I worked with the product team (PO, developers), marketing for offer management, and legal & compliance for KYC requirements and fraud detection.
+- Lead Designer, supervised by the Head of Design
+- Product team: PO, developers
+- Marketing, for offer management
+- Legal & compliance, for KYC and fraud detection
 
 ### Key results
 

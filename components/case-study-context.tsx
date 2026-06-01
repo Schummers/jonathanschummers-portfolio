@@ -29,24 +29,24 @@ export function CaseStudyContext({ steps, slug }: CaseStudyContextProps) {
       {problem && (
         <div>
           <p className={LABEL_CLASS}>Problem</p>
-          <CaseStudyContent text={problem.content} />
+          <CaseStudyContent text={problem.content} leadingClass="mt-xs" />
           <CaseStudyImageGrid images={problem.images} />
         </div>
       )}
 
       {(audience || team) && (
-        <div className="mt-lg grid grid-cols-2 gap-md max-md:grid-cols-1 max-md:gap-lg">
+        <div className="mt-xl grid grid-cols-2 gap-xl max-md:grid-cols-1 max-md:gap-lg">
           {audience && (
             <div>
               <p className={LABEL_CLASS}>Target audience</p>
-              <CaseStudyContent text={audience.content} />
+              <CaseStudyContent text={audience.content} leadingClass="mt-xs" />
               <CaseStudyImageGrid images={audience.images} />
             </div>
           )}
           {team && (
             <div>
               <p className={LABEL_CLASS}>Team</p>
-              <CaseStudyContent text={team.content} />
+              <CaseStudyContent text={team.content} leadingClass="mt-xs" />
               <CaseStudyImageGrid images={team.images} />
             </div>
           )}
@@ -54,9 +54,9 @@ export function CaseStudyContext({ steps, slug }: CaseStudyContextProps) {
       )}
 
       {keyResults && (
-        <div className="mt-lg bg-surface px-md py-md">
+        <div className="mt-xl bg-surface px-md py-md">
           <p className={LABEL_CLASS}>Key results</p>
-          <CaseStudyContent text={keyResults.content} />
+          <CaseStudyContent text={keyResults.content} leadingClass="mt-xs" />
 
           {slug === "bforbank" && (
             <div className="mt-md">

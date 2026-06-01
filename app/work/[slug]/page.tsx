@@ -45,7 +45,7 @@ const SECTION_MAP: Record<string, { id: string; label: string }> = {
 };
 
 /* Sections to skip entirely */
-const SKIP_SECTIONS = ["Headline", "Subtitle", "Scope", "Images", "Impact"];
+const SKIP_SECTIONS = ["Headline", "Images"];
 
 interface ProcessedSection {
   id: string;
@@ -61,11 +61,6 @@ interface ProcessedSection {
 function processSections(
   sections: { heading: string; content: string; images: { alt: string; src: string }[]; steps: StepData[] }[]
 ) {
-  const headline =
-    sections.find((s) => s.heading === "Headline")?.content || "";
-  const subtitle =
-    sections.find((s) => s.heading === "Subtitle")?.content || "";
-
   // Group sections into the 3 main blocks
   const grouped: ProcessedSection[] = [
     { id: "context", label: "Context", subsections: [] },
@@ -93,7 +88,7 @@ function processSections(
   // Remove empty groups
   const filteredGroups = grouped.filter((g) => g.subsections.length > 0);
 
-  return { headline, subtitle, groups: filteredGroups };
+  return { groups: filteredGroups };
 }
 
 /* Parse **bold** inline markdown */
@@ -112,29 +107,31 @@ export async function generateMetadata({
   const study = getCaseStudy(slug);
   if (!study) return { title: "Case Study" };
 
-  const headline =
-    study.sections.find((s) => s.heading === "Headline")?.content || "";
+  const project = projects.find((p) => p.slug === slug);
+  const tabTitle = project?.company ?? "Case study";
+  const title = project?.title ?? tabTitle;
+  const description = project?.description ?? title;
 
   return {
-    title: study.frontmatter.title,
-    description: headline,
+    title: tabTitle,
+    description,
     openGraph: {
       type: "article",
-      title: study.frontmatter.title,
-      description: headline,
+      title,
+      description,
       images: [
         {
           url: study.frontmatter.heroImage,
           width: 1400,
           height: 700,
-          alt: study.frontmatter.title,
+          alt: title,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: study.frontmatter.title,
-      description: headline,
+      title,
+      description,
       images: [study.frontmatter.heroImage],
     },
   };
@@ -150,7 +147,7 @@ export default async function CaseStudyPage({
   if (!study) notFound();
 
   const project = projects.find((p) => p.slug === slug);
-  const { headline, groups } = processSections(study.sections);
+  const { groups } = processSections(study.sections);
 
   const tocItems = [
     ...groups.map((g) => ({ id: g.id, label: g.label })),
@@ -207,7 +204,7 @@ export default async function CaseStudyPage({
           <section className="border-b border-border px-xl py-xl max-md:px-md max-md:py-md">
             <Image
               src={heroImage}
-              alt={study.frontmatter.title}
+              alt={project?.title ?? ""}
               width={1400}
               height={700}
               className="w-full h-auto"
@@ -239,9 +236,8 @@ export default async function CaseStudyPage({
             <section id="context" className="px-xl py-xl max-md:px-md md:max-xl:px-lg">
               <CaseStudyHeader
                 company={project?.company}
-                title={project?.title || headline}
-                duration={study.frontmatter.duration}
-                tags={study.frontmatter.tags}
+                title={project?.title || ""}
+                tags={project?.tags ?? []}
               />
               {contextSteps.length > 0 && (
                 <div className="mt-lg">

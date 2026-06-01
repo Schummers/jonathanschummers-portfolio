@@ -2,7 +2,6 @@ export interface Project {
   slug: string;
   title: string;
   description?: string;
-  metric: string;
   company?: string;
   tags: string[];
   image?: string;
@@ -20,9 +19,8 @@ export const projects: Project[] = [
       "Revamping a power plant monitoring SaaS to increase kWh tracked per operator by 23%",
     description:
       "Redesigned an industrial monitoring SaaS used by 9 control center operators managing 350+ energy assets. Through field observation, usability testing in production, and collaborative co-design workshops, delivered a responsive dashboard that increased kWh tracked per operator by 23%.",
-    metric: "+23% kWh/operator",
     company: "TotalEnergies / Digital Factory",
-    tags: ["Product Designer", "B2B SaaS", "Energy"],
+    tags: ["16 months", "350+ assets", "Usability testing in prod", "Real-time plant data"],
     image: "/images/Experiences/NOD/Principal.webp",
     type: "featured",
     browserUrl: "nod.com",
@@ -34,7 +32,6 @@ export const projects: Project[] = [
       "Designing and building a rental management SaaS for Luxembourg legal compliance",
     description:
       "Solo-built property management platform automating legal documentation: tax declarations, rent control tracking, and resale reporting. OCR-powered document processing that auto-fills ~72% of required fields for tax filings.",
-    metric: "~72% of tax fields automated",
     company: "Valoris",
     tags: ["Product Builder", "Cursor / Claude Code", "Entrepreneurship"],
     image: "/images/Experiences/Smartintegrity/Principal.webp",
@@ -49,9 +46,8 @@ export const projects: Project[] = [
       "Designing the onboarding flow that ranked #1 on Google's UX Benchmark 2023",
     description:
       "Built a fully compliant banking onboarding for BforBank's complete app relaunch. Meeting all KYC, security, and regulatory constraints while achieving a full account opening in under 10 minutes.",
-    metric: "#1 · Google Finance UX Benchmark 2023 · Meilleur parcours d'entrée en relation",
     company: "BforBank",
-    tags: ["UX/UI Designer", "Mobile Design", "Onboarding Flow", "Banking"],
+    tags: ["5 months", "Banking", "Compliance workshops", "Mobile onboarding"],
     image: "/images/Hero/BFOR.webp",
     type: "featured",
     mockupType: "mobile-grid",
@@ -60,9 +56,8 @@ export const projects: Project[] = [
     slug: "spie-bat",
     title:
       "Designed a construction app connecting site crews' real workflows to a complex ERP, replacing 3 legacy tools with a single interface to manage personnel, equipment and procurement",
-    metric: "16 workshops · 12 user tests",
-    company: "Spies Batignolles",
-    tags: ["UX Research", "Design Thinking", "ERP Construction"],
+    company: "Spie Batignolles",
+    tags: ["11 months", ">1000 users", "Alignment workshops", "Data mapping (SaaS↔ERP)"],
     image: "/images/Hero/spie-bat-hero.webp",
     type: "compact",
     browserUrl: "spie-batignolles.com",
@@ -72,9 +67,8 @@ export const projects: Project[] = [
     slug: "smartintegrity",
     title:
       "Reduced refinery pipe leaks by 6% with a corrosion risk tool deployed to 500 inspectors across 4 sites",
-    metric: "-6% leaks · 500 users · 4 sites",
     company: "TotalEnergies / Digital Factory",
-    tags: ["Product Design", "Data", "Industry"],
+    tags: ["18 months", "500 users · 4 sites", "User testing", "Corrosion-rate model"],
     image: "/images/Hero/SMART.webp",
     type: "compact",
     browserUrl: "smint.com",
@@ -84,7 +78,6 @@ export const projects: Project[] = [
     slug: "malaama",
     title:
       "Designing and building the website for an NGO empowering girls' education in Mauritania",
-    metric: "Just released · April 2026",
     company: "Malaama",
     tags: ["Product Builder", "Web Design", "Social Impact"],
     image: "/images/Hero/Malaama.png",

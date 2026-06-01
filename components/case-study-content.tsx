@@ -10,8 +10,20 @@ export function renderInline(text: string): React.ReactNode {
   });
 }
 
-export function CaseStudyContent({ text }: { text: string }) {
+/* `leadingClass` overrides the top margin of the FIRST block only — lets a
+   caller tighten the label→text gap (e.g. the Context block). Other blocks keep
+   their default rhythm. When omitted, behaviour is unchanged. */
+export function CaseStudyContent({
+  text,
+  leadingClass,
+}: {
+  text: string;
+  leadingClass?: string;
+}) {
   const blocks = text.split("\n\n").filter(Boolean);
+
+  const top = (i: number, fallback: string) =>
+    i === 0 && leadingClass ? leadingClass : fallback;
 
   return (
     <>
@@ -21,7 +33,7 @@ export function CaseStudyContent({ text }: { text: string }) {
         if (trimmed.startsWith("- ")) {
           const items = trimmed.split("\n").filter((l) => l.startsWith("- "));
           return (
-            <ul key={i} className="mt-sm space-y-xs">
+            <ul key={i} className={`${top(i, "mt-sm")} space-y-xs`}>
               {items.map((item, j) => (
                 <li
                   key={j}
@@ -37,7 +49,7 @@ export function CaseStudyContent({ text }: { text: string }) {
         if (/^\d+\.\s/.test(trimmed)) {
           const items = trimmed.split("\n").filter((l) => /^\d+\.\s/.test(l));
           return (
-            <ol key={i} className="mt-sm space-y-xs list-decimal pl-md">
+            <ol key={i} className={`${top(i, "mt-sm")} space-y-xs list-decimal pl-md`}>
               {items.map((item, j) => (
                 <li
                   key={j}
@@ -54,7 +66,7 @@ export function CaseStudyContent({ text }: { text: string }) {
           return (
             <h3
               key={i}
-              className="mt-lg font-display text-h3 font-bold leading-h3 tracking-h3 text-text-primary"
+              className={`${top(i, "mt-lg")} font-display text-h3 font-bold leading-h3 tracking-h3 text-text-primary`}
             >
               {renderInline(trimmed.replace("### ", ""))}
             </h3>
@@ -64,7 +76,7 @@ export function CaseStudyContent({ text }: { text: string }) {
         return (
           <p
             key={i}
-            className="mt-sm font-body text-body leading-body text-text-primary"
+            className={`${top(i, "mt-sm")} font-body text-body leading-body text-text-primary`}
           >
             {renderInline(trimmed)}
           </p>

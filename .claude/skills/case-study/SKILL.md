@@ -38,8 +38,8 @@ wording choice (never one, never more than three), and never invent facts.
 | `content/missions/<slug>.md` | Working source: frontmatter (data atoms) + raw data (v0 + brain dump) + assets. Holds the material the narrative is built from. |
 | `content/case-studies/<slug>-v2.md` | Prod render: frontmatter + the narrative. Read by `lib/case-studies.ts` for the live page. This is the single edit surface for the narrative. |
 
-The page **title** is driven by `lib/data.ts` (`project.title`), not the
-markdown Headline. When the headline changes, update `lib/data.ts` too.
+The page **title** is the single `project.title` string in `lib/data.ts`. There
+is no markdown Headline — to change the title, edit `lib/data.ts`.
 
 ## Workflow
 
@@ -58,10 +58,11 @@ markdown Headline. When the headline changes, update `lib/data.ts` too.
    titles). Then deep-dive each step: one short paragraph + which photo goes
    under it.
 5. **What we delivered.** 4-6 bullets, artefacts and outcomes.
-6. **Headline.** Generate last, from everything written. Then update
-   `lib/data.ts` title.
+6. **Title.** Generate the descriptive title last, from everything written.
+   Write it to `lib/data.ts` (`project.title`) — the single source. There is no
+   markdown `## Headline` section.
 7. **Write both files.** Narrative into the prod file; data atoms (CV bullets,
-   metrics, tags) into the working-source frontmatter.
+   tags) into the working-source frontmatter.
 8. **Verify.** Audit against the writing-style hard-ban list and em dashes.
    Confirm the page renders (images load, no 404). Commit.
 
@@ -71,30 +72,31 @@ markdown Headline. When the headline changes, update `lib/data.ts` too.
 
 ```yaml
 ---
-title: "<Client or product>"
-slug: "<kebab-case>"
-duration: "<N months>"
-tags: ["<Domain>", "<Method>", "<Scope>"]   # 3-5
-thumbnail: "/images/Experiences/<Folder>/<file>.webp"
 heroImage: "/images/Hero/<file>.webp"
-order: <int>
 ---
 ```
+
+Title, company, duration, and the tags all live in `lib/data.ts`, not here. The
+prod frontmatter holds only the hero image. **Tags: exactly 4 per mission**
+(`project.tags`), shown on both the homepage and the case study (no separate
+duration chip). Cover duration, scale, method, and the data or differentiator
+axis. Categories, not counts: `User testing`, not `12 user tests`.
 
 ### Body order
 
 ```
-## Headline
 ## Context & Objectives   (Problem, Target audience, Team, Key results)
 ## How I solved this problem   (5-7 numbered steps)
 ## What we delivered
 ```
 
-No Subtitle section. No emojis anywhere. Lead Context with the Problem.
+No Headline section, no Subtitle section. No emojis anywhere. Lead Context with
+the Problem.
 
-### Headline
-One sentence, drives the page title and SEO. States what was built and the
-transformation. No metric-stuffing.
+### Title (lives in `lib/data.ts`)
+One sentence, drives the H1, the homepage card, and SEO. States what was built
+and the transformation. No metric-stuffing. There is no markdown `## Headline`:
+this single `project.title` string is the source.
 Example: `Designed a construction app connecting site crews' real workflows to a complex ERP, replacing 3 legacy tools with a single interface to manage personnel, equipment and procurement.`
 
 ### Context & Objectives
@@ -103,9 +105,12 @@ Four short blocks, no deep nesting.
 - **Problem** — one paragraph (~60-80 words). Open on the stakes, end on the
   real challenge. Example: "...The real challenge was not the software. It was adoption."
 - **Target audience** — one line: who they are + what they do daily.
-- **Team** — one line: `1 Lead UX/UI Designer (+10 yrs) + Me, inside a ~10-person ERP implementation team.`
+- **Team** — a short bullet list, one role or group per line (no "+" joiners).
+  Example: `- 1 Lead UX/UI Designer (+10 yrs)` / `- Me, UX/UI Designer` /
+  `- ~10-person ERP implementation team`.
 - **Key results** — 2-4 bullets, **outcomes only** (never artefacts). Impact
-  metrics live here. Renders as a card.
+  metrics live here. Renders as a card; **bold the key figure** in each bullet
+  (e.g. **SUS 83**, **3 legacy tools**) so the card scans at a glance.
 
 ### How I solved this problem
 5-7 numbered steps, research to handoff. Each step:

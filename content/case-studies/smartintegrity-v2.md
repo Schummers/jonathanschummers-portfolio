@@ -1,20 +1,6 @@
 ---
-title: "Smart Integrity"
-slug: "smartintegrity"
-duration: "18 months"
-tags: ["UX", "Product Design", "Data", "Industry"]
-thumbnail: "/images/Experiences/Smartintegrity/Principal.webp"
 heroImage: "/images/Hero/SMART.webp"
-order: 1
 ---
-
-## Headline
-
--6% leaks in one year: a corrosion risk tool deployed to 500 inspectors across 4 refineries in 3 countries
-
-## Subtitle
-
-Designed a single tool consolidating corrosion risk data for refinery inspectors, quantifying the impact of operational deviations on corrosion rate so inspections are scheduled where they actually matter.
 
 ## Context & Objectives
 
@@ -28,7 +14,9 @@ Refinery leaks caused by corrosion shut down production for millions of euros pe
 
 ### Team
 
-Sole Product Designer in a Scrum squad: 1 PO, 1 PM, 1 Scrum Master, 1 Tech Lead, 3 full-stack developers, 2 data engineers, 1 data scientist. Discovery and delivery over 18 months, with multi-site rollout coordination.
+- Sole Product Designer in a Scrum squad
+- 1 PO, 1 PM, 1 Scrum Master, 1 Tech Lead
+- 3 full-stack developers, 2 data engineers, 1 data scientist
 
 ### Key results
 

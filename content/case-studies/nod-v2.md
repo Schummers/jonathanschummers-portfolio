@@ -1,20 +1,6 @@
 ---
-title: "Network Operation Dashboard"
-slug: "nod"
-duration: "16 months"
-tags: ["Energy", "Responsive Design", "~350 users", "Lean UX Canvas", "26 user tests"]
-thumbnail: "/images/Experiences/NOD/Principal.webp"
 heroImage: "/images/Experiences/NOD/Principal.webp"
-order: 3
 ---
-
-## Headline
-
-From broken diagnosis to +23% kWh per operator: redesigning a power plant monitoring app
-
-## Subtitle
-
-Redesigned an industrial monitoring SaaS used by 9 control center operators managing 350+ energy assets. Through field observation, usability testing in production, and collaborative co-design workshops, delivered a responsive dashboard that increased kWh tracked per operator by 23%.
 
 ## Context & Objectives
 
@@ -30,7 +16,9 @@ Operators couldn't complete a diagnosis without leaving the app. For almost ever
 
 ### Team
 
-Sole Product Designer in a Scrum squad (1 PO, 3 full-stack developers, 2 data engineers). I joined after the previous designer left without documentation. Discovery and delivery over 16 months.
+- Sole Product Designer in a Scrum squad
+- 1 PO, 3 full-stack developers, 2 data engineers
+- Joined after the previous designer left, with no documentation
 
 ### Key results
 

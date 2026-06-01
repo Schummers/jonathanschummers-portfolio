@@ -3,16 +3,10 @@ import { Tag } from "./tag";
 interface CaseStudyHeaderProps {
   company?: string;
   title: string;
-  duration: string;
   tags: string[];
 }
 
-export function CaseStudyHeader({
-  company,
-  title,
-  duration,
-  tags,
-}: CaseStudyHeaderProps) {
+export function CaseStudyHeader({ company, title, tags }: CaseStudyHeaderProps) {
   return (
     <div className="mx-auto max-w-content">
       {company && (
@@ -25,7 +19,6 @@ export function CaseStudyHeader({
       </h1>
 
       <div className="mt-md flex flex-wrap gap-sm">
-        <Tag>{duration}</Tag>
         {tags.map((tag) => (
           <Tag key={tag}>{tag}</Tag>
         ))}

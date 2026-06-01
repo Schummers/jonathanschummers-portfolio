@@ -5,13 +5,7 @@ import matter from "gray-matter";
 const CASE_STUDIES_DIR = path.join(process.cwd(), "content/case-studies");
 
 export interface CaseStudyFrontmatter {
-  title: string;
-  slug: string;
-  duration: string;
-  tags: string[];
-  thumbnail: string;
   heroImage: string;
-  order: number;
 }
 
 export interface CaseStudyStep {
