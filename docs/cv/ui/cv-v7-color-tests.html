@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CV v7 — accent color tests</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Same v7 system. Only --accent-text is overridden per specimen.
+     Accent touches: section labels + external-link icon. */
+  :root {
+    --text-primary:   #18181b;
+    --text-secondary: #71717b;
+    --text-tertiary:  #9f9fa9;
+    --accent-text:    #0A4CF0;
+    --bg:      #fafafa;
+    --surface: #f4f4f5;
+    --border:  #e4e4e7;
+    --border-strong: #d4d4d8;
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-body:    'Manrope', system-ui, sans-serif;
+    --none: 0px;  --2xs: 4px;  --xs: 8px;   --sm: 16px;  --md: 24px;
+    --lg: 32px;   --lg-plus: 40px;  --xl: 48px;  --2xl: 64px;
+    --rounded-md: 8px;
+    --text-h3: 24px;       --leading-h3: 32px;   --tracking-h3: -0.01em;
+    --text-body-sm: 14px;  --leading-body-sm: 20px;
+    --text-tag: 12px;      --leading-tag: 16px;
+    --text-cv-body: 11px;  --leading-cv-body: 16px;
+    --text-cv-meta: 10px;  --leading-cv-meta: 16px;
+    --page-w: 794px;
+    --page-h: 1123px;
+    --page-margin: 40px;
+    --col-gap: 48px;
+    --sidebar-w: 240px;
+    --main-w: 426px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background: #5b5b66;
+    display: flex; flex-wrap: wrap; gap: 40px;
+    justify-content: center; align-items: flex-start;
+    padding: 40px;
+  }
+  @page { size: A4; margin: 0; }
+
+  /* specimen caption */
+  .specimen { display: flex; flex-direction: column; gap: 12px; }
+  .cap { display: flex; align-items: center; gap: 8px; color: #fff; font-size: 13px; font-weight: 500; }
+  .sw { width: 18px; height: 18px; border-radius: 4px; border: 1px solid rgba(255,255,255,.35); flex: none; }
+  .cap small { color: rgba(255,255,255,.6); font-weight: 400; }
+
+  .page {
+    position: relative;
+    width: var(--page-w);
+    height: var(--page-h);
+    overflow: hidden;
+    background: var(--bg);
+    padding: var(--page-margin);
+    display: flex; flex-direction: column;
+  }
+  /* DS dark tokens (globals.css .dark block) */
+  .page.dark {
+    --bg: #09090b; --surface: #18181b; --border: #27272a; --border-strong: #3f3f47;
+    --text-primary: #e4e4e7; --text-secondary: #9f9fa9; --text-tertiary: #71717b;
+  }
+  .rowlabel { width: 100%; color: #fff; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 8px; }
+
+  .name   { font-family: var(--font-display); font-size: var(--text-h3); font-weight: 500; line-height: var(--leading-h3); letter-spacing: var(--tracking-h3); }
+  .co     { font-family: var(--font-display); font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); }
+  .label  { font-family: var(--font-body); font-size: var(--text-cv-meta); font-weight: 500; line-height: var(--leading-cv-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-text); }
+  .title  { font-size: var(--text-body-sm); font-weight: 600; line-height: var(--leading-body-sm); color: var(--text-primary); }
+  .lead   { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); }
+  .role   { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); }
+  .subtitle { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); }
+  .contact  { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
+  .contact a { color: var(--text-secondary); text-decoration: none; display: inline-flex; align-items: center; gap: 3px; }
+  .ext-icon { width: 9px; height: 9px; color: var(--accent-text); flex: none; }
+  .bullet { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); }
+  .side-strong { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); }
+  .period { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); white-space: nowrap; }
+  .ctx    { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
+  .side-item { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
+  .faint { color: var(--text-tertiary); }
+  .lang { display: flex; justify-content: space-between; align-items: baseline; }
+  .lvl  { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
+
+  header { display: flex; gap: var(--sm); align-items: flex-start; justify-content: space-between; padding-bottom: var(--md); border-bottom: 1px solid var(--border); margin-bottom: var(--lg-plus); }
+  .id-left { display: flex; gap: var(--sm); align-items: stretch; }
+  .photo-col { align-self: stretch; flex: none; }
+  .photo { height: 100%; aspect-ratio: 1 / 1; position: relative; border-radius: var(--rounded-md); overflow: hidden; background: var(--surface); border: 1px solid var(--border); }
+  .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .id-main { display: flex; flex-direction: column; gap: var(--2xs); justify-content: center; }
+  .id-contact { text-align: right; display: flex; flex-direction: column; gap: 2px; align-items: flex-end; }
+
+  .profile { margin-bottom: var(--lg-plus); }
+  .profile .label { display: block; margin-bottom: var(--xs); }
+  .body { flex: 1; display: grid; grid-template-columns: var(--main-w) var(--sidebar-w); column-gap: var(--col-gap); min-height: 0; }
+  .section > .label { display: block; margin-bottom: var(--xs); }
+  .xp-list { display: flex; flex-direction: column; gap: var(--lg); }
+  .xp { display: flex; flex-direction: column; }
+  .xp-head { display: flex; flex-direction: column; gap: var(--2xs); margin-bottom: var(--xs); }
+  .xp-line { display: flex; justify-content: space-between; align-items: baseline; gap: var(--xs); }
+  .bullets { display: flex; flex-direction: column; gap: var(--xs); }
+  .bullets li { list-style: none; display: flex; gap: var(--xs); }
+  .bullets li::before { content: ""; flex: 0 0 4px; width: 4px; height: 4px; background: var(--text-secondary); margin-top: 8px; }
+  .sub { margin-top: var(--xs); padding-left: var(--sm); border-left: 1px solid var(--border); display: flex; flex-direction: column; gap: var(--xs); }
+  .side { display: flex; flex-direction: column; gap: var(--md); }
+  .side .block { display: flex; flex-direction: column; }
+  .side .label { margin-bottom: var(--xs); }
+  .side .items { display: flex; flex-direction: column; gap: var(--2xs); }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--rounded-md); padding: var(--sm); }
+  .tags { display: flex; flex-wrap: wrap; gap: var(--2xs); }
+  .tag { font-family: var(--font-body); font-size: 12px; font-weight: 500; line-height: 16px; color: var(--text-secondary); border: 1px solid var(--border-strong); border-radius: var(--rounded-md); padding: 6px 10px; }
+</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    const EXT = '<svg class="ext-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+
+    const PAGE = `
+      <header>
+        <div class="id-left">
+          <div class="photo-col"><div class="photo"><img src="../../../public/images/profile/Profil.close.sm.jpg" alt="Jonathan Schummers"></div></div>
+          <div class="id-main">
+            <div class="name">Jonathan Schummers</div>
+            <div class="title">Senior Product Designer with PM skills (6y+)</div>
+            <div class="subtitle">Luxembourg</div>
+          </div>
+        </div>
+        <div class="id-contact">
+          <div class="contact"><a href="https://jonathanschummers.vercel.app">jonathanschummers.vercel.app${EXT}</a></div>
+          <div class="contact"><a href="https://linkedin.com/in/jonathanschummers">linkedin.com/in/jonathanschummers${EXT}</a></div>
+          <div class="contact"><a href="mailto:jonathan.schummers@gmail.com">jonathan.schummers@gmail.com</a></div>
+          <div class="contact">+33 6 95 25 40 82</div>
+        </div>
+      </header>
+
+      <div class="profile">
+        <span class="label">Profile</span>
+        <p class="lead">Three to four lines of impact-first summary. Placeholder text standing in for the real PROFILE block, sized to its true footprint so the vertical budget test stays honest. No aspirational filler here, just the positioning needles.</p>
+      </div>
+
+      <div class="body">
+        <div class="section">
+          <span class="label">Experience</span>
+          <div class="xp-list">
+            <div class="xp">
+              <div class="xp-head">
+                <div class="xp-line"><span class="co">Valoris</span><span class="period">2025 — present</span></div>
+                <div class="xp-line"><span class="role">Founder &amp; Product Designer</span><span class="ctx">Property mgmt SaaS · <span class="faint">Luxembourg</span></span></div>
+              </div>
+              <ul class="bullets">
+                <li><span class="bullet">Placeholder bullet — action verb + scope + metric, two lines maximum so the rhythm reads cleanly.</span></li>
+                <li><span class="bullet">Placeholder bullet — tools embedded inline (Cursor, Claude Code).</span></li>
+                <li><span class="bullet">Placeholder bullet — one more quantified outcome line.</span></li>
+              </ul>
+            </div>
+            <div class="xp">
+              <div class="xp-head">
+                <div class="xp-line"><span class="co">TotalEnergies — Digital Factory</span><span class="period">Dec 2021 — Nov 2024 · 3 yrs</span></div>
+                <div class="xp-line"><span class="role">Senior Product Designer</span><span class="ctx">Via Avanade · <span class="faint">Paris</span></span></div>
+              </div>
+              <ul class="bullets">
+                <li><span class="bullet">Placeholder bullet — quantified outcome with named methodology.</span></li>
+                <li><span class="bullet">Placeholder bullet — second cherry-picked achievement.</span></li>
+                <li><span class="bullet">Placeholder bullet — third line, kept to two rows.</span></li>
+              </ul>
+            </div>
+            <div class="xp">
+              <div class="xp-head">
+                <div class="xp-line"><span class="co">Avanade — Accenture-Microsoft JV</span><span class="period">Jan 2020 — Jun 2022</span></div>
+                <div class="xp-line"><span class="role">Product Designer</span><span class="ctx">Digital innovation consulting · <span class="faint">Paris</span></span></div>
+              </div>
+              <div class="sub">
+                <div class="xp-line"><span class="co">BforBank</span><span class="period">5 mo · 2021</span></div>
+                <ul class="bullets"><li><span class="bullet">Placeholder sub-mission bullet — #1 Google UX Benchmark.</span></li></ul>
+              </div>
+              <div class="sub">
+                <div class="xp-line"><span class="co">Spie Batignolles</span><span class="period">11 mo · 2020–21</span></div>
+                <ul class="bullets"><li><span class="bullet">Placeholder sub-mission bullet — procurement flow.</span></li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="side">
+          <div class="block card">
+            <span class="label">Certifications</span>
+            <div class="items">
+              <span class="side-strong">Licensed Real Estate Professional</span>
+              <span class="side-item">House of Training, Luxembourg</span>
+              <span class="side-strong" style="margin-top:6px">Professional Scrum Product Owner</span>
+              <span class="side-item">Scrum.org</span>
+            </div>
+          </div>
+          <div class="block">
+            <span class="label">Education</span>
+            <div class="items">
+              <span class="side-strong">MSc Cognitive Psychology / HMI</span>
+              <span class="side-item">Université Paris Descartes · <span class="faint">2017–2019</span></span>
+              <span class="side-strong" style="margin-top:6px">MSc Cognitive Science</span>
+              <span class="side-item">Université Lyon 2</span>
+            </div>
+          </div>
+          <div class="block">
+            <span class="label">Teaching</span>
+            <div class="items">
+              <span class="side-strong">UX Research Lecturer</span>
+              <span class="side-item">Université Paris Cité · <span class="faint">since 2023</span></span>
+            </div>
+          </div>
+          <div class="block">
+            <span class="label">Languages</span>
+            <div class="items">
+              <div class="lang"><span class="side-strong">French</span><span class="lvl">native</span></div>
+              <div class="lang"><span class="side-strong">English</span><span class="lvl">professional</span></div>
+            </div>
+          </div>
+          <div class="block">
+            <span class="label">Tools</span>
+            <div class="tags">
+              <span class="tag">Figma</span><span class="tag">Cursor</span><span class="tag">Claude Code</span>
+              <span class="tag">Notion</span><span class="tag">Miro</span><span class="tag">Maze</span>
+              <span class="tag">Hotjar</span><span class="tag">Obsidian</span>
+            </div>
+          </div>
+        </div>
+      </div>`;
+
+    // Kept finalists. Light accent = AA on #fafafa. Dark accent = same hue,
+    // lightened to ~6:1 on the DS dark bg #09090b.
+    const VARS = [
+      { name: 'cyan',      light: '#1C87A0', dark: '#209AB6' },
+      { name: 'azure',     light: '#0E86AF', dark: '#1098C6' },
+      { name: 'grey-blue', light: '#546ECD', dark: '#748AD7' },
+    ];
+
+    const specimen = (hex, note, dark) =>
+      `<div class="specimen">
+        <div class="cap"><span class="sw" style="background:${hex}"></span>${hex} <small>${note}</small></div>
+        <div class="page${dark ? ' dark' : ''}" style="--accent-text:${hex}">${PAGE}</div>
+      </div>`;
+
+    let html = '<div class="rowlabel">Light mode</div>';
+    html += VARS.map(v => specimen(v.light, v.name, false)).join('');
+    html += '<div class="rowlabel">Dark mode</div>';
+    html += VARS.map(v => specimen(v.dark, v.name, true)).join('');
+    document.getElementById('root').innerHTML = html;
+  </script>
+</body>
+</html>

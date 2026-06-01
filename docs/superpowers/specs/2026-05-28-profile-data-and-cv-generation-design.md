@@ -229,7 +229,7 @@ V1 presets:
 - `default` (general)
 - (others added on demand: `damac`, `gargash`, `dubai-real-estate`, `cdi-tech`, etc.)
 
-## 7. Implementation plan (narrative, 3 phases)
+## 7. Implementation plan (narrative: A → A-bis → B → C)
 
 ### Phase A: Foundation (content + style)
 
@@ -245,9 +245,40 @@ A5. Fill sidebar data: languages, certifications, education, real-estate highlig
 
 A6. Rewrite Identity `summary` using consolidated experience data.
 
+### Phase A-bis: HTML CV draft (design.md-aligned) — INTERMEDIATE STEP
+
+**Goal**: before writing any React/Next.js code (Phase B), produce one standalone, design.md-aligned HTML CV that exports to a 1-page A4 PDF. This is the **fast, throwaway-able visual + content reference** that Phase B will later re-implement in code. It lets us validate layout, density, tone and ATS-compliance against real recruiter criteria without paying the cost of the full generator pipeline.
+
+**Inputs**:
+- Layout base: `docs/cv/ui/cv-v6-2variants.html` (most recent mockup, already on Space Grotesk / Manrope and close to the tokens). Fork it, do not edit in place.
+- Tokens: `DESIGN.md` (colors, typography, 8px spacing grid, rounded). Re-align the fork to the *current* token values.
+- Content rules: the four `docs/research/cv-market/` docs:
+  - `ats-2026.md` — single-column ATS parsing, plain-text clickable links (no icons), creative section titles banned, exact-token matching, verb + scope + metric formula, banned LLM vocab (delve, realm, intricate, showcasing, pivotal), regional rules (FR/EU vs US vs Dubai/MENA).
+  - `senior-pd-pm-playbook.md` — quantify everywhere, 2-5 cherry-picked bullets per role max 2 lines, employer context line for unknown brands, tools embedded in bullets (not a floating list), portfolio link above the fold, banned-word list, the 3 bullet formulas, the 1-page master skeleton.
+  - `dubai-real-estate-freelance.md` — Gulf positioning (real-estate domain fluency × product thinking), used to tune sector vocabulary for a Dubai preset.
+  - `context-handoff.md` — the already-converged v3 CV decisions: title "Senior Product Designer", PROFILE summary, 3 experience blocks (Valoris / TotalEnergies / Avanade-with-BforBank+Spie sub-items), portfolio KPIs to surface, monochrome format, FULLCAPS Space Grotesk labels, 4×4 square bullets, right sidebar order, employer context lines.
+
+**Sub-steps**:
+
+AB1. Fork `cv-v6-2variants.html` → new working file (e.g. `docs/cv/ui/cv-v7-design-md.html`). Collapse the two label-tint variants down to a single monochrome variant (per `context-handoff.md` §6: no accent colour for the Gulf/family-office channel).
+
+AB2. Re-align every token to current `DESIGN.md`: fonts, 8px grid (8/16/24/32/40/48/64), `rounded.md` (8px) for photo + cert card. **Open decision (flag, do not silently pick)**: the mockup/handoff use a denser 4-step text scale tuned for print (`#52525c` secondary, `#71717b` tertiary, `#9f9fa9` faint) whereas `DESIGN.md` ships a 3-step screen scale (`#71717b` secondary, `#9f9fa9` tertiary). Recommendation: keep the print-tuned 4-step as a documented **print override** (print needs more ink contrast than screen), analogous to how `DESIGN.md` treats dark mode as a deliberate overlay rather than a mirror.
+
+AB3. Apply the ATS structure from `ats-2026.md` §2.1: header (name, targeted title, city+country, plain-text clickable email / LinkedIn / portfolio — **no icon-wrapped links**), PROFILE summary (3-4 lines, impact-first, no aspirational filler), Experience reverse-chronological (~60-65% of the page), Skills grouped by domain ontology for token matching, Education + Certifications with full names AND acronyms. **Open decision (flag)**: single-column is the strict ATS-safe choice, but `context-handoff.md` adopted a right sidebar. Resolve by producing the layout as the *design/human-transmission* skin (sidebar OK per playbook §8 for referral/Gulf/family-office channels, which is exactly the Marco→Gargash/DAMAC path); note that a pure single-column ATS skin is a later preset, not this draft.
+
+AB4. Fill content from the knowledge base: `content/missions/*.md` frontmatter (bullets, taglines, metrics) + `lib/data.ts` KPIs + the v3 decisions in `context-handoff.md` §5. Run every line through the `writing-style` skill: action verb + scope + metric, tools embedded in bullets, banned vocab stripped, no em dashes.
+
+AB5. AI positioning per `ats-2026.md` §4 + playbook §5: surface AI at **Tooling level 2** (Cursor, Claude Code, MCP servers) embedded in Valoris bullets and in the Tools section — never an isolated "AI Skills" section, never bare "ChatGPT".
+
+AB6. Channel/region awareness: this draft is the monochrome EU + Gulf (direct-human, photo ON) skin. Keep regional preset fields (visa status, DOB, marital status — required in Dubai headers per `ats-2026.md` §5) structurally anticipated but commented out; they activate only when a GCC preset is generated. A photo-off, single-column ATS variant is explicitly deferred.
+
+AB7. Export: 1-page A4, `@page { size: A4; margin: 14mm }`, print-color-exact. Manual Cmd+P → Save as PDF for now. **Puppeteer automation of this export is Phase B6** — A-bis stays hand-exported so we can iterate on content/layout fast without the build pipeline.
+
+**Exit criterion**: a single PDF that passes the playbook §11 12-point checklist and reads clean against the §9 "10-second kill" list. That validated artefact becomes the concrete acceptance target for Phase B (the React renderer must reproduce it from `ProfileData`).
+
 ### Phase B: CV (code)
 
-B1. Create `content/cv/types.ts` (TypeScript types from this spec).
+B1. Create `content/cv/types.ts` (TypeScript types from this spec). The PDF produced by Phase A-bis is the acceptance target: the renderer must reproduce it from `ProfileData`.
 
 B2. Create `content/cv/data.ts` (Identity, Pillars, Modifiers, Sidebar).
 
@@ -317,7 +348,7 @@ From cv-market research (to be consolidated in `docs/writing-style/style.md`):
 
 Open new conversation with:
 
-> "We are continuing the Profile/CV project. The design spec is at `docs/superpowers/specs/2026-05-28-profile-data-and-cv-generation-design.md`. Start with Phase A1: update the writing style guide. Read `docs/writing-style/style.md`, `docs/research/cv-market/*`, then propose a rewritten English version aligned with the cv-market research."
+> "We are continuing the Profile/CV project. The design spec is at `docs/superpowers/specs/2026-05-28-profile-data-and-cv-generation-design.md`. Phase A (content + style) is essentially in place, so go straight to **Phase A-bis**: produce a standalone, design.md-aligned HTML CV that exports to a 1-page A4 PDF. Fork `docs/cv/ui/cv-v6-2variants.html`, re-align it to current `DESIGN.md` tokens, and apply the content/ATS rules from `docs/research/cv-market/{ats-2026,senior-pd-pm-playbook,dubai-real-estate-freelance,context-handoff}.md`. Surface the two open decisions (text scale, single-column vs sidebar) before locking the layout. Run all copy through the `writing-style` skill. This PDF is the acceptance target for Phase B."
 
 Branch: `feature/cv-generation`.
 
