@@ -109,10 +109,11 @@
   --text-label: 14px;
   --text-tag: 12px;
   --text-caption: 12px;  /* image captions — italic, normal weight */
-  /* CV / print scale — sub-12px, canal print uniquement (route CV A4).
+  /* CV / print scale — canal print uniquement (route CV A4).
+     cv-meta (11px) seul token sous le plancher 12px web. cv-body (12px) = plancher système.
      Exemptés du shrink responsive : un A4 est de taille fixe. */
-  --text-cv-body: 11px;  /* bullets, profil, rôle, items sidebar */
-  --text-cv-meta: 10px;  /* période, contexte, captions, labels de section */
+  --text-cv-body: 12px;  /* bullets, profil, rôle, items sidebar */
+  --text-cv-meta: 11px;  /* période, contexte, captions, labels de section */
 
   /* Leading — valeurs en px absolus, alignées sur grille 4px */
   --leading-hero: 60px;
@@ -125,8 +126,8 @@
   --leading-body-sm: 20px;
   --leading-label: 20px;
   --leading-tag: 16px;
-  --leading-cv-body: 16px;  /* plancher DS, comme tag/caption — sur grille 4px */
-  --leading-cv-meta: 16px;  /* 10px de texte ; 14px serait hors grille 4px → 16 */
+  --leading-cv-body: 18px;  /* ratio 1.5 — hors grille 4px, intentionnel pour lisibilité print */
+  --leading-cv-meta: 16px;  /* 11px de texte ; ratio 1.45 — sur grille 4px */
 
   /* Tracking — cv-body/cv-meta restent en normal (comme body/tag/caption) */
   --tracking-hero: -0.03em;

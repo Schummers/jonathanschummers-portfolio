@@ -8,20 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* ============================================================
-     CV v7 — DESIGN.md + the 2 new CV print tokens (cv-body 11/16,
-     cv-meta 10/16). Name reuses h3 (24/32), chips reuse tag (12/16).
-     No other new tokens; hierarchy via weight + Space Grotesk.
+     CV v7 — DESIGN.md + cv-body/cv-meta/accent-cv tokens.
      Canvas 794 x 1123 px (A4 @96dpi). Page margin 40px (lg-plus).
-     Layout : PROFILE full width, then EXPERIENCE | SIDEBAR.
+     Layout: PROFILE full width, then EXPERIENCE | SIDEBAR.
      Columns: main 426 + gap 48 (xl) + sidebar 240.
+     Type scale used:
+       h3 24px     — name
+       body-sm 14px — company name (.co)
+       cv-body 11px — summary, bullets, lead
+       cv-meta 10px — role, period, location, labels, contacts
      ============================================================ */
   :root {
-    /* text — DESIGN.md 3-step (no print override) */
     --text-primary:   #18181b;
     --text-secondary: #71717b;
     --text-tertiary:  #9f9fa9;
-    --accent-cv:      #0E86AF;   /* DS token accent-cv — section labels + link icon */
-    /* surfaces & borders — DESIGN.md */
+    --accent-cv:      #0E86AF;
     --bg:      #fafafa;
     --surface: #f4f4f5;
     --border:  #e4e4e7;
@@ -30,26 +31,23 @@
     --font-display: 'Space Grotesk', system-ui, sans-serif;
     --font-body:    'Manrope', system-ui, sans-serif;
 
-    /* spacing scale — DESIGN.md */
     --none: 0px;  --2xs: 4px;  --xs: 8px;   --sm: 16px;  --md: 24px;
     --lg: 32px;   --lg-plus: 40px;  --xl: 48px;  --2xl: 64px;
 
     --rounded-md: 8px;
 
-    /* typography tokens used by the CV (mirror of globals.css) */
     --text-h3: 24px;       --leading-h3: 32px;   --tracking-h3: -0.01em;
     --text-body-sm: 14px;  --leading-body-sm: 20px;
     --text-tag: 12px;      --leading-tag: 16px;
-    --text-cv-body: 11px;  --leading-cv-body: 16px;   /* NEW DS token */
-    --text-cv-meta: 10px;  --leading-cv-meta: 16px;   /* NEW DS token */
+    --text-cv-body: 12px;  --leading-cv-body: 18px;
+    --text-cv-meta: 11px;  --leading-cv-meta: 16px;
 
-    /* layout */
     --page-w: 794px;
     --page-h: 1123px;
-    --page-margin: 40px;      /* lg-plus */
-    --col-gap: 48px;          /* xl */
-    --sidebar-w: 240px;
-    --main-w: 426px;          /* 714 - 48 - 240 */
+    --page-margin: 40px;
+    --col-gap: 48px;
+    --sidebar-w: 216px;
+    --main-w: 450px;          /* 714 - 48 - 216 */
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -57,99 +55,94 @@
   body {
     font-family: var(--font-body);
     color: var(--text-primary);
-    background: #6b6b76;             /* grey desk, screen only */
+    background: #6b6b76;
     display: flex; justify-content: center;
     padding: 40px 0;
   }
   @page { size: A4; margin: 0; }
 
-  /* ---------- STRICT A4 CANVAS ---------- */
   .page {
     position: relative;
     width: var(--page-w);
-    height: var(--page-h);          /* FIXED. content must fit. */
+    height: var(--page-h);
     overflow: hidden;
     background: var(--bg);
     padding: var(--page-margin);
     display: flex; flex-direction: column;
   }
-  .guide .page::after {             /* screen-only vertical-budget guide */
+  .guide .page::after {
     content: ""; position: absolute; inset: var(--page-margin);
     border: 1px dashed #c8a4a4; pointer-events: none;
   }
 
-  /* ============ TYPOGRAPHY — DESIGN.md tokens (incl. cv-body / cv-meta) ============ */
-  /* h3      */ .name   { font-family: var(--font-display); font-size: var(--text-h3); font-weight: 500; line-height: var(--leading-h3); letter-spacing: var(--tracking-h3); }
-  /* cv-body */ .co     { font-family: var(--font-display); font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); }
-  /* cv-meta */ .label  { font-family: var(--font-body); font-size: var(--text-cv-meta); font-weight: 500; line-height: var(--leading-cv-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-cv); }
-  /* body-sm */ .title  { font-size: var(--text-body-sm); font-weight: 600; line-height: var(--leading-body-sm); color: var(--text-primary); }
-  /* cv-body */ .lead   { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); }
-  /* cv-body */ .role   { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); }
+  /* ============ TYPOGRAPHY ============ */
+  /* h3      */ .name     { font-family: var(--font-display); font-size: var(--text-h3); font-weight: 500; line-height: var(--leading-h3); letter-spacing: var(--tracking-h3); }
+  /* body-sm */ .co       { font-family: var(--font-display); font-size: var(--text-body-sm); font-weight: 600; line-height: var(--leading-body-sm); color: var(--text-primary); }
+  /* cv-meta */ .label    { font-family: var(--font-body); font-size: var(--text-cv-meta); font-weight: 600; line-height: var(--leading-cv-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-cv); }
+  /* body-sm */ .title    { font-size: var(--text-body-sm); font-weight: 600; line-height: var(--leading-body-sm); color: var(--text-primary); }
   /* cv-body */ .subtitle { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); }
   /* cv-meta */ .contact  { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
                 .contact a { color: var(--text-secondary); text-decoration: none; }
                 .contact a.cprimary { color: var(--text-primary); }
-  /* cv-body */ .bullet { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); }
+  /* cv-body */ .lead     { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-primary); }
+  /* cv-meta */ .role     { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
+  /* cv-meta */ .location { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); }
+  /* cv-meta */ .period   { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); white-space: nowrap; }
+  /* cv-body */ .summary  { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-primary); margin-bottom: var(--2xs); }
+                .summary em { font-style: italic; }
+  /* cv-body */ .bullet   { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-primary); }
   /* cv-body */ .side-strong { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); }
-  /* cv-meta */ .period { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); white-space: nowrap; }
-  /* cv-meta */ .ctx    { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
-  /* cv-meta */ .side-item { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
-  /* tertiary inline — lieu / année inside a secondary meta line */
+  /* cv-meta */ .side-item   { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
   .faint { color: var(--text-tertiary); }
-  /* language row : name (primary) + level (secondary) */
   .lang { display: flex; justify-content: space-between; align-items: baseline; }
   .lvl  { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
 
   /* ============ HEADER ============ */
   header {
     display: flex; gap: var(--sm); align-items: flex-start; justify-content: space-between;
-    margin-bottom: var(--lg-plus);  /* section spacing : 40px (no separator) */
+    margin-bottom: var(--lg-plus);
   }
   .id-left { display: flex; gap: var(--sm); align-items: flex-start; }
-  /* Square photo sized by JS to the id-main text-block height (CSS aspect-ratio in
-     flex is unreliable across renderers — it collapsed the column to 0 and let the
-     photo overlap the text). sizePhoto() sets width = height = id-main.offsetHeight. */
   .photo { flex: none; position: relative; border-radius: var(--rounded-md); overflow: hidden; background: var(--surface); border: 1px solid var(--border); }
   .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .id-main { display: flex; flex-direction: column; gap: var(--2xs); justify-content: center; }
   .id-contact { text-align: right; display: flex; flex-direction: column; gap: 2px; align-items: flex-end; }
 
-  /* ============ PROFILE (full width) ============ */
-  .profile { margin-bottom: var(--lg-plus); }   /* section spacing : 40px */
+  /* ============ PROFILE ============ */
+  .profile { margin-bottom: var(--lg-plus); }
   .profile .label { display: block; margin-bottom: var(--xs); }
 
-  /* ============ BODY : two columns ============ */
+  /* ============ BODY ============ */
   .body {
     flex: 1; display: grid;
     grid-template-columns: var(--main-w) var(--sidebar-w);
-    column-gap: var(--col-gap);     /* 48px */
+    column-gap: var(--col-gap);
     min-height: 0;
   }
 
-  /* ---- MAIN : experience ---- */
-  .section > .label { display: block; margin-bottom: var(--xs); } /* label -> content : 8px */
-  .xp-list { display: flex; flex-direction: column; gap: var(--lg); } /* between experiences : 32px */
+  /* ---- MAIN ---- */
+  .section > .label { display: block; margin-bottom: var(--xs); }
+  .xp-list { display: flex; flex-direction: column; gap: var(--lg); }
   .xp { display: flex; flex-direction: column; }
   .xp-head { display: flex; flex-direction: column; gap: var(--2xs); margin-bottom: var(--xs); }
   .xp-line { display: flex; justify-content: space-between; align-items: baseline; gap: var(--xs); }
   .bullets { display: flex; flex-direction: column; gap: var(--xs); }
-  .bullets li { list-style: none; display: flex; gap: var(--xs); }
-  .bullets li::before { content: ""; flex: 0 0 4px; width: 4px; height: 4px; background: var(--text-secondary); margin-top: 8px; }
-  .sub { margin-top: var(--xs); padding-left: var(--sm); border-left: 1px solid var(--border); display: flex; flex-direction: column; gap: var(--xs); }
+  .bullets li { list-style: none; display: flex; gap: 6px; align-items: baseline; }
+  .bullets li::before { content: "•"; flex: 0 0 auto; color: var(--text-tertiary); font-size: 10px; }
 
   /* ---- SIDEBAR ---- */
-  .side { display: flex; flex-direction: column; gap: var(--md); } /* between sidebar blocks : 24px */
+  .side { display: flex; flex-direction: column; gap: var(--lg); }
   .side .block { display: flex; flex-direction: column; }
   .side .label { margin-bottom: var(--xs); }
-  .side .items { display: flex; flex-direction: column; gap: var(--2xs); }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--rounded-md); padding: var(--sm); }
+  .side .items { display: flex; flex-direction: column; gap: 2px; }
+  .dot-sep { padding: 0 4px; color: var(--text-tertiary); }
+  .card { background: var(--surface); border-radius: var(--rounded-md); padding: var(--sm); }
+  .side .block:not(.card) { padding-left: var(--sm); }
   .tags { display: flex; flex-wrap: wrap; gap: var(--2xs); }
-  /* tag token : 12/500, rounded md, padding 6x10, transparent + border-strong */
   .tag { font-family: var(--font-body); font-size: 12px; font-weight: 500; line-height: 16px; color: var(--text-secondary); border: 1px solid var(--border-strong); border-radius: var(--rounded-md); padding: 6px 10px; }
 </style>
 </head>
 <body class="guide">
-  <!-- PLACEHOLDER CONTENT — structure & density only. -->
   <div class="page">
 
     <!-- HEADER -->
@@ -163,16 +156,16 @@
         </div>
       </div>
       <div class="id-contact">
-        <div class="contact"><a class="cprimary" href="https://jonathanschummers.vercel.app">jonathanschummers.vercel.app</a></div>
+        <div class="contact"><a class="cprimary" href="https://jonathanschummers.com">jonathanschummers.com</a></div>
         <div class="contact"><a href="https://linkedin.com/in/jonathanschummers">linkedin.com/in/jonathanschummers</a></div>
         <div class="contact"><a href="mailto:jonathan.schummers@gmail.com">jonathan.schummers@gmail.com</a></div>
       </div>
     </header>
 
-    <!-- PROFILE (full width) -->
+    <!-- PROFILE -->
     <div class="profile">
       <span class="label">Profile</span>
-      <p class="lead">Three to four lines of impact-first summary. Placeholder text standing in for the real PROFILE block, sized to its true footprint so the vertical budget test stays honest. No aspirational filler here, just the positioning needles.</p>
+      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure.</p>
     </div>
 
     <!-- BODY -->
@@ -185,41 +178,44 @@
 
           <div class="xp">
             <div class="xp-head">
-              <div class="xp-line"><span class="co">Valoris</span><span class="period">2025 — present</span></div>
-              <div class="xp-line"><span class="role">Founder &amp; Product Designer</span><span class="ctx">Property mgmt SaaS · <span class="faint">Luxembourg</span></span></div>
+              <div class="xp-line"><span class="co">Valoris</span><span class="period">2025 - present</span></div>
+              <div class="xp-line"><span class="role">Founder · Product Designer</span><span class="location">Luxembourg</span></div>
             </div>
+            <p class="summary">Lorem ipsum dolor sit amet, consectetur <em>adipiscing elit</em>, sed do eiusmod tempor incididunt ut labore et dolore.</p>
             <ul class="bullets">
-              <li><span class="bullet">Placeholder bullet — action verb + scope + metric, two lines maximum so the rhythm reads cleanly.</span></li>
-              <li><span class="bullet">Placeholder bullet — tools embedded inline (Cursor, Claude Code).</span></li>
-              <li><span class="bullet">Placeholder bullet — one more quantified outcome line.</span></li>
+              <li><span class="bullet">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</span></li>
+              <li><span class="bullet">Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip commodo.</span></li>
+              <li><span class="bullet">Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore fugiat nulla pariatur.</span></li>
+              <li><span class="bullet">Excepteur sint occaecat cupidatat non proident sunt culpa deserunt mollit anim laborum.</span></li>
             </ul>
           </div>
 
           <div class="xp">
             <div class="xp-head">
-              <div class="xp-line"><span class="co">TotalEnergies — Digital Factory</span><span class="period">Dec 2021 — Nov 2024 · 3 yrs</span></div>
-              <div class="xp-line"><span class="role">Senior Product Designer</span><span class="ctx">Via Avanade · <span class="faint">Paris</span></span></div>
+              <div class="xp-line"><span class="co">TotalEnergies · Digital Factory</span><span class="period">Dec 2021 - Nov 2024</span></div>
+              <div class="xp-line"><span class="role">Senior Product Designer</span><span class="location">Paris</span></div>
             </div>
+            <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <em>eiusmod tempor</em> incididunt ut labore et dolore magna aliqua.</p>
             <ul class="bullets">
-              <li><span class="bullet">Placeholder bullet — quantified outcome with named methodology.</span></li>
-              <li><span class="bullet">Placeholder bullet — second cherry-picked achievement.</span></li>
-              <li><span class="bullet">Placeholder bullet — third line, kept to two rows.</span></li>
+              <li><span class="bullet">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</span></li>
+              <li><span class="bullet">Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip commodo consequat.</span></li>
+              <li><span class="bullet">Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore fugiat nulla pariatur.</span></li>
+              <li><span class="bullet">Excepteur sint occaecat cupidatat non proident sunt culpa deserunt mollit anim laborum id.</span></li>
             </ul>
           </div>
 
           <div class="xp">
             <div class="xp-head">
-              <div class="xp-line"><span class="co">Avanade — Accenture-Microsoft JV</span><span class="period">Jan 2020 — Jun 2022</span></div>
-              <div class="xp-line"><span class="role">Product Designer</span><span class="ctx">Digital innovation consulting · <span class="faint">Paris</span></span></div>
+              <div class="xp-line"><span class="co">Avanade · Accenture Microsoft JV</span><span class="period">Jan 2020 - Jun 2022</span></div>
+              <div class="xp-line"><span class="role">Product Designer</span><span class="location">Paris</span></div>
             </div>
-            <div class="sub">
-              <div class="xp-line"><span class="co">BforBank</span><span class="period">5 mo · 2021</span></div>
-              <ul class="bullets"><li><span class="bullet">Placeholder sub-mission bullet — #1 Google UX Benchmark.</span></li></ul>
-            </div>
-            <div class="sub">
-              <div class="xp-line"><span class="co">Spie Batignolles</span><span class="period">11 mo · 2020–21</span></div>
-              <ul class="bullets"><li><span class="bullet">Placeholder sub-mission bullet — procurement flow.</span></li></ul>
-            </div>
+            <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <em>tempor incididunt</em> ut labore et dolore.</p>
+            <ul class="bullets">
+              <li><span class="bullet">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore.</span></li>
+              <li><span class="bullet">Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip commodo.</span></li>
+              <li><span class="bullet">Duis aute irure dolor reprehenderit voluptate velit esse cillum dolore fugiat nulla pariatur.</span></li>
+              <li><span class="bullet">Excepteur sint occaecat cupidatat non proident sunt culpa deserunt mollit anim laborum id.</span></li>
+            </ul>
           </div>
 
         </div>
@@ -227,53 +223,63 @@
 
       <!-- SIDEBAR -->
       <div class="side">
+
+        <!-- Real Estate — card en premier -->
         <div class="block card">
-          <span class="label">Certifications</span>
+          <span class="label">Real Estate Expertise</span>
           <div class="items">
             <span class="side-strong">Licensed Real Estate Professional</span>
             <span class="side-item">House of Training, Luxembourg</span>
-            <span class="side-strong" style="margin-top:6px">Professional Scrum Product Owner</span>
-            <span class="side-item">Scrum.org</span>
+            <span class="side-strong" style="margin-top:8px">15-property family rental portfolio</span>
+            <span class="side-item">Managed in France &amp; Luxembourg</span>
           </div>
         </div>
+
         <div class="block">
-          <span class="label">Education</span>
+          <span class="label">Certifications</span>
           <div class="items">
-            <span class="side-strong">MSc Cognitive Psychology / HMI</span>
-            <span class="side-item">Université Paris Descartes · <span class="faint">2017–2019</span></span>
-            <span class="side-strong" style="margin-top:6px">MSc Cognitive Science</span>
-            <span class="side-item">Université Lyon 2</span>
+            <span class="side-strong">Professional Scrum Product Owner I</span>
+            <span class="side-item">Scrum.org</span>
+            <span class="side-strong" style="margin-top:8px">Professional Scrum with UX</span>
+            <span class="side-item">Scrum.org</span>
+            <span class="side-strong" style="margin-top:8px">AI for Designers</span>
+            <span class="side-item">Interaction Design Foundation</span>
           </div>
         </div>
+
         <div class="block">
           <span class="label">Teaching</span>
           <div class="items">
             <span class="side-strong">UX Research Lecturer</span>
-            <span class="side-item">Université Paris Cité · <span class="faint">since 2023</span></span>
+            <span class="side-item">Université Paris Cité<span class="dot-sep">·</span><span class="faint">2023 - 2026</span></span>
           </div>
         </div>
+
+        <div class="block">
+          <span class="label">Education</span>
+          <div class="items">
+            <span class="side-strong">Master Human-Machine Interactions</span>
+            <span class="side-item">Université Lumière Lyon 2<span class="dot-sep">·</span><span class="faint">2019-2020</span></span>
+            <span class="side-strong" style="margin-top:8px">Master Cognitive Psychology</span>
+            <span class="side-item">Université Paris Descartes<span class="dot-sep">·</span><span class="faint">2017-2019</span></span>
+            <span class="side-strong" style="margin-top:8px">Bachelor Psychology</span>
+            <span class="side-item">Université Paris Descartes<span class="dot-sep">·</span><span class="faint">2014-2017</span></span>
+          </div>
+        </div>
+
         <div class="block">
           <span class="label">Languages</span>
           <div class="items">
-            <div class="lang"><span class="side-strong">French</span><span class="lvl">native</span></div>
-            <div class="lang"><span class="side-strong">English</span><span class="lvl">professional</span></div>
+            <span class="side-strong">French<span class="dot-sep">·</span><span class="lvl">native</span></span>
+            <span class="side-strong">English<span class="dot-sep">·</span><span class="lvl">professional</span></span>
           </div>
         </div>
-        <div class="block">
-          <span class="label">Tools</span>
-          <div class="tags">
-            <span class="tag">Figma</span><span class="tag">Cursor</span><span class="tag">Claude Code</span>
-            <span class="tag">Notion</span><span class="tag">Miro</span><span class="tag">Maze</span>
-            <span class="tag">Hotjar</span><span class="tag">Obsidian</span>
-          </div>
-        </div>
+
       </div>
 
     </div><!-- /.body -->
   </div><!-- /.page -->
   <script>
-    // Photo = square matching the id-main text-block height. Reliable everywhere
-    // (avoids the flex + aspect-ratio collapse that put the photo over the text).
     function sizePhoto() {
       document.querySelectorAll('.id-left').forEach(function (l) {
         var m = l.querySelector('.id-main');
