@@ -88,7 +88,7 @@
   /* cv-meta */ .role     { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
   /* cv-meta */ .location { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); }
   /* cv-meta */ .period   { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); white-space: nowrap; }
-  /* cv-body */ .summary  { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-primary); margin-bottom: var(--sm); }
+  /* cv-body */ .summary  { font-size: var(--text-cv-body); font-weight: 500; line-height: var(--leading-cv-body); color: var(--text-primary); margin-bottom: 12px; }
                 .summary em { font-style: italic; }
   /* cv-body */ .bullet   { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); }
                 .bullet strong { font-weight: 500; color: var(--text-primary); }
@@ -101,16 +101,16 @@
   /* ============ HEADER ============ */
   header {
     display: flex; gap: var(--sm); align-items: flex-start; justify-content: space-between;
-    margin-bottom: var(--lg-plus);
+    margin-bottom: var(--lg);
   }
   .id-left { display: flex; gap: var(--sm); align-items: flex-start; }
   .photo { flex: none; position: relative; border-radius: var(--rounded-md); overflow: hidden; background: var(--surface); border: 1px solid var(--border); }
   .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .id-main { display: flex; flex-direction: column; gap: var(--2xs); justify-content: center; }
-  .id-contact { text-align: right; display: flex; flex-direction: column; gap: 2px; align-items: flex-end; }
+  .id-contact { text-align: right; display: flex; flex-direction: column; gap: var(--2xs); align-items: flex-end; }
 
   /* ============ PROFILE ============ */
-  .profile { margin-bottom: var(--lg-plus); }
+  .profile { margin-bottom: var(--lg); }
   .profile .label { display: block; margin-bottom: var(--xs); }
 
   /* ============ BODY ============ */
@@ -122,14 +122,21 @@
   }
 
   /* ---- MAIN ---- */
+  .section { display: flex; flex-direction: column; min-height: 0; }
   .section > .label { display: block; margin-bottom: var(--xs); }
-  .xp-list { display: flex; flex-direction: column; gap: var(--lg); }
+  .xp-list { display: flex; flex-direction: column; gap: var(--lg-plus); }
   .xp { display: flex; flex-direction: column; }
-  .xp-head { display: flex; flex-direction: column; gap: var(--2xs); margin-bottom: var(--xs); }
+  .xp-head { display: flex; flex-direction: column; gap: 2px; margin-bottom: var(--xs); }
   .xp-line { display: flex; justify-content: space-between; align-items: baseline; gap: var(--xs); }
-  .bullets { display: flex; flex-direction: column; gap: var(--xs); }
+  .bullets { display: flex; flex-direction: column; gap: var(--xs); }       /* 8px between every bullet */
   .bullets li { list-style: none; display: flex; gap: var(--2xs); align-items: baseline; }
   .bullets li::before { content: "•"; flex: 0 0 auto; color: var(--text-tertiary); font-size: 10px; }
+  /* per-experience tools + skills stack */
+  .stack { margin-top: var(--md); display: flex; flex-direction: column; gap: var(--xs); }
+  .stack-line { display: flex; align-items: center; flex-wrap: wrap; font-size: var(--text-cv-meta); font-weight: 400; line-height: 1; color: var(--text-primary); }
+  .stack-k { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); margin-right: var(--xs); }
+  .stack-k::after { content: ":"; }
+  .sk-sep { margin: 0 6px; color: var(--text-tertiary); }
 
   /* ---- SIDEBAR ---- */
   .side { display: flex; flex-direction: column; gap: var(--lg); }
@@ -185,20 +192,28 @@
             <p class="summary">I delivered on scope and on time across the full design process for enterprise clients like BforBank, Sodexo, Chanel, and Schneider Electric.</p>
             <ul class="bullets">
               <li><span class="bullet">Designed BforBank's mobile app onboarding (84 screens); the flow ranked <strong>first of 51 banks</strong> in Google's 2023 Finance UX benchmark.</span></li>
-              <li><span class="bullet">Co-designed Spie Batignolles' construction app (60 screens), connecting site crews' workflows to a complex ERP and replacing <strong>3 legacy tools with a single interface</strong>.</span></li>
+              <li class="sep"><span class="bullet">Co-designed Spie Batignolles' construction app (60 screens), connecting site crews to a complex ERP and replacing <strong>3 legacy tools</strong>.</span></li>
             </ul>
+            <div class="stack">
+              <div class="stack-line"><span class="stack-k">Skills</span>Product discovery<span class="sk-sep">·</span>Product strategy<span class="sk-sep">·</span>Frontend<span class="sk-sep">·</span>Design system</div>
+            </div>
           </div>
 
           <div class="xp">
             <div class="xp-head">
               <div class="xp-line"><span class="co">TotalEnergies · Digital Factory</span><span class="period">Dec 2021 - Nov 2024</span></div>
-              <div class="xp-line"><span class="role">Senior Product Designer</span><span class="location">Paris</span></div>
+              <div class="xp-line"><span class="role">Senior Product Designer · Proxy Product Owner</span><span class="location">Paris</span></div>
             </div>
-            <p class="summary">I delivered on scope and on time across the full design process for enterprise clients like BforBank, Sodexo, Chanel, and Schneider Electric.</p>
+            <p class="summary">I led research, design and build on 4 industrial SaaS, shipping MVPs fast and iterating through continuous discovery and usage tracking.</p>
             <ul class="bullets">
-              <li><span class="bullet">Designed BforBank's mobile app onboarding (84 screens); the flow ranked <strong>first of 51 banks</strong> in Google's 2023 Finance UX benchmark.</span></li>
-              <li><span class="bullet">Co-designed Spie Batignolles' construction app (60 screens), connecting site crews' workflows to a complex ERP and replacing <strong>3 legacy tools with a single interface</strong>.</span></li>
+              <li><span class="bullet">Scaled an ML predictive-maintenance SaaS across 4 refineries (500+ inspectors): <strong>82% daily active inspectors</strong>, <strong>−6% pipe leaks</strong>.</span></li>
+              <li><span class="bullet">Reworked the power-plant monitoring dashboard with ML-based kWh loss prediction: <strong>+23% kWh tracked per operator</strong>.</span></li>
+              <li><span class="bullet">Acted as <strong>proxy Product Owner</strong> beside business-expert POs: roadmap, story mapping, user stories, backlog management.</span></li>
+              <li><span class="bullet">Ran discovery at scale: <strong>60+ interviews</strong> and <strong>70+ usability tests</strong>.</span></li>
             </ul>
+            <div class="stack">
+              <div class="stack-line"><span class="stack-k">Skills</span>Product vision / strategy<span class="sk-sep">·</span>Data mapping<span class="sk-sep">·</span>Adoption tracking<span class="sk-sep">·</span>Design system</div>
+            </div>
           </div>
 
           <div class="xp">
@@ -206,11 +221,14 @@
               <div class="xp-line"><span class="co">Avanade · Accenture-Microsoft JV</span><span class="period">Jan 2020 - Jun 2022</span></div>
               <div class="xp-line"><span class="role">Product Designer</span><span class="location">Paris</span></div>
             </div>
-            <p class="summary">I delivered on scope and on time across the full design process for enterprise clients like BforBank, Sodexo, Chanel, and Schneider Electric.</p>
+            <p class="summary">I delivered on scope and on time across the full design process for BforBank, Sodexo, Chanel, Schneider Electric.</p>
             <ul class="bullets">
               <li><span class="bullet">Designed BforBank's mobile app onboarding (84 screens); the flow ranked <strong>first of 51 banks</strong> in Google's 2023 Finance UX benchmark.</span></li>
-              <li><span class="bullet">Co-designed Spie Batignolles' construction app (60 screens), connecting site crews' workflows to a complex ERP and replacing <strong>3 legacy tools with a single interface</strong>.</span></li>
+              <li class="sep"><span class="bullet">Co-designed Spie Batignolles' construction app (60 screens), connecting site crews to a complex ERP and replacing <strong>3 legacy tools</strong>.</span></li>
             </ul>
+            <div class="stack">
+              <div class="stack-line"><span class="stack-k">Skills</span>User research<span class="sk-sep">·</span>Workshop facilitation<span class="sk-sep">·</span>Visual design</div>
+            </div>
           </div>
 
         </div>
@@ -267,6 +285,19 @@
           <div class="items">
             <span class="side-strong">French<span class="dot-sep">·</span><span class="lvl">native</span></span>
             <span class="side-strong">English<span class="dot-sep">·</span><span class="lvl">professional</span></span>
+          </div>
+        </div>
+
+        <div class="block">
+          <span class="label">Tools</span>
+          <div class="tags">
+            <span class="tag">Figma</span>
+            <span class="tag">Cursor</span>
+            <span class="tag">Claude Code</span>
+            <span class="tag">Notion</span>
+            <span class="tag">Miro</span>
+            <span class="tag">Hotjar</span>
+            <span class="tag">CloudWatch</span>
           </div>
         </div>
 

@@ -376,6 +376,34 @@ Règle d'or des 3 sources : jamais de CV neutre. Une variante header + profil + 
 - `--text-tertiary` : `#9f9fa9` → **`#92929b`** (−8%)
 - Raison : gain de lisibilité des bullets gris + lignes meta. Le DS d'origine (handoff) prévoyait même `#52525c` pour secondary.
 
+### MAJ 2026-06-01 (suite — session « bloc Total + stack »)
+
+**Nouveau composant : stack tools + skills (par expérience)**
+
+Ligne meta sous les bullets de Total et Valoris : embarque outils + méthodes en 2 lignes scannables. Assume un écart à la décision §7.5 (« pas de section Tools, outils dans les bullets ») — choix user.
+
+| Élément | Réglage final | Token |
+|---|---|---|
+| `.stack` margin-top (dernier bullet → stack) | **12px** | hors token (entre `--xs` 8 et `--sm` 16) |
+| `.stack` gap (TOOLS ↔ SKILLS) | **8px** | `--xs` |
+| `.stack-line` (items / valeurs) | 11px / **500 medium** / tertiary / `line-height:1` | `--text-cv-meta` |
+| `.stack-line` alignement | `display:flex; align-items:center` (centre verticalement le label 8px dans la ligne) | — |
+| `.stack-k` (label TOOLS / SKILLS) | **8px / 700 bold** / uppercase / `letter-spacing:0.08em` / **secondary** | hors token (8px) |
+| `.stack-k` margin-right (label → items) | **8px** | `--xs` |
+
+Contenu :
+- Total : `Tools` Figma · Miro · Hotjar · CloudWatch — `Skills` User research · Story mapping · Scrum · Design system
+- Valoris : `Tools` Figma · Cursor · Claude Code · Notion · Meta Ads Manager — `Skills` Product discovery · Product strategy · Frontend · Design system
+
+**Spacing — remplace les valeurs « Spacing / layout » ci-dessus**
+- Profile : marge **haut + bas 32px** (`--lg`) — était 40px.
+- Summary → bullets : **12px** — était 16px (`--sm`).
+- Entre chaque bullet : **8px uniforme** (`--xs`). Le trick grouping 4px intra-produit / 12px inter-produit a été testé puis **abandonné** (classe `.sep` retirée du CSS, reste inerte dans le HTML — à nettoyer).
+- `.xp-list` : **gap dynamique** (`flex:1; justify-content:space-between`) → remplit la hauteur restante, l'inter-expérience s'auto-ajuste (plus de gap fixe).
+- `.xp-head` gap : 2px · `.id-contact` gap : 4px (`--2xs`).
+
 ### Dette technique à nettoyer
 - Mini serveur de preview jetable : `docs/cv/ui/_preview-server.cjs` + entrée `static-docs` dans `.claude/launch.json` → **à supprimer en fin de projet CV**.
 - Override couleur + valeurs off-DS → décider si on les remonte dans le DS ou si elles restent spécifiques au CV.
+- **Nouveaux off-DS** : font-size 8px (label stack) + weights 500/700 sur la stack + `.stack` margin-top 12px = hors échelle/tokens DS.
+- Classe `.sep` orpheline dans le HTML (bullets) → retirer les `class="sep"` résiduels.
