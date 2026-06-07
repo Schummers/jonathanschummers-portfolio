@@ -372,7 +372,7 @@ Règle d'or des 3 sources : jamais de CV neutre. Une variante header + profil + 
 - Sidebar : **232px** (+16px), main : **450px**
 
 ### Override couleur (hors DS — à réconcilier plus tard)
-- `--text-secondary` : `#71717b` → **`#686871`** (−8%)
+- `--text-secondary` : `#71717b` → **`#66666f`** (−10%)
 - `--text-tertiary` : `#9f9fa9` → **`#92929b`** (−8%)
 - Raison : gain de lisibilité des bullets gris + lignes meta. Le DS d'origine (handoff) prévoyait même `#52525c` pour secondary.
 
@@ -402,8 +402,45 @@ Contenu :
 - `.xp-list` : **gap dynamique** (`flex:1; justify-content:space-between`) → remplit la hauteur restante, l'inter-expérience s'auto-ajuste (plus de gap fixe).
 - `.xp-head` gap : 2px · `.id-contact` gap : 4px (`--2xs`).
 
+### MAJ 2026-06-04 (session « bloc Total finalisé ») — REMPLACE la MAJ 2026-06-01 ci-dessus
+
+> La MAJ 2026-06-01 (stack 2 lignes tools+skills, label 8px, gap dynamique) est **périmée**. État canonique ci-dessous.
+
+**Structure finale**
+- **Skills** = une ligne inline **sous chaque expérience** (Total, Valoris, Avanade), label `SKILLS:` + items.
+- **Tools** = section unique **en bas de sidebar**, en **pills** (réutilise `.tag` du DS). Plus de tools inline.
+
+**Spacings verticaux — canon.** Séquence dans un bloc : `2 → 8 → 16 → 8 → 20`, et `40` entre expériences.
+
+| Entre… | Valeur | Source |
+|---|---|---|
+| Nom société ↔ Rôle | **2px** | `.xp-head gap: 2px` |
+| Rôle ↔ Summary | **8px** | `.xp-head margin-bottom: --xs` |
+| Summary ↔ 1er bullet | **16px** | `.summary margin-bottom: 16px` |
+| Entre bullets | **8px** | `.bullets gap: --xs` |
+| Dernier bullet ↔ Skills | **20px** | `.stack margin-top: 20px` |
+| Entre expériences | **40px** | `.xp-list gap: --lg-plus` |
+| Profile haut + bas | **32px** | `header` + `.profile margin-bottom: --lg` |
+
+**Typo / style**
+- `.summary` : 12px / **500 medium** / primary (medium pour qu'elle ressorte).
+- `.co` (nom société) : **15px** / 600 / Space Grotesk (était 14px `--text-body-sm`).
+- `.stack-k` (label skills) : **9px** / 700 / uppercase / `letter-spacing:0.08em` / secondary, + `::after { content:":" }` → rend `SKILLS:`.
+- `.stack-line` (items skills) : 11px / **400 regular** / **primary** / `flex; align-items:center; flex-wrap:wrap`.
+- `.sk-sep` (séparateur skills) : `margin: 0 6px` (~12px entre skills) / tertiary.
+- `.tag` (pills Tools) : **10px** / 500 / primary / border 1px `--border` (léger) / radius **6px** / padding **3px 8px** ; `.tags gap: --2xs`. (Option A, retenue parmi 4 variantes testées.)
+- `--text-secondary` : `#66666f` (**−10%** vs DS `#71717b`).
+
+**Contenu skills**
+- Total : `Product vision / strategy · Data mapping · Adoption tracking · Design system`
+- Valoris : `Product discovery · Product strategy · Frontend · Design system`
+- Avanade : `User research · Workshop facilitation · Visual design`
+- Tools (sidebar) : `Figma · Cursor · Claude Code · Notion · Miro · Hotjar · CloudWatch`
+
+⚠️ **Valoris bullets = placeholder provisoire réaliste** (founder AI assistant landlords, pivot agent-first, Meta Ads, frontend Cursor/Claude Code, portefeuille 15 biens) — **à remplacer en session Valoris dédiée**.
+
 ### Dette technique à nettoyer
 - Mini serveur de preview jetable : `docs/cv/ui/_preview-server.cjs` + entrée `static-docs` dans `.claude/launch.json` → **à supprimer en fin de projet CV**.
 - Override couleur + valeurs off-DS → décider si on les remonte dans le DS ou si elles restent spécifiques au CV.
-- **Nouveaux off-DS** : font-size 8px (label stack) + weights 500/700 sur la stack + `.stack` margin-top 12px = hors échelle/tokens DS.
+- **Off-DS à réconcilier** : `.co` 15px · `.stack-k` 9px · `.tag` radius 6 + padding 3/8 · `.stack` margin-top 20px · `--text-secondary` −10% = hors échelle/tokens DS.
 - Classe `.sep` orpheline dans le HTML (bullets) → retirer les `class="sep"` résiduels.

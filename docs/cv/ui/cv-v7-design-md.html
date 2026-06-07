@@ -5,7 +5,7 @@
 <title>CV v7 — 100% design.md (strict A4)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* ============================================================
      CV v7 — DESIGN.md + cv-body/cv-meta/accent-cv tokens.
@@ -20,9 +20,9 @@
      ============================================================ */
   :root {
     --text-primary:   #18181b;
-    --text-secondary: #686871;  /* darkened ~8% from DS #71717b for CV legibility */
+    --text-secondary: #66666f;  /* darkened ~10% from DS #71717b for CV legibility */
     --text-tertiary:  #92929b;  /* darkened ~8% from DS #9f9fa9 for CV legibility */
-    --accent-cv:      #0E86AF;
+    --accent-cv:      #C2410C;
     --bg:      #fafafa;
     --surface: #f4f4f5;
     --border:  #e4e4e7;
@@ -45,9 +45,9 @@
     --page-w: 794px;
     --page-h: 1123px;
     --page-margin: 40px;
-    --col-gap: 32px;
+    --col-gap: 56px;
     --sidebar-w: 232px;
-    --main-w: 450px;          /* 714 - 32 - 232 */
+    --main-w: 426px;          /* 714 - 56 - 232 */
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -76,22 +76,22 @@
   }
 
   /* ============ TYPOGRAPHY ============ */
-  /* h3      */ .name     { font-family: var(--font-display); font-size: var(--text-h3); font-weight: 500; line-height: var(--leading-h3); letter-spacing: var(--tracking-h3); }
-  /* body-sm */ .co       { font-family: var(--font-display); font-size: var(--text-body-sm); font-weight: 600; line-height: var(--leading-body-sm); color: var(--text-primary); }
+  /* h3      */ .name     { font-family: var(--font-display); font-size: 28px; font-weight: 500; line-height: var(--leading-h3); letter-spacing: 0; }
+  /* body-sm */ .co       { font-family: var(--font-display); font-size: 15px; font-weight: 600; line-height: var(--leading-body-sm); color: var(--text-primary); }
   /* cv-meta */ .label    { font-family: var(--font-body); font-size: var(--text-cv-meta); font-weight: 600; line-height: var(--leading-cv-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-cv); }
   /* body-sm */ .title    { font-size: var(--text-body-sm); font-weight: 600; line-height: var(--leading-body-sm); color: var(--text-primary); }
-  /* cv-body */ .subtitle { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); }
+  /* cv-body */ .subtitle { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); margin-top: var(--2xs); }
   /* cv-meta */ .contact  { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
-                .contact a { color: var(--text-secondary); text-decoration: none; }
-                .contact a.cprimary { color: var(--text-primary); }
-  /* cv-body */ .lead     { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-primary); }
+                .contact a { color: var(--text-secondary); text-decoration: underline; }
+                .contact a.cprimary { color: var(--text-primary); font-weight: 600; }
+  /* cv-body */ .lead     { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); }
   /* cv-meta */ .role     { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
   /* cv-meta */ .location { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); }
   /* cv-meta */ .period   { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); white-space: nowrap; }
-  /* cv-body */ .summary  { font-size: var(--text-cv-body); font-weight: 500; line-height: var(--leading-cv-body); color: var(--text-primary); margin-bottom: 12px; }
+  /* cv-body */ .summary  { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); margin-bottom: 16px; }
                 .summary em { font-style: italic; }
-  /* cv-body */ .bullet   { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); }
-                .bullet strong { font-weight: 500; color: var(--text-primary); }
+  /* cv-body */ .bullet   { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-primary); }
+                .bullet strong { font-weight: 550; color: var(--text-primary); }
   /* cv-body */ .side-strong { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); }
   /* cv-meta */ .side-item   { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
   .faint { color: var(--text-tertiary); }
@@ -104,10 +104,10 @@
     margin-bottom: var(--lg);
   }
   .id-left { display: flex; gap: var(--sm); align-items: flex-start; }
-  .photo { flex: none; position: relative; border-radius: var(--rounded-md); overflow: hidden; background: var(--surface); border: 1px solid var(--border); }
-  .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .photo { flex: none; position: relative; width: 72px; height: 82px; border-radius: 4px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); }
+  .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.30); transform-origin: 50% 50%; }
   .id-main { display: flex; flex-direction: column; gap: var(--2xs); justify-content: center; }
-  .id-contact { text-align: right; display: flex; flex-direction: column; gap: var(--2xs); align-items: flex-end; }
+  .id-contact { text-align: right; display: flex; flex-direction: column; gap: var(--xs); align-items: flex-end; }
 
   /* ============ PROFILE ============ */
   .profile { margin-bottom: var(--lg); }
@@ -132,8 +132,8 @@
   .bullets li { list-style: none; display: flex; gap: var(--2xs); align-items: baseline; }
   .bullets li::before { content: "•"; flex: 0 0 auto; color: var(--text-tertiary); font-size: 10px; }
   /* per-experience tools + skills stack */
-  .stack { margin-top: var(--md); display: flex; flex-direction: column; gap: var(--xs); }
-  .stack-line { display: flex; align-items: center; flex-wrap: wrap; font-size: var(--text-cv-meta); font-weight: 400; line-height: 1; color: var(--text-primary); }
+  .stack { margin-top: 20px; display: flex; flex-direction: column; gap: var(--xs); }
+  .stack-line { display: flex; align-items: center; flex-wrap: wrap; font-size: var(--text-cv-meta); font-weight: 400; line-height: 1; color: var(--text-secondary); }
   .stack-k { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); margin-right: var(--xs); }
   .stack-k::after { content: ":"; }
   .sk-sep { margin: 0 6px; color: var(--text-tertiary); }
@@ -147,7 +147,7 @@
   .card { background: var(--surface); border-radius: var(--rounded-md); padding: var(--sm); }
   .side .block:not(.card) { padding-left: var(--sm); }
   .tags { display: flex; flex-wrap: wrap; gap: var(--2xs); }
-  .tag { font-family: var(--font-body); font-size: 12px; font-weight: 500; line-height: 16px; color: var(--text-secondary); border: 1px solid var(--border-strong); border-radius: var(--rounded-md); padding: 6px 10px; }
+  .tag { font-family: var(--font-body); font-size: 10px; font-weight: 500; line-height: 16px; color: var(--text-primary); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; }
 </style>
 </head>
 <body class="guide">
@@ -189,10 +189,12 @@
               <div class="xp-line"><span class="co">Valoris</span><span class="period">2025 - present</span></div>
               <div class="xp-line"><span class="role">Founder · Product Designer</span><span class="location">Luxembourg</span></div>
             </div>
-            <p class="summary">I delivered on scope and on time across the full design process for enterprise clients like BforBank, Sodexo, Chanel, and Schneider Electric.</p>
+            <p class="summary">Solo founder building Valoris, an AI assistant for individual landlords. I run research, product, design and the frontend.</p>
             <ul class="bullets">
-              <li><span class="bullet">Designed BforBank's mobile app onboarding (84 screens); the flow ranked <strong>first of 51 banks</strong> in Google's 2023 Finance UX benchmark.</span></li>
-              <li class="sep"><span class="bullet">Co-designed Spie Batignolles' construction app (60 screens), connecting site crews to a complex ERP and replacing <strong>3 legacy tools</strong>.</span></li>
+              <li><span class="bullet">Pivoted from a document-extraction tool to an <strong>agent-first AI workflow</strong> after landlord interviews showed they want guidance, not storage.</span></li>
+              <li><span class="bullet">Validated positioning and demand through Meta Ads campaigns.</span></li>
+              <li><span class="bullet">Designed and coded the frontend solo with <strong>Cursor and Claude Code</strong>.</span></li>
+              <li><span class="bullet">Turned a 15-property family rental portfolio into real product features.</span></li>
             </ul>
             <div class="stack">
               <div class="stack-line"><span class="stack-k">Skills</span>Product discovery<span class="sk-sep">·</span>Product strategy<span class="sk-sep">·</span>Frontend<span class="sk-sep">·</span>Design system</div>
@@ -212,7 +214,7 @@
               <li><span class="bullet">Ran discovery at scale: <strong>60+ interviews</strong> and <strong>70+ usability tests</strong>.</span></li>
             </ul>
             <div class="stack">
-              <div class="stack-line"><span class="stack-k">Skills</span>Product vision / strategy<span class="sk-sep">·</span>Data mapping<span class="sk-sep">·</span>Adoption tracking<span class="sk-sep">·</span>Design system</div>
+              <div class="stack-line"><span class="stack-k">Skills</span>Product strategy<span class="sk-sep">·</span>Data mapping<span class="sk-sep">·</span>Adoption tracking<span class="sk-sep">·</span>Design system</div>
             </div>
           </div>
 
@@ -305,18 +307,5 @@
 
     </div><!-- /.body -->
   </div><!-- /.page -->
-  <script>
-    function sizePhoto() {
-      document.querySelectorAll('.id-left').forEach(function (l) {
-        var m = l.querySelector('.id-main');
-        var p = l.querySelector('.photo');
-        if (m && p) { var h = m.offsetHeight; p.style.width = h + 'px'; p.style.height = h + 'px'; }
-      });
-    }
-    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(sizePhoto);
-    window.addEventListener('load', sizePhoto);
-    window.addEventListener('resize', sizePhoto);
-    sizePhoto();
-  </script>
 </body>
 </html>
