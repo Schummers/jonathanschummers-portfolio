@@ -43,7 +43,6 @@
   --accent-text: #0A4CF0;
   --accent-muted: #3670f5;
   --accent-subtle: #d4e3ff;
-  --accent-cv: #0E86AF;       /* CV-only accent (section labels, link icon) — AA 4.0 on #fafafa. Not used by the portfolio yet. */
   --text-on-accent: #ffffff;  /* texte/icônes posés sur bg-accent (brand button) */
 
   /* Layout — case study widths */
@@ -109,11 +108,6 @@
   --text-label: 14px;
   --text-tag: 12px;
   --text-caption: 12px;  /* image captions — italic, normal weight */
-  /* CV / print scale — canal print uniquement (route CV A4).
-     cv-meta (11px) seul token sous le plancher 12px web. cv-body (12px) = plancher système.
-     Exemptés du shrink responsive : un A4 est de taille fixe. */
-  --text-cv-body: 12px;  /* bullets, profil, rôle, items sidebar */
-  --text-cv-meta: 11px;  /* période, contexte, captions, labels de section */
 
   /* Leading — valeurs en px absolus, alignées sur grille 4px */
   --leading-hero: 60px;
@@ -126,10 +120,8 @@
   --leading-body-sm: 20px;
   --leading-label: 20px;
   --leading-tag: 16px;
-  --leading-cv-body: 18px;  /* ratio 1.5 — hors grille 4px, intentionnel pour lisibilité print */
-  --leading-cv-meta: 16px;  /* 11px de texte ; ratio 1.45 — sur grille 4px */
 
-  /* Tracking — cv-body/cv-meta restent en normal (comme body/tag/caption) */
+  /* Tracking */
   --tracking-hero: -0.03em;
   --tracking-h1: -0.02em;
   --tracking-h2: -0.02em;
@@ -205,7 +197,6 @@
 
   /* Accent — text adjusted for contrast on dark bg */
   --accent-text: #6d9dfa;
-  --accent-cv: #1098C6;   /* CV accent lightened for dark bg (~6:1 on #09090b) */
 }
 
 /* --- Dark mode (préférence système, sauf override .light) --- */
@@ -231,7 +222,6 @@
     --disabled-fg: #52525c;
 
     --accent-text: #6d9dfa;
-    --accent-cv: #1098C6;
   }
 }
 
@@ -263,7 +253,6 @@
   --color-accent-text: var(--accent-text);
   --color-accent-muted: var(--accent-muted);
   --color-accent-subtle: var(--accent-subtle);
-  --color-accent-cv: var(--accent-cv);
   --color-text-on-accent: var(--text-on-accent);
 
   /* Spacing */
@@ -329,10 +318,6 @@
   --text-tag--line-height: var(--leading-tag);
   --text-caption: var(--text-caption);
   --text-caption--line-height: var(--leading-tag);
-  --text-cv-body: var(--text-cv-body);
-  --text-cv-body--line-height: var(--leading-cv-body);
-  --text-cv-meta: var(--text-cv-meta);
-  --text-cv-meta--line-height: var(--leading-cv-meta);
 
   /* Tracking */
   --tracking-hero: var(--tracking-hero);

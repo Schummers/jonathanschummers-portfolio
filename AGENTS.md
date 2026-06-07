@@ -17,6 +17,9 @@ Before generating any UI code:
    utilities. Always compose from the existing component, or ask the user
    before extending the catalog.
 
+> **CV print artifact** (`docs/cv/`): the A4 CV is standalone and uses its own
+> token canon — read **`docs/cv/DESIGN-CV.md`**, not `DESIGN.md` / `globals.css`.
+
 ## Anti-drift rules (hard)
 
 1. **No raw hex codes** in `app/`, `components/`, `content/`. Use the semantic

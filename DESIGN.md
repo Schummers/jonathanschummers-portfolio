@@ -31,7 +31,6 @@ colors:
   accent-text:    "#0A4CF0"
   accent-muted:   "#3670f5"
   accent-subtle:  "#d4e3ff"
-  accent-cv:      "#0E86AF"   # CV-only accent (print channel) — dark: #1098C6. See CV accent note.
 
   # Primary button
   btn-primary:        "#1e1e21"
@@ -55,9 +54,6 @@ typography:
   label:   { fontFamily: Manrope,       fontSize: 14px, fontWeight: 500, lineHeight: 20px, letterSpacing: 0.08em }
   tag:     { fontFamily: Manrope,       fontSize: 12px, fontWeight: 500, lineHeight: 16px }
   caption: { fontFamily: Manrope,       fontSize: 12px, fontWeight: 400, lineHeight: 16px }
-  # CV / print scale — sub-12px, print channel only (A4 CV print route). See "CV / print scale" note below.
-  cv-body: { fontFamily: Manrope,       fontSize: 12px, fontWeight: 400, lineHeight: 18px }
-  cv-meta: { fontFamily: Manrope,       fontSize: 11px, fontWeight: 400, lineHeight: 16px }
 
 spacing:
   none:     0px         # annule un gap hérité
@@ -142,7 +138,7 @@ Color tokens are role-based and Linear-style (no `--sem-` or `--color-` namespac
 - **Borders** (`{colors.border}`, `{colors.border-strong}`) carry the layout. `{colors.border-strong}` is one step heavier and reserved for borders on inverse-coloured surfaces.
 - **Text** uses a 3-step hierarchy (`{colors.text-primary}` / `{colors.text-secondary}` / `{colors.text-tertiary}`). Tertiary is sparingly used, only for the lightest metadata (captions, faint timestamps).
 - **Accent** is split: `{colors.accent}` is the brand background colour for the `brand` button; `{colors.accent-text}` is the text colour for accent links — they differ in dark mode because the brand button colour does not adapt but the link colour must regain contrast.
-- **CV accent** (`{colors.accent-cv}`, `#0E86AF`) is a **separate accent for the CV print channel only** — it tints section labels and the contact link icon on the A4 CV. It is deliberately not the electric portfolio blue (too saturated at 10px label size). Light value is tuned to ~4.0:1 on `#fafafa`; the dark counterpart (`#1098C6`, in the `.dark` block of `app/globals.css`) lightens to ~6:1 on `#09090b`, mirroring how `accent-text` lightens in dark. The portfolio does not consume `accent-cv` yet — promotion to a shared brand accent is an open decision.
+- **CV print artifact:** the A4 CV (`docs/cv/`) is a standalone HTML with its **own forked token canon** — see `docs/cv/DESIGN-CV.md`. It does not consume this DS, and this DS no longer carries CV-specific tokens.
 
 ## Typography
 
@@ -161,12 +157,8 @@ Line-heights are stored as **absolute pixel values** (not unitless ratios) so ev
 | `{typography.label}` | Manrope | 14px | 500 | 20px | _1.43_ | 0.08em (uppercase) | Section labels |
 | `{typography.tag}` | Manrope | 12px | 500 | 16px | _1.33_ | normal | Tag chips |
 | `{typography.caption}` | Manrope | 12px | 400 | 16px | _1.33_ | normal | Image captions (italic) |
-| `{typography.cv-body}` | Manrope | 12px | 400 | 18px | _1.50_ | normal | **CV print** — bullets, profile, role, sidebar items |
-| `{typography.cv-meta}` | Manrope | 11px | 400 | 16px | _1.45_ | normal | **CV print** — period, context, captions, section labels (uppercased) |
 
 **Responsive.** Tablet (`≤1024px`) and mobile (`≤767px`) reduce hero / H1 / H2 / H3 sizes by 1–2 steps. Body sizes are unchanged except `body-lg` which collapses to `body` on mobile. The shifts are implemented as media-query overrides in `app/globals.css`.
-
-**CV / print scale.** `{typography.cv-meta}` (11px) is the only sub-12px token; `{typography.cv-body}` (12px) matches the system's 12px floor (`tag`/`caption`). Both exist solely for the **A4 CV print route** (fixed-size document) — never use them on web surfaces. `cv-body` uses an 18px leading (ratio 1.5, standard for readable body text in print) — intentionally off the 4px grid, acceptable on a fixed-size print surface. `cv-meta` stays at 16px leading (on-grid, ratio 1.45). Tracking stays `normal` for both; the `0.08em` of `label` is applied only when `cv-meta` is reused as an uppercase section label. Because print is fixed-size, both tokens are **exempt from the responsive shrink**. The CV name reuses `{typography.h3}` (24px); company/role hierarchy is carried by weight + Space Grotesk, not by extra sizes — keeping the print scale to two new tokens.
 
 ## Layout
 
