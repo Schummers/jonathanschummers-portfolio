@@ -90,7 +90,7 @@
   /* cv-meta — contact links (Figma node 275:1785) */
   .clink { display: inline-flex; align-items: center; gap: 4px; font-size: var(--text-cv-meta); font-weight: 500; line-height: var(--leading-cv-meta); color: var(--text-primary); text-decoration: underline; text-underline-offset: 2px; }
   .clink svg { flex: none; width: 11px; height: 11px; color: var(--accent-cv); }
-  .cemail { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); text-decoration: underline; text-underline-offset: 2px; }
+  .cemail { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
   /* cv-body */ .lead     { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); }
   /* cv-meta */ .role     { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
   /* cv-meta */ .location { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); }
@@ -111,7 +111,7 @@
     margin-bottom: var(--lg);
   }
   .id-left { display: flex; gap: var(--sm); align-items: flex-start; }
-  .photo { flex: none; position: relative; width: 72px; height: 82px; border-radius: 4px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); }
+  .photo { flex: none; position: relative; width: 72px; height: 82px; border-radius: 4px; overflow: hidden; background: var(--surface); }
   .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
   .id-main { display: flex; flex-direction: column; gap: var(--2xs); justify-content: center; }
   .id-contact { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 16px; width: 232px; }
@@ -148,7 +148,7 @@
   .sk-sep { margin: 0 6px; color: var(--text-tertiary); }
 
   /* ---- SIDEBAR ---- */
-  .side { display: flex; flex-direction: column; gap: var(--lg); }
+  .side { display: flex; flex-direction: column; justify-content: space-between; gap: var(--md); }
   .side .block { display: flex; flex-direction: column; }
   .side .label { margin-bottom: var(--xs); }
   .side .items { display: flex; flex-direction: column; gap: 2px; }
@@ -268,6 +268,14 @@
         </div>
 
         <div class="block">
+          <span class="label">UX Research Lecturer</span>
+          <div class="items" style="gap:3px">
+            <span class="side-strong">Teach master's students to deliver real insights with user research</span>
+            <span class="side-item">Université Paris Cité<span class="dot-sep">·</span><span class="faint">2023 - 2026</span></span>
+          </div>
+        </div>
+
+        <div class="block">
           <span class="label">Certifications</span>
           <div class="items">
             <span class="side-strong">Professional Scrum Product Owner I</span>
@@ -276,14 +284,6 @@
             <span class="side-item">Scrum.org</span>
             <span class="side-strong" style="margin-top:8px">AI for Designers</span>
             <span class="side-item">Interaction Design Foundation</span>
-          </div>
-        </div>
-
-        <div class="block">
-          <span class="label">UX Research Lecturer</span>
-          <div class="items">
-            <span class="side-strong">Teach master's students to deliver real insights with user research</span>
-            <span class="side-item">Université Paris Cité<span class="dot-sep">·</span><span class="faint">2023 - 2026</span></span>
           </div>
         </div>
 
