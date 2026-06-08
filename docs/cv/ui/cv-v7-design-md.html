@@ -61,7 +61,7 @@
     display: flex; justify-content: center;
     padding: 40px 0;
   }
-  @page { size: A4; margin: 0; }
+  @page { size: 794px 1123px; margin: 0; }
 
   .page {
     position: relative;
@@ -76,6 +76,10 @@
     content: ""; position: absolute; inset: var(--page-margin);
     border: 1px dashed #c8a4a4; pointer-events: none;
   }
+  @media print {
+    .guide .page::after { display: none; }
+    body { padding: 0; background: var(--bg); }
+  }
 
   /* ============ TYPOGRAPHY ============ */
   /* h3      */ .name     { font-family: var(--font-display); font-size: 28px; font-weight: 500; line-height: var(--leading-h3); letter-spacing: 0; }
@@ -83,9 +87,10 @@
   /* cv-meta */ .label    { font-family: var(--font-body); font-size: var(--text-cv-meta); font-weight: 600; line-height: var(--leading-cv-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-cv); }
   /* body-sm */ .title    { font-size: var(--text-body-sm); font-weight: 600; line-height: var(--leading-body-sm); color: var(--text-primary); }
   /* cv-body */ .subtitle { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); margin-top: var(--2xs); }
-  /* cv-meta */ .contact  { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
-                .contact a { color: var(--text-secondary); text-decoration: underline; }
-                .contact a.cprimary { color: var(--text-primary); font-weight: 600; }
+  /* cv-meta — contact links (Figma node 275:1785) */
+  .clink { display: inline-flex; align-items: center; gap: 4px; font-size: var(--text-cv-meta); font-weight: 500; line-height: var(--leading-cv-meta); color: var(--text-primary); text-decoration: underline; text-underline-offset: 2px; }
+  .clink svg { flex: none; width: 11px; height: 11px; color: var(--accent-cv); }
+  .cemail { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); text-decoration: underline; text-underline-offset: 2px; }
   /* cv-body */ .lead     { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); }
   /* cv-meta */ .role     { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
   /* cv-meta */ .location { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); }
@@ -107,9 +112,11 @@
   }
   .id-left { display: flex; gap: var(--sm); align-items: flex-start; }
   .photo { flex: none; position: relative; width: 72px; height: 82px; border-radius: 4px; overflow: hidden; background: var(--surface); border: 1px solid var(--border); }
-  .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.30); transform-origin: 50% 50%; }
+  .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
   .id-main { display: flex; flex-direction: column; gap: var(--2xs); justify-content: center; }
-  .id-contact { text-align: right; display: flex; flex-direction: column; gap: var(--xs); align-items: flex-end; }
+  .id-contact { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 16px; width: 232px; }
+  .id-contact .links-row { display: flex; align-items: center; gap: 48px; width: 100%; }
+  .id-contact .email-row { display: flex; align-items: center; }
 
   /* ============ PROFILE ============ */
   .profile { margin-bottom: var(--lg); }
@@ -159,7 +166,7 @@
     <!-- HEADER -->
     <header>
       <div class="id-left">
-        <div class="photo"><img src="profil.jpg" alt="Jonathan Schummers"></div>
+        <div class="photo"><img src="Profil.close.png" alt="Jonathan Schummers"></div>
         <div class="id-main">
           <div class="name">Jonathan Schummers</div>
           <div class="title">Senior Product Designer with PM skills (6y+)</div>
@@ -167,16 +174,26 @@
         </div>
       </div>
       <div class="id-contact">
-        <div class="contact"><a class="cprimary" href="https://jonathanschummers.com">jonathanschummers.com</a></div>
-        <div class="contact"><a href="https://linkedin.com/in/jonathanschummers">linkedin.com/in/jonathanschummers</a></div>
-        <div class="contact"><a href="mailto:jonathan.schummers@gmail.com">jonathan.schummers@gmail.com</a></div>
+        <div class="links-row">
+          <a class="clink" href="https://linkedin.com/in/jonathanschummers">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2H2.5A1.5 1.5 0 001 3.5v6A1.5 1.5 0 002.5 11h6A1.5 1.5 0 0010 9.5V7"/><path d="M7 1h4v4"/><line x1="11" y1="1" x2="5.5" y2="6.5"/></svg>
+            LinkedIn
+          </a>
+          <a class="clink" href="https://jonathanschummers.com">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2H2.5A1.5 1.5 0 001 3.5v6A1.5 1.5 0 002.5 11h6A1.5 1.5 0 0010 9.5V7"/><path d="M7 1h4v4"/><line x1="11" y1="1" x2="5.5" y2="6.5"/></svg>
+            Portfolio
+          </a>
+        </div>
+        <div class="email-row">
+          <span class="cemail">jonathan.schummers@gmail.com</span>
+        </div>
       </div>
     </header>
 
     <!-- PROFILE -->
     <div class="profile">
       <span class="label">Profile</span>
-      <p class="lead">Six years on early-stage SaaS taught me that design isn't just usability, it's de-risking value and letting data tell you what to build next. Now building Valoris: AI takes the execution, I stay on discovery.</p>
+      <p class="lead">Six years designing and building early-stage products taught me that design isn't usability, it's all about de-risking value and shipping fast enough to see how people actually behave. Now I use AI to shorten that loop.</p>
     </div>
 
     <!-- BODY -->
@@ -189,15 +206,15 @@
 
           <div class="xp">
             <div class="xp-head">
-              <div class="xp-line"><span class="co">Valoris<span class="mid-sep">·</span>Proptech startup</span><span class="period">2025 - present</span></div>
+              <div class="xp-line"><span class="co">Valoris<span class="mid-sep">·</span>Proptech startup</span><span class="period">Jul 2025 - present</span></div>
               <div class="xp-line"><span class="role">Product Manager<span class="mid-sep">·</span>Product Designer</span><span class="location">Luxembourg</span></div>
             </div>
             <p class="summary">I lead product discovery and design on Valoris, improving the value proposition and market fit of a property-management SaaS.</p>
             <ul class="bullets">
-              <li><span class="bullet">Pivoted the core flow from web forms to chat: a <strong>Telegram AI assistant</strong> that turns user inputs and documents into structured data.</span></li>
+              <li><span class="bullet">Pivoted the core flow from <strong>web forms to chat interactions</strong>: a Telegram AI assistant that turns user inputs and documents into structured data.</span></li>
               <li><span class="bullet">Validated France as the primary market through Meta-ads campaigns, with a <strong>CTR 4% higher</strong> than Luxembourg.</span></li>
-              <li><span class="bullet">Built a <strong>custom Claude Code workflow</strong> that turns research insights into TDD specs and enforces design-system token compliance through linting.</span></li>
-              <li><span class="bullet">Increased onboarding conversion <strong>6%</strong> using PostHog funnels and interviews.</span></li>
+              <li><span class="bullet">Built <strong>custom Claude Code skills</strong> that turn research insights into TDD specs and enforce design-system token compliance through linting.</span></li>
+              <li><span class="bullet">Increased onboarding <strong>conversion 6%</strong> using PostHog funnels and interviews.</span></li>
             </ul>
             <div class="stack">
               <div class="stack-line"><span class="stack-k">Skills</span>Backlog management<span class="sk-sep">·</span>Tracking plan<span class="sk-sep">·</span>Data pipelines<span class="sk-sep">·</span>Custom AI skills</div>
@@ -206,15 +223,15 @@
 
           <div class="xp">
             <div class="xp-head">
-              <div class="xp-line"><span class="co">TotalEnergies<span class="mid-sep">·</span>Digital Factory</span><span class="period">Dec 2021 - Nov 2024</span></div>
+              <div class="xp-line"><span class="co">TotalEnergies<span class="mid-sep">·</span>Digital Factory</span><span class="period">Jun 2022 - Jun 2025</span></div>
               <div class="xp-line"><span class="role">Product Designer<span class="mid-sep">·</span>Proxy Product Owner</span><span class="location">Paris</span></div>
             </div>
             <p class="summary">I led research, design and build on 4 industrial SaaS, shipping MVPs fast and iterating through continuous discovery and usage tracking.</p>
             <ul class="bullets">
               <li><span class="bullet">Scaled an ML predictive-maintenance SaaS across 4 refineries (500+ inspectors): <strong>82% daily active inspectors</strong>, <strong>−6% pipe leaks</strong>.</span></li>
               <li><span class="bullet">Redesigned the power-plant monitoring dashboard with ML-based kWh loss prediction: <strong>+23% kWh tracked per operator</strong>.</span></li>
-              <li><span class="bullet">Ran a <strong>dual-track</strong> loop in a small agile squad, discovering the next features while steering the build of the current ones into polished, shipped UI.</span></li>
-              <li><span class="bullet">Ran <strong>product discovery</strong> at scale: <strong>70+ interviews</strong> and <strong>80+ usability tests</strong>.</span></li>
+              <li><span class="bullet">Ran a <strong>dual-track loop</strong> in a small agile squad, discovering the next features while steering the build of the current ones into polished, shipped UI.</span></li>
+              <li><span class="bullet">Ran product discovery at scale: <strong>70+ interviews</strong> and <strong>80+ usability tests</strong>.</span></li>
             </ul>
             <div class="stack">
               <div class="stack-line"><span class="stack-k">Skills</span>Story mapping<span class="sk-sep">·</span>Adoption tracking<span class="sk-sep">·</span>Data mapping<span class="sk-sep">·</span>Design system</div>
