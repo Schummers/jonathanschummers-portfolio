@@ -4,7 +4,7 @@
 > Le CV est **volontairement séparé** du design system portfolio (`DESIGN.md` / `app/globals.css`) :
 > contraintes print (px fixes, densité, lisibilité papier) ≠ web responsive.
 > **Source de vérité opérationnelle** : le `<style>` de `docs/cv/ui/cv-v7-design-md.html`.
-> Ce fichier en est le **miroir déclaratif**. Dernière sync : 2026-06-04.
+> Ce fichier en est le **miroir déclaratif**. Dernière sync : 2026-06-08.
 
 ## 0. Rapport au DS portfolio
 
@@ -20,12 +20,13 @@
 |---|---|---|
 | `--text-primary` | `#18181b` | partagé DS |
 | `--text-secondary` | `#66666f` | **fork CV** : DS `#71717b` assombri ~10% (lisibilité print) |
-| `--text-tertiary` | `#92929b` | **fork CV** : DS `#9f9fa9` assombri ~8% |
+| `--text-tertiary` | `#9f9fa7` | **fork CV** : DS `#9f9fa9` assombri ~3% |
 | `--accent-cv` | `#C2410C` | **CV-only** (terracotta ; sert uniquement aux labels de section) |
 | `--bg` | `#fafafa` | partagé |
 | `--surface` | `#f4f4f5` | partagé |
 | `--border` | `#e4e4e7` | partagé |
 | `--border-strong` | `#d4d4d8` | partagé |
+| `--card-estate-bg` | `#F7F2F0` | **CV-only** (fond warm de la card Real Estate Expertise) |
 
 ## 2. Polices
 
@@ -34,7 +35,7 @@
 | `--font-display` | `Space Grotesk` (nom, sociétés) |
 | `--font-body` | `Manrope` (tout le reste) |
 
-⚠️ **Dépendance** : Manrope est chargé en **variable** (`wght@400..700`) — nécessaire pour le poids **550** des métriques (`.bullet strong`). Avec un import statique, 550 retomberait à 600.
+⚠️ **Dépendance** : Manrope est chargé en **variable** (`wght@400..700`). Les métriques (`.bullet strong`) sont à **600** (poids standard, importable en statique).
 
 ## 3. Échelle d'espacement (partagée, base 8px)
 
@@ -63,7 +64,7 @@ Radius : `--rounded-md 8px`.
 | `.lead` (profile) | Manrope | 12 | **600** | 18 | primary | |
 | `.summary` | Manrope | 12 | **600** | 18 | primary | `margin-bottom 16` |
 | `.bullet` | Manrope | 12 | 400 | 18 | **primary** | |
-| `.bullet strong` (métrique) | Manrope | 12 | **550** | — | primary | requiert police variable |
+| `.bullet strong` (métrique) | Manrope | 12 | **600** | — | primary | ancre de scan |
 | `.role` | Manrope | 11 | 400 | 16 | secondary | |
 | `.location` | Manrope | 11 | 400 | 16 | tertiary | |
 | `.period` | Manrope | 11 | 400 | 16 | tertiary | nowrap |
@@ -100,20 +101,21 @@ Séquence dans un bloc expérience : **`2 → 8 → 16 → 8 → 20`**, et **`40
 |---|---|
 | `--page-w` / `--page-h` | 794 / 1123 (A4 @96dpi) |
 | `--page-margin` | 40 |
-| `--col-gap` (contenu ↔ sidebar) | **56px** *(hors-échelle)* |
-| `--main-w` / `--sidebar-w` | **426** / 232 (`714 − 56 − 232`) |
+| `--col-gap` (contenu ↔ sidebar) | **40px** (`--lg-plus`) |
+| `--main-w` / `--sidebar-w` | **442** / 232 (`714 − 40 − 232`) |
 
 ## 8. Composants
 
 - **Photo** : `72 × 82px` (ratio ~4:5), radius **4px**, border 1px `--border`. Image : `object-fit: cover` + `transform: scale(1.30)` origine `50% 50%` (cadrage visage, peu de vide au-dessus de la tête).
 - **Card** (Real Estate) : `--surface`, radius `--rounded-md` (8), padding `--sm` (16).
-- **Skills** (par expérience) : une ligne `SKILLS:` (`.stack-k`) + items dot-séparés (`.sk-sep`).
+- **Skills** (par expérience) : une ligne `SKILLS:` (`.stack-k`) + items dot-séparés (`.sk-sep`). Présents sur **Valoris + TotalEnergies**, **pas sur Avanade**.
+- **Séparateurs `·`** : `.dot-sep` (sidebar) + `.mid-sep` (rôles & sociétés) = `padding: 0 6px` ; `.sk-sep` (skills) = `margin: 0 6px`. Tous harmonisés à **6px** (2026-06-08).
 - **Tools pills** (sidebar) : `.tags` flex wrap gap 4px, `.tag` (cf. §5).
 
 ## 9. Valeurs hors-tokens (assumées CV)
 
 Hardcodées hors de l'échelle DS, propres au print CV :
-`.name 28` · `.co 15` · `.tag 10` · `.stack-k 9` · `--col-gap 56` · `.stack margin-top 20` · `.sk-sep 6` · `.xp-head gap 2` · `.tag radius 6 + padding 3/8` · photo `72×82` radius 4 + `scale 1.30`.
+`.name 28` · `.co 15` · `.tag 10` · `.stack-k 9` · `.stack margin-top 20` · `.sk-sep 6` · `.xp-head gap 2` · `.tag radius 6 + padding 3/8` · photo `72×82` radius 4 + `scale 1.30`.
 
 ## 10. Dette / à nettoyer
 

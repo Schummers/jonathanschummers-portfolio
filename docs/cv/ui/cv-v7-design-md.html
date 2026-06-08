@@ -22,10 +22,11 @@
   :root {
     --text-primary:   #18181b;
     --text-secondary: #66666f;  /* darkened ~10% from DS #71717b for CV legibility */
-    --text-tertiary:  #92929b;  /* darkened ~8% from DS #9f9fa9 for CV legibility */
+    --text-tertiary:  #9f9fa7;  /* darkened ~3% from DS #9f9fa9 for CV legibility */
     --accent-cv:      #C2410C;
     --bg:      #fafafa;
     --surface: #f4f4f5;
+    --card-estate-bg: #F7F2F0;
     --border:  #e4e4e7;
     --border-strong: #d4d4d8;
 
@@ -46,9 +47,9 @@
     --page-w: 794px;
     --page-h: 1123px;
     --page-margin: 40px;
-    --col-gap: 56px;
+    --col-gap: 40px;
     --sidebar-w: 232px;
-    --main-w: 426px;          /* 714 - 56 - 232 */
+    --main-w: 442px;          /* 714 - 40 - 232 */
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -89,10 +90,10 @@
   /* cv-meta */ .role     { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
   /* cv-meta */ .location { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); }
   /* cv-meta */ .period   { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); white-space: nowrap; }
-  /* cv-body */ .summary  { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); margin-bottom: 16px; }
+  /* cv-body */ .summary  { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); margin-bottom: 16px; text-align: justify; }
                 .summary em { font-style: italic; }
-  /* cv-body */ .bullet   { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-primary); }
-                .bullet strong { font-weight: 550; color: var(--text-primary); }
+  /* cv-body */ .bullet   { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-primary); text-align: justify; }
+                .bullet strong { font-weight: 600; color: var(--text-primary); }
   /* cv-body */ .side-strong { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); }
   /* cv-meta */ .side-item   { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
   .faint { color: var(--text-tertiary); }
@@ -144,7 +145,8 @@
   .side .block { display: flex; flex-direction: column; }
   .side .label { margin-bottom: var(--xs); }
   .side .items { display: flex; flex-direction: column; gap: 2px; }
-  .dot-sep { padding: 0 4px; color: var(--text-tertiary); }
+  .dot-sep { padding: 0 6px; color: var(--text-tertiary); }
+  .mid-sep { padding: 0 6px; color: var(--text-tertiary); }
   .card { background: var(--surface); border-radius: var(--rounded-md); padding: var(--sm); }
   .side .block:not(.card) { padding-left: var(--sm); }
   .tags { display: flex; flex-wrap: wrap; gap: var(--2xs); }
@@ -174,7 +176,7 @@
     <!-- PROFILE -->
     <div class="profile">
       <span class="label">Profile</span>
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure.</p>
+      <p class="lead">Six years on early-stage SaaS taught me that design isn't just usability, it's de-risking value and letting data tell you what to build next. Now building Valoris: AI takes the execution, I stay on discovery.</p>
     </div>
 
     <!-- BODY -->
@@ -187,51 +189,48 @@
 
           <div class="xp">
             <div class="xp-head">
-              <div class="xp-line"><span class="co">Valoris</span><span class="period">2025 - present</span></div>
-              <div class="xp-line"><span class="role">Founder · Product Designer</span><span class="location">Luxembourg</span></div>
+              <div class="xp-line"><span class="co">Valoris<span class="mid-sep">·</span>Proptech startup</span><span class="period">2025 - present</span></div>
+              <div class="xp-line"><span class="role">Product Manager<span class="mid-sep">·</span>Product Designer</span><span class="location">Luxembourg</span></div>
             </div>
-            <p class="summary">Solo founder building Valoris, an AI assistant for individual landlords. I run research, product, design and the frontend.</p>
+            <p class="summary">I lead product discovery and design on Valoris, improving the value proposition and market fit of a property-management SaaS.</p>
             <ul class="bullets">
-              <li><span class="bullet">Pivoted from a document-extraction tool to an <strong>agent-first AI workflow</strong> after landlord interviews showed they want guidance, not storage.</span></li>
-              <li><span class="bullet">Validated positioning and demand through Meta Ads campaigns.</span></li>
-              <li><span class="bullet">Designed and coded the frontend solo with <strong>Cursor and Claude Code</strong>.</span></li>
-              <li><span class="bullet">Turned a 15-property family rental portfolio into real product features.</span></li>
+              <li><span class="bullet">Pivoted the core flow from web forms to chat: a <strong>Telegram AI assistant</strong> that turns user inputs and documents into structured data.</span></li>
+              <li><span class="bullet">Validated France as the primary market through Meta-ads campaigns, with a <strong>CTR 4% higher</strong> than Luxembourg.</span></li>
+              <li><span class="bullet">Built a <strong>custom Claude Code workflow</strong> that turns research insights into TDD specs and enforces design-system token compliance through linting.</span></li>
+              <li><span class="bullet">Increased onboarding conversion <strong>6%</strong> using PostHog funnels and interviews.</span></li>
             </ul>
             <div class="stack">
-              <div class="stack-line"><span class="stack-k">Skills</span>Product discovery<span class="sk-sep">·</span>Product strategy<span class="sk-sep">·</span>Frontend<span class="sk-sep">·</span>Design system</div>
+              <div class="stack-line"><span class="stack-k">Skills</span>Backlog management<span class="sk-sep">·</span>Tracking plan<span class="sk-sep">·</span>Data pipelines<span class="sk-sep">·</span>Custom AI skills</div>
             </div>
           </div>
 
           <div class="xp">
             <div class="xp-head">
-              <div class="xp-line"><span class="co">TotalEnergies · Digital Factory</span><span class="period">Dec 2021 - Nov 2024</span></div>
-              <div class="xp-line"><span class="role">Senior Product Designer · Proxy Product Owner</span><span class="location">Paris</span></div>
+              <div class="xp-line"><span class="co">TotalEnergies<span class="mid-sep">·</span>Digital Factory</span><span class="period">Dec 2021 - Nov 2024</span></div>
+              <div class="xp-line"><span class="role">Product Designer<span class="mid-sep">·</span>Proxy Product Owner</span><span class="location">Paris</span></div>
             </div>
             <p class="summary">I led research, design and build on 4 industrial SaaS, shipping MVPs fast and iterating through continuous discovery and usage tracking.</p>
             <ul class="bullets">
               <li><span class="bullet">Scaled an ML predictive-maintenance SaaS across 4 refineries (500+ inspectors): <strong>82% daily active inspectors</strong>, <strong>−6% pipe leaks</strong>.</span></li>
-              <li><span class="bullet">Reworked the power-plant monitoring dashboard with ML-based kWh loss prediction: <strong>+23% kWh tracked per operator</strong>.</span></li>
-              <li><span class="bullet">Acted as <strong>proxy Product Owner</strong> beside business-expert POs: roadmap, story mapping, user stories, backlog management.</span></li>
-              <li><span class="bullet">Ran discovery at scale: <strong>60+ interviews</strong> and <strong>70+ usability tests</strong>.</span></li>
+              <li><span class="bullet">Redesigned the power-plant monitoring dashboard with ML-based kWh loss prediction: <strong>+23% kWh tracked per operator</strong>.</span></li>
+              <li><span class="bullet">Ran a <strong>dual-track</strong> loop in a small agile squad, discovering the next features while steering the build of the current ones into polished, shipped UI.</span></li>
+              <li><span class="bullet">Ran <strong>product discovery</strong> at scale: <strong>70+ interviews</strong> and <strong>80+ usability tests</strong>.</span></li>
             </ul>
             <div class="stack">
-              <div class="stack-line"><span class="stack-k">Skills</span>Product strategy<span class="sk-sep">·</span>Data mapping<span class="sk-sep">·</span>Adoption tracking<span class="sk-sep">·</span>Design system</div>
+              <div class="stack-line"><span class="stack-k">Skills</span>Story mapping<span class="sk-sep">·</span>Adoption tracking<span class="sk-sep">·</span>Data mapping<span class="sk-sep">·</span>Design system</div>
             </div>
           </div>
 
           <div class="xp">
             <div class="xp-head">
-              <div class="xp-line"><span class="co">Avanade · Accenture-Microsoft JV</span><span class="period">Jan 2020 - Jun 2022</span></div>
+              <div class="xp-line"><span class="co">Avanade<span class="mid-sep">·</span>Accenture-Microsoft JV</span><span class="period">Jan 2020 - Jun 2022</span></div>
               <div class="xp-line"><span class="role">Product Designer</span><span class="location">Paris</span></div>
             </div>
-            <p class="summary">I delivered on scope and on time across the full design process for BforBank, Sodexo, Chanel, Schneider Electric.</p>
+            <p class="summary">I delivered on the full design scope, from user research to ideation and UI design, for BforBank, Sodexo, Chanel and Schneider Electric.</p>
             <ul class="bullets">
               <li><span class="bullet">Designed BforBank's mobile app onboarding (84 screens); the flow ranked <strong>first of 51 banks</strong> in Google's 2023 Finance UX benchmark.</span></li>
               <li class="sep"><span class="bullet">Co-designed Spie Batignolles' construction app (60 screens), connecting site crews to a complex ERP and replacing <strong>3 legacy tools</strong>.</span></li>
             </ul>
-            <div class="stack">
-              <div class="stack-line"><span class="stack-k">Skills</span>User research<span class="sk-sep">·</span>Workshop facilitation<span class="sk-sep">·</span>Visual design</div>
-            </div>
           </div>
 
         </div>
@@ -241,7 +240,7 @@
       <div class="side">
 
         <!-- Real Estate — card en premier -->
-        <div class="block card">
+        <div class="block card" style="background: var(--card-estate-bg);">
           <span class="label">Real Estate Expertise</span>
           <div class="items">
             <span class="side-strong">Licensed Real Estate Professional</span>
@@ -264,9 +263,9 @@
         </div>
 
         <div class="block">
-          <span class="label">Teaching</span>
+          <span class="label">UX Research Lecturer</span>
           <div class="items">
-            <span class="side-strong">UX Research Lecturer</span>
+            <span class="side-strong">Teach master's students to deliver real insights with user research</span>
             <span class="side-item">Université Paris Cité<span class="dot-sep">·</span><span class="faint">2023 - 2026</span></span>
           </div>
         </div>
@@ -295,12 +294,13 @@
           <span class="label">Tools</span>
           <div class="tags">
             <span class="tag">Figma</span>
-            <span class="tag">Cursor</span>
-            <span class="tag">Claude Code</span>
-            <span class="tag">Notion</span>
             <span class="tag">Miro</span>
             <span class="tag">Hotjar</span>
-            <span class="tag">CloudWatch</span>
+            <span class="tag">Jira</span>
+            <span class="tag">Linear</span>
+            <span class="tag">Notion</span>
+            <span class="tag">Cursor</span>
+            <span class="tag">Claude Code</span>
           </div>
         </div>
 
