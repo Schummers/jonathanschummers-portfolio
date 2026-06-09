@@ -254,7 +254,7 @@ export default async function CaseStudyPage({
                 <div className="px-xl py-xl max-md:px-md md:max-xl:px-lg">
                   <div className="mx-auto max-w-content">
                     {/* Section label */}
-                    <h2 className="font-body text-label font-bold uppercase tracking-label text-accent-text">
+                    <h2 className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
                       {group.label}
                     </h2>
 
@@ -380,7 +380,7 @@ export default async function CaseStudyPage({
               <hr className="border-t border-border" />
               <div className="px-xl py-xl max-md:px-md md:max-xl:px-lg">
                 <div className="mx-auto max-w-content">
-                  <h2 className="font-body text-label font-bold uppercase tracking-label text-accent-text">
+                  <h2 className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
                     Book a call
                   </h2>
                   <p className="mt-md font-display text-h3 font-bold leading-h3 tracking-h3 text-text-primary">

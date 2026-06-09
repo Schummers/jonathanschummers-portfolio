@@ -3,7 +3,7 @@ import Image from "next/image";
 export function Testimonials() {
   return (
     <section className="border-b border-border bg-bg px-xl py-xl max-md:px-md max-md:py-xl md:max-lg:px-lg">
-      <p className="font-body text-label font-bold uppercase tracking-label text-accent-text">
+      <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
         Testimonials
       </p>
 

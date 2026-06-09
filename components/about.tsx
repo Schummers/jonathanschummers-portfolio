@@ -9,7 +9,7 @@ export function About() {
         {/* Left — My journey */}
         <div className="px-xl py-xl2 max-md:px-md max-md:py-xl flex flex-col justify-between">
           <div className="flex flex-col gap-md">
-            <p className="font-body text-label font-bold uppercase tracking-label text-accent-text">
+            <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
               My journey
             </p>
             <div className="max-w-[var(--case-prose)] space-y-sm">
@@ -43,7 +43,7 @@ export function About() {
         {/* Right — Side project (dark full-bleed) */}
         <div className="bg-surface px-xl py-xl2 max-md:px-md max-md:py-xl">
           <div className="flex flex-col gap-md">
-            <p className="font-body text-label font-bold uppercase tracking-label text-accent-text">
+            <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
               Side project
             </p>
             <div className="max-w-[var(--case-prose)]">

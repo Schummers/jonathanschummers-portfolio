@@ -10,7 +10,7 @@ export function CaseStudyHeader({ company, title, tags }: CaseStudyHeaderProps) 
   return (
     <div className="mx-auto max-w-content">
       {company && (
-        <p className="font-body text-label font-bold uppercase tracking-label text-accent-text">
+        <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
           {company}
         </p>
       )}

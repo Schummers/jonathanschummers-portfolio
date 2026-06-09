@@ -9,7 +9,7 @@ interface CaseStudyContextProps {
 }
 
 const LABEL_CLASS =
-  "font-body text-label font-bold uppercase tracking-label text-accent-text";
+  "font-body text-label font-bold uppercase tracking-label text-text-secondary";
 
 function find(steps: StepData[], heading: string) {
   return steps.find((s) => s.heading.toLowerCase() === heading.toLowerCase());
