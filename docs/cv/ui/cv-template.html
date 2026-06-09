@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CV v7 — 100% design.md (strict A4)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     CV v7 — standalone print artifact. Token canon: docs/cv/DESIGN-CV.md
+     (this <style> is the operational source; the .md mirrors it).
+     Canvas 794 x 1123 px (A4 @96dpi). Page margin 40px (lg-plus).
+     Layout: PROFILE full width, then EXPERIENCE | SIDEBAR.
+     Columns: main 426 + gap 56 + sidebar 232.
+     Type scale used:
+       name 28px (Space Grotesk) — .name
+       co 15px (Space Grotesk)   — company name (.co)
+       cv-body 12px — summary, bullets, lead
+       cv-meta 11px — role, period, location, labels, contacts
+     ============================================================ */
+  :root {
+    --text-primary:   #18181b;
+    --text-secondary: #66666f;  /* darkened ~10% from DS #71717b for CV legibility */
+    --text-tertiary:  #9f9fa7;  /* darkened ~3% from DS #9f9fa9 for CV legibility */
+    --accent-cv:      #C2410C;
+    --bg:      #fafafa;
+    --surface: #f4f4f5;
+    --card-estate-bg: #F7F2F0;
+    --border:  #e4e4e7;
+    --border-strong: #d4d4d8;
+
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-body:    'Manrope', system-ui, sans-serif;
+
+    --none: 0px;  --2xs: 4px;  --xs: 8px;   --sm: 16px;  --md: 24px;
+    --lg: 32px;   --lg-plus: 40px;  --xl: 48px;  --2xl: 64px;
+
+    --rounded-md: 8px;
+
+    --text-h3: 24px;       --leading-h3: 32px;   --tracking-h3: -0.01em;
+    --text-body-sm: 14px;  --leading-body-sm: 20px;
+    --text-tag: 12px;      --leading-tag: 16px;
+    --text-cv-body: 12px;  --leading-cv-body: 18px;
+    --text-cv-meta: 11px;  --leading-cv-meta: 16px;
+
+    --page-w: 794px;
+    --page-h: 1123px;
+    --page-margin: 40px;
+    --col-gap: 40px;
+    --sidebar-w: 232px;
+    --main-w: 442px;          /* 714 - 40 - 232 */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background: #6b6b76;
+    display: flex; justify-content: center;
+    padding: 40px 0;
+    /* ATS: disable contextual alternates that break glyph encoding in Chrome PDF */
+    font-feature-settings: "liga" 0, "calt" 0;
+  }
+  @page { size: 794px 1123px; margin: 0; }
+
+  .page {
+    position: relative;
+    width: var(--page-w);
+    height: var(--page-h);
+    overflow: hidden;
+    background: var(--bg);
+    padding: var(--page-margin);
+    display: flex; flex-direction: column;
+  }
+  .guide .page::after {
+    content: ""; position: absolute; inset: var(--page-margin);
+    border: 1px dashed #c8a4a4; pointer-events: none;
+  }
+  @media print {
+    .guide .page::after { display: none; }
+    body { padding: 0; background: var(--bg); }
+  }
+
+  /* ============ TYPOGRAPHY ============ */
+  /* h3      */ .name     { font-family: var(--font-display); font-size: 28px; font-weight: 500; line-height: var(--leading-h3); letter-spacing: 0; }
+  /* body-sm */ .co       { font-family: var(--font-display); font-size: 15px; font-weight: 600; line-height: var(--leading-body-sm); color: var(--text-primary); }
+  /* cv-meta */ .label    { font-family: var(--font-body); font-size: var(--text-cv-meta); font-weight: 600; line-height: var(--leading-cv-meta); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-cv); }
+  /* body-sm */ .title    { font-size: var(--text-body-sm); font-weight: 600; line-height: var(--leading-body-sm); color: var(--text-primary); }
+  /* cv-body */ .subtitle { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-secondary); margin-top: var(--2xs); }
+  /* cv-meta — contact links (Figma node 275:1785) */
+  .clink { display: inline-flex; align-items: center; gap: 4px; font-size: var(--text-cv-meta); font-weight: 500; line-height: var(--leading-cv-meta); color: var(--text-primary); text-decoration: underline; text-underline-offset: 2px; }
+  .clink svg { flex: none; width: 11px; height: 11px; color: var(--accent-cv); }
+  .cemail { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); text-decoration: none; }
+  /* cv-body */ .lead     { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); text-align: justify; }
+  /* cv-meta */ .role     { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
+  /* cv-meta */ .location { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); }
+  /* cv-meta */ .period   { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); white-space: nowrap; }
+  /* cv-body */ .summary  { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); margin-bottom: 16px; text-align: justify; }
+                .summary em { font-style: italic; }
+  /* cv-body */ .bullet   { font-size: var(--text-cv-body); font-weight: 400; line-height: var(--leading-cv-body); color: var(--text-primary); text-align: justify; }
+                .bullet strong { font-weight: 600; color: var(--text-primary); }
+  /* cv-body */ .side-strong { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); }
+  /* cv-meta */ .side-item   { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
+  .faint { color: var(--text-tertiary); }
+  .lang { display: flex; justify-content: space-between; align-items: baseline; }
+  .lvl  { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
+
+  /* ============ HEADER ============ */
+  header {
+    display: flex; gap: var(--sm); align-items: flex-start; justify-content: space-between;
+    margin-bottom: var(--lg);
+  }
+  .id-left { display: flex; gap: var(--sm); align-items: flex-start; }
+  .photo { flex: none; position: relative; width: 72px; height: 82px; border-radius: 4px; overflow: hidden; background: var(--surface); }
+  .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+  .id-main { display: flex; flex-direction: column; gap: var(--2xs); justify-content: center; }
+  .id-contact { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 16px; width: 232px; }
+  .id-contact .links-row { display: flex; align-items: center; gap: 48px; width: 100%; }
+  .id-contact .email-row { display: flex; align-items: center; }
+
+  /* ============ PROFILE ============ */
+  .profile { margin-bottom: var(--lg); }
+  .profile .label { display: block; margin-bottom: var(--xs); }
+
+  /* ============ BODY ============ */
+  .body {
+    flex: 1; display: grid;
+    grid-template-columns: var(--main-w) var(--sidebar-w);
+    column-gap: var(--col-gap);
+    min-height: 0;
+  }
+
+  /* ---- MAIN ---- */
+  .section { display: flex; flex-direction: column; min-height: 0; }
+  .section > .label { display: block; margin-bottom: var(--xs); }
+  .xp-list { display: flex; flex-direction: column; gap: var(--lg-plus); }
+  .xp { display: flex; flex-direction: column; }
+  .xp-head { display: flex; flex-direction: column; gap: 2px; margin-bottom: var(--xs); }
+  .xp-line { display: flex; justify-content: space-between; align-items: baseline; gap: var(--xs); }
+  .bullets { display: flex; flex-direction: column; gap: var(--xs); }       /* 8px between every bullet */
+  .bullets li { list-style: none; display: flex; gap: var(--2xs); align-items: baseline; }
+  .bullets li::before { content: "•"; flex: 0 0 auto; color: var(--text-tertiary); font-size: 10px; }
+  /* per-experience tools + skills stack */
+  .stack { margin-top: 20px; display: flex; flex-direction: column; gap: var(--xs); }
+  .stack-line { display: flex; align-items: center; flex-wrap: wrap; font-size: var(--text-cv-meta); font-weight: 400; line-height: 1; color: var(--text-secondary); }
+  .stack-k { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); margin-right: var(--xs); }
+  .stack-k::after { content: ":"; }
+  .sk-sep { margin: 0 6px; color: var(--text-tertiary); }
+
+  /* ---- SIDEBAR ---- */
+  .side { display: flex; flex-direction: column; justify-content: space-between; gap: var(--md); }
+  .side .block { display: flex; flex-direction: column; }
+  .side .label { margin-bottom: var(--xs); }
+  .side .items { display: flex; flex-direction: column; gap: 2px; }
+  .dot-sep { padding: 0 6px; color: var(--text-tertiary); }
+  .mid-sep { padding: 0 6px; color: var(--text-tertiary); }
+  .card { background: var(--surface); border-radius: var(--rounded-md); padding: var(--sm); }
+  .side .block:not(.card) { padding-left: var(--sm); }
+  .tags { display: flex; flex-wrap: wrap; gap: var(--2xs); }
+  .tag { font-family: var(--font-body); font-size: 10px; font-weight: 500; line-height: 16px; color: var(--text-primary); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; }
+</style>
+</head>
+<body class="guide">
+  <div class="page">
+
+    <!-- HEADER -->
+    <header>
+      <div class="id-left">
+        <div class="photo"><img src="Profil.close.png" alt="Jonathan Schummers"></div>
+        <div class="id-main">
+          <div class="name">Jonathan Schummers</div>
+          <div class="title">Senior Product Designer with PM skills (6y+)</div>
+          <div class="subtitle">Luxembourg</div>
+        </div>
+      </div>
+      <div class="id-contact">
+        <div class="links-row">
+          <a class="clink" href="https://linkedin.com/in/jonathanschummers">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2H2.5A1.5 1.5 0 001 3.5v6A1.5 1.5 0 002.5 11h6A1.5 1.5 0 0010 9.5V7"/><path d="M7 1h4v4"/><line x1="11" y1="1" x2="5.5" y2="6.5"/></svg>
+            LinkedIn
+          </a>
+          <a class="clink" href="https://jonathanschummers.com">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2H2.5A1.5 1.5 0 001 3.5v6A1.5 1.5 0 002.5 11h6A1.5 1.5 0 0010 9.5V7"/><path d="M7 1h4v4"/><line x1="11" y1="1" x2="5.5" y2="6.5"/></svg>
+            Portfolio
+          </a>
+        </div>
+        <div class="email-row">
+          <span class="cemail">jonathan.schummers@gmail.com</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- PROFILE -->
+    <div class="profile">
+      <span class="label">Profile</span>
+      <p class="lead">Six years building early-stage products taught me that design isn't usability or chasing every user pain point. It's about de-risking value and shipping fast enough to see how people actually behave. Now I use AI to shorten that loop.</p>
+    </div>
+
+    <!-- BODY -->
+    <div class="body">
+
+      <!-- MAIN : experience -->
+      <div class="section">
+        <span class="label">Experience</span>
+        <div class="xp-list">
+
+          <div class="xp">
+            <div class="xp-head">
+              <div class="xp-line"><span class="co">Valoris<span class="mid-sep">·</span>Proptech startup</span><span class="period">Jul 2025 - present</span></div>
+              <div class="xp-line"><span class="role">Product Manager<span class="mid-sep">·</span>Product Designer</span><span class="location">Luxembourg</span></div>
+            </div>
+            <p class="summary">I lead product discovery and design on Valoris, improving the value proposition and market fit of a property-management SaaS.</p>
+            <ul class="bullets">
+              <li><span class="bullet">Pivoted the core flow from <strong>web forms to chat interactions</strong>: a Telegram AI assistant that turns user inputs and documents into structured data.</span></li>
+              <li><span class="bullet">Validated France as the primary market through Meta-ads campaigns, with a <strong>CTR 4% higher</strong> than Luxembourg.</span></li>
+              <li><span class="bullet">Built <strong>custom Claude Code skills</strong> that turn research insights into TDD specs and enforce design-system token compliance through linting.</span></li>
+              <li><span class="bullet">Increased onboarding <strong>conversion 6%</strong> using PostHog funnels and interviews.</span></li>
+            </ul>
+            <div class="stack">
+              <div class="stack-line"><span class="stack-k">Skills</span>Backlog management<span class="sk-sep">·</span>Tracking plan<span class="sk-sep">·</span>Data pipelines<span class="sk-sep">·</span>Custom AI skills</div>
+            </div>
+          </div>
+
+          <div class="xp">
+            <div class="xp-head">
+              <div class="xp-line"><span class="co">TotalEnergies<span class="mid-sep">·</span>Digital Factory</span><span class="period">Jun 2022 - Jun 2025</span></div>
+              <div class="xp-line"><span class="role">Product Designer<span class="mid-sep">·</span>Proxy Product Owner</span><span class="location">Paris</span></div>
+            </div>
+            <p class="summary">I led research, design and build on 4 industrial SaaS, shipping MVPs fast and iterating through continuous discovery and usage tracking.</p>
+            <ul class="bullets">
+              <li><span class="bullet">Scaled an ML predictive-maintenance SaaS across 4 refineries (500+ inspectors): <strong>82% daily active inspectors</strong>, <strong>−6% pipe leaks</strong>.</span></li>
+              <li><span class="bullet">Redesigned the power-plant monitoring dashboard with ML-based kWh loss prediction: <strong>+23% kWh tracked per operator</strong>.</span></li>
+              <li><span class="bullet">Ran a <strong>dual-track loop</strong> in a small agile squad, discovering the next features while steering the build of the current ones into polished, shipped UI.</span></li>
+              <li><span class="bullet">Ran product discovery at scale: <strong>70+ interviews</strong> and <strong>80+ usability tests</strong>.</span></li>
+            </ul>
+            <div class="stack">
+              <div class="stack-line"><span class="stack-k">Skills</span>Story mapping<span class="sk-sep">·</span>Adoption tracking<span class="sk-sep">·</span>Data mapping<span class="sk-sep">·</span>Design system</div>
+            </div>
+          </div>
+
+          <div class="xp">
+            <div class="xp-head">
+              <div class="xp-line"><span class="co">Avanade<span class="mid-sep">·</span>Accenture-Microsoft JV</span><span class="period">Jan 2020 - Jun 2022</span></div>
+              <div class="xp-line"><span class="role">Product Designer</span><span class="location">Paris</span></div>
+            </div>
+            <p class="summary">I delivered on the full design scope, from user research to ideation and UI design, for BforBank, Sodexo, Chanel and Schneider Electric.</p>
+            <ul class="bullets">
+              <li><span class="bullet">Designed BforBank's mobile app onboarding flow (84 screens), winner of <strong>Google's 2023 Finance UX Award</strong> (first of 51 banks).</span></li>
+              <li class="sep"><span class="bullet">Co-designed Spie Batignolles' construction app (60 screens), connecting site crews to a complex ERP and replacing <strong>3 legacy tools</strong>.</span></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="side">
+
+        <!-- Real Estate — card en premier -->
+        <div class="block card" style="background: var(--card-estate-bg);">
+          <span class="label">Real Estate Expertise</span>
+          <div class="items">
+            <span class="side-strong">Licensed Real Estate Professional</span>
+            <span class="side-item">House of Training, Luxembourg</span>
+            <span class="side-strong" style="margin-top:8px">11-property family rental portfolio</span>
+            <span class="side-item">Managed in France &amp; Luxembourg</span>
+          </div>
+        </div>
+
+        <div class="block">
+          <span class="label">UX Research Lecturer</span>
+          <div class="items" style="gap:3px">
+            <span class="side-strong">Teach master's students to deliver real insights with user research</span>
+            <span class="side-item">Université Paris Cité<span class="dot-sep">·</span><span class="faint">2023 - 2026</span></span>
+          </div>
+        </div>
+
+        <div class="block">
+          <span class="label">Certifications</span>
+          <div class="items">
+            <span class="side-strong">Professional Scrum Product Owner I</span>
+            <span class="side-item">Scrum.org</span>
+            <span class="side-strong" style="margin-top:8px">Professional Scrum with UX</span>
+            <span class="side-item">Scrum.org</span>
+            <span class="side-strong" style="margin-top:8px">AI for Designers</span>
+            <span class="side-item">Interaction Design Foundation</span>
+          </div>
+        </div>
+
+        <div class="block">
+          <span class="label">Education</span>
+          <div class="items">
+            <span class="side-strong">Master Human-Machine Interactions</span>
+            <span class="side-item">Université Lumière Lyon 2<span class="dot-sep">·</span><span class="faint">2019-2020</span></span>
+            <span class="side-strong" style="margin-top:8px">Master Cognitive Psychology</span>
+            <span class="side-item">Université Paris Descartes<span class="dot-sep">·</span><span class="faint">2017-2019</span></span>
+            <span class="side-strong" style="margin-top:8px">Bachelor Psychology</span>
+            <span class="side-item">Université Paris Descartes<span class="dot-sep">·</span><span class="faint">2014-2017</span></span>
+          </div>
+        </div>
+
+        <div class="block">
+          <span class="label">Languages</span>
+          <div class="items">
+            <span class="side-strong">French<span class="dot-sep">·</span><span class="lvl">native</span></span>
+            <span class="side-strong">English<span class="dot-sep">·</span><span class="lvl">professional</span></span>
+          </div>
+        </div>
+
+        <div class="block">
+          <span class="label">Tools</span>
+          <div class="tags">
+            <span class="tag">Figma</span>
+            <span class="tag">Miro</span>
+            <span class="tag">Hotjar</span>
+            <span class="tag">Jira</span>
+            <span class="tag">Linear</span>
+            <span class="tag">Notion</span>
+            <span class="tag">Cursor</span>
+            <span class="tag">Claude Code</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- /.body -->
+  </div><!-- /.page -->
+</body>
+</html>

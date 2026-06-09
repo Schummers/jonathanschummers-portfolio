@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CV v7 — 100% design.md (strict A4)</title>
+<title>CV classique-immo — Jonathan Schummers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* ============================================================
-     CV v7 — standalone print artifact. Token canon: docs/cv/DESIGN-CV.md
+     CV classique-immo — standalone print artifact. Token canon: docs/cv/DESIGN-CV.md
      (this <style> is the operational source; the .md mirrors it).
      Canvas 794 x 1123 px (A4 @96dpi). Page margin 40px (lg-plus).
      Layout: PROFILE full width, then EXPERIENCE | SIDEBAR.
@@ -60,6 +60,8 @@
     background: #6b6b76;
     display: flex; justify-content: center;
     padding: 40px 0;
+    /* ATS: disable contextual alternates that break glyph encoding in Chrome PDF */
+    font-feature-settings: "liga" 0, "calt" 0;
   }
   @page { size: 794px 1123px; margin: 0; }
 
@@ -90,7 +92,7 @@
   /* cv-meta — contact links (Figma node 275:1785) */
   .clink { display: inline-flex; align-items: center; gap: 4px; font-size: var(--text-cv-meta); font-weight: 500; line-height: var(--leading-cv-meta); color: var(--text-primary); text-decoration: underline; text-underline-offset: 2px; }
   .clink svg { flex: none; width: 11px; height: 11px; color: var(--accent-cv); }
-  .cemail { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
+  .cemail { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); text-decoration: none; }
   /* cv-body */ .lead     { font-size: var(--text-cv-body); font-weight: 600; line-height: var(--leading-cv-body); color: var(--text-primary); text-align: justify; }
   /* cv-meta */ .role     { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
   /* cv-meta */ .location { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-tertiary); }
@@ -114,9 +116,13 @@
   .photo { flex: none; position: relative; width: 72px; height: 82px; border-radius: 4px; overflow: hidden; background: var(--surface); }
   .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
   .id-main { display: flex; flex-direction: column; gap: var(--2xs); justify-content: center; }
-  .id-contact { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 16px; width: 232px; }
-  .id-contact .links-row { display: flex; align-items: center; gap: 48px; width: 100%; }
-  .id-contact .email-row { display: flex; align-items: center; }
+  .id-contact { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 0 16px; width: 232px; }
+  /* Right column mirrors id-main's vertical rhythm so each line sits on its left counterpart.
+     Row heights = left line-heights (name 32 / title 20 / subtitle 18), centered within each row.
+     Gaps = left gaps (4 then 8). Total = 82px = photo height. */
+  .id-contact .links-row { height: 32px; display: flex; align-items: center; gap: 48px; width: 100%; }
+  .id-contact .email-row { height: 20px; margin-top: 4px; display: flex; align-items: center; }
+  .id-contact .phone-row { height: 18px; margin-top: 8px; display: flex; align-items: center; }
 
   /* ============ PROFILE ============ */
   .profile { margin-bottom: var(--lg); }
@@ -187,13 +193,16 @@
         <div class="email-row">
           <span class="cemail">jonathan.schummers@gmail.com</span>
         </div>
+        <div class="phone-row">
+          <span class="cemail">+33 6 95 25 40 82</span>
+        </div>
       </div>
     </header>
 
     <!-- PROFILE -->
     <div class="profile">
       <span class="label">Profile</span>
-      <p class="lead">Six years designing and building early-stage products taught me that design isn't usability, it's all about de-risking value and shipping fast enough to see how people actually behave. Now I use AI to shorten that loop.</p>
+      <p class="lead">Six years building early-stage products taught me that design isn't usability or chasing every user pain point. It's about de-risking value and shipping fast enough to see how people actually behave. Now I use AI to shorten that loop.</p>
     </div>
 
     <!-- BODY -->
@@ -245,7 +254,7 @@
             </div>
             <p class="summary">I delivered on the full design scope, from user research to ideation and UI design, for BforBank, Sodexo, Chanel and Schneider Electric.</p>
             <ul class="bullets">
-              <li><span class="bullet">Designed BforBank's mobile app onboarding (84 screens); the flow ranked <strong>first of 51 banks</strong> in Google's 2023 Finance UX benchmark.</span></li>
+              <li><span class="bullet">Designed BforBank's mobile app onboarding flow (84 screens), winner of <strong>Google's 2023 Finance UX Award</strong> (first of 51 banks).</span></li>
               <li class="sep"><span class="bullet">Co-designed Spie Batignolles' construction app (60 screens), connecting site crews to a complex ERP and replacing <strong>3 legacy tools</strong>.</span></li>
             </ul>
           </div>
@@ -262,7 +271,7 @@
           <div class="items">
             <span class="side-strong">Licensed Real Estate Professional</span>
             <span class="side-item">House of Training, Luxembourg</span>
-            <span class="side-strong" style="margin-top:8px">15-property family rental portfolio</span>
+            <span class="side-strong" style="margin-top:8px">11-property family rental portfolio</span>
             <span class="side-item">Managed in France &amp; Luxembourg</span>
           </div>
         </div>

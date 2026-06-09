@@ -4,20 +4,25 @@ Standalone A4 CV (Phase A-bis). **Not** the portfolio app — own token canon, o
 
 ## Export to PDF
 
-Run the script. Do **not** craft Chrome flags by hand each time:
-
 ```bash
 ./docs/cv/export-pdf.sh
+# or directly:
+node docs/cv/export-pdf.mjs
 ```
 
-It exports `ui/cv-v7-design-md.html` → `cv-jonathan-schummers.pdf` (1-page A4).
-The flags matter and each fixes a real bug — see the header comment in
-`export-pdf.sh`. Key one: `--virtual-time-budget` waits for the Google Fonts to
-load before printing, otherwise the fallback fonts inflate the layout and crush
-the bottom margin.
+Exports `ui/cv-template.html` → `cv-jonathan-schummers.pdf` (1-page A4).
+Variants : `cv-classique-immo.html`, `cv-dubai-immo.html` → `JonathanSchummers_CV.pdf`.
 
-The script is throwaway: Phase B replaces it with `scripts/generate-cv-pdfs.mjs`
-(Puppeteer postbuild) once the `/cv/print/[preset]` Next route exists.
+**Why Puppeteer, not Chrome CLI `--print-to-pdf`:**
+Chrome CLI splits web-font glyphs across multiple font subsets and generates
+broken ToUnicode maps. PDF readers and ATS parsers then see isolated characters
+mid-word ("Luxem b ourg", "on b oarding"). Puppeteer's `page.pdf()` uses a
+different code path that embeds fonts with correct Unicode mapping.
+`--virtual-time-budget` is gone — replaced by `waitUntil: 'networkidle0'`
++ `document.fonts.ready` in the Node script, which is more reliable.
+
+Phase B (`scripts/generate-cv-pdfs.mjs` + `/cv/print/[preset]` route): reuse
+`export-pdf.mjs` as the reference implementation — the pattern is identical.
 
 ## Design tokens
 
@@ -30,3 +35,17 @@ The CV has its own print-tuned token canon (4-step text scale, accent, A4 sizing
 - `@media print { body { padding: 0 } }` — the body padding is screen-preview only.
 - Must stay **1 page**. The script warns if it spills to 2.
 - Photo lives next to the HTML (`ui/Profil.close.png`) so `file://` export resolves it.
+
+## ATS font rules (do not regress)
+
+**Root cause (fixed):** Chrome CLI `--print-to-pdf` splits web-font glyphs
+across font subsets with incorrect ToUnicode maps → PDF readers and ATS see
+broken words. Fixed by switching to Puppeteer `page.pdf()`.
+
+**CSS rules to keep anyway** (defence-in-depth):
+- Static weight notation only: `Manrope:wght@400;500;600;700` not `wght@400..700`
+- `font-feature-settings: "liga" 0, "calt" 0` on `body`
+
+**Do NOT verify with `pdftotext`** — it reconstructs text intelligently and
+masks encoding bugs that ATS and PDF viewers still see. Use a real PDF reader
+(Preview.app) to copy-paste a word containing "b" and confirm it reads cleanly.
