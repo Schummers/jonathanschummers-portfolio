@@ -20,8 +20,8 @@ Construction site managers and foremen who log their crews' hours, equipment use
 
 ### Key results
 
-- **4 modules** harmonised in one interface adapted to operational site workflows, with all data centralised in a single ERP, replacing **3 legacy tools**
-- **12 site users** rated the tool positively during usability tests on data-entry ease and navigation logic, with an average **SUS score of 83**
+- **4 operational modules** integrated in one interface adapted to site users daily workflows, with all data centralised in a single ERP, replacing **3 legacy tools**
+- **12 site users** rated the tool positively in usability tests (avg. SUS 83), highlighting the frictionless data flow and cross-functional interactions between modules.
 
 ## How I solved this problem
 
