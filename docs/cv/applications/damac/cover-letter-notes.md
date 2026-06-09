@@ -21,7 +21,7 @@
 ## 2. Positionnement candidat (DAMAC version)
 
 **Une phrase :**
-> Senior Product Designer with 6 years shipping 0→1 SaaS in industry, finance and proptech — data-driven, AI-native, with deep real estate roots (licensed pro + 15-property family rental portfolio).
+> Senior Product Designer with 6 years shipping 0→1 SaaS in industry, finance and proptech — data-driven, AI-native, with deep real estate roots (licensed pro + 11-property family rental portfolio).
 
 **Triple edge à exploiter :**
 1. Senior PD européen avec design system & discovery rigueur (standard EU recherché par Francis Arul, ex-LVMH)
@@ -41,7 +41,7 @@
 > "Reading about your $50M Anthropic investment and the agentic AI initiatives across the Group, I felt my profile sat exactly at the crossroads: AI-native product design with deep real estate ownership."
 
 **Option C — Insider angle (sobre, authentique) :**
-> "I'm a French Senior Product Designer with 6 years in 0→1 SaaS, a licensed real estate professional, and I personally manage a 15-property family rental portfolio. That triple lens — product, design, real estate insider — is what I'd bring to DAMAC."
+> "I'm a French Senior Product Designer with 6 years in 0→1 SaaS, a licensed real estate professional, and I personally manage a 11-property family rental portfolio. That triple lens — product, design, real estate insider — is what I'd bring to DAMAC."
 
 → **Reco actuelle : C en ouverture, B en deuxième paragraphe, A en clôture comme leave-behind à proposer.**
 
@@ -95,7 +95,7 @@
 
 - **Sandie Blanchaud (Head of Design, Total Digital Factory)** — testimonial sur autonomie + complexité technique, à utiliser en preuve seniorité
 - KPIs portfolio : +23% kWh, −6% pipe leaks, #1 Google UX Benchmark, 84+ screens
-- 15-property portfolio (l'angle insider absolu, à mentionner sans en faire l'argument central)
+- 11-property portfolio (l'angle insider absolu, à mentionner sans en faire l'argument central)
 
 ---
 

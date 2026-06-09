@@ -113,7 +113,7 @@ Si le brief de Marco se précise sur une vertical Gargash, voici les angles à p
 | **Group-level digital transformation** (default) | TotalEnergies (transformation dans une major) + cross-vertical fluency |
 | **Automotive (Mercedes/Sixt)** | Spie Batignolles (digitalisation field workers) — proche en logique B2E + opérations |
 | **Financial services (Daman/Deem)** | BforBank (#1 Google UX Benchmark 2023) — cas le plus aligné |
-| **Real estate (Gargash RE)** | Valoris + 15-property portfolio + licensed pro — à pousser si scope confirmé |
+| **Real estate (Gargash RE)** | Valoris + 11-property portfolio + licensed pro — à pousser si scope confirmé |
 | **F&B / Hospitality** | Pas direct, mais cognitive psychology + service design transposable |
 
 → **À recalibrer dans les 24h après réponse Marco aux questions.**
