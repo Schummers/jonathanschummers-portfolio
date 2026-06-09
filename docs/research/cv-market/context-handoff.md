@@ -128,7 +128,7 @@ Gargash est **simultanément family office ET conglomerate opérationnel sous le
 - Summary 3-4 lignes max, plus grande police (10.5pt), pas d'encart gris
 
 **Texte summary actuel :**
-> 6 years shipping **0→1 SaaS** for industry, finance and proptech — at TotalEnergies, BforBank and Spie Batignolles via Avanade (**Accenture-Microsoft JV**). Now **data-driven and AI-native**, building **Valoris** — a property management SaaS where I research, design and code with AI. Licensed real estate professional in Luxembourg, managing a 15-property family rental portfolio.
+> 6 years shipping **0→1 SaaS** for industry, finance and proptech — at TotalEnergies, BforBank and Spie Batignolles via Avanade (**Accenture-Microsoft JV**). Now **data-driven and AI-native**, building **Valoris** — a property management SaaS where I research, design and code with AI. Licensed real estate professional in Luxembourg, managing a 11-property family rental portfolio.
 
 À retravailler probablement pour intégrer le pivot stratégique Gargash.
 

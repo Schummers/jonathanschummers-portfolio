@@ -71,7 +71,7 @@ Problèmes (cf. challenge §7) : `data-driven` + `AI-native` sont bannis par la 
 > "Product designer and founder building Valoris, an AI assistant for landlords managing their own property. Six years on 0→1 software in energy, heavy industry, and finance: a refinery tool used by 500 inspectors, a bank onboarding ranked first of 51 in Google's 2023 benchmark. Now I research, design, and code with Cursor and Claude Code."
 
 **Variante Dubai (remonte le combo real estate — cf. playbook §7) :**
-> "Licensed real estate professional and product designer building Valoris, an AI assistant for landlords managing their own property. Six years shipping 0→1 software, now applied to proptech, plus a 15-property family rental portfolio I run in Luxembourg. I research, design, and code with Cursor and Claude Code."
+> "Licensed real estate professional and product designer building Valoris, an AI assistant for landlords managing their own property. Six years shipping 0→1 software, now applied to proptech, plus a 11-property family rental portfolio I run in Luxembourg. I research, design, and code with Cursor and Claude Code."
 
 ### TBD — éléments à compléter après cette session
 
@@ -127,7 +127,7 @@ Deux pivots récents à valoriser :
 - "Pivoted from a documentation tool to an **agent-first AI workflow** after research surfaced that landlords want guidance, not just storage — validated through user interviews + Meta ads campaigns."
 - "Repositioned target market from **Luxembourg → France** based on research-led signal of demand."
 - "Solo build: discovery, product strategy, design system, frontend coded with Cursor + Claude Code."
-- "Insider perspective via 15-property family rental portfolio — turning real-world rental ops pain points into shipped features."
+- "Insider perspective via 11-property family rental portfolio — turning real-world rental ops pain points into shipped features."
 
 ### Stack Valoris
 
