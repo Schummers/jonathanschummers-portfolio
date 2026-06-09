@@ -26,7 +26,7 @@ export function ProjectCardCompact({ project }: { project: Project }) {
       <div className="flex-1 flex flex-col justify-center gap-sm">
         <div className="flex flex-col gap-xs">
           {project.company && (
-            <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
+            <p className="font-body text-label font-bold uppercase tracking-label text-accent-text">
               {project.company}
             </p>
           )}

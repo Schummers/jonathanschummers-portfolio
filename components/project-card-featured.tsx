@@ -81,7 +81,7 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
             {/* Company + Title */}
             <div className="flex flex-col gap-xs">
               {project.company && (
-                <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
+                <p className="font-body text-label font-bold uppercase tracking-label text-accent-text">
                   {project.company}
                 </p>
               )}

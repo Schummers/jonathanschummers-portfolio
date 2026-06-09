@@ -16,19 +16,18 @@ export function Hero() {
 
           {/* Tagline — H1 */}
           <h1 className="mt-sm font-display text-h1 font-bold leading-h1 tracking-h1 text-text-primary">
-            Freelance product designer (6y+).
+            Data-driven designer with PM skills.
           </h1>
 
           {/* Subtitle — H2 */}
           <p className="mt-lg font-display text-h2 font-bold leading-h2 tracking-h2 text-text-primary">
-            I research, strategize, and design for proptech &amp; fintech SaaS.
+            I help proptech &amp; fintech teams de-risk what they build, then design it end-to-end.
           </p>
 
           {/* Body text */}
           <div className="mt-md max-w-[var(--case-prose)]">
             <p className="font-body text-body-lg leading-body text-text-primary">
-              What drives me: solving hard problems, shipping fast, and
-              iterating until it works.
+              Six years in, I still believe the fastest way to learn is to ship, track &amp; iterate, and now I use AI to shorten that loop even more.
             </p>
             <p className="mt-sm font-body text-body leading-body text-text-secondary">
               Based in Luxembourg, working remotely.

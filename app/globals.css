@@ -38,11 +38,11 @@
   --disabled-fg: #9f9fa9;
 
   /* Accent */
-  --accent: #0A4CF0;
-  --accent-hover: #0839b8;
-  --accent-text: #0A4CF0;
-  --accent-muted: #3670f5;
-  --accent-subtle: #d4e3ff;
+  --accent: #C2410C;
+  --accent-hover: #9A3409;
+  --accent-text: #C2410C;
+  --accent-muted: #EA580C;
+  --accent-subtle: #FFF7ED;
   --text-on-accent: #ffffff;  /* texte/icônes posés sur bg-accent (brand button) */
 
   /* Layout — case study widths */
@@ -196,7 +196,7 @@
   --disabled-fg: #52525c;
 
   /* Accent — text adjusted for contrast on dark bg */
-  --accent-text: #6d9dfa;
+  --accent-text: #FB923C;
 }
 
 /* --- Dark mode (préférence système, sauf override .light) --- */
@@ -221,7 +221,7 @@
     --disabled-bg: #3f3f47;
     --disabled-fg: #52525c;
 
-    --accent-text: #6d9dfa;
+    --accent-text: #FB923C;
   }
 }
 
