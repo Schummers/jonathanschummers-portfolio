@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cover letter DAMAC — Jonathan Schummers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     Cover letter DAMAC — standalone print artifact.
+     Token canon: docs/cv/DESIGN-CV.md (aligned with cv-template.html).
+     Canvas 794 x 1123 px (A4 @96dpi).
+     ============================================================ */
+  :root {
+    --text-primary:   #18181b;
+    --text-secondary: #66666f;
+    --text-tertiary:  #9f9fa7;
+    --accent-cv:      #C2410C;
+    --bg:      #fafafa;
+    --surface: #f4f4f5;
+    --border:  #e4e4e7;
+
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-body:    'Manrope', system-ui, sans-serif;
+
+    --text-cv-body: 12px;
+    --text-letter: 14px;   --leading-letter: 24px;   /* = --text-body-sm du canon CV, ~11pt lettre */
+    --text-cv-meta: 11px;  --leading-cv-meta: 16px;
+
+    --page-w: 794px;
+    --page-h: 1123px;
+    --page-margin: 60px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background: #6b6b76;
+    display: flex; justify-content: center;
+    padding: 40px 0;
+    font-feature-settings: "liga" 0, "calt" 0;
+  }
+  @page { size: 794px 1123px; margin: 0; }
+
+  .page {
+    position: relative;
+    width: var(--page-w);
+    height: var(--page-h);
+    overflow: hidden;
+    background: var(--bg);
+    padding: var(--page-margin);
+    display: flex; flex-direction: column;
+  }
+  @media print {
+    body { padding: 0; background: var(--bg); }
+  }
+
+  /* ============ HEADER (mirrors CV) ============ */
+  header {
+    display: flex; justify-content: space-between; align-items: stretch;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .id-left { display: flex; flex-direction: column; justify-content: space-between; }
+  .name  { font-family: var(--font-display); font-size: 24px; font-weight: 500; line-height: 30px; }
+  .title { font-size: var(--text-letter); font-weight: 400; line-height: 20px; color: var(--text-secondary); margin-top: 2px; }
+  .contact { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+  .contact span { font-size: var(--text-cv-meta); font-weight: 400; line-height: var(--leading-cv-meta); color: var(--text-secondary); }
+  .contact a { color: var(--text-secondary); text-decoration: underline; text-underline-offset: 2px; }
+
+  .eligibility {
+    margin-top: 16px;   /* floor — space-between pousse plus bas si la colonne droite est plus haute */
+    font-size: var(--text-cv-meta); font-weight: 400;
+    line-height: var(--leading-cv-meta);
+    color: var(--text-secondary);
+  }
+  .eligibility .dot { padding: 0 6px; color: var(--text-tertiary); }
+
+  /* ============ SUBJECT / DATE ============ */
+  .recipient { margin-top: 36px; display: flex; justify-content: space-between; align-items: baseline; }
+  .recipient .date { font-size: var(--text-cv-meta); line-height: var(--leading-cv-meta); font-weight: 400; color: var(--text-secondary); }
+
+  .subject {
+    font-family: var(--font-body);
+    font-size: var(--text-letter); font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  /* ============ BODY ============ */
+  .letter { margin-top: 20px; display: flex; flex-direction: column; gap: 16px; }
+  .letter p { font-size: var(--text-letter); font-weight: 400; line-height: var(--leading-letter); color: var(--text-primary); }
+  .letter .salutation { font-weight: 600; }
+  .letter ul { display: flex; flex-direction: column; gap: 12px; padding-left: 2px; }
+  .letter li { list-style: none; display: flex; gap: 8px; align-items: baseline; font-size: var(--text-letter); line-height: var(--leading-letter); color: var(--text-primary); }
+  .letter li::before { content: "•"; flex: 0 0 auto; color: var(--accent-cv); font-size: 11px; }
+  .letter strong { font-weight: 600; }
+
+  /* ============ SIGN-OFF ============ */
+  .signoff { margin-top: 28px; }
+  .signoff .closing { font-size: var(--text-letter); line-height: var(--leading-letter); color: var(--text-primary); }
+  .signoff .signame { margin-top: 22px; font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--text-primary); }
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <header>
+      <div class="id-left">
+        <div>
+          <div class="name">Jonathan Schummers</div>
+          <div class="title">Senior Product Designer with PM skills</div>
+        </div>
+        <div class="eligibility">
+          Luxembourgish national<span class="dot">·</span>Visa sponsorship required<span class="dot">·</span>Available immediately
+        </div>
+      </div>
+      <div class="contact">
+        <span><a href="https://jonathanschummers.com">jonathanschummers.com</a></span>
+        <span><a href="https://linkedin.com/in/jonathanschummers">linkedin.com/in/jonathanschummers</a></span>
+        <span>jonathan.schummers@gmail.com</span>
+        <span>+33 6 95 25 40 82</span>
+      </div>
+    </header>
+
+    <div class="recipient">
+      <div class="subject">Open application: Senior Product Designer</div>
+      <div class="date">10 June 2026</div>
+    </div>
+
+    <div class="letter">
+      <p class="salutation">Dear Hiring Manager,</p>
+
+      <!-- HOOK — version user 2026-06-10, polie (variante B avec les 3 compétences) -->
+      <p>What drew me to DAMAC is the digital ecosystem you built across the entire customer journey. That maturity, investing in proprietary tools and treating digital as a growth driver rather than a cost centre, is rare among developers. This is the kind of environment where I can contribute the most.</p>
+
+      <p>Where I would have impact:</p>
+
+      <ul>
+        <li><span>On <strong>damacproperties.com</strong>, my user research skills can help your analytics team understand funnel drop-offs and iterate on the design to increase reservations. The same method raised onboarding <strong>conversion 6%</strong> at Valoris, and I also designed the onboarding flow of the BforBank app, which ranked <strong>first of 51 banks</strong> in Google's 2023 UX benchmark.</span></li>
+        <li><span>On <strong>DAMAC 360</strong>, three years on data-heavy B2B products at TotalEnergies taught me to de-risk new features and iterate after shipping: I designed an ML-powered maintenance product that helped inspectors reduce <strong>corrosion leaks 6%</strong> on the pilot refinery. My real estate licence also gives me a deeper understanding of the users' perspective and their work.</span></li>
+        <li><span>On <strong>DAMAC Living</strong>, I understand property management first-hand: I manage an <strong>11-property family portfolio</strong> daily and know how AI can improve service and experience while automating as much as possible. That problem is what pushed me to found Valoris, an agentic SaaS that turns user inputs and documents into structured data for tax returns and yield tracking.</span></li>
+      </ul>
+
+      <p>Furthermore, despite the current market turbulence, I hold a deep conviction in Dubai luxury real estate: the city will keep attracting the world's wealth and the families that come with it. From my understanding, that is DAMAC's vision too, with branded residences and the largest family-home pipeline in Dubai. I want to grow with the company that leads that market.</p>
+    </div>
+
+    <div class="signoff">
+      <p class="closing">I would be pleased to take this further over a call, whenever it suits you.</p>
+      <p class="closing" style="margin-top: 16px;">Yours sincerely,</p>
+      <div class="signame">Jonathan Schummers</div>
+    </div>
+
+  </div>
+</body>
+</html>

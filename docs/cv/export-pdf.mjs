@@ -22,13 +22,13 @@ const UI_DIR    = path.join(__dirname, 'ui');
 
 // Usage: node export-pdf.mjs [src-basename-without-ext]
 // Examples:
-//   node export-pdf.mjs                    → cv-v7-design-md → cv-jonathan-schummers.pdf
-//   node export-pdf.mjs cv-dubai-immo      → Jonathan Schummers - CV.pdf
-//   node export-pdf.mjs cv-classique-immo  → Jonathan Schummers - CV.pdf
+//   node export-pdf.mjs                     → cv-template → cv-jonathan-schummers.pdf
+//   node export-pdf.mjs cv-dubai-immo       → JonathanSchummers_CV.pdf
+//   node export-pdf.mjs cover-letter-damac  → JonathanSchummers_CoverLetter.pdf
 const arg  = process.argv[2];
 const SRC  = arg ? `${arg}.html` : 'cv-template.html';
 const OUT  = arg
-  ? path.join(__dirname, 'JonathanSchummers_CV.pdf')
+  ? path.join(__dirname, arg.startsWith('cover-letter') ? 'JonathanSchummers_CoverLetter.pdf' : 'JonathanSchummers_CV.pdf')
   : path.join(__dirname, 'cv-jonathan-schummers.pdf');
 
 const MIME = {
