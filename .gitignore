@@ -46,3 +46,7 @@ next-env.d.ts
 # Claude Code — local-only settings
 .claude/settings.local.json
 .claude/worktrees/
+
+# Generated CV / cover-letter PDFs (regenerable from HTML via docs/cv/export-pdf.mjs)
+# Source-of-truth HTML stays tracked; input PDFs in docs/cv/data/ stay tracked.
+/docs/cv/*.pdf
