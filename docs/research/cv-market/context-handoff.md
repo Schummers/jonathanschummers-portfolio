@@ -81,7 +81,7 @@ Gargash est **simultanément family office ET conglomerate opérationnel sous le
 - Pain point #1 documenté : **handover/snagging UX sur DAMAC Living** (3 188 reviews Trustpilot)
 - Customer apps : DAMAC Living, DAMAC 360 (broker), DAMAC Central (employé)
 - 8 master communities (DAMAC Hills, Lagoons, Islands, Sun City, Riverside, etc.)
-- Branded residences : Trump, Cavalli, Versace, Bugatti, Chelsea FC, Mandarin Oriental
+- Branded residences : Trump, Cavalli, Versace, Chelsea FC, Mandarin Oriental (⚠️ correction 2026-06-10 : Bugatti Residences = Binghatti, pas DAMAC)
 - $20Md US data centers via DAMAC Digital
 - **Plan B intéressant : PRYPCO** (Amira Sajwani) — tokenized real estate + fractional ownership
 
