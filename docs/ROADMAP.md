@@ -5,7 +5,8 @@
 > Tiens les statuts à jour (✅ fait · 🔄 en cours · ⬜ à faire) au fur et à mesure.
 >
 > Date: 2026-06-16 · Branche portfolio: `feature/cv-generation` (poussée, pas mergée).
-> Remplace `etat-des-lieux.md` (archivé) et `2026-06-08-cv-portfolio-shortterm-plan.md` (archivé).
+> Remplace `etat-des-lieux.md` (archivé). Absorbe `2026-06-08-cv-portfolio-shortterm-plan.md`
+> (gardé actif pour l'instant, archivable quand tu veux).
 
 ---
 
@@ -40,7 +41,7 @@ Tout le reste vient après. Ne pas démarrer la réorg des dossiers avant ça.
 | 2 | **Case studies Nod + Smart Integrity** | ⬜ | **Priorité.** Refaire via workflow `case-study`. Dans la structure actuelle (`content/case-studies/*.md`). |
 | 3 | **Migration modèle contenu (B) + séparation dossiers (A) + grand nettoyage doc** | ⬜ | Voir §Réorganisation. Rework jugé minime, donc après le contenu. |
 | 4 | **Bouton CV** (lien PDF téléchargeable) | ⬜ | PDF classique généraliste dans `/public`. Pas d'affichage HTML (voir §Challenge). **Prérequis:** reporter les ~11 edits de wording de `docs/cv/TODO-sync-2col-cv.md` dans les CV 2 colonnes + regen PDF (`node docs/cv/export-pdf.mjs <variant>`), pour que le PDF public soit à jour. |
-| 5 | **Reste** | ⬜ | Section services (portfolio + LinkedIn + Malt), case study Valoris (quand la donnée existe), Phase B renderer React. **Phase B:** cible d'acceptation = reproduire le CV HTML actuel (`docs/cv/ui/cv-template.html`) depuis la data ; réutiliser `docs/cv/export-pdf.mjs` (Puppeteer) comme impl de référence. Scripts de génération existants: `export-pdf.mjs`, `build-ats-docx.mjs`. |
+| 5 | **Reste** | ⬜ | Section services (portfolio + LinkedIn + Malt), case study Valoris (quand la donnée existe), Phase B renderer React. **Hero/services:** auditer `app/page.tsx` + composants hero, présenter ce qui cloche, décider ensemble ; respecter `DESIGN.md` (tokens, pas de hex brut, 1 brand button max) + `npm run ds:check`. **Phase B:** cible d'acceptation = reproduire le CV HTML actuel (`docs/cv/ui/cv-template.html`) depuis la data ; réutiliser `docs/cv/export-pdf.mjs` (Puppeteer) comme impl de référence. Scripts existants: `export-pdf.mjs`, `build-ats-docx.mjs`. |
 | B | **Backlog** | ⬜ | ATS Part 1 (bug PDF Type 3, n'affecte que le parsing machine). |
 
 Priorité explicite: **refaire le contenu vite**. La migration du modèle et la séparation
@@ -70,6 +71,7 @@ des dossiers viennent après, le rework est minime.
 | **boosted** | = "Boosty Geo Scientist", projet de TotalEnergies → `projects/boosty` (slug à confirmer), `experience: totalenergies`. |
 | **Contenu non lié** | Posts ET case studies peuvent être transverses à plusieurs entités, ou rattachés à rien. Références optionnelles et possiblement multiples. |
 | **Posts liés** | Un post lié à un projet peut apparaître sur la page du projet (section articles liés). |
+| **Bullets enfants (Q1)** | **Tranché:** les bullets CV des enfants vivent au niveau **projet (enfant)** ; l'experience agrège les bullets featured de ses projets. Préserver/utiliser le champ `parent` existant. |
 | **Case studies** | Refaire via workflow `case-study` complet. Cible: workflow assez bon pour générer une proposition quasi one-shot depuis les grandes lignes/étapes que tu donnes. |
 | **Doc maître** | Tout créer dans le portfolio pour l'instant (séparation pas encore faite). Cette ROADMAP est l'index unique; on passe toujours par elle. |
 
@@ -142,18 +144,20 @@ Hiérarchie à mapper en Phase 0:
 
 `lib/case-studies.ts` change juste son `CASE_STUDIES_DIR`. La migration peut attendre (rework minime).
 
-### Décision encore ouverte (à trancher pendant la migration / Phase 0)
+### Q1 — bullets enfants : TRANCHÉ
 
-**Q1 — où vivent les bullets CV qui sont des achievements des enfants** (BforBank, Spie sont
-des projets sous Avanade, mais leurs bullets apparaissent sous le bloc Avanade du CV) ?
-- (a) champ `cvBullets` sur le parent (`avanade`) — rapide.
-- (b) flag `cvFeatured` sur les enfants (`bforbank`, `spie-bat`), le parent agrège — vrai modèle hub.
-- (c) verbatim sur le parent maintenant, vrai modèle plus tard.
+Les bullets CV qui sont des achievements des enfants (BforBank, Spie sous Avanade ; Nod,
+Smart Integrity sous TotalEnergies) **vivent au niveau du projet (l'enfant)**, pas du parent.
+L'expérience (bloc CV) **agrège** les bullets "featured" de ses projets. Concrètement: étape
+de migration = ajouter sur chaque `project` un champ pour ses bullets CV (+ un flag type
+`cvFeatured`), et faire remonter par l'`experience`. Le champ `parent` existe déjà sur les
+case-studies actuelles mais n'est pas exploité : **le préserver et l'utiliser** dans la migration.
 
-### Phase 0 — détail (à ne pas perdre, repris du shortterm-plan archivé)
+### Phase 0 — détail (à ne pas perdre, repris du shortterm-plan)
 
 But: figer le schéma des `experiences` et reporter le wording validé du CV v7. Ne change pas
-le CV d'aujourd'hui (le PDF se génère du HTML, pas encore des YAML).
+le CV d'aujourd'hui (le PDF se génère du HTML, pas encore des YAML). Le **CV v7 HTML est la
+source de référence** pour tout le wording (summaries, bullets, skills).
 
 État actuel des champs par mission (vérifié dans le code) :
 
@@ -161,7 +165,15 @@ le CV d'aujourd'hui (le PDF se génère du HTML, pas encore des YAML).
 |---|:--:|:--:|:--:|:--:|:--:|
 | `summary` (intro CV 1re pers.) | ❌ | ❌ | ❌ | ❌ | ❌ (manquant partout) |
 | `skills` (ligne CV) | ❌ | ❌ | ✅ | ✅ | ✅ |
-| `bullets` alignés CV v7 | ❌ génériques | ❌ | ❌ vides (0) | ✅ (4) | ✅ provisoires (4) |
+| `bullets` alignés CV v7 | ❌ génériques (→ Q1) | ❌ | ❌ vides (0) | ✅ (4) | ✅ provisoires (4) |
+
+Checklist schéma :
+- Ajouter `summary` (intro CV, **1re personne**, distincte de `tagline` qui est 3e personne)
+  au `_template.md` + aux 5 experiences.
+- Standardiser `skills` partout (vide si pas de ligne skills au CV).
+- Corriger l'exemple de dates du `_template.md` (`2021-12 / 2024-11` = source du bug Total).
+- Précédent utile: `spie-batignolles.md` a **déjà fusionné** des champs case-study dans le
+  frontmatter mission → la voie unifiée était amorcée, s'en servir de modèle.
 
 Wording validé à reporter (CV v7) :
 - **Summaries** (1re personne):
@@ -170,7 +182,16 @@ Wording validé à reporter (CV v7) :
   - Avanade: "I delivered on the full design scope, from user research to ideation and UI design, for BforBank, Sodexo, Chanel and Schneider Electric."
 - **Skills lines**: Valoris = Backlog management · Tracking plan · Data pipelines · Custom AI skills ·
   Total = Story mapping · Adoption tracking · Data mapping · Design system · Avanade = (aucune au CV).
-- Corriger l'exemple de dates du `_template.md` (source du bug Total).
+
+Vérif cohérence: Avanade 2,5 ans + Total 3 ans + Valoris ~1 an = ~6,5 ans → titre "(6y+)" tient.
+
+### Mapping des slugs (alignement migration)
+
+| Expérience (mission actuelle) | Projets (case-studies actuelles) |
+|---|---|
+| `avanade` | `bforbank`, `spie-bat` (mission dit `spie-batignolles` → aligner sur `spie-bat`) |
+| `totalenergies` | `nod`, `smartintegrity`, `boosty` (case-study `boosted`, non publiée) |
+| `valoris` | `valoris` (case study plus tard) |
 
 ---
 
@@ -302,8 +323,15 @@ selon §Routing):
 - `docs/cv/DESIGN-CV.md`, `docs/cv/CLAUDE.md` — canon + export CV.
 - `docs/cv/TODO-sync-2col-cv.md` — wording à reporter dans les CV 2 colonnes (si pas déjà fait).
 
-**Archivés / à archiver:**
-- `2026-06-15-etat-des-lieux.md` — remplacé par cette ROADMAP.
-- `2026-06-08-cv-portfolio-shortterm-plan.md` — absorbé par cette ROADMAP.
+**Déjà archivé:**
+- `docs/archive/2026-06-15-etat-des-lieux.md` — remplacé par cette ROADMAP.
+
+**Pleinement absorbé dans cette ROADMAP, archivable quand tu veux** (gardé actif pour l'instant):
+- `docs/superpowers/specs/2026-06-08-cv-portfolio-shortterm-plan.md` — tout son contenu utile
+  (Phase 0, wording validé, schéma, slugs, Q1) est désormais dans la ROADMAP.
+
+**À archiver / nettoyer (étape 3):**
 - `docs/cv/data/notes-experiences.md` — obsolète.
+- vieux HTML CV (`cv-v4`, `cv-v6-2variants`, `cv-v7-color-tests`) — déjà dans `docs/cv/ui/_archive/`.
+- `docs/cv/ui/_preview-server.cjs` — jetable (preview dev).
 - Gargash (research + notes) — jeté (on ne postule pas).
