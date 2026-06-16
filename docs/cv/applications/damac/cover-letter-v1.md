@@ -1,3 +1,19 @@
+---
+company: DAMAC Properties
+role: Senior Product Designer
+location: Dubai, UAE
+date: 2026-06-08
+status: superseded  # replaced by v2-simple
+variant: detailed
+language: en
+channel: warm-intro  # via Marco
+word_count: ~290
+visa: UAE employment sponsorship required
+tags: [proptech, real-estate-domain, b2c-craft, enterprise-saas, design-with-ai, discovery-research]
+proof_points: [totalenergies, bforbank, valoris, portfolio-real-estate]
+reusable_blocks: [opener-domain-insider, three-proof-points, damac-living-snagging-audit]
+---
+
 # Cover letter — DAMAC Properties
 > v1 · 8 June 2026 · English · 1 page A4
 > Recipient TBD: confirm with Marco. Most likely Ali Sajwani (MD Operations & Technology)
