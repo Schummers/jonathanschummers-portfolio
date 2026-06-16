@@ -231,8 +231,8 @@ const doc = new Document({
 
       // ===== Education & Certifications =====
       label('Education & Certifications'),
-      eduEntry('Master in Human-Machine Interactions', 'Université Lumière Lyon 2', '2019-2020'),
-      eduEntry('Master in Cognitive Psychology', 'Université Paris Descartes', '2017-2019'),
+      eduEntry('Master of Human-Machine Interactions', 'Université Lumière Lyon 2', '2019-2020'),
+      eduEntry('Master of Cognitive Psychology', 'Université Paris Descartes', '2017-2019'),
       eduEntry('Licensed Real Estate Professional', 'Luxembourg Chamber of Commerce', '2025'),
       new Paragraph({
         spacing: { before: 60, after: 0, line: LINE },
