@@ -47,9 +47,10 @@ const S = {
 };
 const LINE = 264; // 1.10 line spacing (240 = single)
 
-// A4 (twips) with 1.5cm margins -> content width for the right tab stop.
-const MARGIN = 709;                 // 1.25 cm
-const RIGHT_TAB = 11906 - MARGIN * 2; // right edge of the text area (dates snap here)
+// A4 (twips). Margins: 1.25cm all sides.
+const MARGIN_X = 709;                  // 1.25 cm  (left / right)
+const MARGIN_Y = 709;                  // 1.25 cm  (top / bottom)
+const RIGHT_TAB = 11906 - MARGIN_X * 2; // right edge of the text area (dates snap here)
 
 // ---- helpers -------------------------------------------------------------
 const r  = (text, opts = {}) => new TextRun({ text, font: BODY, ...opts });
@@ -106,16 +107,16 @@ const eduEntry = (degree, institution, year) => new Paragraph({
   spacing: { before: 60, after: 0, line: LINE },
   tabStops: [{ type: TabStopType.RIGHT, position: RIGHT_TAB }],
   children: [
-    sb(degree, { size: S.body }),
-    r(' · ', { size: S.body, color: TERTIARY }),
-    r(institution, { size: S.body, color: SECONDARY }),
+    sb(degree, { size: S.meta, color: INK }),
+    r(' · ', { size: S.meta, color: TERTIARY }),
+    r(institution, { size: S.meta, color: SECONDARY }),
     r('\t' + year, { size: S.meta, color: TERTIARY }),
   ],
 });
 
 const link = (anchor, url) => new ExternalHyperlink({
   link: url,
-  children: [new TextRun({ text: anchor, font: BODY, size: S.meta, color: INK, underline: {} })],
+  children: [new TextRun({ text: anchor, font: BODY, size: S.meta, color: '1155CC', underline: {} })],
 });
 
 // ---- document ------------------------------------------------------------
@@ -136,7 +137,7 @@ const doc = new Document({
     properties: {
       page: {
         size: { width: 11906, height: 16838 },
-        margin: { top: MARGIN, right: MARGIN, bottom: MARGIN, left: MARGIN },
+        margin: { top: MARGIN_Y, right: MARGIN_X, bottom: MARGIN_Y, left: MARGIN_X },
       },
     },
     children: [
@@ -223,23 +224,23 @@ const doc = new Document({
         tabStops: [{ type: TabStopType.RIGHT, position: RIGHT_TAB }],
         children: [
           sb('Teach master’s students to deliver real insights with user research', { size: S.body }),
-          r(' · Université Paris Cité', { size: S.body, color: SECONDARY }),
+          r(' · Université Paris Cité', { size: S.meta, color: SECONDARY }),
           r('\t2023-Present', { size: S.meta, color: TERTIARY }),
         ],
       }),
 
       // ===== Education & Certifications =====
       label('Education & Certifications'),
-      eduEntry('Master, Human-Machine Interactions', 'Université Lumière Lyon 2', '2019-2020'),
-      eduEntry('Master, Cognitive Psychology', 'Université Paris Descartes', '2017-2019'),
+      eduEntry('Master in Human-Machine Interactions', 'Université Lumière Lyon 2', '2019-2020'),
+      eduEntry('Master in Cognitive Psychology', 'Université Paris Descartes', '2017-2019'),
       eduEntry('Licensed Real Estate Professional', 'Luxembourg Chamber of Commerce', '2025'),
       new Paragraph({
         spacing: { before: 60, after: 0, line: LINE },
         tabStops: [{ type: TabStopType.RIGHT, position: RIGHT_TAB }],
         children: [
-          sb('PSPO & PSU', { size: S.body }),
-          r(' · ', { size: S.body, color: TERTIARY }),
-          r('Professional Scrum Product Owner I · Professional Scrum with UX (Scrum.org)', { size: S.body, color: SECONDARY }),
+          sb('PSPO & PSU', { size: S.meta, color: INK }),
+          r(' · ', { size: S.meta, color: TERTIARY }),
+          r('Professional Scrum Product Owner I · Professional Scrum with UX (Scrum.org)', { size: S.meta, color: SECONDARY }),
           r('\t2024', { size: S.meta, color: TERTIARY }),
         ],
       }),
@@ -257,7 +258,7 @@ const doc = new Document({
       }),
       new Paragraph({
         spacing: { before: 60, after: 0, line: LINE },
-        children: [sb('Tools: ', { size: S.body }), r('Figma · Miro · Hotjar · PostHog · Jira · Linear · Notion · Cursor · Claude Code', { size: S.body })],
+        children: [sb('Tools: ', { size: S.body }), r('Figma · Miro · Hotjar · PostHog · Jira · Linear · Notion · GitHub · Cursor · Claude Code', { size: S.body })],
       }),
     ],
   }],
