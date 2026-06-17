@@ -37,7 +37,7 @@ Tout le reste vient après. Ne pas démarrer la réorg des dossiers avant ça.
 | # | Étape | Statut | Notes |
 |---|---|:--:|---|
 | 0 | **LinkedIn banner generation** (parallèle, autre session) | 🔄 | À **déplacer dans `cv/`** (hub de génération), pas dans le portfolio. `docs/banners/` aussi. |
-| 1 | **Skills update** (gate) | ⬜ | `writing-style` ← CV générés ; `case-study` ← Spie Bat. Détail §Skills update. |
+| 1 | **Skills update** (gate) | ✅ | `writing-style` ← CV générés ; `case-study` ← Spie Bat. Détail §Skills update. |
 | 2 | **Case studies Nod + Smart Integrity** | ⬜ | **Priorité.** Refaire via workflow `case-study`. Dans la structure actuelle (`content/case-studies/*.md`). |
 | 3 | **Migration modèle contenu (B) + séparation dossiers (A) + grand nettoyage doc** | ⬜ | Voir §Réorganisation. Rework jugé minime, donc après le contenu. |
 | 4 | **Bouton CV** (lien PDF téléchargeable) | ⬜ | PDF classique généraliste dans `/public`. Pas d'affichage HTML (voir §Challenge). **Prérequis:** reporter les ~11 edits de wording de `docs/cv/TODO-sync-2col-cv.md` dans les CV 2 colonnes + regen PDF (`node docs/cv/export-pdf.mjs <variant>`), pour que le PDF public soit à jour. |
@@ -46,6 +46,13 @@ Tout le reste vient après. Ne pas démarrer la réorg des dossiers avant ça.
 
 Priorité explicite: **refaire le contenu vite**. La migration du modèle et la séparation
 des dossiers viennent après, le rework est minime.
+
+### Quick fixes portfolio (à caser dans l'urgent, DAMAC regarde le site)
+
+- ⬜ **Lien GitHub cassé (404).** Le portfolio pointe vers `github.com/jonathanschummers`
+  (inexistant). Bon profil = `github.com/Schummers`. À corriger dans
+  `components/cta-final.tsx:72` et `components/footer.tsx:36`. (Vérifier au passage que
+  l'URL voulue est bien le profil, pas le repo.)
 
 ---
 
@@ -224,31 +231,18 @@ tâche. Pas de copie physique.
 
 ---
 
-## Skills update (point 7) — workstream séparé (autre discussion)
+## Skills update (point 7) — workstream séparé ✅ fait
 
-Prérequis qualité des case studies. Met à jour les skills à partir du travail déjà fait (CV finaux, case study Spie Bat).
+Prérequis qualité des case studies. Mis à jour à partir du travail déjà fait (CV finaux, case study Spie Bat). Volontairement minimal: on a écarté les ajouts trop prescriptifs (gold examples, gras-sur-le-chiffre, capture steps) pour ne pas brider les skills.
 
-**Skill `writing-style`:**
-1. Bloc **"Gold examples"** (après "Core rules"), étiqueté "reference, not template": tagline
-   "Senior Product Designer with PM skills (6y+)", paragraphe profile ("Six years building
-   early-stage products taught me that design isn't usability..."), 3-4 bullets témoins couvrant
-   les 3 formes (pivot avec deux-points, résultat multi-métrique, capacité AI custom).
-2. Affiner la **"Bullet formula"** avec les patterns réels: deux-points pour introduire le
-   "comment"; gras sur le chiffre/levier pas le verbe; outils nommés en clair (Claude Code,
-   PostHog, Meta-ads); métriques juxtaposées en fin.
-3. Point **"Capture"** dans le workflow: quand une formulation est figée, proposer de l'ajouter
-   au bloc Gold examples (ne plus reperdre le travail).
+**Skill `writing-style`** (`.claude/skills/writing-style/SKILL.md`):
+- "Bullet formula": ajout de deux lignes en "on peut", pas en "il faut": nommer les outils en clair (Claude Code, PostHog, Meta-ads) plutôt que "tooling"; un deux-points peut introduire le mécanisme concret derrière l'action ("the how").
 
-**Skill `case-study`:**
-4. Remplacer le Good/Bad générique par le **set Spie Bat complet** (6 titres finaux comme preuve
-   "lis les titres = toute l'histoire"); nommer le pattern: verbe passé + chiffre + finalité
-   ("to ...") + métrique optionnelle en fin.
-5. Point **"Capture"** à l'étape Verify: après validation, proposer de remonter les titres finaux
-   dans le bloc d'exemples du skill.
-6. Vérifier le **Title H1** (mineur): l'exemple Spie Bat (~ligne 100) colle au `project.title`
-   actuel de `lib/data.ts`. Pas de changement si identique.
+**Skill `case-study`** (`.claude/skills/case-study/SKILL.md`):
+- Ajout d'un bloc "Example step titles (inspiration, not a template)" sous le Re-read test: les 6 titres finaux de Spie Bat, à titre d'inspiration.
+- Title H1: laissé tel quel (fonctionne bien). Raccourcissement éventuel plus tard.
 
-(Étapes 4/5/6 encore en réflexion.)
+**À faire plus tard (pas maintenant):** refaire la case study Spie Bat dans le **format complet** (comme Total / Nod / BforBank) au lieu de sa petite ligne actuelle. À placer après Nod + Smart Integrity (#2).
 
 ---
 
