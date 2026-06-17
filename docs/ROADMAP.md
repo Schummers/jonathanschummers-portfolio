@@ -72,6 +72,7 @@ des dossiers viennent après, le rework est minime.
 | **Contenu non lié** | Posts ET case studies peuvent être transverses à plusieurs entités, ou rattachés à rien. Références optionnelles et possiblement multiples. |
 | **Posts liés** | Un post lié à un projet peut apparaître sur la page du projet (section articles liés). |
 | **Bullets enfants (Q1)** | **Tranché:** les bullets CV des enfants vivent au niveau **projet (enfant)** ; l'experience agrège les bullets featured de ses projets. Préserver/utiliser le champ `parent` existant. |
+| **Vocabulaire "proptech"** | Le retirer comme mot principal partout (portfolio, LinkedIn, Malt, CV). Ancre = "real estate tech", "proptech" en keyword secondaire entre parenthèses. Détail + phrases candidates §Vocabulaire. |
 | **Case studies** | Refaire via workflow `case-study` complet. Cible: workflow assez bon pour générer une proposition quasi one-shot depuis les grandes lignes/étapes que tu donnes. |
 | **Doc maître** | Tout créer dans le portfolio pour l'instant (séparation pas encore faite). Cette ROADMAP est l'index unique; on passe toujours par elle. |
 
@@ -300,6 +301,39 @@ Design — Translating those needs into concrete solutions within an interface a
 ```
 
 ---
+
+## Vocabulaire: remplacer "proptech" (portfolio, LinkedIn, Malt, CV)
+
+Tâche transverse de copy: retirer "proptech" comme mot principal partout (portfolio,
+LinkedIn, Malt, CV, lettres). À faire quand on touche chaque surface (sweep rapide), et
+intégrer d'office dans la nouvelle copy (section services, profils).
+
+**Pourquoi:** mot d'initié, pas grand public. Les VC / accélérateurs / recruteurs spécialisés
+le cherchent, mais les entreprises elles-mêmes disent "real estate technology company" /
+"real estate platform". Les offres "fintech" surpassent "proptech" de 15 à 30× (marché fintech
+~11× plus grand). "proptech" = catégorie VC légitime, pas un terme mainstream.
+
+**Label retenu:** "real estate tech" comme ancre principale, "proptech" comme keyword
+secondaire entre parenthèses → **"fintech & real estate tech (proptech)"**. Compris par tous,
+capte les recherches recruiter/ATS via "proptech", n'aliène pas les hiring managers non-spécialistes.
+
+**Règle d'adaptation par audience:**
+
+| Audience | Lead avec |
+|---|---|
+| VC / accélérateur EU (Pi Labs, Concrete VC) | "proptech" |
+| Startup US grand public (Zillow, Compass) | "real estate technology" |
+| Hiring manager non-spécialiste | "real estate tech" |
+| Job post qui utilise "proptech" 3× | miroir exact |
+
+**Phrases candidates (source, à passer au skill `writing-style` — remplacer les tirets cadratins, bannis):**
+1. "Senior Product Designer — 0→1 SaaS in fintech and real estate tech (proptech)."
+2. "I help fintech and real estate tech teams turn complex, regulated workflows into products people actually use — from bank onboarding to AI tools for landlords."
+3. "Product designer at the intersection of fintech and real estate: 0→1 SaaS in finance, energy & industry + licensed real-estate background + founder of an AI assistant for landlords."
+4. "0→1 SaaS designer in regulated industries. Licensed real-estate background + building an AI assistant for landlords — I know the property domain from the inside."
+5. "Senior Product Designer — fintech & real estate tech. Six years shipping complex SaaS; currently applying that to proptech via my own AI-for-landlords venture."
+
+Note: les brouillons de la §Section Services utilisent encore "proptech & fintech" → à corriger en appliquant cette règle.
 
 ## Challenge: pas de CV en HTML sur le site
 
