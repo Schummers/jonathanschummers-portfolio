@@ -49,10 +49,8 @@ des dossiers viennent après, le rework est minime.
 
 ### Quick fixes portfolio (à caser dans l'urgent, DAMAC regarde le site)
 
-- ⬜ **Lien GitHub cassé (404).** Le portfolio pointe vers `github.com/jonathanschummers`
-  (inexistant). Bon profil = `github.com/Schummers`. À corriger dans
-  `components/cta-final.tsx:72` et `components/footer.tsx:36`. (Vérifier au passage que
-  l'URL voulue est bien le profil, pas le repo.)
+- ✅ **Lien GitHub cassé (404).** Corrigé: `github.com/jonathanschummers` →
+  `github.com/Schummers` dans `components/cta-final.tsx` et `components/footer.tsx` (commit 2026-06-17).
 
 ---
 

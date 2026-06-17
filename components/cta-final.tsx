@@ -69,7 +69,7 @@ export function CtaFinal() {
               <IconMalt size={18} />
             </a>
             <a
-              href="https://github.com/jonathanschummers"
+              href="https://github.com/Schummers"
               target="_blank"
               rel="noopener noreferrer"
               className="text-text-secondary transition-colors duration-[var(--dur-fast)] ease-out hover-supported:text-text-primary"
