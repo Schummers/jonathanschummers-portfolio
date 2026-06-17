@@ -308,6 +308,8 @@ Tâche transverse de copy: retirer "proptech" comme mot principal partout (portf
 LinkedIn, Malt, CV, lettres). À faire quand on touche chaque surface (sweep rapide), et
 intégrer d'office dans la nouvelle copy (section services, profils).
 
+Recherche détaillée: [`docs/research/cv-market/Proptech word.md`](research/cv-market/Proptech%20word.md).
+
 **Pourquoi:** mot d'initié, pas grand public. Les VC / accélérateurs / recruteurs spécialisés
 le cherchent, mais les entreprises elles-mêmes disent "real estate technology company" /
 "real estate platform". Les offres "fintech" surpassent "proptech" de 15 à 30× (marché fintech
