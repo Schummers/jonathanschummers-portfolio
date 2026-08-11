@@ -36,8 +36,9 @@ Tout le reste vient après. Ne pas démarrer la réorg des dossiers avant ça.
 
 | # | Étape | Statut | Notes |
 |---|---|:--:|---|
-| 0 | **LinkedIn banner generation** (parallèle, autre session) | 🔄 | À **déplacer dans `cv/`** (hub de génération), pas dans le portfolio. `docs/banners/` aussi. |
+| 0 | **LinkedIn banner generation** (parallèle, autre session) | ✅ | Généré. Reste à **déplacer dans `cv/`** (hub de génération) avec `docs/banners/` à l'étape 3 (séparation dossiers). |
 | 1 | **Skills update** (gate) | ✅ | `writing-style` ← CV générés ; `case-study` ← Spie Bat. Détail §Skills update. |
+| ★ | **Prép entretien DAMAC** | 🔄 | **Top priorité, en cours.** 50 questions (générales, deep search) → réponses EN basées sur l'XP → simulations d'oral. Dossier hors repo: `~/Documents/Agency/Meeting prep/job-interviews/damac/` ; questions dans `research/interview-questions-reference.md`. Détail §Prép entretien DAMAC. |
 | 2 | **Case studies Nod + Smart Integrity** | ⬜ | **Priorité.** Refaire via workflow `case-study`. Dans la structure actuelle (`content/case-studies/*.md`). |
 | 3 | **Migration modèle contenu (B) + séparation dossiers (A) + grand nettoyage doc** | ⬜ | Voir §Réorganisation. Rework jugé minime, donc après le contenu. |
 | 4 | **Bouton CV** (lien PDF téléchargeable) | ⬜ | PDF classique généraliste dans `/public`. Pas d'affichage HTML (voir §Challenge). **Prérequis:** reporter les ~11 edits de wording de `docs/cv/TODO-sync-2col-cv.md` dans les CV 2 colonnes + regen PDF (`node docs/cv/export-pdf.mjs <variant>`), pour que le PDF public soit à jour. |
@@ -51,6 +52,34 @@ des dossiers viennent après, le rework est minime.
 
 - ✅ **Lien GitHub cassé (404).** Corrigé: `github.com/jonathanschummers` →
   `github.com/Schummers` dans `components/cta-final.tsx` et `components/footer.tsx` (commit 2026-06-17).
+
+---
+
+## Prép entretien DAMAC (top priorité)
+
+Préparer l'entretien DAMAC (déjà postulé, lettre done). Dossier hors repo:
+`~/Documents/Agency/Meeting prep/job-interviews/damac/`.
+
+Structure du dossier `Meeting prep/` (rangé le 2026-06-17):
+```
+Meeting prep/
+├── job-interviews/
+│   └── damac/          → prep DAMAC (réponses, simulations)
+├── client-calls/
+│   ├── qalimo/         → call docs + research proptech, à plat
+│   └── qileo/          → call doc + research fintech, à plat
+└── research/           → research transverse (50 questions, estimation, Greever, KPIs SaaS)
+    └── books/          → livres entretien en EPUB (+ Framework Cheat Sheet PDF). PDF livres et mobi/kindle supprimés (EPUB préféré, plus propre à lire)
+```
+
+Plan:
+1. ✅ **50 questions** récupérées (générales, pas spécifiques DAMAC) → `research/interview-questions-reference.md`.
+2. **Préparer une réponse EN par question**, basée sur l'XP réelle de Jonathan (Valoris,
+   TotalEnergies, Avanade), dans la voix du skill `writing-style`. Travail à deux. Réponses
+   dans `job-interviews/damac/`. Appui possible: livres dans `books/` (PDF/EPUB lisibles).
+3. **Simuler des entretiens** à l'oral pour s'entraîner.
+
+Poste visé: général (la plupart des questions sont génériques PD/PM). À confirmer: date de l'entretien.
 
 ---
 
@@ -98,7 +127,7 @@ des dossiers viennent après, le rework est minime.
 ├── cv/                  → génération CV + lettres + banners (HTML, docx, PDF). Reçoit docs/cv/* + docs/banners/.
 │   └── .claude/skills/  → writing-style "CV/lettres" (spécifique)
 ├── prospection/         → outreach clients (existe). skills/ prospection spécifiques.
-└── meeting-prep/        → prep entretiens / rdv clients (existe).
+└── meeting-prep/        → prep entretiens / rdv clients (existe, déjà rangé interne le 2026-06-17 : books/, job-interviews/, client-calls/, research/).
 ```
 
 Principes: pas de skills/style globaux pour l'instant; content reste dans `portfolio/content/`;
@@ -106,8 +135,9 @@ pas de git sur les sous-dossiers; déplacement physique plus tard.
 
 **Hors périmètre actuel (existant, à ne pas casser):** `Agency/Prospection/` contient déjà
 matière outreach (CV pdf, ranking mails, guide LinkedIn, Mabrik/, Livrables/, skills/,
-design-system.md, Polices/) et `Agency/Meeting prep/` la prep rdv (call prep Qileo/Qalimo,
-research). On les range/renomme (kebab) au moment de la séparation, sans y toucher avant.
+design-system.md, Polices/). `Agency/Meeting prep/` est **déjà rangé en interne** (2026-06-17,
+kebab) : `job-interviews/damac/`, `client-calls/{qalimo,qileo}/` (research client à plat),
+`research/` (transverse, avec `research/books/` en EPUB). `Prospection/` reste à ranger/renommer au moment de la séparation.
 
 ### Le point dur (content + Vercel)
 
@@ -338,6 +368,40 @@ Tu voulais (1) bouton CV → PDF, et (2) afficher le CV avant le footer. **Le (2
 
 Retenu: **bouton "Download CV (PDF)"** (classique généraliste), une seule source. Optionnel léger:
 une mini-timeline Experience (teaser, pas le CV complet). Génération HTML→PDF reste dans `cv/`.
+
+---
+
+## Design-system : conformité agent-first (à mettre en place plus tard)
+
+État : investigué le 2026-08-11, **mis en pause** (pas de build actif sur le portfolio).
+Doc de référence complète et portable : [`docs/workflows/design-system-ai-compliance.md`](workflows/design-system-ai-compliance.md).
+
+**Le travail vit dans le vault**, 3 tâches sous `[[portfolio-web]]`, chaînées :
+`trancher-accent-portfolio-et-source-tokens` (frontière), puis
+`installer-ds-pilot-prevention-design-system` et `trancher-modele-lint-ds-et-poser-gate-ci`.
+Le savoir durable est dans la note `[[conformite-design-system-agent-first]]`.
+
+**Problème déjà présent (tokens) — à corriger :** drift sur l'accent.
+`DESIGN.md` dit `accent: #0A4CF0` (bleu), `app/globals.css` dit `--accent: #C2410C`
+(orange). **Décidé le 2026-08-11 : l'accent du portfolio est le gris** (l'orange appartient
+au DS du CV, `docs/cv/DESIGN-CV.md`). Les deux sources sont donc périmées, et
+`app/globals.css` devient la **source unique**, `DESIGN.md` un reflet dérivé. À nettoyer
+en premier, sinon un agent réutilise l'orange. Chantier sans risque visuel : le variant
+`brand` du Button n'est utilisé nulle part, seule consommation `components/button.tsx:35`.
+
+**Améliorations possibles (stack Lyse), quand on reprendra le portfolio :**
+- Couche prévention à l'authoring : `@lyse-labs/ds-pilot` (MCP + skill), pointé sur
+  `app/globals.css`. Empêche de recréer un composant ou hardcoder une valeur.
+- Garder/renforcer le lint : `npm run ds:check` (existant, informatif) → option
+  `@lyse-labs/lyse audit` + `lyse add ci-gate` (bloquante).
+
+**Reste à trancher :**
+- Modèle complet 6 couches vs modèle léger (contrat + ds-pilot + 1 gate).
+- Remplacer `scripts/check-design.mjs` par `lyse audit`, ou garder les deux.
+- Acceptabilité de la licence AGPL de `lyse`.
+- Sort du variant `brand` du Button, quasi redondant avec `primary` une fois l'accent gris.
+
+Quand : pas avant le contenu (case studies) et DAMAC. À caser dans le chantier portfolio.
 
 ---
 
