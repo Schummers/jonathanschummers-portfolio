@@ -1,5 +1,12 @@
 ---
+# Champs de presentation, recuperes de content/missions/spie-batignolles.md le
+# 2026-08-12 : les faits sont partis dans le vault, la presentation reste ici.
+# Aucun code du site ne lit thumbnail/order aujourd'hui, ils sont conserves
+# parce qu'ils sont des decisions de rendu, pas des faits.
 heroImage: "/images/Hero/spie-bat-hero.webp"
+thumbnail: "/images/Experiences/SPIE Bat/spie-bat-app-purchase-request.webp"
+order: 5
+tags: [UX, Design Thinking, Construction, ERP, Workshops]
 ---
 
 ## Context & Objectives

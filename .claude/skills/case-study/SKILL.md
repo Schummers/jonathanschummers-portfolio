@@ -8,8 +8,9 @@ description: |
   brain dump) into one clean narrative. Runs an ordered question-and-answer
   workflow, produces a compact format with short self-carrying step titles and
   photos interleaved per step, and calls the writing-style skill for voice.
-  Owns the dual-file architecture: working source in content/missions/<slug>.md,
-  prod render in content/case-studies/<slug>-v2.md.
+  Owns the dual-file architecture: facts in the vault at
+  ~/AI OS/second-brain/knowledge/experiences/<slug>.md, prod render in
+  content/case-studies/<slug>-v2.md.
 allowed-tools:
   - Read
   - Edit
@@ -33,10 +34,18 @@ wording choice (never one, never more than three), and never invent facts.
 
 ## Dual-file architecture
 
+The two files live in **two different repos** since 2026-08-12. Facts left this
+repo for the vault; only the published narrative stays here. See
+`~/AI OS/agency/docs/adr/0002-faits-de-carriere-au-vault.md`.
+
 | File | Role |
 |---|---|
-| `content/missions/<slug>.md` | Working source: frontmatter (data atoms) + raw data (v0 + brain dump) + assets. Holds the material the narrative is built from. |
-| `content/case-studies/<slug>-v2.md` | Prod render: frontmatter + the narrative. Read by `lib/case-studies.ts` for the live page. This is the single edit surface for the narrative. |
+| `~/AI OS/second-brain/knowledge/experiences/<slug>.md` | **Facts**, in the vault: frontmatter (data atoms) + raw material (v0 + brain dump). The material the narrative is built from. Schema and rules: `SCHEMA.md` in that folder. Read it, never copy it wholesale. |
+| `content/case-studies/<slug>-v2.md` | Prod render, in this repo: frontmatter + the narrative. Read by `lib/case-studies.ts` for the live page. This is the single edit surface for the narrative. |
+
+Nothing syncs between the two. Correcting a figure in the vault does not update
+any case study: report it by hand. Presentation fields (`heroImage`, `thumbnail`,
+`order`, `tags`) are decisions of this site and live only in the prod render.
 
 The page **title** is the single `project.title` string in `lib/data.ts`. There
 is no markdown Headline — to change the title, edit `lib/data.ts`.
