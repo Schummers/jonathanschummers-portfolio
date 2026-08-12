@@ -17,8 +17,9 @@ Before generating any UI code:
    utilities. Always compose from the existing component, or ask the user
    before extending the catalog.
 
-> **CV print artifact** (`docs/cv/`): the A4 CV is standalone and uses its own
-> token canon — read **`docs/cv/DESIGN-CV.md`**, not `DESIGN.md` / `globals.css`.
+> **CV print artifact**: the A4 CV left this repo on 2026-08-12. It lives in
+> `~/AI OS/agency/cv/`, with its own token canon (`DESIGN-CV.md`) and its own
+> package.json. Nothing about it belongs here any more.
 
 ## Anti-drift rules (hard)
 

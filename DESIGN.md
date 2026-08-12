@@ -138,7 +138,7 @@ Color tokens are role-based and Linear-style (no `--sem-` or `--color-` namespac
 - **Borders** (`{colors.border}`, `{colors.border-strong}`) carry the layout. `{colors.border-strong}` is one step heavier and reserved for borders on inverse-coloured surfaces.
 - **Text** uses a 3-step hierarchy (`{colors.text-primary}` / `{colors.text-secondary}` / `{colors.text-tertiary}`). Tertiary is sparingly used, only for the lightest metadata (captions, faint timestamps).
 - **Accent** is split: `{colors.accent}` is the brand background colour for the `brand` button; `{colors.accent-text}` is the text colour for accent links — they differ in dark mode because the brand button colour does not adapt but the link colour must regain contrast.
-- **CV print artifact:** the A4 CV (`docs/cv/`) is a standalone HTML with its **own forked token canon** — see `docs/cv/DESIGN-CV.md`. It does not consume this DS, and this DS no longer carries CV-specific tokens.
+- **CV print artifact:** the A4 CV left this repo on 2026-08-12 for `~/AI OS/agency/cv/`. It has its **own forked token canon** (`DESIGN-CV.md` over there), does not consume this DS, and this DS no longer carries CV-specific tokens.
 
 ## Typography
 
