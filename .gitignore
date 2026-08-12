@@ -47,6 +47,8 @@ next-env.d.ts
 .claude/settings.local.json
 .claude/worktrees/
 
-# Generated CV / cover-letter PDFs (regenerable from HTML via docs/cv/export-pdf.mjs)
-# Source-of-truth HTML stays tracked; input PDFs in docs/cv/data/ stay tracked.
-/docs/cv/*.pdf
+# Skills partagees du domaine agency : ce sont des symlinks vers
+# ~/AI OS/system/skills/agency/, pas du contenu de ce repo. Commiter un symlink
+# le rendrait casse pour quiconque clone ce depot, qui est public.
+# Voir ~/AI OS/agency/CLAUDE.md, regles de classement.
+/.claude/skills/case-study
