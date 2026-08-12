@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>LinkedIn banner — bento grid 2x2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/docs/banners/ui/_banner-base.css" />
+<style>
+  /* V1 — grille 2x2 égale, à gauche */
+  .collage {
+    position: absolute;
+    left: 56px;
+    top: 36px;
+    width: 660px;
+    height: 324px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 16px;
+  }
+  .text { right: 64px; width: 720px; }
+</style>
+</head>
+<body>
+  <div class="collage">
+    <div class="frame"><div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><div class="shot"><img src="/public/images/Experiences/Smartintegrity/new%20version%201.webp" alt="" /></div></div>
+    <div class="frame"><div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><div class="shot"><img src="/public/images/Experiences/Boosted/Principal.webp" alt="" /></div></div>
+    <div class="frame"><div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><div class="shot"><img src="/public/images/Experiences/Boosted/Droite.webp" alt="" /></div></div>
+    <div class="frame"><div class="chrome"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><div class="shot"><img src="/public/images/Experiences/Smartintegrity/Gauche.webp" alt="" /></div></div>
+  </div>
+
+  <div class="url">jonathanschummers.com</div>
+
+  <div class="text">
+    <div class="accent-rule"></div>
+    <div class="headline">Data-driven Product Designer<span class="sub">with Product Management skills</span></div>
+  </div>
+</body>
+</html>

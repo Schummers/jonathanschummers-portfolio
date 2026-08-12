@@ -9,6 +9,7 @@ similar pitch.
 
 | Company | Role | Location | Status | Date | Key tags |
 |---|---|---|---|---|---|
+| [Mistral AI](mistral/additional-information.md) | Product Designer | not stated | final | 2026-08-11 | design-with-ai, ai-product-design, power-user |
 | [Google — Gemini in Chrome](google-gemini-chrome/cover-letter.md) | UX Designer | Mountain View (US, visa) | final | 2026-06-16 | ai-product-design, agentic, ml-trust, human-in-the-loop |
 | [Google — Cloud AI](google-cloud-ai/cover-letter.md) | Senior UX Designer | Sunnyvale (US, visa) | final | 2026-06-16 | ai-product-design, agentic, human-in-the-loop, enterprise-saas |
 | [Google — Cloud (Warsaw)](google-cloud-warsaw/cover-letter.md) | UX Designer | Warsaw (EU, no visa) | final | 2026-06-16 | stakeholder-communication, enterprise-saas, design-with-ai |
@@ -56,6 +57,7 @@ rendered_pdf:   # path to the exported PDF/DOCX, if any
 | `real-estate-domain` | first-hand real estate / landlord credibility |
 | `discovery-research` | qual + quant research driving the design |
 | `stakeholder-communication` | articulating, presenting, and defending design decisions; driving consensus |
+| `power-user` | designer who is also the product's power user (own workflows, skills, tooling) |
 
 **Proof points** (experiences cited): `totalenergies`, `bforbank`, `valoris`,
 `portfolio-real-estate`.

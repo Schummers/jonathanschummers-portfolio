@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>LinkedIn banner — BforBank showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/docs/banners/ui/_banner-base.css" />
+<style>
+  /* Masonry BforBank : 4 colonnes x 3 écrans (cadre iPhone 2px). Toutes les
+     colonnes débordent en haut ET en bas -> aucun trou. Stagger marqué :
+     colonnes 1 & 3 hautes (-120), colonnes 2 & 4 plus basses (-30). */
+  .collage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 424px;
+    height: 396px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding-left: 24px; /* marge gauche = même gap */
+  }
+  .col { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+  .iphone {
+    flex: none;
+    border: 2px solid var(--text-primary);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .iphone img { display: block; width: 100%; height: auto; }
+
+  .text { left: 510px; right: auto; width: 1010px; }
+  .headline { font-size: 50px; }
+  .headline .sub { font-size: 34px; }
+</style>
+</head>
+<body>
+  <div class="collage">
+    <div class="col" style="transform: translateY(-120px);">
+      <div class="iphone"><img src="/public/images/Hero/Bforbank/IMG_2622.webp" alt="" /></div>
+      <div class="iphone"><img src="/public/images/Hero/Bforbank/IMG_2632.webp" alt="" /></div>
+      <div class="iphone"><img src="/public/images/Hero/Bforbank/IMG_2636.webp" alt="" /></div>
+    </div>
+    <div class="col" style="transform: translateY(-30px);">
+      <div class="iphone"><img src="/public/images/Hero/Bforbank/IMG_2625.webp" alt="" /></div>
+      <div class="iphone"><img src="/public/images/Hero/Bforbank/IMG_2623.webp" alt="" /></div>
+      <div class="iphone"><img src="/public/images/Hero/Bforbank/IMG_2635.webp" alt="" /></div>
+    </div>
+    <div class="col" style="transform: translateY(-120px);">
+      <div class="iphone"><img src="/public/images/Hero/Bforbank/Frame%201597884611.webp" alt="" /></div>
+      <div class="iphone"><img src="/public/images/Hero/Bforbank/IMG_2628.webp" alt="" /></div>
+      <div class="iphone"><img src="/public/images/Hero/Bforbank/IMG_2636-1.webp" alt="" /></div>
+    </div>
+    <div class="col" style="transform: translateY(-30px);">
+      <div class="iphone"><img src="/public/images/Hero/Bforbank/IMG_3216%203.webp" alt="" /></div>
+      <div class="iphone"><img src="/public/images/Hero/Bforbank/IMG_2622.webp" alt="" /></div>
+      <div class="iphone"><img src="/public/images/Hero/Bforbank/IMG_2625.webp" alt="" /></div>
+    </div>
+  </div>
+
+  <div class="url">jonathanschummers.com</div>
+
+  <div class="text">
+    <div class="accent-rule"></div>
+    <div class="headline">Data-driven Product Designer<span class="sub">with Product Management skills</span></div>
+  </div>
+</body>
+</html>

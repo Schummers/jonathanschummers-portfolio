@@ -140,3 +140,14 @@ A visual recap grid of the project's screens renders below this section.
 6. No emoji, no em dash, no hard-banned word (run the writing-style audit).
 7. Photos are interleaved, relevant to their step.
 8. It sounds like Jonathan, not a consultant.
+
+## Example step titles (inspiration, not a template)
+
+Spie Batignolles, titles only. Reading just these tells the whole story:
+
+1. Mapped the on-site ecosystem to understand its stakeholders and their interactions
+2. Ran 12 interviews to identify the pain points and opportunities for each module
+3. Helped real users, the product team and stakeholders align on the problems to solve
+4. Led 12 co-design workshops to align site crews and ERP tech on the new business and user workflows
+5. Designed 72 screens unifying the 4 modules to share data and cut manual entry
+6. Improved data versioning and history to better match real site workflows (SUS 83, 12 users)

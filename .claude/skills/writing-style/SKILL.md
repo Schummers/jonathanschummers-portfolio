@@ -82,6 +82,8 @@ underscore, foster, garner, nestled, boasts, renowned, in the heart of.
 
 ### Bullet formula
 `Action verb + Scope + Tool or method + Metric`. No metric, no bullet.
+Name tools in clear (Claude Code, PostHog, Meta-ads), not "tooling". A colon can
+introduce the concrete mechanism behind the action (the "how").
 Hard cap ~200 characters per bullet (≈ 2 lines). If it runs longer, split or cut.
 
 ### Longer narratives
