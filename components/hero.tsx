@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Section } from "@/components/blueprint-shell";
 import { Button } from "@/components/button";
-import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
+import { ArrowUpRightIcon, EnvelopeIcon } from "@heroicons/react/20/solid";
 
 /**
  * Deux publics, deux heros.
@@ -29,7 +29,7 @@ export function Hero({ variant = "default" }: { variant?: HeroVariant }) {
 
           {/* Tagline — H1 */}
           <h1 className="mt-sm font-display text-h1 font-bold leading-h1 tracking-h1 text-text-primary">
-            Data-driven designer with PM skills.
+            Data-driven designer with PM skills{isFreelance ? "" : " (6y+)"}.
           </h1>
 
           {/* Subtitle — H2, freelance only: c'est une promesse de prestation */}
@@ -63,7 +63,11 @@ export function Hero({ variant = "default" }: { variant?: HeroVariant }) {
               size="xl"
             >
               Get in touch
-              <ArrowUpRightIcon className="ml-xs size-5" />
+              {isFreelance ? (
+                <ArrowUpRightIcon className="ml-xs size-5" />
+              ) : (
+                <EnvelopeIcon className="ml-xs size-5" />
+              )}
             </Button>
           </div>
         </div>
