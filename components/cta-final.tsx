@@ -4,7 +4,15 @@ import { Button } from "@/components/button";
 import { IconLinkedIn, IconMalt, IconGitHub } from "@/components/icons";
 import { ArrowUpRightIcon } from "@heroicons/react/16/solid";
 
-export function CtaFinal() {
+/**
+ * Meme logique de variante que `hero.tsx` : la home parle a un recruteur,
+ * /freelance parle a un client. Cadrage : guide-linkedin.md de l'AI OS.
+ */
+type CtaVariant = "default" | "freelance";
+
+export function CtaFinal({ variant = "default" }: { variant?: CtaVariant }) {
+  const isFreelance = variant === "freelance";
+
   return (
     <Section id="contact" className="!p-0">
       <div className="grid md:grid-cols-2">
@@ -24,26 +32,53 @@ export function CtaFinal() {
           <div className="flex flex-1 flex-col justify-center gap-lg">
             <div className="flex flex-col gap-md">
               <h2 className="font-display text-h2 font-bold leading-h2 tracking-h2 text-text-primary">
-                Have a project? Let&apos;s talk.
+                {isFreelance ? "Have a project? Let's talk." : "Hiring? Let's talk."}
               </h2>
               <div className="flex flex-col gap-xs">
-                <p className="font-body text-body text-text-secondary">
-                  1. Clarify your needs on a free discovery call
-                </p>
-                <p className="font-body text-body text-text-secondary">
-                  2. Get a quote with hours and rates
-                </p>
-                <p className="font-body text-body text-text-secondary">
-                  3. Start working together
-                </p>
+                {isFreelance ? (
+                  <>
+                    <p className="font-body text-body text-text-secondary">
+                      1. Clarify your needs on a free discovery call
+                    </p>
+                    <p className="font-body text-body text-text-secondary">
+                      2. Get a quote with hours and rates
+                    </p>
+                    <p className="font-body text-body text-text-secondary">
+                      3. Start working together
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p className="font-body text-body text-text-secondary">
+                      Currently interviewing for full-time product design roles.
+                    </p>
+                    <p className="font-body text-body text-text-secondary">
+                      Open to relocation, including Singapore, Bangkok and Dubai.
+                    </p>
+                    <p className="font-body text-body text-text-secondary">
+                      Also open to short freelance engagements:{" "}
+                      <a
+                        href="/freelance"
+                        className="underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-out hover-supported:text-text-primary"
+                      >
+                        see how I work with clients
+                      </a>
+                      .
+                    </p>
+                  </>
+                )}
               </div>
             </div>
             <Button
-              href="https://calendly.com/jonathan-schummers/discovery-call"
+              href={
+                isFreelance
+                  ? "https://calendly.com/jonathan-schummers/discovery-call"
+                  : "mailto:jonathan.schummers@gmail.com"
+              }
               size="xl"
               className="w-fit"
             >
-              Book a call
+              {isFreelance ? "Book a call" : "Get in touch"}
               <ArrowUpRightIcon className="ml-xs size-5" />
             </Button>
           </div>

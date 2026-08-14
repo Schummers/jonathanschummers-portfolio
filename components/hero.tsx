@@ -3,7 +3,20 @@ import { Section } from "@/components/blueprint-shell";
 import { Button } from "@/components/button";
 import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 
-export function Hero() {
+/**
+ * Deux publics, deux heros.
+ *
+ * `default` : recherche de poste salarie (positionnement du 2026-08-14).
+ * `freelance` : le hero de prospection client, conserve mot pour mot, servi
+ * sur /freelance uniquement.
+ *
+ * Cadrage complet : ~/AI OS/agency/pipeline/_shared/guide-linkedin.md
+ */
+type HeroVariant = "default" | "freelance";
+
+export function Hero({ variant = "default" }: { variant?: HeroVariant }) {
+  const isFreelance = variant === "freelance";
+
   return (
     <Section className="!p-0">
       <div className="grid md:grid-cols-2">
@@ -19,24 +32,36 @@ export function Hero() {
             Data-driven designer with PM skills.
           </h1>
 
-          {/* Subtitle — H2 */}
-          <p className="mt-lg font-display text-h2 font-bold leading-h2 tracking-h2 text-text-primary">
-            I help proptech &amp; fintech teams de-risk what they build, then design it end-to-end.
-          </p>
+          {/* Subtitle — H2, freelance only: c'est une promesse de prestation */}
+          {isFreelance && (
+            <p className="mt-lg font-display text-h2 font-bold leading-h2 tracking-h2 text-text-primary">
+              I help proptech &amp; fintech teams de-risk what they build, then design it end-to-end.
+            </p>
+          )}
 
           {/* Body text */}
           <div className="mt-md max-w-[var(--case-prose)]">
             <p className="font-body text-body-lg leading-body text-text-primary">
-              Six years in, I still believe the fastest way to learn is to ship, track &amp; iterate, and now I use AI to shorten that loop even more.
+              {isFreelance ? "Six years in, I still believe" : "I believe"} the fastest way to learn
+              is to ship, track &amp; iterate, and now I use AI to shorten that loop even more.
             </p>
             <p className="mt-sm font-body text-body leading-body text-text-secondary">
-              Based in Luxembourg, working remotely.
+              {isFreelance
+                ? "Based in Luxembourg, working remotely."
+                : "Based in Luxembourg, open to relocate."}
             </p>
           </div>
 
           {/* CTA */}
           <div className="mt-lg">
-            <Button href="https://calendly.com/jonathan-schummers/discovery-call" size="xl">
+            <Button
+              href={
+                isFreelance
+                  ? "https://calendly.com/jonathan-schummers/discovery-call"
+                  : "mailto:jonathan.schummers@gmail.com"
+              }
+              size="xl"
+            >
               Get in touch
               <ArrowUpRightIcon className="ml-xs size-5" />
             </Button>
