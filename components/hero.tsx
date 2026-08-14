@@ -42,8 +42,9 @@ export function Hero({ variant = "default" }: { variant?: HeroVariant }) {
           {/* Body text */}
           <div className="mt-md max-w-[var(--case-prose)]">
             <p className="font-body text-body-lg leading-body text-text-primary">
-              {isFreelance ? "Six years in, I still believe" : "I believe"} the fastest way to learn
-              is to ship, track &amp; iterate, and now I use AI to shorten that loop even more.
+              {isFreelance ? "Six years in, I still believe " : "I believe "}
+              the fastest way to learn is to ship, track &amp; iterate, and now
+              I use AI to shorten that loop even more.
             </p>
             <p className="mt-sm font-body text-body leading-body text-text-secondary">
               {isFreelance
