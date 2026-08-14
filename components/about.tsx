@@ -25,16 +25,17 @@ export function About() {
                 Always embedded in a product team.
               </p>
               <p className="font-body text-body leading-body text-text-primary">
-                Going freelance changed everything. I went all-in on AI, not
+                Going independent changed everything. I went all-in on AI, not
                 just for design, but for research, product thinking, and
                 development. I broadened into product management and started
                 coding what I design.
               </p>
               <p className="font-body text-body leading-body text-text-primary">
                 At the same time, I got certified as a property manager and real
-                estate developer in Luxembourg. I began investing in real estate
-                and built Valoris, my own SaaS product to simplify property
-                management.
+                estate developer in Luxembourg, and started managing my
+                family&apos;s rental portfolio. In 2025, I founded Régis, a
+                property management SaaS, where I put that combination of
+                research, product and AI to work end to end.
               </p>
             </div>
           </div>

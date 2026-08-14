@@ -1,4 +1,4 @@
-import { IconLinkedIn, IconGitHub } from "@/components/icons";
+import { IconLinkedIn, IconMalt, IconGitHub } from "@/components/icons";
 
 const navLinks = [
   { label: "Work", href: "#work" },
@@ -31,6 +31,15 @@ export function Footer() {
             aria-label="LinkedIn"
           >
             <IconLinkedIn size={16} />
+          </a>
+          <a
+            href="https://www.malt.fr/profile/jonathanschummers"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text-secondary transition-colors duration-[var(--dur-fast)] ease-out hover-supported:text-text-primary"
+            aria-label="Malt"
+          >
+            <IconMalt size={16} />
           </a>
           <a
             href="https://github.com/Schummers"
