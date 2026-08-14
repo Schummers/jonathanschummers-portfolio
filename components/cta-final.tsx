@@ -58,10 +58,12 @@ export function CtaFinal({ variant = "default" }: { variant?: CtaVariant }) {
                     <p className="font-body text-body text-text-secondary">
                       Also open to short freelance engagements:{" "}
                       <a
-                        href="/freelance"
+                        href="https://www.malt.fr/profile/jonathanschummers"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="underline underline-offset-4 transition-colors duration-[var(--dur-fast)] ease-out hover-supported:text-text-primary"
                       >
-                        see how I work with clients
+                        see my Malt profile
                       </a>
                       .
                     </p>

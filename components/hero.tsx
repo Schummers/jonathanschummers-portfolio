@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Section } from "@/components/blueprint-shell";
 import { Button } from "@/components/button";
-import { ArrowUpRightIcon, EnvelopeIcon } from "@heroicons/react/20/solid";
+import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 
 /**
  * Deux publics, deux heros.
@@ -63,11 +63,7 @@ export function Hero({ variant = "default" }: { variant?: HeroVariant }) {
               size="xl"
             >
               Get in touch
-              {isFreelance ? (
-                <ArrowUpRightIcon className="ml-xs size-5" />
-              ) : (
-                <EnvelopeIcon className="ml-xs size-5" />
-              )}
+              <ArrowUpRightIcon className="ml-xs size-5" />
             </Button>
           </div>
         </div>

@@ -110,9 +110,6 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
               </div>
             )}
 
-            {/* Divider, Description, CTA — desktop only */}
-            <hr className="w-1/2 border-t border-border m-0 max-md:hidden" />
-
             {project.description && (
               <p className="font-body text-body leading-body text-text-secondary max-w-[var(--case-prose)] max-md:hidden">
                 {project.description}
