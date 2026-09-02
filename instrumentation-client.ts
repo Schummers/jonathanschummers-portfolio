@@ -23,7 +23,16 @@ if (token) {
     api_host: "/ingest",
     ui_host: "https://eu.posthog.com",
     defaults: "2026-01-30",
-    capture_pageview: true,
+    // "history_change" plutot que `true` : c'est la valeur que `defaults`
+    // choisirait de toute facon, et elle ajoute les pageviews de changement de
+    // route cote client, que le portfolio a (/work/<slug>).
+    //
+    // A savoir en debug : posthog differe le pageview d'atterrissage tant que
+    // `document.visibilityState` n'est pas "visible". Un onglet d'automatisation
+    // ou un prerender n'en produit donc aucun, alors que les $pageleave
+    // arrivent normalement. Vu le 2026-09-02, pris pour une panne pendant
+    // vingt minutes : ce n'en etait pas une.
+    capture_pageview: "history_change",
     capture_pageleave: true,
     capture_exceptions: true,
     opt_out_capturing_by_default: isInternal,

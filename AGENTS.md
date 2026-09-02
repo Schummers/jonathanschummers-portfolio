@@ -61,13 +61,29 @@ Trois choses a savoir avant d'y toucher :
    candidature. Le param est colle en `localStorage` puis enregistre en super
    property PostHog, donc il tague tous les events suivants du visiteur. Le lien
    envoye dans une lettre ou un DM doit donc etre
-   `https://jonathanschummers.vercel.app/?src=nom-de-la-cible`, la meme valeur
-   que dans `pipeline/tracker.csv`.
+   `https://jonathanschummers.com/?src=nom-de-la-cible`, la meme valeur que dans
+   `pipeline/tracker.csv`. **Pas le `.vercel.app`** : ce domaine est derriere
+   l'authentification Vercel, un recruteur y tombe sur un ecran de login.
 3. **`?internal=1`** exclut definitivement le navigateur courant (flag en
    `localStorage`). A faire une fois par navigateur, sinon mes propres visites
    polluent tout.
 
 Le token vit dans `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` (`.env.local` en local,
 env var Vercel en prod). Il est public par construction (prefixe
-`NEXT_PUBLIC_`) : ce n'est pas un secret. La **personal API key** du MCP
-PostHog, elle, en est un, et ne doit jamais entrer dans ce repo.
+`NEXT_PUBLIC_`) : ce n'est pas un secret. La **personal API key** (Keychain,
+lue par `~/AI OS/system/scripts/phog.sh`) en est un, et ne doit jamais entrer
+dans ce repo.
+
+### Verifier que ca marche
+
+```bash
+~/AI\ OS/system/scripts/phog.sh sql 210321 \
+  "select event, count() from events where timestamp > now() - interval 1 day group by 1"
+```
+
+Piege de debug : posthog **differe le `$pageview` d'atterrissage tant que
+`document.visibilityState` n'est pas `visible`**. Un onglet pilote par
+Playwright ou par un agent est `hidden`, donc il produit des `$pageleave` et
+zero `$pageview`. Zero pageview dans un test automatise ne veut pas dire que le
+tracking est casse : ouvrir le site a la main dans un vrai onglet avant de
+conclure.
