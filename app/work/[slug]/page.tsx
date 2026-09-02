@@ -17,6 +17,7 @@ import { getCaseStudy, getAllCaseStudySlugs } from "@/lib/case-studies";
 import type { CaseStudyStep as StepData } from "@/lib/case-studies";
 import { projects } from "@/lib/data";
 import { IPhoneFrame } from "@/components/iphone-frame";
+import { CaseStudyReadTracker } from "@/components/case-study-read-tracker";
 
 /* Map markdown section headings to display labels and IDs */
 const SECTION_MAP: Record<string, { id: string; label: string }> = {
@@ -166,6 +167,7 @@ export default async function CaseStudyPage({
 
   return (
     <>
+      <CaseStudyReadTracker slug={slug} />
       <Nav />
       <BlueprintShell>
         <BackBar />
@@ -223,7 +225,10 @@ export default async function CaseStudyPage({
           </div>
 
           {/* Center column: 864px max */}
-          <div className="flex-1 xl:max-w-center">
+          {/* id="case-study-body" : cible de mesure de CaseStudyReadTracker, la
+              profondeur de lecture se calcule sur l'article seul, sans la nav
+              ni le footer. */}
+          <div id="case-study-body" className="flex-1 xl:max-w-center">
             {/* Mobile TOC — sits above the title so the header → Context flow
                 stays continuous on mobile (hidden on desktop, left rail instead) */}
             <div className="py-md px-xl border-b border-border xl:hidden max-md:px-md md:max-xl:px-lg">

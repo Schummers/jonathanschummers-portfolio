@@ -20,6 +20,11 @@ export function ProjectCardCompact({ project }: { project: Project }) {
   return (
     <Wrapper
       {...wrapperProps as any}
+      // L'autocapture ne retenait pas $el_text sur ces cartes (9 clics sur 15
+      // remontes a null le 2026-09-02). Ces attributs donnent la cible du clic
+      // sans dependre du texte rendu.
+      data-ph-capture-attribute-project-slug={project.slug}
+      data-ph-capture-attribute-card-variant="compact"
       className={`group hover-subtle flex gap-xl border-b border-border px-xl py-md max-md:px-md md:max-lg:px-lg md:min-h-52 ${isClickable ? "cursor-pointer" : ""}`}
     >
       {/* Text left */}

@@ -70,6 +70,11 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
   return (
     <Wrapper
       {...wrapperProps as any}
+      // L'autocapture ne retenait pas $el_text sur ces cartes (9 clics sur 15
+      // remontes a null le 2026-09-02). Ces attributs donnent la cible du clic
+      // sans dependre du texte rendu.
+      data-ph-capture-attribute-project-slug={project.slug}
+      data-ph-capture-attribute-card-variant="featured"
       className={`hover-subtle block border-b border-border ${hasCase ? "cursor-pointer" : ""}`}
     >
       {/* Desktop: 2-col grid | Mobile: single column flex */}
