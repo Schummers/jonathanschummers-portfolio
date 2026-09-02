@@ -6,7 +6,7 @@ import { ArrowUpRightIcon } from "@heroicons/react/16/solid";
 
 /**
  * Meme logique de variante que `hero.tsx` : la home parle a un recruteur,
- * /freelance parle a un client. Cadrage : guide-linkedin.md de l'AI OS.
+ * /freelance parle a un client. Cadrage : positionnement-public.md de l'AI OS.
  */
 type CtaVariant = "default" | "freelance";
 

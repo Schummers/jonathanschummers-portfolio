@@ -10,7 +10,7 @@ import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
  * `freelance` : le hero de prospection client, conserve mot pour mot, servi
  * sur /freelance uniquement.
  *
- * Cadrage complet : ~/AI OS/agency/pipeline/_shared/guide-linkedin.md
+ * Cadrage complet : ~/AI OS/agency/pipeline/_shared/positionnement-public.md
  */
 type HeroVariant = "default" | "freelance";
 
