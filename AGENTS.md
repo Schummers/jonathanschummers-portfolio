@@ -41,3 +41,33 @@ informational and never blocks a merge.
 
 Source-of-truth note: `app/globals.css` is the operational truth for CSS
 tokens; `DESIGN.md` is a declarative reflection updated as needed.
+
+## Analytics
+
+Deux outils, deux usages, ils ne font pas doublon :
+
+- **Vercel Analytics** (`<Analytics />` dans `app/layout.tsx`) : trafic brut,
+  zero config, garde-le.
+- **PostHog EU** (`instrumentation-client.ts`) : parcours, temps passe, funnels,
+  session replay. C'est lui qui repond a « qu'est-ce qu'un recruteur a
+  reellement regarde ».
+
+Trois choses a savoir avant d'y toucher :
+
+1. **L'ingestion passe par `/ingest`**, proxyfiee par les `rewrites` de
+   `next.config.ts`. Sans ce proxy, les bloqueurs de pub et les VPN d'entreprise
+   coupent une partie des events. Ne supprime pas ces rewrites.
+2. **`?src=<cible>`** est le seul lien entre une session anonyme et une
+   candidature. Le param est colle en `localStorage` puis enregistre en super
+   property PostHog, donc il tague tous les events suivants du visiteur. Le lien
+   envoye dans une lettre ou un DM doit donc etre
+   `https://jonathanschummers.vercel.app/?src=nom-de-la-cible`, la meme valeur
+   que dans `pipeline/tracker.csv`.
+3. **`?internal=1`** exclut definitivement le navigateur courant (flag en
+   `localStorage`). A faire une fois par navigateur, sinon mes propres visites
+   polluent tout.
+
+Le token vit dans `NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` (`.env.local` en local,
+env var Vercel en prod). Il est public par construction (prefixe
+`NEXT_PUBLIC_`) : ce n'est pas un secret. La **personal API key** du MCP
+PostHog, elle, en est un, et ne doit jamais entrer dans ce repo.
