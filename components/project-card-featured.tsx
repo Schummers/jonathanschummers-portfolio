@@ -23,7 +23,7 @@ function FeaturedImage({ project }: { project: Project }) {
           <div className="h-100 overflow-hidden">
             <Image
               src={project.image}
-              alt={project.title}
+              alt=""
               width={640}
               height={1200}
               className="nod-scroll-img w-full object-cover object-top transition-transform duration-[10000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]"
@@ -40,7 +40,7 @@ function FeaturedImage({ project }: { project: Project }) {
         ) : (
           <Image
             src={project.image}
-            alt={project.title}
+            alt=""
             width={640}
             height={755}
             className="w-full object-cover object-top"
@@ -54,7 +54,7 @@ function FeaturedImage({ project }: { project: Project }) {
   return (
     <Image
       src={project.image}
-      alt={project.title}
+      alt=""
       width={640}
       height={755}
       className="object-cover object-top w-full"
@@ -90,9 +90,9 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
                   {project.company}
                 </p>
               )}
-              <h2 className="font-display text-h2 font-bold tracking-h2 leading-h2 text-text-primary">
+              <h3 className="font-display text-h2 font-bold tracking-h2 leading-h2 text-text-primary">
                 {project.title}
-              </h2>
+              </h3>
             </div>
 
             {/* Tags */}
@@ -107,7 +107,7 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
               <div className="relative h-60 overflow-hidden md:hidden">
                 <Image
                   src={project.image}
-                  alt={project.title}
+                  alt=""
                   width={640}
                   height={400}
                   className="object-cover object-top w-full h-full"

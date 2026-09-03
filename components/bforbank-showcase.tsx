@@ -45,7 +45,7 @@ export function BforBankShowcase() {
             <IPhoneFrame key={src} className="shrink-0">
               <Image
                 src={src}
-                alt="BforBank app screen"
+                alt=""
                 width={300}
                 height={650}
                 className="w-full h-auto block"

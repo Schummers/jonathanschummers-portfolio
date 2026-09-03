@@ -21,8 +21,8 @@ colors:
 
   # Text
   text-primary:    "#18181b"
-  text-secondary:  "#71717b"
-  text-tertiary:   "#9f9fa9"
+  text-secondary:  "#66666f"   # 5.4:1 sur bg, 5.2:1 sur surface (AA)
+  text-tertiary:   "#6b6b76"   # 5.0:1 sur bg, 4.8:1 sur surface (AA)
   text-on-accent:  "#ffffff"   # text/icons posed on bg-accent (brand button)
 
   # Brand accent

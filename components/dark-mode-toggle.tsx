@@ -15,6 +15,15 @@ export function DarkModeToggle({ className }: { className?: string }) {
     setDark(isDark);
     document.documentElement.classList.toggle("dark", isDark);
     document.documentElement.classList.toggle("light", !isDark);
+
+    /* The component is mounted twice (desktop nav + mobile nav); each instance
+       holds its own state, so a toggle must notify the other one or its
+       icon and aria-label go stale. */
+    function onThemeChange() {
+      setDark(document.documentElement.classList.contains("dark"));
+    }
+    window.addEventListener("themechange", onThemeChange);
+    return () => window.removeEventListener("themechange", onThemeChange);
   }, []);
 
   function toggle() {
@@ -23,6 +32,7 @@ export function DarkModeToggle({ className }: { className?: string }) {
     document.documentElement.classList.toggle("dark", next);
     document.documentElement.classList.toggle("light", !next);
     localStorage.setItem("theme", next ? "dark" : "light");
+    window.dispatchEvent(new Event("themechange"));
   }
 
   return (

@@ -9,9 +9,9 @@ export function About() {
         {/* Left — My journey */}
         <div className="px-xl py-xl2 max-md:px-md max-md:py-xl flex flex-col justify-between">
           <div className="flex flex-col gap-md">
-            <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
+            <h2 className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
               My journey
-            </p>
+            </h2>
             <div className="max-w-[var(--case-prose)] space-y-sm">
               <p className="font-body text-body leading-body text-text-primary">
                 I started in user research, with two master&apos;s degrees in
@@ -44,9 +44,9 @@ export function About() {
         {/* Right — Side project (dark full-bleed) */}
         <div className="bg-surface px-xl py-xl2 max-md:px-md max-md:py-xl">
           <div className="flex flex-col gap-md">
-            <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
+            <h2 className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
               Side project
-            </p>
+            </h2>
             <div className="max-w-[var(--case-prose)]">
               <p className="font-body text-body leading-body text-text-primary">
                 Outside of work, I&apos;m a cycling obsessive. After 8 years

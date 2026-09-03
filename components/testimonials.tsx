@@ -3,9 +3,9 @@ import Image from "next/image";
 export function Testimonials() {
   return (
     <section className="border-b border-border bg-bg px-xl py-xl max-md:px-md max-md:py-xl md:max-lg:px-lg">
-      <p className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
+      <h2 className="font-body text-label font-bold uppercase tracking-label text-text-secondary">
         Testimonials
-      </p>
+      </h2>
 
       <div className="mt-md flex items-center bg-surface max-md:flex-col max-md:items-stretch">
         <Image

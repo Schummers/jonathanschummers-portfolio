@@ -86,12 +86,12 @@ export function CtaFinal({ variant = "default" }: { variant?: CtaVariant }) {
           </div>
 
           {/* Social links */}
-          <div className="mt-xl flex flex-wrap items-center gap-md">
+          <div className="mt-xl flex flex-wrap items-center gap-sm">
             <a
               href="https://linkedin.com/in/jonathanschummers"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-secondary transition-colors duration-[var(--dur-fast)] ease-out hover-supported:text-text-primary"
+              className="-my-sm flex size-10 items-center justify-center text-text-secondary transition-colors duration-[var(--dur-fast)] ease-out hover-supported:text-text-primary"
               aria-label="LinkedIn"
             >
               <IconLinkedIn size={18} />
@@ -100,7 +100,7 @@ export function CtaFinal({ variant = "default" }: { variant?: CtaVariant }) {
               href="https://www.malt.fr/profile/jonathanschummers"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-secondary transition-colors duration-[var(--dur-fast)] ease-out hover-supported:text-text-primary"
+              className="-my-sm flex size-10 items-center justify-center text-text-secondary transition-colors duration-[var(--dur-fast)] ease-out hover-supported:text-text-primary"
               aria-label="Malt"
             >
               <IconMalt size={18} />
@@ -109,7 +109,7 @@ export function CtaFinal({ variant = "default" }: { variant?: CtaVariant }) {
               href="https://github.com/Schummers"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-secondary transition-colors duration-[var(--dur-fast)] ease-out hover-supported:text-text-primary"
+              className="-my-sm flex size-10 items-center justify-center text-text-secondary transition-colors duration-[var(--dur-fast)] ease-out hover-supported:text-text-primary"
               aria-label="GitHub"
             >
               <IconGitHub size={18} />

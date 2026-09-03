@@ -8,7 +8,7 @@ export function BlueprintShell({
   className?: string;
 }) {
   return (
-    <div
+    <main
       className={cn(
         "relative mx-auto w-full max-w-[var(--blueprint-max)]",
         "border-x border-border",
@@ -16,7 +16,7 @@ export function BlueprintShell({
       )}
     >
       {children}
-    </div>
+    </main>
   );
 }
 

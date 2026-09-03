@@ -56,7 +56,7 @@ export function ProjectCardCompact({ project }: { project: Project }) {
             >
               <Image
                 src={project.image}
-                alt={project.title}
+                alt=""
                 width={236}
                 height={135}
                 className="w-full h-auto block"
@@ -65,7 +65,7 @@ export function ProjectCardCompact({ project }: { project: Project }) {
           ) : (
             <Image
               src={project.image}
-              alt={project.title}
+              alt=""
               width={236}
               height={135}
               className="w-full h-full object-cover"

@@ -34,7 +34,7 @@ export function CaseStudyToc({ items }: { items: TocItem[] }) {
   return (
     <>
       {/* Desktop: sticky sidebar */}
-      <nav className="hidden xl:block sticky top-36 self-start w-52 shrink-0">
+      <nav aria-label="Table of contents" className="hidden xl:block sticky top-36 self-start w-52 shrink-0">
         <ul className="flex flex-col gap-xs">
           {items.map((item) => (
             <li key={item.id}>
@@ -55,7 +55,7 @@ export function CaseStudyToc({ items }: { items: TocItem[] }) {
       </nav>
 
       {/* Mobile/Tablet: inline TOC */}
-      <nav className="xl:hidden">
+      <nav aria-label="Sections" className="xl:hidden">
         <ul className="flex flex-col gap-xs">
           {items.map((item) => (
             <li key={item.id}>
