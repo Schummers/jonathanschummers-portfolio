@@ -38,6 +38,7 @@ const SECTION_MAP: Record<string, { id: string; label: string }> = {
   "Target & Method": { id: "how", label: "How I solved this problem" },
   // Delivered group
   "What we delivered": { id: "delivered", label: "What we delivered" },
+  "What I cut": { id: "delivered", label: "What we delivered" },
   "Product Team": { id: "delivered", label: "What we delivered" },
   "Personal Development": { id: "delivered", label: "What we delivered" },
   Reflections: { id: "delivered", label: "What we delivered" },

@@ -56,6 +56,29 @@ export function CaseStudyImageGrid({ images }: { images: ImageItem[] }) {
     );
   }
 
+  if (images.length === 3) {
+    return (
+      <div className="mt-lg grid grid-cols-3 gap-sm items-start">
+        {images.map((img, i) => (
+          <figure key={i}>
+            <Image
+              src={img.src}
+              alt={img.alt}
+              width={360}
+              height={640}
+              className="w-full h-auto"
+            />
+            {img.alt && (
+              <figcaption className="mt-xs font-body text-caption italic font-normal text-text-tertiary">
+                {img.alt}
+              </figcaption>
+            )}
+          </figure>
+        ))}
+      </div>
+    );
+  }
+
   if (images.length === 2) {
     return (
       <div className="mt-lg grid grid-cols-2 gap-md items-start max-md:grid-cols-1">
