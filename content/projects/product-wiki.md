@@ -7,6 +7,6 @@ frame: "none"
 tags: ["900 NN/g articles", "16 books", "UX review agent"]
 links:
   - label: "GitHub"
-    href: "https://github.com/Schummers/product-wiki"
+    href: "https://github.com/Schummers/product-wiki-public"
 order: 2
 ---
