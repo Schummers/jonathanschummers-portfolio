@@ -48,13 +48,15 @@ stats:
 - **9** Pricing page clicks (1.1%)
 - **0** Emails on the waitlist
 
-### 2. Designed three variants that test the ad-to-page match and nothing else
+### 2. Clarified the founder's value proposition into six sections with a clear specific wording to optimize conversion
 
-Same headline, same copy, same price on every page. Only the design changes, and each one inherits the look of the ad that sends it traffic: an editorial nature photo for A, a soft pastel gradient for B, a retro forest palette for C. If visitors land on a page that looks like the ad they clicked, do they stay longer and leave an email? Value proposition variants and a branding test were deferred on purpose. One hypothesis at a time, or the numbers mean nothing.
+A fake door only works if a stranger gets the promise in five seconds, and that is a founder problem before it is a design problem. So before any layout I worked the message with her, section by section: promise, problem, how it works, price, proof, last push. Three options per line, drafted ahead of the call; on the call I explained the why of each section and challenged her choices; after it she reworked the final words alone. The hard question was the level of detail: enough that people want to sign up and pay, not so much that we promise a vault we will not build. That copy was frozen on all three variants. Change the design, never the words.
 
-![Variant A, editorial nature](/images/Experiences/You%20Alive/you-alive-app-variant-a.webp)
-![Variant B, soft wellness](/images/Experiences/You%20Alive/you-alive-app-variant-b.webp)
-![Variant C, retro forest](/images/Experiences/You%20Alive/you-alive-app-variant-c.webp)
+picks: The four headlines drafted for the hero, and the one the founder kept.
+- [ ] If something happens to you, they'll still hear from you.
+- [ ] Don't leave your loved ones guessing.
+- [x] Leave nothing unsaid. Leave nothing unfound.
+- [ ] What your family will need to know, if you're not there to tell them.
 
 ### 3. Wired one measurement chain so every event lands in Meta, PostHog and Notion
 

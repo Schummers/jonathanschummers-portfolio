@@ -1,6 +1,7 @@
 import type { CaseStudyStep as StepData } from "@/lib/case-studies";
 import { CaseStudyContent } from "./case-study-content";
 import { CaseStudyMedia } from "./case-study-media";
+import { CheckIcon, XMarkIcon } from "@heroicons/react/16/solid";
 
 interface CaseStudyStepProps {
   step: StepData;
@@ -14,26 +15,55 @@ interface Stat {
   label: string;
 }
 
-/* Convention Markdown : un bloc qui commence par la ligne `stats:` suivie de
-   bullets `- **836** Visitors` devient une rangee de mini-cards, rendue apres
-   les medias de l'etape quel que soit son emplacement dans le texte. */
-function splitStats(content: string): { text: string; stats: Stat[] } {
+interface Pick {
+  text: string;
+  chosen: boolean;
+}
+
+interface Picks {
+  caption: string;
+  items: Pick[];
+}
+
+/* Conventions Markdown, lues sur les blocs du contenu d'une etape :
+   - `stats:` suivi de bullets `- **836** Visitors` devient une rangee de
+     mini-cards, rendue apres les medias de l'etape.
+   - `picks: <legende>` suivi de bullets `- [ ] rejetee` / `- [x] retenue`
+     devient une liste d'options barrees, une seule cochee, sur fond surface.
+   Les deux sont extraits quel que soit leur emplacement dans le texte. */
+function splitBlocks(content: string): {
+  text: string;
+  stats: Stat[];
+  picks: Picks | null;
+} {
   const blocks = content.split("\n\n");
   const stats: Stat[] = [];
+  let picks: Picks | null = null;
   const kept: string[] = [];
 
   for (const block of blocks) {
-    if (!block.trim().startsWith("stats:")) {
-      kept.push(block);
+    const trimmed = block.trim();
+    if (trimmed.startsWith("stats:")) {
+      for (const line of trimmed.split("\n")) {
+        const m = line.match(/^- \*\*([^*]+)\*\*\s*(.*)$/);
+        if (m) stats.push({ value: m[1], label: m[2] });
+      }
       continue;
     }
-    for (const line of block.split("\n")) {
-      const m = line.match(/^- \*\*([^*]+)\*\*\s*(.*)$/);
-      if (m) stats.push({ value: m[1], label: m[2] });
+    if (trimmed.startsWith("picks:")) {
+      const [head, ...lines] = trimmed.split("\n");
+      const items: Pick[] = [];
+      for (const line of lines) {
+        const m = line.match(/^- \[( |x)\]\s*(.*)$/);
+        if (m) items.push({ chosen: m[1] === "x", text: m[2] });
+      }
+      picks = { caption: head.replace(/^picks:\s*/, "").trim(), items };
+      continue;
     }
+    kept.push(block);
   }
 
-  return { text: kept.join("\n\n"), stats };
+  return { text: kept.join("\n\n"), stats, picks };
 }
 
 export function CaseStudyStep({
@@ -45,7 +75,7 @@ export function CaseStudyStep({
   const marginClass =
     isFirstWithContent ? "mt-lg" : stepIndex === 0 ? "" : "mt-xl";
 
-  const { text, stats } = splitStats(step.content);
+  const { text, stats, picks } = splitBlocks(step.content);
 
   return (
     <div className={marginClass}>
@@ -59,6 +89,41 @@ export function CaseStudyStep({
         <CaseStudyContent text={text} />
       </div>
       <CaseStudyMedia images={step.images} />
+      {picks && picks.items.length > 0 && (
+        <figure className="mt-lg">
+          <ul className="bg-surface px-md py-md flex flex-col gap-sm">
+            {picks.items.map((p, i) => (
+              <li key={i} className="flex items-start gap-sm">
+                {p.chosen ? (
+                  <CheckIcon
+                    className="size-4 shrink-0 mt-1 text-green-600"
+                    aria-label="Chosen"
+                  />
+                ) : (
+                  <XMarkIcon
+                    className="size-4 shrink-0 mt-1 text-red-500"
+                    aria-label="Rejected"
+                  />
+                )}
+                <span
+                  className={
+                    p.chosen
+                      ? "font-display text-h3 font-bold leading-h3 tracking-h3 text-text-primary"
+                      : "font-display text-h3 font-bold leading-h3 tracking-h3 text-text-secondary line-through decoration-1"
+                  }
+                >
+                  {p.text}
+                </span>
+              </li>
+            ))}
+          </ul>
+          {picks.caption && (
+            <figcaption className="mt-xs font-body text-caption italic font-normal text-text-tertiary">
+              {picks.caption}
+            </figcaption>
+          )}
+        </figure>
+      )}
       {stats.length > 0 && (
         <div className="mt-lg grid grid-cols-4 gap-sm max-md:grid-cols-2">
           {stats.map((s, i) => (
