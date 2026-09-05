@@ -1,7 +1,7 @@
 import type { CaseStudyStep as StepData } from "@/lib/case-studies";
 import { CaseStudyContent } from "./case-study-content";
 import { CaseStudyMedia } from "./case-study-media";
-import { CheckIcon, XMarkIcon } from "@heroicons/react/16/solid";
+import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
 
 interface CaseStudyStepProps {
   step: StepData;
@@ -93,23 +93,25 @@ export function CaseStudyStep({
         <figure className="mt-lg">
           <ul className="bg-surface px-md py-md flex flex-col gap-sm">
             {picks.items.map((p, i) => (
-              <li key={i} className="flex items-start gap-sm">
-                {p.chosen ? (
-                  <CheckIcon
-                    className="size-4 shrink-0 mt-1 text-green-600"
-                    aria-label="Chosen"
-                  />
-                ) : (
-                  <XMarkIcon
-                    className="size-4 shrink-0 mt-1 text-red-500"
-                    aria-label="Rejected"
-                  />
-                )}
+              <li
+                key={i}
+                className="flex items-start gap-sm font-display text-h3 font-bold leading-h3 tracking-h3"
+              >
+                {/* h-lh = une ligne de texte, le cercle se centre sur la premiere ligne */}
+                <span className="flex h-lh shrink-0 items-center">
+                  <span className="flex size-7 items-center justify-center rounded-full bg-bg">
+                    {p.chosen ? (
+                      <CheckIcon className="size-4 text-green-600" aria-label="Chosen" />
+                    ) : (
+                      <XMarkIcon className="size-4 text-red-500" aria-label="Rejected" />
+                    )}
+                  </span>
+                </span>
                 <span
                   className={
                     p.chosen
-                      ? "font-display text-h3 font-bold leading-h3 tracking-h3 text-text-primary"
-                      : "font-display text-h3 font-bold leading-h3 tracking-h3 text-text-secondary line-through decoration-1"
+                      ? "text-text-primary"
+                      : "text-text-secondary line-through decoration-1"
                   }
                 >
                   {p.text}
