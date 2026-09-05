@@ -68,7 +68,7 @@ export function CaseStudyMedia({ images }: { images: ImageItem[] }) {
       {scroll && (
         <figure className={phones.length > 0 ? "mt-md" : "mt-lg"}>
           <BrowserFrame url={scrollUrl}>
-            <div className="h-100 overflow-hidden">
+            <div className="case-scroll-viewport h-120 overflow-hidden">
               <Image
                 src={scroll.src}
                 alt={scrollCaption}
