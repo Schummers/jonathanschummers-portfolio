@@ -79,6 +79,7 @@ rounded:
 
 shadow:
   mockup: "0 2px 8px rgba(0, 0, 0, 0.06)"  # browser + iPhone frames only
+  screen: "0 2px 4px rgba(0, 0, 0, 0.3), 0 10px 24px rgba(0, 0, 0, 0.45)" # screens emerging from a surface zone (project cards)
 
 motion:
   duration-fast:  150ms

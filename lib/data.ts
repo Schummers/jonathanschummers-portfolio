@@ -85,5 +85,7 @@ export const projects: Project[] = [
     browserUrl: "malaama.org",
     mockupType: "browser",
     externalUrl: "https://malaama.org",
+    /* Decision 2026-09-04: no longer displayed. Entry and image kept. */
+    hidden: true,
   },
 ];

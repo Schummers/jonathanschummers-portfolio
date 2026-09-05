@@ -9,6 +9,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
    where bare #anchors resolve against the current page and go nowhere. */
 const navLinks = [
   { label: "Work", href: "/#work" },
+  { label: "Projects", href: "/#projects" },
   { label: "About", href: "/#about" },
   { label: "Contact", href: "/#contact" },
 ];
