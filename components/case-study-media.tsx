@@ -12,6 +12,7 @@ interface ImageItem {
 /* Conventions Markdown, lues sur le alt des images d'une etape :
    - `phone: <legende>`            → rangee d'iPhones (jusqu'a 3), legende dessous
    - `scroll: <url> | <legende>`   → navigateur qui scrolle en boucle, legende dessous
+   - `row: <legende>`              → image pleine largeur, empilee, legende dessous
    Les autres images passent par la grille habituelle. Une fleche vers le bas
    s'insere entre les iPhones et le navigateur quand l'etape a les deux. */
 
@@ -23,8 +24,12 @@ export function CaseStudyMedia({ images }: { images: ImageItem[] }) {
 
   const phones = images.filter((i) => i.alt.startsWith("phone:"));
   const scroll = images.find((i) => i.alt.startsWith("scroll:"));
+  const rows = images.filter((i) => i.alt.startsWith("row:"));
   const rest = images.filter(
-    (i) => !i.alt.startsWith("phone:") && !i.alt.startsWith("scroll:")
+    (i) =>
+      !i.alt.startsWith("phone:") &&
+      !i.alt.startsWith("scroll:") &&
+      !i.alt.startsWith("row:")
   );
 
   let scrollUrl = "";
@@ -43,7 +48,7 @@ export function CaseStudyMedia({ images }: { images: ImageItem[] }) {
             const caption = img.alt.replace(/^phone:\s*/, "");
             return (
               <figure key={i}>
-                <IPhoneFrame island>
+                <IPhoneFrame homeBar>
                   <Image
                     src={img.src}
                     alt={caption}
@@ -81,6 +86,24 @@ export function CaseStudyMedia({ images }: { images: ImageItem[] }) {
           {scrollCaption && <figcaption className={CAPTION_CLASS}>{scrollCaption}</figcaption>}
         </figure>
       )}
+
+      {rows.map((img, i) => {
+        const caption = img.alt.replace(/^row:\s*/, "");
+        return (
+          <figure key={i} className="mt-lg">
+            <div className="max-md:-mr-md max-md:overflow-x-auto">
+              <Image
+                src={img.src}
+                alt={caption}
+                width={1180}
+                height={220}
+                className="w-full h-auto block max-md:w-160 max-md:max-w-160"
+              />
+            </div>
+            {caption && <figcaption className={CAPTION_CLASS}>{caption}</figcaption>}
+          </figure>
+        );
+      })}
 
       <CaseStudyImageGrid images={rest} />
     </>
