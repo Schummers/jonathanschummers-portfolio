@@ -23,6 +23,7 @@
   /* Backgrounds & borders */
   --bg: #fafafa;              /* zinc-50 */
   --surface: #f4f4f5;         /* zinc-100 */
+  --surface-strong: #e4e4e7;  /* zinc-200, aplat un cran plus fonce que surface (zone ecrans des cartes projets) */
   --border: #e4e4e7;          /* zinc-200 */
   --border-strong: #d4d4d8;   /* zinc-300 */
   --invert-bg: #18181b;       /* zinc-900 */
@@ -184,6 +185,7 @@
   /* Backgrounds & borders — mirror par index Zinc (bg=50/950, surface=100/900, border=200/800, border-strong=300/700) */
   --bg: #09090b;            /* zinc-950 */
   --surface: #18181b;       /* zinc-900 (était #27272a / zinc-800) */
+  --surface-strong: #27272a; /* zinc-800 */
   --border: #27272a;        /* zinc-800 (était #3f3f47 / zinc-700) */
   --border-strong: #3f3f47; /* zinc-700 (était #52525c / zinc-600) */
   --invert-bg: #fafafa;
@@ -212,6 +214,7 @@
 
     --bg: #09090b;            /* zinc-950 */
     --surface: #18181b;       /* zinc-900 */
+    --surface-strong: #27272a; /* zinc-800 */
     --border: #27272a;        /* zinc-800 */
     --border-strong: #3f3f47; /* zinc-700 */
     --invert-bg: #fafafa;
@@ -242,6 +245,7 @@
   --color-text-secondary: var(--text-secondary);
   --color-text-tertiary: var(--text-tertiary);
   --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-invert-bg: var(--invert-bg);

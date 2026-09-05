@@ -14,6 +14,7 @@ colors:
   # Surfaces & borders (light mode only — see Dark Mode section for the overlay)
   bg:             "#fafafa"
   surface:        "#f4f4f5"
+  surface-strong: "#e4e4e7"   # aplat un cran plus fonce que surface (zone ecrans des cartes projets)
   border:         "#e4e4e7"
   border-strong:  "#d4d4d8"
   invert-bg:      "#18181b"
@@ -126,7 +127,7 @@ The portfolio's design system, in the [Google DESIGN.md format](https://github.c
 
 **Design principles.**
 
-1. **Structure by borders, not by shadow.** Sections are delimited by 1px borders. The only shadow in the system is on mockup frames (browser, iPhone) so the screenshot can detach from the canvas.
+1. **Structure by borders, not by shadow.** Sections are delimited by 1px borders. Shadows never structure layout. Two are authorised, both to detach a screenshot from its ground: `{shadow.mockup}` on mockup frames (browser, iPhone) over near-white, and `{shadow.screen}` on screens emerging from a `{colors.surface-strong}` zone (project cards), where the lighter shadow would vanish.
 2. **One accent.** A single electric blue (`#0A4CF0`) for brand and key emphasis. Never a second hue.
 3. **Hover is for pointers only.** Every `:hover` rule is gated behind `@media (hover: hover)` via the `hover-supported:` custom variant so taps on touch surfaces do not trigger hover state.
 4. **Reduced motion is respected globally.** A single `prefers-reduced-motion: reduce` block in `globals.css` neutralises every transition and animation.
@@ -135,7 +136,7 @@ The portfolio's design system, in the [Google DESIGN.md format](https://github.c
 
 Color tokens are role-based and Linear-style (no `--sem-` or `--color-` namespace at the CSS variable level — the bridge to Tailwind happens via `@theme inline`).
 
-- **Surfaces** (`{colors.bg}`, `{colors.surface}`, `{colors.invert-bg}`) are warm near-whites. `{colors.surface}` is reserved for raised states (cards on hover, key-results) and never used as a default background.
+- **Surfaces** (`{colors.bg}`, `{colors.surface}`, `{colors.surface-strong}`, `{colors.invert-bg}`) are warm near-whites. `{colors.surface}` is the alternate section ground (About, Testimonials, Personal projects) that gives the home its rhythm, and the raised state on cards and key-results. `{colors.surface-strong}` is one step darker, for a filled zone inside a `surface` section (the screen zone of a project card); it shares its value with `{colors.border}` but is a surface role, never a line.
 - **Borders** (`{colors.border}`, `{colors.border-strong}`) carry the layout. `{colors.border-strong}` is one step heavier and reserved for borders on inverse-coloured surfaces.
 - **Text** uses a 3-step hierarchy (`{colors.text-primary}` / `{colors.text-secondary}` / `{colors.text-tertiary}`). Tertiary is sparingly used, only for the lightest metadata (captions, faint timestamps).
 - **Accent** is split: `{colors.accent}` is the brand background colour for the `brand` button; `{colors.accent-text}` is the text colour for accent links — they differ in dark mode because the brand button colour does not adapt but the link colour must regain contrast.
@@ -256,5 +257,6 @@ The `hover-supported:` custom variant gates every `:hover` rule behind `@media (
 - **Do** compose className strings with the `cn()` helper (`lib/cn.ts`).
 - **Do** use `hover-supported:` for any hover rule, never plain `hover:` on a touch-reachable surface.
 - **Don't** ship a page with more than one `brand` button. Use `primary` or `outline` for secondary actions.
-- **Don't** add a shadow to structure layout. Use borders. Mockup frames are the only authorised shadow exception.
+- **Don't** add a shadow to structure layout. Use borders. The only authorised shadows are `{shadow.mockup}` on mockup frames and `{shadow.screen}` on project-card screens.
+- **Don't** use `bg-border` as a fill. A border token is a line; the filled equivalent is `bg-surface-strong`.
 - **Do** treat `app/globals.css` as the truth when in doubt — this file is a reflection.

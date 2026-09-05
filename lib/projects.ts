@@ -4,32 +4,30 @@ import matter from "gray-matter";
 
 const PROJECTS_DIR = path.join(process.cwd(), "content/projects");
 
-export type ProjectFrame = "browser" | "iphone" | "trio" | "none";
+/* "none": one landscape capture. "trio": three portrait captures side by
+   side, the third hidden below lg. */
+export type ProjectFrame = "none" | "trio";
 
-export interface ProjectCard {
+export interface ProjectEntry {
   slug: string;
   title: string;
   /* Small caps line above the screen, numbered by position */
   eyebrow?: string;
-  description: string;
-  /* One bold sentence, the "what it is" of variant B */
-  headline?: string;
+  /* The one sentence of the card, the "what it is" */
+  headline: string;
   image: string;
-  /* frame "trio": three portrait captures side by side, 8px apart */
-  images?: string[];
+  /* frame "trio" only */
+  images: string[];
   frame: ProjectFrame;
-  browserUrl?: string;
   tags: string[];
-  href?: string;
-  linkLabel?: string;
-  /* Several CTAs (site + repo). Falls back to href/linkLabel when absent. */
-  links?: { label: string; href: string }[];
+  /* The first one is the card's button */
+  links: { label: string; href: string }[];
   order: number;
 }
 
 /* Build-time only: reads content/projects/*.md with gray-matter, like
    lib/case-studies.ts. The slug is the file name without extension. */
-export function getProjects(): ProjectCard[] {
+export function getProjects(): ProjectEntry[] {
   if (!fs.existsSync(PROJECTS_DIR)) return [];
 
   return fs
@@ -39,23 +37,22 @@ export function getProjects(): ProjectCard[] {
       const { data } = matter(
         fs.readFileSync(path.join(PROJECTS_DIR, file), "utf-8")
       );
-      const fm = data as Omit<ProjectCard, "slug">;
+      const fm = data as Partial<Omit<ProjectEntry, "slug">>;
+      if (!fm.title || !fm.headline || !fm.image) {
+        throw new Error(
+          `content/projects/${file}: title, headline and image are required`
+        );
+      }
       return {
         slug: file.replace(/\.md$/, ""),
         title: fm.title,
         eyebrow: fm.eyebrow,
-        description: fm.description,
         headline: fm.headline,
         image: fm.image,
-        images: fm.images,
+        images: fm.images ?? [],
         frame: fm.frame ?? "none",
-        browserUrl: fm.browserUrl,
         tags: fm.tags ?? [],
-        href: fm.href,
-        linkLabel: fm.linkLabel,
-        links:
-          fm.links ??
-          (fm.href ? [{ label: fm.linkLabel ?? "Open", href: fm.href }] : []),
+        links: fm.links ?? [],
         order: fm.order ?? 0,
       };
     })

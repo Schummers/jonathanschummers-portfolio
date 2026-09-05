@@ -24,11 +24,14 @@ export function Section({
   children,
   className,
   invert = false,
+  padded = true,
   id,
 }: {
   children: React.ReactNode;
   className?: string;
   invert?: boolean;
+  /* false: the section lays out its own edges (full-bleed grids, hero) */
+  padded?: boolean;
   id?: string;
 }) {
   return (
@@ -36,9 +39,7 @@ export function Section({
       id={id}
       className={cn(
         "border-b border-border",
-        "px-xl py-xl",
-        "max-md:px-md",
-        "md:max-lg:px-lg",
+        padded && "px-xl py-xl max-md:px-md md:max-lg:px-lg",
         invert && "bg-invert-bg text-invert-fg border-border-strong",
         className
       )}

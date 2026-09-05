@@ -18,7 +18,7 @@ export function Hero({ variant = "default" }: { variant?: HeroVariant }) {
   const isFreelance = variant === "freelance";
 
   return (
-    <Section className="!p-0">
+    <Section padded={false}>
       <div className="grid md:grid-cols-2">
         {/* Copy — vertically centered */}
         <div className="flex flex-col justify-center px-xl py-xl max-md:px-md md:max-lg:px-lg">

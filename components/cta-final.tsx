@@ -14,7 +14,7 @@ export function CtaFinal({ variant = "default" }: { variant?: CtaVariant }) {
   const isFreelance = variant === "freelance";
 
   return (
-    <Section id="contact" className="!p-0">
+    <Section id="contact" padded={false}>
       <div className="grid md:grid-cols-2">
         {/* Photo — landscape crop of hero image, hidden on mobile */}
         <div className="hidden max-h-128 overflow-hidden border-r border-border md:block">

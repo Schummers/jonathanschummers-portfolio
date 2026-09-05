@@ -4,7 +4,7 @@ import { IPhoneFrame } from "@/components/iphone-frame";
 
 export function About() {
   return (
-    <Section id="about" className="!p-0">
+    <Section id="about" padded={false}>
       <div className="grid md:grid-cols-2">
         {/* Left — My journey */}
         <div className="px-xl py-xl2 max-md:px-md max-md:py-xl flex flex-col justify-between">
