@@ -60,9 +60,14 @@ picks: The four headlines drafted for the hero, and the one the founder kept.
 
 ### 3. Generated 40+ landing pages with AI tools, then hand-refined 9 of them, three per creative ad, to present to the client
 
-With the copy frozen, design was the only thing left to vary. One day generating 40+ pages with [Google Stitch](https://stitch.withgoogle.com), [frontend-design](https://github.com/anthropics/claude-plugins-public/tree/main/plugins/frontend-design) and [taste-skill](https://github.com/Leonxlnx/taste-skill), every iteration landing in a gallery, for an overview and a first cut by the client. Then three days by hand on 9 of them: strip the AI slop look, fix hierarchy, spacing, rhythm and contrast, dose the animations, and assemble three candidates per creative. A round of feedback from her, one more pass. Since this was a fake-door test, none of it was engineered: no design system, no components, no code review. Vibe-coded on purpose, quick and dirty on a basic UI style guide, because the page only had to live long enough to answer one question.
+With the copy frozen, design was the only thing left to vary. One day generating 40+ pages with [Google Stitch](https://stitch.withgoogle.com), [frontend-design](https://github.com/anthropics/claude-plugins-public/tree/main/plugins/frontend-design) and [taste-skill](https://github.com/Leonxlnx/taste-skill), every iteration landing in a gallery, for an overview and a first cut by the client.
 
-![The bake-off gallery, one row per creative ad, generated and hand-refined iterations side by side, the three designs the client picked circled](/images/Experiences/You%20Alive/you-alive-research-bakeoff-grid.webp)
+![The bake-off gallery, one row per creative ad, every page generated from the ad's palette and mood by a different AI tool](/images/Experiences/You%20Alive/you-alive-research-bakeoff-gallery.webp)
+
+Then three days by hand on 9 of them: strip the AI slop look, fix hierarchy, spacing, rhythm and contrast, dose the animations, and assemble three candidates per creative. A round of feedback from her, one more pass. Since this was a fake-door test, none of it was engineered: no design system, no components, no code review. Vibe-coded on purpose, quick and dirty on a basic UI style guide, because the page only had to live long enough to answer one question.
+
+![Generated: the same section as it came out of the tool, three cards, three heavy terracotta discs](/images/Experiences/You%20Alive/you-alive-design-before-ai.webp)
+![Hand-refined: the final variant A, one stepper, a real heading, calmer numbers](/images/Experiences/You%20Alive/you-alive-design-after-hand.webp)
 
 ### 4. Diagnosed 4 days at zero in PostHog and moved the count to 5 with one line of copy
 
@@ -72,7 +77,7 @@ The funnel had a clear shape: visitors reached the hero, some scrolled to pricin
 
 The conversion-versus-traffic question moved to the client's other product, where volume was easier to get, and it settled there: conversion ads bring leads, traffic ads bring clicks. You Alive went on hold by agreement. What survived is the machine: the tracking, the design contract, the gallery and the docs, extracted into the public GitHub template meta-ads-website with a 6-phase setup skill. The client, or anyone, can generate new variants from it without a designer.
 
-![Contact sheet of the 26 generated candidates, the 3 finalists outlined](/images/Experiences/You%20Alive/you-alive-research-bakeoff-grid.webp)
+![Contact sheet of the 26 generated candidates, the 3 finalists outlined](/images/Experiences/You%20Alive/you-alive-research-bakeoff-gallery.webp)
 
 ## What we delivered
 

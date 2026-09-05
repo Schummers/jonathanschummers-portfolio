@@ -32,6 +32,9 @@ colors:
   accent-muted:   "#3670f5"
   accent-subtle:  "#d4e3ff"
 
+  # Inline link in prose (case-study bodies). Blue on purpose, not the accent: a link must read as a link.
+  link:           "#1D4ED8"   # blue-700, 6.3:1 on bg. Dark: "#60A5FA" (blue-400)
+
   # Primary button
   btn-primary:        "#1e1e21"
   btn-primary-hover:  "#09090b"
@@ -138,6 +141,7 @@ Color tokens are role-based and Linear-style (no `--sem-` or `--color-` namespac
 - **Borders** (`{colors.border}`, `{colors.border-strong}`) carry the layout. `{colors.border-strong}` is one step heavier and reserved for borders on inverse-coloured surfaces.
 - **Text** uses a 3-step hierarchy (`{colors.text-primary}` / `{colors.text-secondary}` / `{colors.text-tertiary}`). Tertiary is sparingly used, only for the lightest metadata (captions, faint timestamps).
 - **Accent** is split: `{colors.accent}` is the brand background colour for the `brand` button; `{colors.accent-text}` is the text colour for accent links — they differ in dark mode because the brand button colour does not adapt but the link colour must regain contrast.
+- **Inline links in prose** (`[text](url)` in a case study) use `{colors.link}`, a blue that swaps in dark mode. Rendered by `renderInline` in `case-study-content.tsx`, external by default.
 - **CV print artifact:** the A4 CV left this repo on 2026-08-12 for `~/AI OS/agency/cv/`. It has its **own forked token canon** (`DESIGN-CV.md` over there), does not consume this DS, and this DS no longer carries CV-specific tokens.
 
 ## Typography
@@ -219,7 +223,7 @@ The system has full dark-mode parity. The dark theme is activated by the `dark` 
 
 **Source of truth.** The light values live in this file's YAML frontmatter; the dark values live in `app/globals.css` under the `.dark { ... }` block. The light mode is the privileged design — dark is a deliberate overlay, not a mirror-image.
 
-**Mode-neutral tokens.** All spacing, rounded, motion, layout, and accent base tokens (`accent`, `accent-hover`, `accent-muted`, `accent-subtle`, `text-on-accent`) are the same in both modes. Only the surfaces, text colors, borders, button-primary palette, disabled palette, and `accent-text` swap.
+**Mode-neutral tokens.** All spacing, rounded, motion, layout, and accent base tokens (`accent`, `accent-hover`, `accent-muted`, `accent-subtle`, `text-on-accent`) are the same in both modes. Only the surfaces, text colors, borders, button-primary palette, disabled palette, `accent-text` and `link` swap.
 
 **Mirror par index Zinc.** Surfaces and borders follow a **positional mirror** in the Tailwind Zinc palette (light step N ↔ dark step (1000-N)). This is **not** a hex inversion — perceptual contrast on dark canvases is non-symmetric, so a literal inversion produces tonal jumps that feel too loud. The mirror pattern (May 2026 fix) :
 

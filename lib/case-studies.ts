@@ -80,8 +80,14 @@ function parseMarkdownSections(markdown: string): CaseStudySection[] {
       const imgMatch = line.match(/!\[([^\]]*)\]\(([^)]+)\)/);
       if (imgMatch) {
         const img = { alt: imgMatch[1], src: decodeURIComponent(imgMatch[2]) };
-        if (inStep) stepImages.push(img);
-        else sectionImages.push(img);
+        if (inStep) {
+          stepImages.push(img);
+          /* La ligne reste dans le contenu : CaseStudyStep s'en sert pour
+             placer les medias entre deux paragraphes. */
+          stepContent.push(line);
+        } else {
+          sectionImages.push(img);
+        }
       } else {
         if (inStep) stepContent.push(line);
         else sectionContent.push(line);

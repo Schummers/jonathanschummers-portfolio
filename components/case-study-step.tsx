@@ -77,6 +77,26 @@ export function CaseStudyStep({
 
   const { text, stats, picks } = splitBlocks(step.content);
 
+  /* Le contenu alterne texte et groupes d'images (lignes `![alt](src)`
+     conservees par le parser). Chaque groupe est rendu la ou il est ecrit. */
+  const segments: { text: string; images: typeof step.images }[] = [];
+  let cur = { text: "", images: [] as typeof step.images };
+  for (const block of text.split("\n\n")) {
+    const lines = block.trim().split("\n");
+    const imgs = lines
+      .map((l) => l.match(/^!\[([^\]]*)\]\(([^)]+)\)$/))
+      .filter((m): m is RegExpMatchArray => m !== null)
+      .map((m) => ({ alt: m[1], src: decodeURIComponent(m[2]) }));
+    if (imgs.length === lines.length && imgs.length > 0) {
+      cur.images.push(...imgs);
+      segments.push(cur);
+      cur = { text: "", images: [] };
+    } else {
+      cur.text += (cur.text ? "\n\n" : "") + block;
+    }
+  }
+  if (cur.text || cur.images.length) segments.push(cur);
+
   return (
     <div className={marginClass}>
       {stepIndex > 0 && groupId === "how" && (
@@ -85,10 +105,12 @@ export function CaseStudyStep({
       <h3 className="font-display text-h3 font-bold leading-h3 tracking-h3 text-text-primary">
         {step.heading}
       </h3>
-      <div className="mt-xs">
-        <CaseStudyContent text={text} />
-      </div>
-      <CaseStudyMedia images={step.images} />
+      {segments.map((seg, i) => (
+        <div key={i} className={i === 0 ? "mt-xs" : "mt-lg"}>
+          {seg.text && <CaseStudyContent text={seg.text} />}
+          <CaseStudyMedia images={seg.images} />
+        </div>
+      ))}
       {picks && picks.items.length > 0 && (
         <figure className="mt-lg">
           <ul className="bg-surface px-md py-md flex flex-col gap-sm">
