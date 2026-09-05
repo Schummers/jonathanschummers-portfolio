@@ -6,7 +6,7 @@ heroImage: "/images/Hero/you-alive-hero.webp"
 
 ### Problem
 
-A solo founder tests product ideas with Meta ads before building anything. Her first round on You Alive, a digital legacy product that notifies your loved ones if you stop replying, had brought around 800 visitors, a 96% bounce rate and 0 emails. The ads got clicks, the page got nothing, and she could not tell whether the page was wrong or the traffic was worthless. The real challenge was to build a test that could separate the two.
+A solo founder tests product ideas with Meta ads, for herself and for clients. On You Alive, a service that notifies your loved ones if you stop replying, the ads worked, 5.9% to 7.1% CTR and 800 visitors, and the basic page behind them converted nobody: 96% bounce, 0 emails. Her diagnosis was the design. She had strong opinions on it and no way to build it. The real challenge was to test that diagnosis, and to leave her a system to build the next landing pages herself.
 
 ### Target audience
 
@@ -25,9 +25,28 @@ People who want their loved ones notified, and their digital life handled, if so
 
 ## How I solved this problem
 
-### 1. Turned a failed first round into one question the test had to settle
+### 1. Analysed round 1 ads data (800 visitors, 7% CTR, 96% bounce, 0 waitlist emails) and defined hypotheses before any design
 
-Her first page came from a no-code builder and sat under ads with strong click rates. Around 800 people clicked, 96% left within seconds, nobody left an email. Two readings fit those numbers: the traffic was right and the page was wrong, or the traffic had no value and no page would fix it. We wrote down five hypotheses (bad traffic, unclear copy, wrong value proposition, ad-to-page mismatch, weak branding) and agreed that round 2 would test the first, the second and the fourth.
+The ads were doing their job. CTR sat between 5.9% and 7.1% depending on the creative, and around 800 people came through. Then every creative sent them to the same very basic AI-built landing page, with none of the ads' branding, and 96% left within seconds. Nobody left an email on the waitlist. So the question was not "just make a nicer site" but "why does the site itself not convert". I listed five hypotheses, each with its own test:
+
+- **H1, wrong ad algorithm**: the campaign was optimised for traffic, not conversions. Install the Meta Pixel and compare the two.
+- **H2, unclear copy**: rewrite the whole page along sections that convert, and state the problem plainly.
+- **H3, value proposition not compelling enough**: test two or three value propositions tied to the same problem.
+- **H4, ad-to-page mismatch**: a landing page that looks nothing like the ad that sent you breeds distrust.
+- **H5, weak visual design**: improve the branding once the target is known.
+
+We went with H1, H2, H4 and H5. I would have tested H3 first, one page and several value propositions, before several designs. The client wanted to validate her testing process, so H3 went to a second round.
+
+![phone: Creative ad A, 7.10% CTR](/images/Experiences/You%20Alive/you-alive-research-ad-a.webp)
+![phone: Creative ad B, 6.73% CTR](/images/Experiences/You%20Alive/you-alive-research-ad-b.webp)
+![phone: Creative ad C, 5.91% CTR](/images/Experiences/You%20Alive/you-alive-research-ad-c.webp)
+![scroll: alive.blackdotads.com | Round 1 landing page, AI-built by the client, with a branding unrelated to the creative ads](/images/Experiences/You%20Alive/you-alive-research-round1-landing-scroll.webp)
+
+stats:
+- **836** Visitors
+- **96%** Bounce rate
+- **9** Pricing page clicks (1.1%)
+- **0** Emails on the waitlist
 
 ### 2. Designed three variants that test the ad-to-page match and nothing else
 

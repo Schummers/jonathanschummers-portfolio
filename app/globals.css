@@ -372,3 +372,17 @@ body {
   color: var(--fg);
   font-family: var(--font-body), sans-serif;
 }
+
+/* Navigateur qui scrolle en boucle dans une etape de case study
+   (convention `scroll:` de components/case-study-media.tsx). La fenetre fait
+   400px (h-100), l'image remonte jusqu'a montrer son bas puis redescend. */
+@keyframes case-scroll {
+  0%, 8% { transform: translateY(0); }
+  92%, 100% { transform: translateY(calc(-100% + 400px)); }
+}
+.case-scroll-img {
+  animation: case-scroll 16s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-scroll-img { animation: none; }
+}
