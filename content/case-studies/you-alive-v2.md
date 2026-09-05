@@ -45,7 +45,7 @@ We went with H1, H2, H4 and H5. I would have tested H3 first, one page and sever
 stats:
 - **836** Visitors
 - **96%** Bounce rate
-- **9 (1.1%)** Pricing page clicks
+- **9 - 1.1%** Pricing page clicks
 - **0** Emails on the waitlist
 
 ### 2. Clarified the founder's value proposition into six sections with a clear specific wording to optimize conversion
