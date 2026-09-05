@@ -43,7 +43,7 @@ export function CaseStudyMedia({ images }: { images: ImageItem[] }) {
             const caption = img.alt.replace(/^phone:\s*/, "");
             return (
               <figure key={i}>
-                <IPhoneFrame>
+                <IPhoneFrame island>
                   <Image
                     src={img.src}
                     alt={caption}

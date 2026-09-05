@@ -5,7 +5,14 @@ interface ImageItem {
   src: string;
 }
 
-export function CaseStudyImageGrid({ images }: { images: ImageItem[] }) {
+/* Convention : un alt qui commence par `plain:` garde son texte pour les
+   lecteurs d'ecran mais n'affiche pas de legende sous l'image. */
+function caption(alt: string): string {
+  return alt.startsWith("plain:") ? "" : alt;
+}
+
+export function CaseStudyImageGrid({ images: raw }: { images: ImageItem[] }) {
+  const images = raw.map((i) => ({ ...i, alt: i.alt.replace(/^plain:\s*/, ""), caption: caption(i.alt) }));
   if (images.length === 0) return null;
 
   if (images.length >= 5) {
@@ -21,9 +28,9 @@ export function CaseStudyImageGrid({ images }: { images: ImageItem[] }) {
                 height={320}
                 className="w-full h-auto object-cover"
               />
-              {img.alt && (
+              {img.caption && (
                 <figcaption className="mt-xs font-body text-caption italic font-normal text-text-tertiary">
-                  {img.alt}
+                  {img.caption}
                 </figcaption>
               )}
             </figure>
@@ -45,9 +52,9 @@ export function CaseStudyImageGrid({ images }: { images: ImageItem[] }) {
               height={150}
               className="w-full object-cover"
             />
-            {img.alt && (
+            {img.caption && (
               <figcaption className="mt-xs font-body text-caption italic font-normal text-text-tertiary">
-                {img.alt}
+                {img.caption}
               </figcaption>
             )}
           </figure>
@@ -68,9 +75,9 @@ export function CaseStudyImageGrid({ images }: { images: ImageItem[] }) {
               height={640}
               className="w-full h-auto"
             />
-            {img.alt && (
+            {img.caption && (
               <figcaption className="mt-xs font-body text-caption italic font-normal text-text-tertiary">
-                {img.alt}
+                {img.caption}
               </figcaption>
             )}
           </figure>
@@ -91,9 +98,9 @@ export function CaseStudyImageGrid({ images }: { images: ImageItem[] }) {
               height={280}
               className="w-full h-auto"
             />
-            {img.alt && (
+            {img.caption && (
               <figcaption className="mt-xs font-body text-caption italic font-normal text-text-tertiary">
-                {img.alt}
+                {img.caption}
               </figcaption>
             )}
           </figure>
@@ -111,9 +118,9 @@ export function CaseStudyImageGrid({ images }: { images: ImageItem[] }) {
         height={400}
         className="w-full h-auto"
       />
-      {images[0].alt && (
+      {images[0].caption && (
         <figcaption className="mt-xs font-body text-caption italic font-normal text-text-tertiary">
-          {images[0].alt}
+          {images[0].caption}
         </figcaption>
       )}
     </figure>
