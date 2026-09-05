@@ -1,10 +1,26 @@
 import React from "react";
 
+/* Inline Markdown : `**gras**` et `[texte](url)`. Les liens sortent en
+   accent-text (DESIGN.md, "accent links"), externes par defaut. */
 export function renderInline(text: string): React.ReactNode {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  const parts = text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g);
   return parts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (link) {
+      return (
+        <a
+          key={i}
+          href={link[2]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-accent-text hover-supported:text-text-primary transition-colors"
+        >
+          {link[1]}
+        </a>
+      );
     }
     return part;
   });

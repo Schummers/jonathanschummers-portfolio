@@ -58,13 +58,11 @@ picks: The four headlines drafted for the hero, and the one the founder kept.
 - [x] Leave nothing unsaid. Leave nothing unfound.
 - [ ] What your family will need to know, if you're not there to tell them.
 
-### 3. Wired one measurement chain so every event lands in Meta, PostHog and Notion
+### 3. Generated 40+ landing pages with AI tools, then hand-refined 9 of them, three per creative ad, to present to the client
 
-A single track call on the client fans out each event to PostHog and, for the ones Meta needs, to the Pixel. The server mirrors the events that matter through the Conversions API with the same event id, so Meta merges browser and server into one conversion instead of counting twice, and ad blockers stop eating part of the signal. Meta optimises on the click event, which has volume, and we report on the email event, which has value.
+With the copy frozen, design was the only thing left to vary. One day generating 40+ pages with [Google Stitch](https://stitch.withgoogle.com), [frontend-design](https://github.com/anthropics/claude-plugins-public/tree/main/plugins/frontend-design) and [taste-skill](https://github.com/Leonxlnx/taste-skill), every iteration landing in a gallery, for an overview and a first cut by the client. Then three days by hand on 9 of them: strip the AI slop look, fix hierarchy, spacing, rhythm and contrast, dose the animations, and assemble three candidates per creative. A round of feedback from her, one more pass. Since this was a fake-door test, none of it was engineered: no design system, no components, no code review. Vibe-coded on purpose, quick and dirty on a basic UI style guide, because the page only had to live long enough to answer one question.
 
-- **PostHog EU** behind a first-party proxy, with session replay, capture scoped to the three routes so the gallery and previews stop polluting the data.
-- **Notion as the leads base**: each email arrives with its variant, UTM parameters and country, so a lead can be traced back to the ad that produced it.
-- **QA proven in production**: a Playwright run showing PageView, InitiateCheckout and Lead on the network, the proxy answering 200, the Notion row complete, before the ads went live.
+![The bake-off gallery, one row per creative ad, generated and hand-refined iterations side by side, the three designs the client picked circled](/images/Experiences/You%20Alive/you-alive-research-bakeoff-grid.webp)
 
 ### 4. Diagnosed 4 days at zero in PostHog and moved the count to 5 with one line of copy
 
