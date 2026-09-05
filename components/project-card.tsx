@@ -76,7 +76,7 @@ export function ProjectCard({
           Tablet: the eyebrow may wrap, so it reserves two lines and the three
           screens stay on the same baseline. */}
       <div className="flex flex-col overflow-hidden bg-surface-strong px-container pt-sm">
-        <p className="mb-md font-body text-tag font-bold uppercase tracking-wide text-text-secondary md:max-lg:min-h-8">
+        <p className="mb-sm font-body text-tag font-bold uppercase tracking-wide text-text-secondary md:max-lg:min-h-8">
           {number}. {project.eyebrow ?? project.title}
         </p>
         <ProjectImage project={project} />
