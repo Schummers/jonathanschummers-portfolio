@@ -227,12 +227,13 @@ The system has full dark-mode parity. The dark theme is activated by the `dark` 
 
 | Token | Light | Dark |
 |---|---|---|
-| `bg` | zinc-50 (`#fafafa`) | zinc-950 (`#09090b`) |
+| `bg` | zinc-50 (`#fafafa`) | ~zinc-940 (`#0d0d10`) |
 | `surface` | zinc-100 (`#f4f4f5`) | zinc-900 (`#18181b`) |
+| `surface-strong` | zinc-200 (`#e4e4e7`) | ~zinc-850 (`#1f1f23`) |
 | `border` | zinc-200 (`#e4e4e7`) | zinc-800 (`#27272a`) |
 | `border-strong` | zinc-300 (`#d4d4d8`) | zinc-700 (`#3f3f47`) |
 
-Same index distance from the extreme of the palette on both sides, no skipped steps.
+Same index distance from the extreme of the palette on both sides, no skipped steps, with two perceptual exceptions decided on 2026-09-05: `bg` sits a hair above zinc-950 so the canvas never reads as pure black, and `surface-strong` takes a half step (between 900 and 800) because the full zinc-800 step, invisible in light mode, jumps too hard on a dark canvas.
 
 **No `modes:` YAML extension.** We deliberately do not encode dark mode in this file's frontmatter. Inventing a custom YAML extension on an alpha spec would risk a collision when Google ships an official mode mechanism.
 

@@ -183,9 +183,9 @@
   --fg: #e4e4e7;
 
   /* Backgrounds & borders — mirror par index Zinc (bg=50/950, surface=100/900, border=200/800, border-strong=300/700) */
-  --bg: #09090b;            /* zinc-950 */
+  --bg: #0d0d10;            /* ~zinc-940, un cheveu au-dessus de 950 (#09090b) pour ne pas tomber dans le noir pur */
   --surface: #18181b;       /* zinc-900 (était #27272a / zinc-800) */
-  --surface-strong: #27272a; /* zinc-800 */
+  --surface-strong: #1f1f23; /* ~zinc-850, demi-marche : zinc-800 sautait trop fort en sombre */
   --border: #27272a;        /* zinc-800 (était #3f3f47 / zinc-700) */
   --border-strong: #3f3f47; /* zinc-700 (était #52525c / zinc-600) */
   --invert-bg: #fafafa;
@@ -212,9 +212,9 @@
     --text-tertiary: #8b8b96; /* 5.3:1 sur bg sombre (etait 71717b, 4.1:1) */
     --fg: #e4e4e7;
 
-    --bg: #09090b;            /* zinc-950 */
+    --bg: #0d0d10;            /* ~zinc-940, un cheveu au-dessus de 950 (#09090b) pour ne pas tomber dans le noir pur */
     --surface: #18181b;       /* zinc-900 */
-    --surface-strong: #27272a; /* zinc-800 */
+    --surface-strong: #1f1f23; /* ~zinc-850, demi-marche : zinc-800 sautait trop fort en sombre */
     --border: #27272a;        /* zinc-800 */
     --border-strong: #3f3f47; /* zinc-700 */
     --invert-bg: #fafafa;
