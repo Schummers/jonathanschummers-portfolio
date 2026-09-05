@@ -34,7 +34,7 @@ export function Button({
     brand:
       "bg-accent text-white hover-supported:bg-accent-hover active:bg-accent-hover active:brightness-[1.08]",
     outline:
-      "border border-border-strong text-text-primary bg-transparent hover-supported:bg-surface active:bg-border",
+      "border border-border-strong text-text-primary bg-transparent hover-supported:bg-surface active:bg-surface-strong",
   };
 
   const cls = cn(base, variants[variant], className);
