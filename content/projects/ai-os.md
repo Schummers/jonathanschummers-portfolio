@@ -7,6 +7,6 @@ frame: "none"
 tags: ["Own your data", "Context engineering", "Harness agnostic"]
 links:
   - label: "GitHub"
-    href: "https://github.com/Schummers/ai-os"
+    href: "https://github.com/Schummers/ai-os-public"
 order: 1
 ---
