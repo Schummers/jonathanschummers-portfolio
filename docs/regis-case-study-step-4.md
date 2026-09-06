@@ -9,10 +9,10 @@
 >
 > Images, both in `public/images/Experiences/Regis/` on branch
 > `claude/regis-etape-4`:
-> - `regis-app-tax-report.webp` (2240 × 2902), the tax page alone. Same
+> - `regis-app-tax-report.webp` (780 × 1688), the tax page on mobile, in the app's own layout. Same
 >   filename step 3.8 already points to, so it fills that placeholder as is.
-> - `regis-app-tax-report-to-form.webp` (2560 × 1858), the page, an arrow,
->   the four pages of the 190/210 F. For this step.
+> - `regis-app-tax-report-to-form.webp` (2496 × 1832), the phone, an arrow,
+>   page 1 of the 190/210 F at the same height. For this step.
 >
 > Both are **designs** rendered from HTML in the Regis tokens
 > (`app-mvp/app/globals.css`), not captures. The data is a fictional
@@ -28,50 +28,82 @@
 
 ## Title, five options (numbered, about 80 characters per line, 150 max)
 
-1. `4. Ran it on the family portfolio first: a year of books is in, the tax report reads from them, and the beta opens once the last screen ships`
-2. `4. Dogfooded it on ten properties before opening the beta: the data holds, the report is computed, the front is what is left to finish`
-3. `4. Proved it on my own family before anyone else: a year of entries in, the 2025 figures read from the data, thirty landlords next`
-4. `4. Made my family the first beta: every entry of the year is in, the tax figures come out of the data, the network beta opens after one screen`
-5. `4. First user: my family. The data is in, the report comes out, and the beta waits on one screen and an onboarding`
+Jonathan's brief: alpha with the family, the fiscal figures come out for
+properties at the real-cost regime, the tax screen is in design and the
+property onboarding in development, the last blockers before the open beta.
+Or the impact alone: the books already run on it, every 2025 and 2026 figure
+is in, the 2025 return is prepared from it.
 
-Recommendation: 1. It names the result (the books, the report), the honest
-state (one screen left) and the next move (the beta), in that order. 5 if you
-want it short.
+1. `4. Ran it on the family portfolio first: every 2025 and 2026 figure is in, and the 2025 return is being prepared from it`
+2. `4. Alpha with my family: two years of books in Regis, and the tax figures come out for every property at the real-cost regime`
+3. `4. It already keeps the family books: 2025 and 2026 in full, the 2025 return prepared from the data, the tax screen in design`
+4. `4. Used it for real before anyone else: the family books for 2025 and 2026 are in, and the 2025 return comes out of the data`
+5. `4. The family books run on it, 2025 and 2026 in full; the tax screen and the property onboarding are the last blockers before the open beta`
+
+Recommendation: 1 (in the dev page now). It is the impact, and it keeps the
+beta out of the title. 5 if the blockers belong in the title.
 
 ---
 
-## Body
+## Body, three messages
 
-The first landlord on Regis was my family. I loaded the portfolio straight into the backend, about ten properties, the bank accounts, the leases, and we have run a full year of books in it since: statements imported, lines sorted by the engine, entries validated in the evening, invoices attached when they arrive. That is the test I trusted most, because it is the hardest case I know, thirty years of documents and two generations with different habits, and because any shortcut I took would land on my own return.
+**1. It is used.** Alpha with the family, data migrated by hand, the books for
+2025 and 2026 are in, the 2025 return is prepared from them. Carries the
+numbers.
 
-The last piece of the flow is the one above. Once the year's entries are validated and each carries its property and a category, the tax page reads them per property and per year and groups the amounts by line of the 190/210 F: rents received, then the six blocks of deductible costs, A to F, and the net rental income to carry over to the main return. Every amount names how many entries it comes from and opens on them, so a figure can always be walked back to a bank line and a document. What the page does not do is deliberate: no tax figure, no form filled in, an export of the amounts, not of the form. Scope is Luxembourg and the real-cost regime, nothing else yet. Today I read those figures for the family from the data. The screen is the design I am building now, on a fictional property.
+**2. The figures come out.** Real-cost regime, amounts per line of the
+190/210 F, traceable to bank line and document, no tax figure. The screen is
+the design, in progress.
 
-- **Why the beta is not open yet:** my family never went through an onboarding, because I migrated the data by hand. A stranger has to create a property and a lease alone, and has to reach this page to get what the product promises. So three things stand between the family and the first outside user: the onboarding for properties and leases, the last parts of the front, which I still bypass through the backend, and the tax page itself.
+**3. What is left, then what comes next.** Two blockers (this screen, the
+property and lease onboarding), then the closed beta in the network, content on
+the form, ads in October and November.
 
-- **Then, in this order:** a closed beta in my own network, twenty to thirty Luxembourg landlords, as soon as the tax page ships. Content on how to fill in the 190/210 F and what changed in it this year, written from the same categories the product uses. And targeted ads in October and November, the two months when landlords actually sit down with the pile, before the 31 December deadline.
+Text as spliced in the dev page (`### 5.` in this worktree's file, which still
+has the old numbering):
 
-![row: The tax page, designed in the Regis system, and the four pages of the 190/210 F it fills](/images/Experiences/Regis/regis-app-tax-report-to-form.webp)
+Alpha with my family since summer 2026. I migrated the portfolio straight into the database, no onboarding: [N] properties, [N] bank lines, [N] entries, [N] documents. The books for 2025 and 2026 are in, validated line by line, and the 2025 return is being prepared from them.
+
+![row: The tax page on mobile, designed in the Regis system, and page 1 of the 190/210 F it fills](/images/Experiences/Regis/regis-app-tax-report-to-form.webp)
+
+- **The figures come out.** For a property at the real-cost regime, the amounts per line of the 190/210 F are read from the validated entries, each one traceable to its bank line and its document. No tax figure, no form filled in: the amounts, ready to copy. Today I read them from the data; the screen above is its design, in progress.
+
+- **Two things before the open beta.** This screen, and the onboarding to create a property and a lease, which my family never needed because I loaded the data by hand.
+
+- **Then, in this order.** A closed beta in my network, twenty to thirty Luxembourg landlords. Content on how to fill in the 190/210 F and what changed in it this year. Ads in October and November, when landlords sit down with the pile, before the 31 December deadline.
+
+---
+
+## Numbers to fill the `[N]` (Jonathan's idea: show real usage)
+
+Read-only counts on the Regis database, to run or approve. Suggested split:
+properties, bank lines, entries by status (validated, to validate, locked),
+documents.
+
+```sql
+select
+  (select count(*) from bien) as properties,
+  (select count(*) from transaction_bancaire) as bank_lines,
+  (select count(*) from ecriture where statut = 'validee') as entries_validated,
+  (select count(*) from ecriture where statut = 'a_valider') as entries_to_validate,
+  (select count(*) from document) as documents;
+```
+
+Table and column names to check against the schema before running.
 
 ---
 
 ## Key results, candidates for the context block (outcomes only, figure in bold)
 
-Pick what you can stand behind. Nothing here is a beta number.
-
-- **About ten properties** and a full year of books run in Regis by my family, the first and hardest user
+- **[N] bank lines** and **[N] entries** for 2025 and 2026 in Regis, the family books run on it
 - **91 of 91** bank lines restored from a PDF statement on import, balance checked (repo fact)
-- **Every figure** of the 2025 return for the family portfolio traceable to a bank line and a document
-- Tax report computed from the data for **one year** of entries, no manual re-entry
+- **Every amount** of the 2025 return traceable to a bank line and a document
+- Tax figures for **[N] properties** at the real-cost regime read from the data, no re-entry
 
 ---
 
 ## Left out on purpose
 
-- The sixteen accounts and six weekly users: Jonathan withdrew it, it opens questions he cannot answer yet.
-- The parents' individual usage (who does what, on which device): not given. The body says "two generations with different habits" and no more. Add a scene here if you want one.
+- The sixteen accounts and six weekly users: withdrawn by Jonathan.
+- The parents' individual usage: not given, not written.
 - Mobile against desktop, the data bet, the agencies hypothesis, the Go/No-Go: step 5.
-
-## Audit
-
-No em dash, no banned word (`writing-style`), no metric without a base. Bold
-only on the two bullet leads, as in step 2.

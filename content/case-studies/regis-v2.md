@@ -111,9 +111,17 @@ Access is scoped the same way the data is: every table is protected by row-level
 
 The last piece was not in my plan. Beta users said the same thing in different words: I am afraid of doing something stupid and not being able to tell. So I added an **activity** timeline on every entry: who changed what, the value before and the value after, whether the actor was a person, the import or the assistant, and when. Written only by the application, never editable, it replaced the "created on, modified on" footer that answered none of those questions. It is also what makes validation reversible without fear: an entry can go back from validated to "to validate" until it is locked by a tax report, and the timeline keeps the trace.
 
-### 5. Put it in my parents' hands, then in twenty landlords' hands
+### 5. Ran it on the family portfolio first: every 2025 and 2026 figure is in, and the 2025 return is being prepared from it
 
-TBD
+Alpha with my family since summer 2026. I migrated the portfolio straight into the database, no onboarding: [N] properties, [N] bank lines, [N] entries, [N] documents. The books for 2025 and 2026 are in, validated line by line, and the 2025 return is being prepared from them.
+
+![row: The tax page on mobile, designed in the Regis system, and page 1 of the 190/210 F it fills](/images/Experiences/Regis/regis-app-tax-report-to-form.webp)
+
+- **The figures come out.** For a property at the real-cost regime, the amounts per line of the 190/210 F are read from the validated entries, each one traceable to its bank line and its document. No tax figure, no form filled in: the amounts, ready to copy. Today I read them from the data; the screen above is its design, in progress.
+
+- **Two things before the open beta.** This screen, and the onboarding to create a property and a lease, which my family never needed because I loaded the data by hand.
+
+- **Then, in this order.** A closed beta in my network, twenty to thirty Luxembourg landlords. Content on how to fill in the 190/210 F and what changed in it this year. Ads in October and November, when landlords sit down with the pile, before the 31 December deadline.
 
 ### 6. What I know, what I do not, and what comes next
 
