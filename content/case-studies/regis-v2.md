@@ -111,13 +111,17 @@ Access is scoped the same way the data is: every table is protected by row-level
 
 The last piece was not in my plan. Beta users said the same thing in different words: I am afraid of doing something stupid and not being able to tell. So I added an **activity** timeline on every entry: who changed what, the value before and the value after, whether the actor was a person, the import or the assistant, and when. Written only by the application, never editable, it replaced the "created on, modified on" footer that answered none of those questions. It is also what makes validation reversible without fear: an entry can go back from validated to "to validate" until it is locked by a tax report, and the timeline keeps the trace.
 
-### 5. Ran it on the family portfolio first: every 2025 and 2026 figure is in, and the 2025 return is being prepared from it
+### 5. Regis is in alpha on our family portfolio: more than 256 bank transactions and 721 invoices migrated, 678 entries, and the 2025 tax return prepared from them
 
 ![row: The tax page on mobile, designed in the Regis system, and page 1 of the 190/210 F it fills](/images/Experiences/Regis/regis-app-tax-page-to-form.webp)
 
-Regis is in alpha on the family portfolio. I migrated the archive with scripts, straight into the database: more than **256 bank lines** for 2025 and 2026, **721 invoices** going back to 1985, **678 entries**, each one linked to its property and its tax line. The 2025 return will be prepared from them: for every property at the real-cost regime, the amounts come out per line of the 190/210 F, ready to copy. No tax figure and no filled form, by design.
+The migration ran with scripts, straight into the database: **256 bank transactions** for 2025 and 2026, **721 invoices** going back to 1985, **678 entries**, each one linked to its property and its line of the 190/210 F. The amounts above come out of that data today, for every property at the real-cost regime. No tax figure, no filled form, by design.
 
-Two screens stand between the family and a closed beta of twenty to thirty Luxembourg landlords from my network: the tax page above, and the onboarding to create a property and a lease, which I skipped with the migration scripts. Then the open beta follows the calendar. The 190/210 F changed this year, four pages instead of two and a new merged form, so content on how to fill it in, and ads in October and November, when landlords sit down with the pile before the 31 December deadline.
+Go to market, in two steps:
+
+- **Closed beta.** Twenty to thirty Luxembourg landlords from my network. Two front screens stand in the way: the tax page, and the onboarding to create a property and a lease. My family never needed it, I load the data with scripts, not the UI.
+
+- **Open beta.** The 190/210 F changed this year, four pages instead of two and a merged form, so content on how to fill it in. Then ads in October and November, when landlords sit down with the pile, before the 31 December deadline.
 
 ### 6. What I know, what I do not, and what comes next
 
