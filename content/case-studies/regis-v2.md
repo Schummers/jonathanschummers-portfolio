@@ -113,15 +113,11 @@ The last piece was not in my plan. Beta users said the same thing in different w
 
 ### 5. Ran it on the family portfolio first: every 2025 and 2026 figure is in, and the 2025 return is being prepared from it
 
-Alpha with my family since summer 2026. I migrated the portfolio straight into the database, no onboarding: [N] properties, [N] bank lines, [N] entries, [N] documents. The books for 2025 and 2026 are in, validated line by line, and the 2025 return is being prepared from them.
-
 ![row: The tax page on mobile, designed in the Regis system, and page 1 of the 190/210 F it fills](/images/Experiences/Regis/regis-app-tax-report-to-form.webp)
 
-- **The figures come out.** For a property at the real-cost regime, the amounts per line of the 190/210 F are read from the validated entries, each one traceable to its bank line and its document. No tax figure, no form filled in: the amounts, ready to copy. Today I read them from the data; the screen above is its design, in progress.
+Regis is in alpha on the family portfolio. I migrated the archive with scripts, straight into the database: more than **256 bank lines** for 2025 and 2026, **721 invoices** going back to 1985, **678 entries**, each one linked to its property and its tax line. The 2025 return will be prepared from them: for every property at the real-cost regime, the amounts come out per line of the 190/210 F, ready to copy. No tax figure and no filled form, by design.
 
-- **Two things before the open beta.** This screen, and the onboarding to create a property and a lease, which my family never needed because I loaded the data by hand.
-
-- **Then, in this order.** A closed beta in my network, twenty to thirty Luxembourg landlords. Content on how to fill in the 190/210 F and what changed in it this year. Ads in October and November, when landlords sit down with the pile, before the 31 December deadline.
+Two screens stand between the family and a closed beta of twenty to thirty Luxembourg landlords from my network: the tax page above, and the onboarding to create a property and a lease, which I skipped with the migration scripts. Then the open beta follows the calendar. The 190/210 F changed this year, four pages instead of two and a new merged form, so content on how to fill it in, and ads in October and November, when landlords sit down with the pile before the 31 December deadline.
 
 ### 6. What I know, what I do not, and what comes next
 
