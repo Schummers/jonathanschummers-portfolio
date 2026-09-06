@@ -71,7 +71,7 @@ export function CaseStudyEvolution({
   const frame = frames[active];
 
   const phone = (
-    <div className="w-full max-w-64 max-md:max-w-52">
+    <div className="w-64 shrink-0 max-md:w-52">
       {/* Toutes les images sont montees, seule l'active est visible :
           pas de rechargement, la transition reste nette. */}
       <IPhoneFrame homeBar>
@@ -98,7 +98,7 @@ export function CaseStudyEvolution({
   if (layout === "side") {
     return (
       <div ref={root} className="flex items-center gap-xl max-md:flex-col max-md:items-start max-md:gap-md">
-        <div className="w-64 shrink-0 max-md:w-52 max-md:self-center">{phone}</div>
+        <div className="max-md:self-center">{phone}</div>
         <ol className="flex flex-col gap-md" aria-live="polite">
           {frames.map((f, i) => {
             const on = i === active;
