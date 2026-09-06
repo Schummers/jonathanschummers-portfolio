@@ -123,17 +123,15 @@ table:
 
 She tests product ideas for a living, so the useful deliverable was never one landing page. It was the ability to make the next one without me. I took the repo apart and kept only what was not You Alive: the tracking chain, the design contract, the gallery, the CRO research from the whole mission. Everything product-specific went out. What remained became a public GitHub template, [meta-ads-website](https://github.com/Schummers/meta-ads-website), with a setup skill that drives it.
 
-The skill works in six phases and assumes she is not technical. She answers questions and pastes keys, the agent does the rest.
+The skill works in six phases and assumes the user is not technical. The user answers questions and pastes keys, the agent does the rest.
 
 flow:
 - **Bootstrap**: installs, builds, runs the site locally, explains the plan in plain language.
 - **Interview**: asks about the product, the audience, the pain, the offer, the proof, the tone.
-- **Copy**: writes the answers into the site and iterates the wording with her until it sounds like her.
-- **Connections**: walks her through PostHog, the Meta Pixel and Conversions API, and the Notion base where the leads land.
-- **Designs**: generates several directions she sorts in the gallery with a heart or a bin.
-- **Ship**: picks the finalists, deploys to Vercel, excludes her own traffic, and hands over to the ads.
-
-The tracking is already wired underneath and marked do not touch, so a page generated next month reports into the same funnel as the ones we ran. Her next campaign starts with a site and its measurement, not with a designer.
+- **Copy**: writes the answers into the site and iterates the wording with the user until it sounds like them.
+- **Connections**: walks the user through PostHog, the Meta Pixel and Conversions API, and the Notion base where the leads land.
+- **Designs**: generates several directions the user sorts in the gallery with a heart or a bin.
+- **Ship**: picks the finalists, deploys to Vercel, excludes the user's own traffic, and hands over to the ads.
 
 ## What we delivered
 
