@@ -82,9 +82,26 @@ evolution:
   - Consistent spacing rules between sections and paragraphs
   - Cards kept for a few blocks only, the rest set on the background
 
-### 4. Diagnosed 4 days at zero in PostHog and moved the count to 5 with one line of copy
+### 4. Results: the value proposition did not resonate with the market, 1.3% emails, while every other metric improved
 
-The funnel had a clear shape: visitors reached the hero, some scrolled to pricing, some clicked the main call to action, then stopped on the email screen and left. Countries and replays said the rest: very cheap clicks from places that were never the target. Ads ran at $2 a day. We allowed ourselves one change, a line above the field giving a reason to leave an email. The next day, 5 emails, all on variant C. Too few to answer the ad-to-page question, enough to show where the friction was.
+stats:
+- **~~836~~ 312** Visitors
+- **~~96%~~ 45%** Bounce rate
+- **~~1.1%~~ 36%** Clicked the fake door
+- **~~0%~~ 1.3%** Emails on the waitlist
+
+Pixel and Conversions API on the Buy click, PostHog for the funnel and the replays, Notion for the leads: for the first time every step from the ad to the email field had a number. Four days at $2 a day, and the numbers moved, all of them. CTR tripled. Bounce fell from 96% to 45%. A third of visitors clicked toward the fake door, against 1% before, with variant C ahead everywhere. Then 4 emails, none from the target market. Four hypotheses tested, four numbers improved, one screen unchanged: the one where people decide the product is worth an email. That was H3, the value proposition, the hypothesis we had deferred.
+
+table:
+| | Round 1 | Round 2 | A | B | C |
+|---|---|---|---|---|---|
+| Meta impressions | 20,410 | 2,146 | 265 | 1,110 | 771 |
+| Link clicks | 1,023 | 346 | 32 | 191 | 123 |
+| CTR | 5.0% | 16% | 12% | 17% | 16% |
+| Visitors on the page | 836 | 312 | 42 | 119 | 151 |
+| Bounce rate | 96% | 45% | 59% | 50% | 36% |
+| Clicked the fake door | 1.1% | 36% | 8% | 24% | 32% |
+| Emails | 0 | 4, 1.3% | 0 | 0 | 4, 2.6% |
 
 ### 5. Closed the test and turned the kit into a template anyone can reuse
 
