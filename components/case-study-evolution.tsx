@@ -59,7 +59,7 @@ export function CaseStudyEvolution({ frames }: { frames: EvolutionFrame[] }) {
   const frame = frames[active];
 
   return (
-    <div ref={root} className="mt-lg">
+    <div ref={root}>
       <div className="flex items-center justify-center gap-md max-md:gap-sm">
         <Button
           variant="outline"

@@ -1,6 +1,7 @@
 import type { CaseStudyStep as StepData } from "@/lib/case-studies";
 import { CaseStudyContent } from "./case-study-content";
 import { CaseStudyMedia } from "./case-study-media";
+import { CaseStudyEvolution, type EvolutionFrame } from "./case-study-evolution";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
 
 interface CaseStudyStepProps {
@@ -33,7 +34,8 @@ type Segment =
   | { kind: "images"; images: Image[] }
   | { kind: "stats"; stats: Stat[] }
   | { kind: "picks"; picks: Picks }
-  | { kind: "table"; rows: string[][] };
+  | { kind: "table"; rows: string[][] }
+  | { kind: "evolution"; frames: EvolutionFrame[] };
 
 /* Conventions Markdown, lues bloc par bloc (blocs separes par une ligne
    vide) et rendues a l'endroit ou elles sont ecrites :
@@ -44,7 +46,10 @@ type Segment =
    - `picks: <legende>` suivi de bullets `- [ ] rejetee` / `- [x] retenue`
      devient une liste d'options barrees, une seule cochee, sur fond surface ;
    - `table:` suivi de lignes `| a | b |` devient un tableau, premiere ligne
-     en en-tete, ligne `|---|` ignoree, scroll horizontal sur mobile. */
+     en en-tete, ligne `|---|` ignoree, scroll horizontal sur mobile ;
+   - `evolution:` suivi, par etat, d'une ligne `- <commit> | <src>` puis de
+     puces indentees `  - <ce que j'ai change>`, devient la timeline dans un
+     iPhone (`CaseStudyEvolution`). */
 function parseSegments(content: string): Segment[] {
   const segments: Segment[] = [];
   let text: string[] = [];
@@ -106,6 +111,22 @@ function parseSegments(content: string): Segment[] {
       continue;
     }
 
+    if (trimmed.startsWith("evolution:")) {
+      const frames: EvolutionFrame[] = [];
+      for (const line of lines.slice(1)) {
+        const head = line.match(/^- (.+?)\s*\|\s*(\S+)$/);
+        if (head) {
+          frames.push({ label: head[1], src: decodeURIComponent(head[2]), points: [] });
+          continue;
+        }
+        const point = line.match(/^\s+- (.+)$/);
+        if (point && frames.length) frames[frames.length - 1].points.push(point[1]);
+      }
+      flushText();
+      segments.push({ kind: "evolution", frames });
+      continue;
+    }
+
     const imgs = lines
       .map((l) => l.match(/^!\[([^\]]*)\]\(([^)]+)\)$/))
       .filter((m): m is RegExpMatchArray => m !== null)
@@ -156,6 +177,15 @@ export function CaseStudyStep({
           return (
             <div key={i} className={gap}>
               <CaseStudyMedia images={seg.images} />
+            </div>
+          );
+        }
+
+        if (seg.kind === "evolution") {
+          if (!seg.frames.length) return null;
+          return (
+            <div key={i} className={gap}>
+              <CaseStudyEvolution frames={seg.frames} />
             </div>
           );
         }
