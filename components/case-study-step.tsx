@@ -247,7 +247,10 @@ export function CaseStudyStep({
                 </thead>
                 <tbody>
                   {body.map((row, r) => (
-                    <tr key={r} className="border-b border-border/50">
+                    <tr
+                      key={r}
+                      className={r < body.length - 1 ? "border-b border-border/50" : ""}
+                    >
                       {row.map((c, j) => (
                         <td
                           key={j}
