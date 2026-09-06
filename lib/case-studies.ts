@@ -45,11 +45,22 @@ export type MediaDirective =
   | { kind: "scroll"; url: string; caption: string }
   | { kind: "phone-scroll"; label: string; caption: string; href?: string; pair: boolean }
   | { kind: "row"; caption: string }
+  | { kind: "figure"; caption: string }
   | { kind: "pair"; title: string; caption: string; scroll: boolean }
   | { kind: "grid"; alt: string; caption: string };
 
+/* Convention : `x.webp` a une jumelle sombre si `x-dark.webp` existe dans
+   `public/`. Le markdown ne cite que la claire ; le composant affiche la
+   sombre quand le site est en mode sombre (ThemedImage). Cote serveur
+   seulement, la verification lit le disque au build. */
+export function darkSrcFor(src: string): string | undefined {
+  const dark = src.replace(/\.webp$/, "-dark.webp");
+  if (dark === src) return undefined;
+  return fs.existsSync(path.join(process.cwd(), "public", decodeURIComponent(dark))) ? dark : undefined;
+}
+
 export function parseMediaDirective(alt: string): MediaDirective {
-  const m = alt.match(/^(phone-scroll-pair|phone-scroll|phone-pair|phone|scroll|row|plain|pair-scroll|pair):\s*(.*)$/);
+  const m = alt.match(/^(phone-scroll-pair|phone-scroll|phone-pair|phone|scroll|row|figure|plain|pair-scroll|pair):\s*(.*)$/);
   if (!m) return { kind: "grid", alt, caption: alt };
   const [, prefix, rest] = m;
   const parts = rest.split("|").map((p) => p.trim());
@@ -70,6 +81,8 @@ export function parseMediaDirective(alt: string): MediaDirective {
       };
     case "row":
       return { kind: "row", caption: rest.trim() };
+    case "figure":
+      return { kind: "figure", caption: rest.trim() };
     case "pair":
     case "pair-scroll":
       return {

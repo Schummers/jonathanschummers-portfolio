@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import Image from "next/image";
+import { ThemedImage } from "./themed-image";
 import { ArrowRightIcon } from "@heroicons/react/16/solid";
 import { IPhoneFrame } from "./iphone-frame";
 import { AutoScrollViewport } from "./auto-scroll-viewport";
@@ -7,6 +7,8 @@ import { CaseStudyCaption } from "./case-study-caption";
 
 export interface PhonePairItem {
   src: string;
+  /* Capture sombre du meme ecran, affichee en mode sombre. */
+  darkSrc?: string;
   /* Titre court au-dessus de l'ecran, optionnel : vide, l'ecran n'a que sa legende. */
   title: string;
   caption: string;
@@ -36,10 +38,10 @@ export function PhonePair({ items }: { items: PhonePairItem[] }) {
             <IPhoneFrame>
               {it.scroll ? (
                 <AutoScrollViewport className="case-phone-viewport" label={`${it.caption}, scrollable`}>
-                  <Image src={it.src} alt={it.caption} width={390} height={1800} className="w-full h-auto block" />
+                  <ThemedImage src={it.src} darkSrc={it.darkSrc} alt={it.caption} width={390} height={1800} className="w-full h-auto block" />
                 </AutoScrollViewport>
               ) : (
-                <Image src={it.src} alt={it.caption} width={390} height={844} className="w-full h-auto block" />
+                <ThemedImage src={it.src} darkSrc={it.darkSrc} alt={it.caption} width={390} height={844} className="w-full h-auto block" />
               )}
             </IPhoneFrame>
             <CaseStudyCaption>{it.caption}</CaseStudyCaption>

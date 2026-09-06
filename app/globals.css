@@ -353,6 +353,11 @@
 }
 
 /* --- Custom variant: hover réservé aux pointeurs (pas mobile) --- */
+/* Le theme est une classe posee sur <html> par DarkModeToggle, pas la media
+   query : `dark:` doit suivre la classe, sinon un visiteur en mode clair
+   force verrait les captures sombres si son OS est en sombre. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @custom-variant hover-supported {
   @media (hover: hover) {
     &:hover {

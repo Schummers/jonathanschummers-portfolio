@@ -1,5 +1,6 @@
-import Image from "next/image";
 import { IPhoneFrame } from "@/components/iphone-frame";
+import { ThemedImage } from "@/components/themed-image";
+import { darkSrcFor } from "@/lib/case-studies";
 
 /* Les six ecrans de l'etape 3, dans l'ordre du recit : la banque, la ligne a
    valider, les ecritures, une ecriture, la facture, l'ecriture enrichie. */
@@ -14,15 +15,17 @@ const SCREENS = [
 
 /* Hero de la case study Regis : une rangee d'iPhones, comme BforBank. Les
    captures plus hautes qu'un ecran sont rognees a la hauteur d'un ecran
-   (`case-phone-viewport`). Sous md, trois ecrans seulement. */
+   (`case-phone-viewport`). Sous md, trois ecrans seulement. Chaque ecran a
+   sa jumelle `-dark.webp` et suit le theme du site. */
 export function RegisShowcase() {
   return (
     <div className="grid grid-cols-6 gap-md max-md:grid-cols-3 max-md:gap-sm">
       {SCREENS.map((s, i) => (
         <IPhoneFrame key={s.src} className={i >= 3 ? "max-md:hidden" : undefined}>
           <div className="case-phone-viewport overflow-hidden">
-            <Image
+            <ThemedImage
               src={s.src}
+              darkSrc={darkSrcFor(s.src)}
               alt={s.alt}
               width={390}
               height={844}

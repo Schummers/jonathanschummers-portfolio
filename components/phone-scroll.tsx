@@ -20,7 +20,8 @@ export interface PhoneScrollItem {
 
 /* Jusqu'a trois iPhones dont l'ecran scrolle tout seul (AutoScrollViewport :
    l'utilisateur reprend la main, reprise apres 5 s). Sous md, un seul iPhone
-   et un segmented control. */
+   et un segmented control. A deux par ligne, chaque iPhone est plafonne a
+   w-56 : pleine colonne il ferait 312 x 675 px. */
 export function PhoneScroll({ items, cols = 3 }: { items: PhoneScrollItem[]; cols?: 2 | 3 }) {
   const [active, setActive] = useState(0);
 
@@ -38,7 +39,11 @@ export function PhoneScroll({ items, cols = 3 }: { items: PhoneScrollItem[]; col
         {items.map((it, i) => (
           <figure
             key={it.src}
-            className={cn("max-md:mx-auto max-md:w-64", i !== active && "max-md:hidden")}
+            className={cn(
+              "max-md:mx-auto max-md:w-64",
+              cols === 2 && "mx-auto w-full max-w-56",
+              i !== active && "max-md:hidden"
+            )}
           >
             <IPhoneFrame homeBar>
               <AutoScrollViewport className="case-phone-viewport" label={`${it.caption}, scrollable`}>
