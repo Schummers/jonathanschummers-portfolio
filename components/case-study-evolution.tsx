@@ -95,43 +95,71 @@ export function CaseStudyEvolution({
     </div>
   );
 
+  const arrows = (
+    <div className="flex gap-xs">
+      <Button
+        variant="outline"
+        onClick={() => go(active - 1)}
+        disabled={active === 0}
+        aria-label="Previous commit"
+        className="rounded-full px-xs py-xs shrink-0"
+      >
+        <ChevronLeftIcon className="size-5" />
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() => go(active + 1)}
+        disabled={active === n - 1}
+        aria-label="Next commit"
+        className="rounded-full px-xs py-xs shrink-0"
+      >
+        <ChevronRightIcon className="size-5" />
+      </Button>
+    </div>
+  );
+
   if (layout === "side") {
+    /* iPhone a gauche ; a droite les fleches puis trois cards a stroke, sans
+       fond, qui se partagent la hauteur de l'iPhone. L'active porte un stroke
+       text-primary, les autres border ; cliquer une card change l'ecran. */
     return (
-      <div ref={root} className="flex items-center gap-xl max-md:flex-col max-md:items-start max-md:gap-md">
+      <div ref={root} className="flex items-stretch gap-lg max-md:flex-col max-md:items-stretch max-md:gap-md">
         <div className="max-md:self-center">{phone}</div>
-        <ol className="flex flex-col gap-md" aria-live="polite">
-          {frames.map((f, i) => {
-            const on = i === active;
-            return (
-              <li key={i}>
-                <button
-                  type="button"
-                  onClick={() => go(i)}
-                  aria-current={on ? "step" : undefined}
-                  className={cn(
-                    "text-left font-display text-h4 font-bold transition-colors duration-[var(--dur-base)]",
-                    on ? "text-text-primary" : "text-text-secondary hover-supported:text-text-primary"
-                  )}
-                >
-                  {f.label}
-                </button>
-                <ul className="mt-2xs space-y-2xs">
-                  {f.points.map((pt, j) => (
-                    <li
-                      key={j}
-                      className={cn(
-                        "font-body text-body-sm leading-body pl-md relative before:absolute before:left-0 before:top-[0.65em] before:size-1 before:rounded-full before:bg-current transition-colors duration-[var(--dur-base)]",
-                        on ? "text-text-primary" : "text-text-secondary"
-                      )}
-                    >
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            );
-          })}
-        </ol>
+        <div className="flex min-w-0 flex-1 flex-col gap-sm">
+          {arrows}
+          <ol className="flex flex-1 flex-col gap-xs" aria-live="polite">
+            {frames.map((f, i) => {
+              const on = i === active;
+              return (
+                <li key={i} className="flex flex-1">
+                  <button
+                    type="button"
+                    onClick={() => go(i)}
+                    aria-current={on ? "step" : undefined}
+                    className={cn(
+                      "flex w-full flex-col justify-center rounded-md border px-md py-xs text-left transition-colors duration-[var(--dur-base)]",
+                      on
+                        ? "border-text-primary text-text-primary"
+                        : "border-border text-text-secondary hover-supported:border-border-strong hover-supported:text-text-primary"
+                    )}
+                  >
+                    <span className="font-display text-h4 font-bold">{f.label}</span>
+                    <ul className="mt-2xs space-y-2xs">
+                      {f.points.map((pt, j) => (
+                        <li
+                          key={j}
+                          className="font-body text-body-sm leading-body pl-md relative before:absolute before:left-0 before:top-[0.65em] before:size-1 before:rounded-full before:bg-current"
+                        >
+                          {pt}
+                        </li>
+                      ))}
+                    </ul>
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
       </div>
     );
   }
