@@ -33,8 +33,8 @@ export interface CaseStudySection {
      label court du segmented control mobile, url optionnelle (la legende
      devient un lien)
    - `row: <legende>`                             → image pleine largeur
-   - `pair: <titre> | <legende>`                  → deux iPhones cote a cote,
-     fleche entre les deux, titre au-dessus, sans barre d'accueil
+   - `pair: [<titre> |] <legende>`                → deux iPhones cote a cote,
+     fleche entre les deux, titre optionnel au-dessus, sans barre d'accueil
    - `pair-scroll: <titre> | <legende>`           → idem, l'ecran scrolle
    - `plain: <alt>`                               → grille, sans legende affichee
    - sinon                                        → grille, le alt sert de legende
@@ -71,8 +71,8 @@ export function parseMediaDirective(alt: string): MediaDirective {
     case "pair-scroll":
       return {
         kind: "pair",
-        title: parts[0] ?? "",
-        caption: parts[1] ?? "",
+        title: parts.length > 1 ? parts[0] : "",
+        caption: parts[parts.length - 1] ?? "",
         scroll: prefix === "pair-scroll",
       };
     default:
