@@ -80,6 +80,19 @@ export function parseMediaDirective(alt: string): MediaDirective {
   }
 }
 
+/* Les lignes `![alt](src)` restent dans le contenu de l'etape pour que
+   CaseStudyStep place les medias entre deux paragraphes. Tout rendu qui sort
+   les images par un autre chemin (Context, layouts sur mesure) doit passer le
+   texte ici, sinon le alt ressort en « !lien ». */
+export function stripImageLines(content: string): string {
+  return content
+    .split("\n")
+    .filter((l) => !/^\s*!\[[^\]]*\]\([^)]+\)\s*$/.test(l))
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
 export interface CaseStudy {
   frontmatter: CaseStudyFrontmatter;
   sections: CaseStudySection[];

@@ -16,7 +16,7 @@ import { CaseStudyImageGrid } from "@/components/case-study-image-grid";
 import { Button } from "@/components/button";
 import { Footer } from "@/components/footer";
 import { ArrowUpRightIcon } from "@heroicons/react/16/solid";
-import { getCaseStudy, getAllCaseStudySlugs } from "@/lib/case-studies";
+import { getCaseStudy, getAllCaseStudySlugs, stripImageLines } from "@/lib/case-studies";
 import type { CaseStudyStep as StepData } from "@/lib/case-studies";
 import { projects } from "@/lib/data";
 import { IPhoneFrame } from "@/components/iphone-frame";
@@ -331,7 +331,7 @@ export default async function CaseStudyPage({
                                     {step.heading}
                                   </h3>
                                   <div className="mt-xs">
-                                    <CaseStudyContent text={step.content} />
+                                    <CaseStudyContent text={stripImageLines(step.content)} />
                                   </div>
                                   <div className="mt-lg flex gap-xl justify-center">
                                     <figure className="flex flex-col">
