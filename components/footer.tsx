@@ -3,7 +3,7 @@ import { IconLinkedIn, IconMalt, IconGitHub } from "@/components/icons";
 /* Absolute paths so the links stay functional on deep pages (/work/<slug>). */
 const navLinks = [
   { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
+  { label: "Testimonials", href: "/#testimonials" },
   { label: "Contact", href: "/#contact" },
 ];
 

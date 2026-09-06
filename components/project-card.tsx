@@ -1,16 +1,16 @@
 import Image from "next/image";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/16/solid";
+import Link from "next/link";
 import { Tag } from "@/components/tag";
-import { Button } from "@/components/button";
 import { cn } from "@/lib/cn";
 import type { ProjectEntry } from "@/lib/projects";
 
 /**
- * Carte projet. Numero et sur-titre en petites capitales dans la zone
- * `border`, ecran qui sort du bas de cette zone (arrondi en haut seulement,
- * ombre courte, coupe par le bloc texte qui passe par-dessus), puis sur
- * `surface` : phrase, trois tags au plus, un bouton primary vers le repo.
- * La carte elle-meme n'est pas cliquable, seul le bouton l'est.
+ * Carte projet. Numero et sur-titre en label dans la zone `surface`, ecran
+ * qui sort du bas de cette zone (arrondi en haut seulement, ombre portee,
+ * coupe par le bloc texte qui passe par-dessus), puis sur `bg` : phrase et
+ * trois tags au plus. Le bloc texte est le lien vers le repo, seul lui
+ * reagit au survol ; l'ecran au-dessus repond a ce survol via `:has()`
+ * (globals.css, `.project-card`).
  */
 
 /* Meme arrondi que les cadres navigateur. Hauteur commune a tous les ecrans,
@@ -28,6 +28,7 @@ function ProjectImage({ project }: { project: ProjectEntry }) {
         {project.images.map((src, i) => (
           <div
             key={src}
+            data-project-screen
             className={cn("flex-1 min-w-0", SCREEN, i > 1 && "max-lg:hidden")}
           >
             <Image
@@ -44,7 +45,7 @@ function ProjectImage({ project }: { project: ProjectEntry }) {
   }
 
   return (
-    <div className={SCREEN}>
+    <div data-project-screen className={SCREEN}>
       <Image
         src={project.image}
         alt={alt}
@@ -66,39 +67,53 @@ export function ProjectCard({
   const link = project.links[0];
   const number = String(index + 1).padStart(2, "0");
 
+  const text = (
+    <>
+      <h3 className="px-container pt-md font-display text-h4 font-medium tracking-h4 text-text-primary">
+        {project.headline}
+      </h3>
+      <div className="flex flex-wrap gap-xs px-container pt-sm pb-section">
+        {project.tags.slice(0, 3).map((tag) => (
+          <Tag key={tag}>{tag}</Tag>
+        ))}
+      </div>
+    </>
+  );
+
+  /* Rows 2 to 3, one level above the screens. The link is itself a subgrid
+     so the headline and tags keep their shared rows across the columns. */
+  const textClass =
+    "project-card-link hover-subtle relative z-10 flex flex-1 flex-col bg-bg md:grid md:grid-rows-subgrid md:row-span-2";
+
   return (
     <div
       data-ph-capture-attribute-project-slug={project.slug}
       data-ph-capture-attribute-card-variant="project"
-      className="flex flex-col md:grid md:grid-rows-subgrid md:row-span-4"
+      className="project-card flex flex-col md:grid md:grid-rows-subgrid md:row-span-3"
     >
       {/* Row 1, screen zone: clipped at the bottom, the text rows sit above it.
           Tablet: the eyebrow may wrap, so it reserves two lines and the three
           screens stay on the same baseline. */}
-      <div className="flex flex-col overflow-hidden bg-surface-strong px-container pt-sm">
-        <p className="mb-sm font-body text-tag font-bold uppercase tracking-wide text-text-secondary md:max-lg:min-h-8">
+      <div className="flex flex-col overflow-hidden bg-surface px-container pt-lg">
+        <p className="mb-sm font-body text-label font-bold uppercase tracking-label text-text-secondary md:max-lg:min-h-10">
           {number}. {project.eyebrow ?? project.title}
         </p>
         <ProjectImage project={project} />
       </div>
 
-      {/* Rows 2 to 4, one level above the screens */}
-      <h3 className="relative z-10 bg-surface px-container pt-md font-display text-h4 font-medium tracking-h4 text-text-primary">
-        {project.headline}
-      </h3>
-      <div className="relative z-10 flex flex-wrap gap-xs bg-surface px-container pt-sm">
-        {project.tags.slice(0, 3).map((tag) => (
-          <Tag key={tag}>{tag}</Tag>
-        ))}
-      </div>
-      <div className="relative z-10 flex-1 bg-surface px-container pt-md pb-section">
-        {link && (
-          <Button variant="primary" href={link.href}>
-            {link.label}
-            <ArrowTopRightOnSquareIcon className="ml-2xs size-4" />
-          </Button>
-        )}
-      </div>
+      {link ? (
+        <Link
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${project.title} on ${link.label}`}
+          className={cn(textClass, "cursor-pointer")}
+        >
+          {text}
+        </Link>
+      ) : (
+        <div className={textClass}>{text}</div>
+      )}
     </div>
   );
 }

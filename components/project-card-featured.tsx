@@ -26,11 +26,12 @@ function FeaturedImage({ project }: { project: Project }) {
               alt=""
               width={640}
               height={1200}
-              className="nod-scroll-img w-full object-cover object-top transition-transform duration-[10000ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+              className="nod-scroll-img w-full object-cover object-top transition-transform ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+              style={{ transitionDuration: `${project.scrollDurationMs ?? 10000}ms` }}
             />
-            {/* Long-duration scroll animation: 10s preserved as-is — bracket value
-                stays because it's not in the design token scale (intentionally a
-                one-off long animation for the nod project card). */}
+            {/* Long-duration scroll animation, 10s by default (Nod), per project
+                via `scrollDurationMs` so a taller capture keeps the same pixel
+                speed. Not a design token: a one-off motion for these cards. */}
             <style>{`
               .hover-subtle:hover .nod-scroll-img {
                 transform: translateY(calc(-100% + 400px));
@@ -123,8 +124,16 @@ export function ProjectCardFeatured({ project }: { project: Project }) {
 
           </div>
 
-          {/* Image column — desktop only */}
-          <div className="relative overflow-hidden pt-xl2 px-xl max-md:hidden">
+          {/* Image column — desktop only. The stacked-phone showcases
+              (BforBank, You Alive) are centred in the card; the other
+              screens hang from the top and get cropped by the bottom edge. */}
+          <div
+            className={`relative overflow-hidden px-xl max-md:hidden ${
+              project.showcase === "bforbank" || project.showcase === "you-alive"
+                ? "flex items-center md:h-140"
+                : "pt-xl2"
+            }`}
+          >
             <FeaturedImage project={project} />
           </div>
 
