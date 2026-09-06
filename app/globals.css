@@ -100,6 +100,8 @@
   /* Ecran qui sort d'une zone surface (cartes projets) : plus portee que
      mockup, pour que l'ombre se lise sur le gris. */
   --shadow-screen: 0 2px 4px rgba(0, 0, 0, 0.3), 0 10px 24px rgba(0, 0, 0, 0.45);
+  /* Etat survole de la carte projet : l'ombre s'accentue et porte plus loin. */
+  --shadow-screen-hover: 0 4px 8px rgba(0, 0, 0, 0.35), 0 20px 44px rgba(0, 0, 0, 0.5);
 
   /* Motion */
   --dur-fast: 150ms;
@@ -184,10 +186,10 @@
 /* --- Dark mode (classe explicite) --- */
 .dark {
   /* Texte */
-  --text-primary: #e4e4e7;
+  --text-primary: #d4d4d8;    /* zinc-300, 13:1 sur bg ; zinc-200 eblouissait (2026-09-07) */
   --text-secondary: #9f9fa9;
   --text-tertiary: #8b8b96; /* 5.3:1 sur bg sombre (etait 71717b, 4.1:1) */
-  --fg: #e4e4e7;
+  --fg: #d4d4d8;
 
   /* Backgrounds & borders — mirror par index Zinc (bg=50/950, surface=100/900, border=200/800, border-strong=300/700) */
   --bg: #0d0d10;            /* ~zinc-940, un cheveu au-dessus de 950 (#09090b) pour ne pas tomber dans le noir pur */
@@ -217,10 +219,10 @@
 /* --- Dark mode (préférence système, sauf override .light) --- */
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --text-primary: #e4e4e7;
+    --text-primary: #d4d4d8;    /* zinc-300, voir .dark */
     --text-secondary: #9f9fa9;
     --text-tertiary: #8b8b96; /* 5.3:1 sur bg sombre (etait 71717b, 4.1:1) */
-    --fg: #e4e4e7;
+    --fg: #d4d4d8;
 
     --bg: #0d0d10;            /* ~zinc-940, un cheveu au-dessus de 950 (#09090b) pour ne pas tomber dans le noir pur */
     --surface: #18181b;       /* zinc-900 */
@@ -310,6 +312,7 @@
   /* Shadows */
   --shadow-mockup: var(--shadow-mockup);
   --shadow-screen: var(--shadow-screen);
+  --shadow-screen-hover: var(--shadow-screen-hover);
 
   /* Note: Tailwind v4 does not expose `--duration-*` as a utility namespace, so
      durations stay referenced via `duration-[var(--dur-fast)]` brackets in JSX.
@@ -441,4 +444,30 @@ body {
 }
 .phone-stack-fade-bottom {
   background: linear-gradient(to top, var(--bg) 0%, var(--bg) 20%, transparent 100%);
+}
+/* Sur une carte survolee le fond passe a `surface` : le fondu suit, sinon
+   une bande claire reste visible en haut et en bas de la bande. */
+.phone-stack-fade-top,
+.phone-stack-fade-bottom {
+  transition: background var(--dur-base) var(--ease-default);
+}
+@media (hover: hover) {
+  .hover-subtle:hover .phone-stack-fade-top {
+    background: linear-gradient(to bottom, var(--surface) 0%, var(--surface) 20%, transparent 100%);
+  }
+  .hover-subtle:hover .phone-stack-fade-bottom {
+    background: linear-gradient(to top, var(--surface) 0%, var(--surface) 20%, transparent 100%);
+  }
+}
+
+/* Cartes Personal projects (components/project-card.tsx) : seul le bloc
+   texte est un lien et reagit au survol ; l'ecran au-dessus, qui n'est pas
+   dans le lien, suit via :has(). */
+.project-card [data-project-screen] {
+  transition: box-shadow var(--dur-base) var(--ease-default);
+}
+@media (hover: hover) {
+  .project-card:has(.project-card-link:hover) [data-project-screen] {
+    box-shadow: var(--shadow-screen-hover);
+  }
 }

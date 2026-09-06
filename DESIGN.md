@@ -88,6 +88,7 @@ rounded:
 shadow:
   mockup: "0 2px 8px rgba(0, 0, 0, 0.06)"  # browser + iPhone frames only
   screen: "0 2px 4px rgba(0, 0, 0, 0.3), 0 10px 24px rgba(0, 0, 0, 0.45)" # screens emerging from a surface zone (project cards)
+  screen-hover: "0 4px 8px rgba(0, 0, 0, 0.35), 0 20px 44px rgba(0, 0, 0, 0.5)" # same screens when the card text block is hovered (+4px lift)
 
 motion:
   duration-fast:  150ms
@@ -134,7 +135,7 @@ The portfolio's design system, in the [Google DESIGN.md format](https://github.c
 
 **Design principles.**
 
-1. **Structure by borders, not by shadow.** Sections are delimited by 1px borders. Shadows never structure layout. Two are authorised, both to detach a screenshot from its ground: `{shadow.mockup}` on mockup frames (browser, iPhone) over near-white, and `{shadow.screen}` on screens emerging from a `{colors.surface-strong}` zone (project cards), where the lighter shadow would vanish.
+1. **Structure by borders, not by shadow.** Sections are delimited by 1px borders. Shadows never structure layout. Two are authorised, both to detach a screenshot from its ground: `{shadow.mockup}` on mockup frames (browser, iPhone) over near-white, and `{shadow.screen}` on screens emerging from a `{colors.surface}` zone (project cards), where the lighter shadow would vanish; `{shadow.screen-hover}` is its raised state when the card's text block is hovered, one step darker and longer, paired with a 4px lift.
 2. **One accent.** A single electric blue (`#0A4CF0`) for brand and key emphasis. Never a second hue.
 3. **Hover is for pointers only.** Every `:hover` rule is gated behind `@media (hover: hover)` via the `hover-supported:` custom variant so taps on touch surfaces do not trigger hover state.
 4. **Reduced motion is respected globally.** A single `prefers-reduced-motion: reduce` block in `globals.css` neutralises every transition and animation.
@@ -143,7 +144,7 @@ The portfolio's design system, in the [Google DESIGN.md format](https://github.c
 
 Color tokens are role-based and Linear-style (no `--sem-` or `--color-` namespace at the CSS variable level — the bridge to Tailwind happens via `@theme inline`).
 
-- **Surfaces** (`{colors.bg}`, `{colors.surface}`, `{colors.surface-strong}`, `{colors.invert-bg}`) are warm near-whites. `{colors.surface}` is the alternate section ground (About, Testimonials, Personal projects) that gives the home its rhythm, and the raised state on cards and key-results. `{colors.surface-strong}` is one step darker, for a filled zone inside a `surface` section (the screen zone of a project card); in light mode it shares its value with `{colors.border}`, in dark mode it sits a half step below it, and in both it is a surface role, never a line.
+- **Surfaces** (`{colors.bg}`, `{colors.surface}`, `{colors.surface-strong}`, `{colors.invert-bg}`) are warm near-whites. `{colors.surface}` is the alternate section ground (Testimonials, Personal projects, and the screen zone of a project card) that gives the home its rhythm, and the raised state on cards and key-results. `{colors.surface-strong}` is one step darker, for a filled zone inside a `surface` section (unused since 2026-09-07, when the project cards went back to `surface` over `bg`; kept as a token); in light mode it shares its value with `{colors.border}`, in dark mode it sits a half step below it, and in both it is a surface role, never a line.
 - **Borders** (`{colors.border}`, `{colors.border-strong}`) carry the layout. `{colors.border-strong}` is one step heavier and reserved for borders on inverse-coloured surfaces.
 - **Text** uses a 3-step hierarchy (`{colors.text-primary}` / `{colors.text-secondary}` / `{colors.text-tertiary}`). Tertiary is sparingly used, only for the lightest metadata (captions, faint timestamps).
 - **Accent** is split: `{colors.accent}` is the brand background colour for the `brand` button; `{colors.accent-text}` is the text colour for accent links — they differ in dark mode because the brand button colour does not adapt but the link colour must regain contrast.
@@ -196,7 +197,7 @@ Base 8px scale with two 4px sub-paliers (`2xs` and `lg-plus`). Every token lands
 | `{spacing.lg-plus}` | 40px | `p-lg-plus`, `gap-lg-plus` | In-between for rhythms that don't fit 32 or 48. |
 | `{spacing.xl}` | 48px | `p-xl`, `gap-xl` | Desktop container padding, default section padding. |
 | `{spacing.2xl}` | 64px | `p-2xl`, `gap-2xl` | Generous breaks. |
-| `{spacing.xl2}` | 72px | `p-xl2`, `gap-xl2` | About-card vertical padding (9 × 8). |
+| `{spacing.xl2}` | 72px | `p-xl2`, `gap-xl2` | Featured-card vertical padding (9 × 8). |
 | `{spacing.3xl}` | 96px | `p-3xl`, `gap-3xl` | Hero / featured breathing room. |
 | `{spacing.4xl}` | 128px | `p-4xl`, `gap-4xl` | Page-level vertical rhythm. |
 
