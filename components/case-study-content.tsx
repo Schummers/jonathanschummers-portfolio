@@ -1,10 +1,21 @@
 import React from "react";
+import { InlineLink } from "./inline-link";
 
+/* Inline Markdown : `**gras**` et `[texte](url)`. Les liens sortent en
+   `link` (bleu, token dedie dans globals.css), externes par defaut. */
 export function renderInline(text: string): React.ReactNode {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  const parts = text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g);
   return parts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
       return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (link) {
+      return (
+        <InlineLink key={i} href={link[2]}>
+          {link[1]}
+        </InlineLink>
+      );
     }
     return part;
   });

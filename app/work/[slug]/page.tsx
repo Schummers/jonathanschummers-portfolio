@@ -6,6 +6,8 @@ import { BlueprintShell } from "@/components/blueprint-shell";
 import { BackBar } from "@/components/back-bar";
 import { CaseStudyToc } from "@/components/case-study-toc";
 import { CaseStudyHeader } from "@/components/case-study-header";
+import { CaseStudyMedia } from "@/components/case-study-media";
+import { YouAliveShowcase } from "@/components/you-alive-showcase";
 import { CaseStudyContext } from "@/components/case-study-context";
 import { CaseStudyStep } from "@/components/case-study-step";
 import { CaseStudyContent } from "@/components/case-study-content";
@@ -173,7 +175,7 @@ export default async function CaseStudyPage({
         <BackBar />
 
         {/* Hero */}
-        {slug === "bforbank" ? (
+        {project?.showcase === "bforbank" ? (
           <section className="border-b border-border">
             {/* bforbank-only fluid grid: clamp(8px,1.5vw,24px) keeps the 7-column
                 IPhoneFrame strip visually balanced across viewports without
@@ -201,6 +203,10 @@ export default async function CaseStudyPage({
                 </IPhoneFrame>
               ))}
             </div>
+          </section>
+        ) : project?.showcase === "you-alive" ? (
+          <section className="border-b border-border px-xl py-xl max-md:px-md max-md:py-md">
+            <YouAliveShowcase />
           </section>
         ) : (
           <section className="border-b border-border px-xl py-xl max-md:px-md max-md:py-md">
@@ -284,7 +290,7 @@ export default async function CaseStudyPage({
 
                           {/* Section-level images — skip for bforbank delivered (shown in iPhone grid below) */}
                           {!(slug === "bforbank" && group.id === "delivered") && (
-                            <CaseStudyImageGrid images={sub.images} />
+                            <CaseStudyMedia images={sub.images} />
                           )}
 
                           {/* BforBank: iPhone grid in delivered section */}

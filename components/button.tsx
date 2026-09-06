@@ -1,7 +1,9 @@
 import { cn } from "@/lib/cn";
 
 type ButtonVariant = "primary" | "brand" | "outline";
-type ButtonSize = "default" | "xl";
+/* `icon` : bouton carre pour une seule icone (fleches d'un carrousel), meme
+   radius que les autres. */
+type ButtonSize = "default" | "xl" | "icon";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
@@ -20,7 +22,11 @@ export function Button({
   const base = cn(
     "inline-flex items-center justify-center",
     "font-body font-semibold",
-    size === "xl" ? "text-body-lg px-lg py-sm" : "text-body px-md py-xs",
+    size === "xl"
+      ? "text-body-lg px-lg py-sm"
+      : size === "icon"
+        ? "p-xs"
+        : "text-body px-md py-xs",
     "rounded-sm",
     "transition-all duration-[var(--dur-fast)] ease-out",
     "focus-visible:outline-2 focus-visible:outline-fg focus-visible:outline-offset-2",

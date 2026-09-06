@@ -8,17 +8,64 @@ export interface CaseStudyFrontmatter {
   heroImage: string;
 }
 
+export interface CaseStudyImage {
+  alt: string;
+  src: string;
+}
+
 export interface CaseStudyStep {
   heading: string;
   content: string;
-  images: { alt: string; src: string }[];
+  images: CaseStudyImage[];
 }
 
 export interface CaseStudySection {
   heading: string;
   content: string;
-  images: { alt: string; src: string }[];
+  images: CaseStudyImage[];
   steps: CaseStudyStep[];
+}
+
+/* Conventions Markdown portees par le alt d'une image `![alt](src)` :
+   - `phone: <legende>`                          → iPhone (jusqu'a 3 par rangee)
+   - `scroll: <url> | <legende>`                  → navigateur dont la page scrolle
+   - `phone-scroll: <label> | <legende> | <url>`  → iPhone dont l'ecran scrolle,
+     label court du segmented control mobile, url optionnelle (la legende
+     devient un lien)
+   - `row: <legende>`                             → image pleine largeur
+   - `plain: <alt>`                               → grille, sans legende affichee
+   - sinon                                        → grille, le alt sert de legende
+   Seul endroit qui connait ces prefixes : les composants recoivent la
+   directive deja lue. */
+export type MediaDirective =
+  | { kind: "phone"; caption: string }
+  | { kind: "scroll"; url: string; caption: string }
+  | { kind: "phone-scroll"; label: string; caption: string; href?: string }
+  | { kind: "row"; caption: string }
+  | { kind: "grid"; alt: string; caption: string };
+
+export function parseMediaDirective(alt: string): MediaDirective {
+  const m = alt.match(/^(phone-scroll|phone|scroll|row|plain):\s*(.*)$/);
+  if (!m) return { kind: "grid", alt, caption: alt };
+  const [, prefix, rest] = m;
+  const parts = rest.split("|").map((p) => p.trim());
+  switch (prefix) {
+    case "phone":
+      return { kind: "phone", caption: rest.trim() };
+    case "scroll":
+      return { kind: "scroll", url: parts[0] ?? "", caption: parts[1] ?? "" };
+    case "phone-scroll":
+      return {
+        kind: "phone-scroll",
+        label: parts[0] ?? "",
+        caption: parts[1] ?? "",
+        href: parts[2] || undefined,
+      };
+    case "row":
+      return { kind: "row", caption: rest.trim() };
+    default:
+      return { kind: "grid", alt: rest.trim(), caption: "" };
+  }
 }
 
 export interface CaseStudy {
@@ -32,12 +79,12 @@ function parseMarkdownSections(markdown: string): CaseStudySection[] {
 
   let sectionHeading = "";
   let sectionContent: string[] = [];
-  let sectionImages: { alt: string; src: string }[] = [];
+  let sectionImages: CaseStudyImage[] = [];
   let steps: CaseStudyStep[] = [];
 
   let stepHeading = "";
   let stepContent: string[] = [];
-  let stepImages: { alt: string; src: string }[] = [];
+  let stepImages: CaseStudyImage[] = [];
   let inStep = false;
 
   function flushStep() {
@@ -80,8 +127,14 @@ function parseMarkdownSections(markdown: string): CaseStudySection[] {
       const imgMatch = line.match(/!\[([^\]]*)\]\(([^)]+)\)/);
       if (imgMatch) {
         const img = { alt: imgMatch[1], src: decodeURIComponent(imgMatch[2]) };
-        if (inStep) stepImages.push(img);
-        else sectionImages.push(img);
+        if (inStep) {
+          stepImages.push(img);
+          /* La ligne reste dans le contenu : CaseStudyStep s'en sert pour
+             placer les medias entre deux paragraphes. */
+          stepContent.push(line);
+        } else {
+          sectionImages.push(img);
+        }
       } else {
         if (inStep) stepContent.push(line);
         else sectionContent.push(line);
@@ -113,7 +166,7 @@ export function getCaseStudy(slug: string): CaseStudy | null {
 }
 
 /* Only these slugs generate public pages */
-export const PUBLISHED_SLUGS = ["regis", "bforbank", "nod", "spie-bat", "smartintegrity"];
+export const PUBLISHED_SLUGS = ["regis", "bforbank", "nod", "spie-bat", "smartintegrity", "you-alive"];
 
 export function getAllCaseStudySlugs(): string[] {
   return PUBLISHED_SLUGS;
