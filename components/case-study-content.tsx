@@ -73,11 +73,12 @@ export function CaseStudyContent({
           );
         }
 
+        /* Sous-etape : meme taille que l'etape, seul le numero (3.1) la distingue. */
         if (trimmed.startsWith("#### ")) {
           return (
             <h4
               key={i}
-              className={`${top(i, "mt-lg")} font-display text-h4 font-bold leading-h4 tracking-h4 text-text-primary`}
+              className={`${top(i, "mt-lg")} font-display text-h3 font-bold leading-h3 tracking-h3 text-text-primary`}
             >
               {renderInline(trimmed.replace("#### ", ""))}
             </h4>

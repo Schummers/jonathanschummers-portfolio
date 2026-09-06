@@ -62,16 +62,16 @@ That left a scope one person could ship in a dense month, summer 2026.
 The bank already knows the date, the amount and who was paid. So the product starts there: it proposes, the landlord validates, and the invoice fills what the bank could not know. Every figure in the return stays linked to what proves it.
 
 pipeline:
-= What the landlord does | What the data becomes
+= How the landlord interacts | How the database is organised
 - **Sets up a property and its lease** once | bien; bail; personne; compte_bancaire
 ->
-- **Bank lines arrive, already sorted** automatic, any bank | transaction; iban_interne; echeance; regle; saisie_assistee
+- **Bank lines arrive, already sorted** automatic | transaction; iban_interne; echeance; regle; saisie_assistee
 -> lettrage
 - **Validates each ledger entry** one click | depense; revenu; activite
 -> document_ecriture
 - **Invoices enrich the entries** when they arrive | document; consommation_ia
 ->
-- **Reads the tax return per property** every year | categorie_depense; computed on read, frozen per year
+- **Exports the tax return per property** every year | categorie_depense; no table, computed from the entries
 
 #### 3.1 The bank line triggers the entry
 
