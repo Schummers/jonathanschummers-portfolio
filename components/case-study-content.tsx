@@ -73,6 +73,17 @@ export function CaseStudyContent({
           );
         }
 
+        if (trimmed.startsWith("#### ")) {
+          return (
+            <h4
+              key={i}
+              className={`${top(i, "mt-lg")} font-display text-h4 font-bold leading-h4 tracking-h4 text-text-primary`}
+            >
+              {renderInline(trimmed.replace("#### ", ""))}
+            </h4>
+          );
+        }
+
         if (trimmed.startsWith("### ")) {
           return (
             <h3
