@@ -8,7 +8,10 @@ export interface Project {
   type: "featured" | "compact";
   hidden?: boolean;
   browserUrl?: string;
-  mockupType?: "browser" | "browser-scroll" | "mobile-grid" | "iphone";
+  mockupType?: "browser" | "browser-scroll" | "mobile-grid";
+  /* Mise en scene dediee (hero de la page et image de la carte featured),
+     a la place de l'image : `bforbank-showcase.tsx`, `you-alive-showcase.tsx`. */
+  showcase?: "bforbank" | "you-alive";
   externalUrl?: string;
 }
 
@@ -51,6 +54,7 @@ export const projects: Project[] = [
     image: "/images/Hero/BFOR.webp",
     type: "featured",
     mockupType: "mobile-grid",
+    showcase: "bforbank",
   },
   {
     slug: "spie-bat",
@@ -87,5 +91,18 @@ export const projects: Project[] = [
     externalUrl: "https://malaama.org",
     /* Decision 2026-09-04: no longer displayed. Entry and image kept. */
     hidden: true,
+  },
+  {
+    slug: "you-alive",
+    title:
+      "Built an instrumented fake-door test for a founder's Meta-ads idea: three ad-matched landing variants, one tracking chain from Pixel to Notion, and a template to run the next test without a designer",
+    description:
+      "A fake-door test of a digital legacy product on Meta ads: three design variants matched to their ads, one measurement chain across Meta Pixel, Conversions API, PostHog and Notion, and the honest read of the data that closed the test and became a public template.",
+    company: "Fake-door website design",
+    tags: ["7 weeks", "Fake-door test", "Meta Pixel + CAPI + PostHog", "Template extracted"],
+    image: "/images/Hero/you-alive-card.webp",
+    type: "featured",
+    mockupType: "mobile-grid",
+    showcase: "you-alive",
   },
 ];
