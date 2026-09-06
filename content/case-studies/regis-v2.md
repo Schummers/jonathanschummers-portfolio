@@ -35,7 +35,7 @@ The goal was to know enough to scope an MVP, not to master every detail: enough 
 ![User journey mapping, a landlord's year in five phases, actions, problems and solutions](/images/Experiences/Regis/regis-research-user-journey.webp)
 ![Opportunity backlog, problems and solutions clustered by domain: documentation, process, accounting, strategy, training](/images/Experiences/Regis/regis-research-backlog.webp)
 
-### 2. Chose the first brick: the one obligation every landlord faces every year, shippable in a month
+### 2. For the MVP I sliced the vision where value and foundation overlap: capture every invoice and bank line as structured data for the tax return, the one job every landlord has to do every year, and build the data layer for the next features
 
 Rental management is many trades at once: tax, law, finance, works, tenants. Before writing a line of code I ran workshops with people who do it for a living and interviews with landlords, enough to frame a first release, not more. Two things came out.
 
