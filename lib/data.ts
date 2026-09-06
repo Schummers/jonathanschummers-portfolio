@@ -32,7 +32,7 @@ export const projects: Project[] = [
   {
     slug: "regis",
     title:
-      "Turned a yearly tax-return scramble into a weekly habit: a rental tax SaaS for Luxembourg landlords, built first for my own family",
+      "Built a rental tax SaaS for Luxembourg landlords on one rule: capture every invoice as it arrives, never scramble at tax return time again",
     description:
       "Solo-built SaaS that captures invoices and bank statements as they arrive, keeps a human in control of every figure, and prepares the Luxembourg form 190 per property. Built for a thirty-year family portfolio first, now in beta with twenty landlords.",
     company: "Regis",
