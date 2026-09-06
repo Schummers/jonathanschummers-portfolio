@@ -32,8 +32,8 @@ Rental management is five trades at once: tax, law, finance, maintenance, tenant
 
 The goal was to know enough to scope an MVP, not to master every detail: enough to find problems painful enough that people would pay to solve them. I organised the research into a user journey of a landlord's year, then clustered the opportunities into a backlog and prioritised the business and user problems. The backlog said where to look. Accounting and documents held by far the most tickets, and they were the one domain where a remote digital tool could do the whole job and where my skills counted most. Maintenance and tenants need someone on site, and they are not my field.
 
-![row: User journey mapping, a landlord's year in five phases, actions, problems and solutions. Original FigJam board, in French, personal details pixelated](/images/Experiences/Regis/regis-research-user-journey.webp)
-![row: Opportunity backlog, problems and solutions clustered by domain: documentation, process, accounting, strategy, training. Original FigJam board, in French](/images/Experiences/Regis/regis-research-backlog.webp)
+![User journey mapping, a landlord's year in five phases, actions, problems and solutions. Original FigJam board, in French, personal details pixelated](/images/Experiences/Regis/regis-research-user-journey.webp)
+![Opportunity backlog, problems and solutions clustered by domain: documentation, process, accounting, strategy, training. Original FigJam board, in French](/images/Experiences/Regis/regis-research-backlog.webp)
 
 ### 2. Chose the first brick: the one obligation every landlord faces every year, shippable in a month
 
