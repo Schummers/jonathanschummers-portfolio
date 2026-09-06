@@ -121,9 +121,13 @@ Go to market strategy in two steps:
 
 - **Open beta.** The 190/210 F changed this year, four pages instead of two and a merged form, so content on how to fill it in. Then ads in October and November, when landlords sit down with the pile, before the 31 December deadline.
 
-### 6. What I know, what I do not, and what comes next
+### 6. What comes next: learn from the first landlords during the closed beta, then test the hypotheses that decide the market before building anything else
 
-TBD
+Two loops run from the closed beta onwards. **Learn from use**: user tests with the first landlords, and the PostHog funnel with session replay, to see where they drop before their first tax report. **Test the hypotheses**: thirty interviews with Luxembourg landlords, then fake doors on paid traffic for the questions an interview cannot settle. Eight questions, one method each, in the order they get answered.
+
+![row: The eight hypotheses that decide the market, and how each one gets tested](/images/Experiences/Regis/regis-next-hypotheses.webp)
+
+What I called a first brick, a studio calls a wedge. The next one gets validated before it gets built.
 
 ## What we delivered
 
