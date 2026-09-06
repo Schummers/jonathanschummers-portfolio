@@ -90,7 +90,9 @@ stats:
 - **~~1.1%~~ 29%** Clicked the fake door
 - **~~0%~~ 1.3%** Emails on the waitlist
 
-Pixel and Conversions API on the Buy click, PostHog for the funnel and the replays, Notion for the leads: for the first time every step from the ad to the email field had a number. Four days at $2 a day, and the numbers moved, all of them. CTR tripled. Bounce fell from 96% to 45%. Three visitors in ten clicked toward the fake door, against 1% before, with variant C ahead everywhere. Then 4 emails, none from the target market. Four hypotheses tested, four numbers improved, one screen unchanged: the one where people decide the product is worth an email. That was H3, the value proposition, the hypothesis we had deferred.
+The data came from two places: Meta for the ads, PostHog for everything after the click. The conversion algorithm costs more per impression, and it was worth it, clicks toward the fake door went from 1.1% to 29% of visitors (H1). Bounce fell from 96% to 45%, and that one also belongs to the new sections and copy (H2) and to pages that finally looked like the ad that sent you there (H4). We also saw big differences between variants, with variant C leading on every important metric and receiving all the emails.
+
+But the most important metric did not move: 4 emails, 1.3% of visitors, where a fake-door test on cold paid traffic needs 5 to 10% to validate a promise. So we concluded that the value proposition did not resonate with the market the ads reached. The client preferred to kill the idea and moved on to a new one, which got a better email conversion.
 
 table:
 | | Round 1 | Round 2 | A | B | C |
