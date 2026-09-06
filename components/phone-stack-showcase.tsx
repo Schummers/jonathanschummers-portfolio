@@ -12,9 +12,9 @@ export interface PhoneStackColumn {
 interface PhoneStackShowcaseProps {
   columns: PhoneStackColumn[];
   label: string;
-  /* `hero` : petits ecrans, bande haute, le haut et le bas des colonnes
-     restent visibles aux trois quarts, pas d'animation. `card` : bande
-     basse pour une carte de la home, les colonnes glissent au survol. */
+  /* `hero` : bande pleine largeur et haute, colonnes decalees une sur deux,
+     pas d'animation. `card` : bande basse pour une carte de la home, les
+     colonnes glissent au survol. */
   size?: "hero" | "card";
 }
 
@@ -31,7 +31,7 @@ export function PhoneStackShowcase({ columns, label, size = "hero" }: PhoneStack
         "phone-stack relative flex items-center overflow-hidden",
         isCard
           ? "phone-stack-animate h-80 gap-sm md:h-120 md:gap-md"
-          : "phone-stack-hero mx-auto h-140 w-full gap-sm md:h-180 md:gap-lg"
+          : "h-140 gap-sm md:h-190 md:gap-md"
       )}
     >
       {columns.map((col, colIndex) => (
@@ -41,7 +41,7 @@ export function PhoneStackShowcase({ columns, label, size = "hero" }: PhoneStack
           className={cn(
             colIndex >= 3 ? "hidden md:flex" : "flex",
             "flex-1 flex-col",
-            isCard ? "gap-sm md:gap-md" : "gap-sm md:gap-lg"
+            "gap-sm md:gap-md"
           )}
           style={
             {

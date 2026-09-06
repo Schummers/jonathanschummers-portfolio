@@ -3,27 +3,29 @@ import { PhoneStackShowcase, type PhoneStackColumn } from "./phone-stack-showcas
 const BASE = "/images/Hero/you-alive";
 
 /* Une colonne par section du site, la meme section sur les trois variantes :
-   B en haut (rognee), A au milieu (entiere), C en bas (rognee). */
+   B en haut (rognee), A au milieu (entiere), C en bas (rognee). La section
+   « problem » est laissee de cote, elle n'apporte rien de plus visuellement.
+   Le hero montre cinq sections, la carte de la home quatre pour rester lisible. */
 const SECTIONS: { key: string; name: string }[] = [
   { key: "hero", name: "hero" },
-  { key: "problem", name: "problem" },
   { key: "how", name: "how it works" },
   { key: "pricing", name: "pricing" },
   { key: "proof", name: "testimonials" },
   { key: "faq", name: "FAQ" },
 ];
 
-/* Hero : decalages courts, les trois quarts de B et de C restent visibles.
-   Carte : decalages francs et glissement au survol, comme la carte BforBank. */
-const OFFSETS = {
-  hero: { rest: [0, -20, 14, -24, 10, -16], hover: [0, -20, 14, -24, 10, -16] },
-  card: { rest: [0, -56, 32, -40, 24, -64], hover: [-90, 40, -70, 30, -100, 10] },
+/* Decalages verticaux par colonne, une colonne sur deux remontee. Le hero ne
+   bouge pas ; la carte glisse au survol, comme la carte BforBank. */
+const LAYOUT = {
+  hero: { count: 5, rest: [-120, 110, -130, 100, -110], hover: [-120, 110, -130, 100, -110] },
+  card: { count: 4, rest: [-40, 60, -60, 40], hover: [50, -70, 40, -80] },
 };
 
 function columns(size: "hero" | "card"): PhoneStackColumn[] {
-  return SECTIONS.map((s, i) => ({
-    offset: OFFSETS[size].rest[i],
-    hoverOffset: OFFSETS[size].hover[i],
+  const l = LAYOUT[size];
+  return SECTIONS.slice(0, l.count).map((s, i) => ({
+    offset: l.rest[i],
+    hoverOffset: l.hover[i],
     screens: (["b", "a", "c"] as const).map((v) => ({
       src: `${BASE}/${v}-${s.key}.webp`,
       alt: `Variant ${v.toUpperCase()}, ${s.name} section`,

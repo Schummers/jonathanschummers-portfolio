@@ -3,8 +3,9 @@ import { cn } from "@/lib/cn";
 interface IPhoneFrameProps {
   children: React.ReactNode;
   className?: string;
-  /* Dessine la barre d'accueil iOS en bas de l'ecran. Off par defaut : les
-     captures d'ecran reelles (Bforbank, About) l'ont deja dans l'image. */
+  /* Dessine la barre d'accueil iOS en bas de l'ecran, noire et opaque comme
+     dans les captures BforBank. Off par defaut : les captures d'ecran reelles
+     (Bforbank, About) l'ont deja dans l'image. */
   homeBar?: boolean;
 }
 
@@ -20,7 +21,7 @@ export function IPhoneFrame({ children, className, homeBar = false }: IPhoneFram
       {homeBar && (
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute bottom-2 left-1/2 z-10 h-1 w-1/3 -translate-x-1/2 rounded-full bg-white outline outline-1 outline-black/30"
+          className="pointer-events-none absolute bottom-2 left-1/2 z-10 h-1 w-1/3 -translate-x-1/2 rounded-full bg-black"
         />
       )}
     </div>

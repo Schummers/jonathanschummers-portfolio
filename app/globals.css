@@ -410,9 +410,6 @@ body {
 .phone-stack [data-stack-col] {
   transform: translateY(var(--stack-y, 0px));
 }
-.phone-stack-hero {
-  max-width: var(--case-center);
-}
 .phone-stack-animate [data-stack-col] {
   transition: transform 12s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
