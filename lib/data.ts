@@ -5,12 +5,13 @@ export interface Project {
   company?: string;
   tags: string[];
   image?: string;
-  /* Ecrans pour le mockup `iphone` : jusqu'a trois captures mobiles. */
-  images?: string[];
   type: "featured" | "compact";
   hidden?: boolean;
   browserUrl?: string;
-  mockupType?: "browser" | "browser-scroll" | "mobile-grid" | "iphone";
+  mockupType?: "browser" | "browser-scroll" | "mobile-grid";
+  /* Mise en scene dediee (hero de la page et image de la carte featured),
+     a la place de l'image : `bforbank-showcase.tsx`, `you-alive-showcase.tsx`. */
+  showcase?: "bforbank" | "you-alive";
   externalUrl?: string;
 }
 
@@ -53,6 +54,7 @@ export const projects: Project[] = [
     image: "/images/Hero/BFOR.webp",
     type: "featured",
     mockupType: "mobile-grid",
+    showcase: "bforbank",
   },
   {
     slug: "spie-bat",
@@ -99,5 +101,6 @@ export const projects: Project[] = [
     image: "/images/Hero/you-alive-card.webp",
     type: "featured",
     mockupType: "mobile-grid",
+    showcase: "you-alive",
   },
 ];

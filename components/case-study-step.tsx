@@ -1,12 +1,6 @@
 import type { CaseStudyStep as StepData } from "@/lib/case-studies";
-import { CaseStudyContent, renderInline } from "./case-study-content";
-import { CaseStudyMedia } from "./case-study-media";
-import {
-  CaseStudyEvolution,
-  type EvolutionFrame,
-  type EvolutionLayout,
-} from "./case-study-evolution";
-import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
+import { CaseStudyContent } from "./case-study-content";
+import { CASE_STUDY_BLOCKS, type ParsedBlock } from "./case-study-blocks";
 
 interface CaseStudyStepProps {
   step: StepData;
@@ -15,54 +9,12 @@ interface CaseStudyStepProps {
   isFirstWithContent: boolean;
 }
 
-interface Stat {
-  value: string;
-  previous: string | null;
-  label: string;
-}
+type Segment = { kind: "text"; text: string } | { kind: "block"; block: ParsedBlock };
 
-interface Pick {
-  text: string;
-  chosen: boolean;
-}
-
-interface Picks {
-  caption: string;
-  items: Pick[];
-}
-
-interface FlowPhase {
-  name: string;
-  text: string;
-}
-
-type Image = { alt: string; src: string };
-
-type Segment =
-  | { kind: "text"; text: string }
-  | { kind: "images"; images: Image[] }
-  | { kind: "stats"; stats: Stat[] }
-  | { kind: "picks"; picks: Picks }
-  | { kind: "flow"; phases: FlowPhase[] }
-  | { kind: "table"; rows: string[][] }
-  | { kind: "evolution"; frames: EvolutionFrame[]; layout: EvolutionLayout };
-
-/* Conventions Markdown, lues bloc par bloc (blocs separes par une ligne
-   vide) et rendues a l'endroit ou elles sont ecrites :
-   - un bloc de lignes `![alt](src)` devient un groupe de medias ;
-   - `stats:` suivi de bullets `- **836** Visitors` devient une rangee de
-     mini-cards. `- **~~836~~ 312** Visitors` barre l'ancienne valeur avant
-     la nouvelle ;
-   - `picks: <legende>` suivi de bullets `- [ ] rejetee` / `- [x] retenue`
-     devient une liste d'options barrees, une seule cochee, sur fond surface ;
-   - `flow:` suivi de bullets `- **Nom**: ce que fait la phase` devient une
-     bande de phases numerotees, cartes sur fond surface, 3 par ligne sur
-     desktop, une par ligne sur mobile avec le numero a gauche ;
-   - `table:` suivi de lignes `| a | b |` devient un tableau, premiere ligne
-     en en-tete, ligne `|---|` ignoree, scroll horizontal sur mobile ;
-   - `evolution:` (ou `evolution: side`, iPhone a gauche et etapes a droite) suivi, par etat, d'une ligne `- <commit> | <src>` puis de
-     puces indentees `  - <ce que j'ai change>`, devient la timeline dans un
-     iPhone (`CaseStudyEvolution`). */
+/* Le contenu d'une etape est lu bloc par bloc (blocs separes par une ligne
+   vide) et rendu dans l'ordre du texte. Un bloc reconnu par une convention
+   de `case-study-blocks/` (stats, picks, flow, table, evolution, images)
+   devient son composant ; le reste est du texte, regroupe entre deux blocs. */
 function parseSegments(content: string): Segment[] {
   const segments: Segment[] = [];
   let text: string[] = [];
@@ -71,99 +23,19 @@ function parseSegments(content: string): Segment[] {
     text = [];
   };
 
-  for (const block of content.split("\n\n")) {
-    const trimmed = block.trim();
+  for (const raw of content.split("\n\n")) {
+    const trimmed = raw.trim();
     if (!trimmed) continue;
     const lines = trimmed.split("\n");
 
-    if (trimmed.startsWith("stats:")) {
-      const stats: Stat[] = [];
-      for (const line of lines) {
-        const m = line.match(/^- \*\*([^*]+)\*\*\s*(.*)$/);
-        if (!m) continue;
-        const prev = m[1].match(/^~~([^~]+)~~\s*(.+)$/);
-        stats.push({
-          value: prev ? prev[2] : m[1],
-          previous: prev ? prev[1] : null,
-          label: m[2],
-        });
-      }
+    const def = CASE_STUDY_BLOCKS.find((b) => b.match(lines));
+    const block = def?.parse(lines) ?? null;
+    if (block) {
       flushText();
-      segments.push({ kind: "stats", stats });
-      continue;
+      segments.push({ kind: "block", block });
+    } else {
+      text.push(trimmed);
     }
-
-    if (trimmed.startsWith("picks:")) {
-      const [head, ...rest] = lines;
-      const items: Pick[] = [];
-      for (const line of rest) {
-        const m = line.match(/^- \[( |x)\]\s*(.*)$/);
-        if (m) items.push({ chosen: m[1] === "x", text: m[2] });
-      }
-      flushText();
-      segments.push({
-        kind: "picks",
-        picks: { caption: head.replace(/^picks:\s*/, "").trim(), items },
-      });
-      continue;
-    }
-
-    if (trimmed.startsWith("flow:")) {
-      const phases: FlowPhase[] = [];
-      for (const line of lines.slice(1)) {
-        const m = line.match(/^- \*\*([^*]+)\*\*:?\s*(.*)$/);
-        if (m) phases.push({ name: m[1], text: m[2] });
-      }
-      flushText();
-      segments.push({ kind: "flow", phases });
-      continue;
-    }
-
-    if (trimmed.startsWith("table:")) {
-      const rows = lines
-        .slice(1)
-        .filter((l) => l.startsWith("|") && !/^\|\s*-/.test(l))
-        .map((l) =>
-          l
-            .replace(/^\|/, "")
-            .replace(/\|$/, "")
-            .split("|")
-            .map((c) => c.trim()),
-        );
-      flushText();
-      segments.push({ kind: "table", rows });
-      continue;
-    }
-
-    if (trimmed.startsWith("evolution:")) {
-      const layout: EvolutionLayout =
-        lines[0].replace(/^evolution:\s*/, "").trim() === "side" ? "side" : "stack";
-      const frames: EvolutionFrame[] = [];
-      for (const line of lines.slice(1)) {
-        const head = line.match(/^- (.+?)\s*\|\s*(\S+)$/);
-        if (head) {
-          frames.push({ label: head[1], src: decodeURIComponent(head[2]), points: [] });
-          continue;
-        }
-        const point = line.match(/^\s+- (.+)$/);
-        if (point && frames.length) frames[frames.length - 1].points.push(point[1]);
-      }
-      flushText();
-      segments.push({ kind: "evolution", frames, layout });
-      continue;
-    }
-
-    const imgs = lines
-      .map((l) => l.match(/^!\[([^\]]*)\]\(([^)]+)\)$/))
-      .filter((m): m is RegExpMatchArray => m !== null)
-      .map((m) => ({ alt: m[1], src: decodeURIComponent(m[2]) }));
-    if (imgs.length === lines.length) {
-      flushText();
-      segments.push({ kind: "images", images: imgs });
-      continue;
-    }
-
-    text.push(trimmed);
   }
   flushText();
   return segments;
@@ -190,170 +62,12 @@ export function CaseStudyStep({
       </h3>
       {segments.map((seg, i) => {
         const gap = i === 0 ? "mt-xs" : "mt-lg";
-
-        if (seg.kind === "text") {
-          return (
-            <div key={i} className={gap}>
-              <CaseStudyContent text={seg.text} />
-            </div>
-          );
-        }
-
-        if (seg.kind === "images") {
-          return (
-            <div key={i} className={gap}>
-              <CaseStudyMedia images={seg.images} />
-            </div>
-          );
-        }
-
-        if (seg.kind === "evolution") {
-          if (!seg.frames.length) return null;
-          return (
-            <div key={i} className={gap}>
-              <CaseStudyEvolution frames={seg.frames} layout={seg.layout} />
-            </div>
-          );
-        }
-
-        if (seg.kind === "picks") {
-          const { picks } = seg;
-          if (!picks.items.length) return null;
-          return (
-            <figure key={i} className={gap}>
-              <ul className="bg-surface px-md py-md flex flex-col gap-sm">
-                {picks.items.map((p, j) => (
-                  <li
-                    key={j}
-                    className="flex items-start gap-sm font-display text-h3 font-bold leading-h3 tracking-h3"
-                  >
-                    {/* h-lh = une ligne de texte, le cercle se centre sur la premiere ligne */}
-                    <span className="flex h-lh shrink-0 items-center">
-                      <span className="flex size-7 items-center justify-center rounded-full bg-bg">
-                        {p.chosen ? (
-                          <CheckIcon className="size-4 text-green-600" aria-label="Chosen" />
-                        ) : (
-                          <XMarkIcon className="size-4 text-red-500" aria-label="Rejected" />
-                        )}
-                      </span>
-                    </span>
-                    <span
-                      className={
-                        p.chosen
-                          ? "text-text-primary"
-                          : "text-text-secondary line-through decoration-1"
-                      }
-                    >
-                      {p.text}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              {picks.caption && (
-                <figcaption className="mt-xs font-body text-caption italic font-normal text-text-tertiary">
-                  {picks.caption}
-                </figcaption>
-              )}
-            </figure>
-          );
-        }
-
-        if (seg.kind === "flow") {
-          if (!seg.phases.length) return null;
-          return (
-            <ol key={i} className={`${gap} grid grid-cols-3 gap-sm max-md:grid-cols-1`}>
-              {seg.phases.map((ph, j) => (
-                <li
-                  key={j}
-                  className="bg-surface px-md py-md flex flex-col gap-xs max-md:flex-row max-md:gap-sm"
-                >
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-bg font-display text-label font-bold text-text-primary">
-                    {j + 1}
-                  </span>
-                  <div className="flex flex-col gap-xs">
-                    <p className="font-display text-h4 font-bold tracking-h4 text-text-primary">
-                      {ph.name}
-                    </p>
-                    <p className="font-body text-body-sm leading-body text-text-secondary">
-                      {renderInline(ph.text)}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          );
-        }
-
-        if (seg.kind === "stats") {
-          return (
-            <div key={i} className={`${gap} grid grid-cols-4 gap-sm max-md:grid-cols-2`}>
-              {seg.stats.map((s, j) => (
-                <div key={j} className="bg-surface px-md py-md">
-                  <p className="font-display text-h3 font-bold leading-h3 tracking-h3 text-text-primary">
-                    {s.previous && (
-                      <>
-                        <span className="text-text-tertiary line-through decoration-1">
-                          {s.previous}
-                        </span>{" "}
-                      </>
-                    )}
-                    {s.value}
-                  </p>
-                  <p className="mt-xs font-body text-caption text-text-secondary">{s.label}</p>
-                </div>
-              ))}
-            </div>
-          );
-        }
-
-        if (seg.kind === "table") {
-          const [head, ...body] = seg.rows;
-          if (!head) return null;
-          return (
-            <div key={i} className={`${gap} overflow-x-auto`}>
-              <table className="w-full min-w-xl border-collapse font-body text-body-sm leading-body text-text-primary">
-                <thead>
-                  <tr className="border-b border-border">
-                    {head.map((c, j) => (
-                      <th
-                        key={j}
-                        scope="col"
-                        className={`py-xs pr-sm font-semibold whitespace-nowrap text-text-secondary ${
-                          j === 0 ? "text-left" : "text-right"
-                        }`}
-                      >
-                        {c}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {body.map((row, r) => (
-                    <tr
-                      key={r}
-                      className={r < body.length - 1 ? "border-b border-border/50" : ""}
-                    >
-                      {row.map((c, j) => (
-                        <td
-                          key={j}
-                          className={`py-xs pr-sm tabular-nums whitespace-nowrap ${
-                            j === 0
-                              ? "text-left text-text-secondary"
-                              : "text-right"
-                          }`}
-                        >
-                          {c}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          );
-        }
-
-        return null;
+        if (seg.kind === "block") return seg.block.render(i, gap);
+        return (
+          <div key={i} className={gap}>
+            <CaseStudyContent text={seg.text} />
+          </div>
+        );
       })}
     </div>
   );

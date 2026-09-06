@@ -8,9 +8,8 @@ import type { Project } from "@/lib/data";
 import { PUBLISHED_SLUGS } from "@/lib/case-studies";
 
 function FeaturedImage({ project }: { project: Project }) {
-  if (project.mockupType === "mobile-grid") {
-    return project.slug === "you-alive" ? <YouAliveShowcase size="card" /> : <BforBankShowcase />;
-  }
+  if (project.showcase === "you-alive") return <YouAliveShowcase size="card" />;
+  if (project.showcase === "bforbank") return <BforBankShowcase />;
 
   if (!project.image) return null;
 
