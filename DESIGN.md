@@ -35,6 +35,10 @@ colors:
   # Inline link in prose (case-study bodies). Blue on purpose, not the accent: a link must read as a link.
   link:           "#1D4ED8"   # blue-700, 6.3:1 on bg. Dark: "#60A5FA" (blue-400)
 
+  # State icons only (chosen / rejected marks in case-study picks). Never body text, never a surface.
+  success:        "#15803D"   # green-700, 4.9:1 on bg. Dark: "#4ADE80" (green-400)
+  error:          "#DC2626"   # red-600, 4.6:1 on bg. Dark: "#F87171" (red-400)
+
   # Primary button
   btn-primary:        "#1e1e21"
   btn-primary-hover:  "#09090b"
@@ -141,7 +145,8 @@ Color tokens are role-based and Linear-style (no `--sem-` or `--color-` namespac
 - **Borders** (`{colors.border}`, `{colors.border-strong}`) carry the layout. `{colors.border-strong}` is one step heavier and reserved for borders on inverse-coloured surfaces.
 - **Text** uses a 3-step hierarchy (`{colors.text-primary}` / `{colors.text-secondary}` / `{colors.text-tertiary}`). Tertiary is sparingly used, only for the lightest metadata (captions, faint timestamps).
 - **Accent** is split: `{colors.accent}` is the brand background colour for the `brand` button; `{colors.accent-text}` is the text colour for accent links — they differ in dark mode because the brand button colour does not adapt but the link colour must regain contrast.
-- **Inline links in prose** (`[text](url)` in a case study) use `{colors.link}`, a blue that swaps in dark mode. Rendered by `renderInline` in `case-study-content.tsx`, external by default.
+- **Inline links in prose** (`[text](url)` in a case study) use `{colors.link}`, a blue that swaps in dark mode. Rendered by `renderInline` in `case-study-content.tsx` through the `InlineLink` component, external by default.
+- **State colours** (`{colors.success}`, `{colors.error}`) exist for one job: the check / cross icons of a case-study `picks:` block. They never colour text or a surface, and they are not a second accent.
 - **CV print artifact:** the A4 CV left this repo on 2026-08-12 for `~/AI OS/agency/cv/`. It has its **own forked token canon** (`DESIGN-CV.md` over there), does not consume this DS, and this DS no longer carries CV-specific tokens.
 
 ## Typography
@@ -208,10 +213,15 @@ Radius tokens are deliberately small. Pill shapes are rare and almost never used
 
 The portfolio has a small primitives library (Button, Tag, BlueprintShell, frames, case-study blocks) under `components/`. Agents must compose from these components rather than inline raw `<button>`/`<a>`/`<input>` elements.
 
-**Button.** Two sizes (`default`, `xl`), three variants (`primary`, `brand`, `outline`).
+**Button.** Three sizes (`default`, `xl`, `icon`), three variants (`primary`, `brand`, `outline`).
 - `primary` → uses `{components.button-primary}` and its hover.
 - `brand` → uses `{components.button-brand}` and its hover. **One per page, max.**
 - `outline` → uses `{components.button-outline}` and its hover.
+- `icon` → a square button for a single icon (carousel arrows). Same `{rounded.sm}` as every button: never override a button to a pill.
+
+**SegmentedControl.** One choice among 2 to 5 short options (`segmented-control.tsx`). Tablist pattern, arrow keys move the selection. Same chrome as `outline` (1px `border-strong`, `{rounded.sm}`); the selected segment takes the `button-primary` palette.
+
+**InlineLink.** A link that lives inside a line of text or a caption (`inline-link.tsx`): `{colors.link}` at rest, `text-primary` on hover-supported, no padding, no height. External by default (`target="_blank" rel="noopener noreferrer"`), optional "open in new" icon. It is not a button variant: a button is a standalone action with a box, a link is a word in a sentence.
 
 **Tag.** Non-interactive metadata (role, duration, sector). Transparent background + 1px `border-strong`, never filled. Uses `{components.tag}`.
 

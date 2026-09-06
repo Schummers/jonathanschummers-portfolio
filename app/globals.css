@@ -46,7 +46,11 @@
 
   /* Lien inline dans la prose (case studies). Bleu, pas l'accent orange : un lien doit se lire comme un lien. */
   --link: #1D4ED8;            /* blue-700, 6.3:1 sur bg */
-  --text-on-accent: #ffffff;  /* texte/icônes posés sur bg-accent (brand button) */
+  --text-on-accent: #ffffff;
+
+  /* Etats : icones de reussite / echec seulement (bloc picks des case studies), jamais du texte courant. */
+  --success: #15803D;         /* green-700, 4.9:1 sur bg */
+  --error: #DC2626;           /* red-600, 4.6:1 sur bg */  /* texte/icônes posés sur bg-accent (brand button) */
 
   /* Layout — case study widths */
   --case-prose: 640px;    /* colonne contenu (texte, bullets, images) */
@@ -201,6 +205,8 @@
   /* Accent — text adjusted for contrast on dark bg */
   --accent-text: #FB923C;
   --link: #60A5FA;          /* blue-400 */
+  --success: #4ADE80;       /* green-400 */
+  --error: #F87171;         /* red-400 */
 }
 
 /* --- Dark mode (préférence système, sauf override .light) --- */
@@ -227,6 +233,8 @@
 
     --accent-text: #FB923C;
     --link: #60A5FA;
+    --success: #4ADE80;
+    --error: #F87171;
   }
 }
 
@@ -257,6 +265,8 @@
   --color-accent-hover: var(--accent-hover);
   --color-accent-text: var(--accent-text);
   --color-link: var(--link);
+  --color-success: var(--success);
+  --color-error: var(--error);
   --color-accent-muted: var(--accent-muted);
   --color-accent-subtle: var(--accent-subtle);
   --color-text-on-accent: var(--text-on-accent);

@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Tag } from "@/components/tag";
 import { BrowserFrame } from "@/components/browser-frame";
-import { IPhoneFrame } from "@/components/iphone-frame";
 import type { Project } from "@/lib/data";
 import { PUBLISHED_SLUGS } from "@/lib/case-studies";
 
@@ -50,15 +49,7 @@ export function ProjectCardCompact({ project }: { project: Project }) {
       {/* Thumbnail right — with browser frame + perspective on hover */}
       {project.image && (
         <div className="w-72 shrink-0 py-sm overflow-visible max-md:hidden [perspective:1200px]">
-          {project.mockupType === "iphone" && project.images ? (
-            <div className="flex items-start gap-xs transition-transform duration-[var(--dur-slow)] ease-out group-hover:[transform:rotateY(-6deg)_rotateX(3deg)]">
-              {project.images.slice(0, 3).map((src) => (
-                <IPhoneFrame key={src} homeBar className="flex-1">
-                  <Image src={src} alt="" width={90} height={195} className="w-full h-auto block" />
-                </IPhoneFrame>
-              ))}
-            </div>
-          ) : project.browserUrl ? (
+          {project.browserUrl ? (
             <BrowserFrame
               url={project.browserUrl}
               className="transition-transform duration-[var(--dur-slow)] ease-out group-hover:[transform:rotateY(-6deg)_rotateX(3deg)]"

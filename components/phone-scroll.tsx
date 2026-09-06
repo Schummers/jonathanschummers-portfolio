@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/16/solid";
 import { cn } from "@/lib/cn";
 import { IPhoneFrame } from "./iphone-frame";
 import { SegmentedControl } from "./segmented-control";
 import { AutoScrollViewport } from "./auto-scroll-viewport";
+import { CaseStudyCaption } from "./case-study-caption";
+import { InlineLink } from "./inline-link";
 
 export interface PhoneScrollItem {
   src: string;
@@ -16,10 +17,6 @@ export interface PhoneScrollItem {
   /* Lien optionnel : la legende devient un lien vers la page live. */
   href?: string;
 }
-
-const CAPTION_CLASS =
-  "mt-xs font-body text-caption italic font-normal text-text-tertiary";
-
 
 /* Jusqu'a trois iPhones dont l'ecran scrolle tout seul (AutoScrollViewport :
    l'utilisateur reprend la main, reprise apres 5 s). Sous md, un seul iPhone
@@ -54,23 +51,15 @@ export function PhoneScroll({ items }: { items: PhoneScrollItem[] }) {
                 />
               </AutoScrollViewport>
             </IPhoneFrame>
-            {it.caption && (
-              <figcaption className={CAPTION_CLASS}>
-                {it.href ? (
-                  <a
-                    href={it.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-xs text-link hover-supported:text-text-primary transition-colors"
-                  >
-                    {it.caption}
-                    <ArrowTopRightOnSquareIcon aria-hidden="true" className="size-3.5 shrink-0" />
-                  </a>
-                ) : (
-                  it.caption
-                )}
-              </figcaption>
-            )}
+            <CaseStudyCaption>
+              {it.href ? (
+                <InlineLink href={it.href} icon>
+                  {it.caption}
+                </InlineLink>
+              ) : (
+                it.caption
+              )}
+            </CaseStudyCaption>
           </figure>
         ))}
       </div>

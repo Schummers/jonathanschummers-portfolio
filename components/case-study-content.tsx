@@ -1,4 +1,5 @@
 import React from "react";
+import { InlineLink } from "./inline-link";
 
 /* Inline Markdown : `**gras**` et `[texte](url)`. Les liens sortent en
    `link` (bleu, token dedie dans globals.css), externes par defaut. */
@@ -11,15 +12,9 @@ export function renderInline(text: string): React.ReactNode {
     const link = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (link) {
       return (
-        <a
-          key={i}
-          href={link[2]}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-link hover-supported:text-text-primary transition-colors"
-        >
+        <InlineLink key={i} href={link[2]}>
           {link[1]}
-        </a>
+        </InlineLink>
       );
     }
     return part;
