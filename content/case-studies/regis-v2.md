@@ -45,6 +45,12 @@ Rental management is many trades at once: tax, law, finance, works, tenants. Bef
 
 Then I sliced the vision by obligation. A Luxembourg landlord has three: the yearly return, the rent cap, the resale gain. The return won because everyone must do it, every year, and because preparing it produces what every later brick depends on: a validated record of every invoice and transaction, per property, accumulating year after year. Value this year, foundation for the rest.
 
+stack:
+- **MVP slice** Tax return | Amounts per line of form 190, every figure linked to its document. | Capture in ten seconds, enrich later, value from the first report. | The one job every landlord has to do every year.
+- **Next** Finance path: Rent cap, 5 % of invested capital; Capital gain, resale gain report; Yield and valuation per property | Tenant path: Tenant and contractor messages; Reminders, unpaid rent, formal notice; Lease creation and templates
+- **Vision** Specialised B2B agents that execute the work | Tax, legal and trade agents with the landlord's whole context. They answer a tenant, brief a plumber from the tenant's message, review a lease. | Property managers run their day through it.
+= **Structured data layer, built by the MVP, read by everything after** Every invoice and bank line captured as it arrives, extracted, validated, linked to a property and a category. Accumulates year after year. The slice pays this year and lays the foundation at the same time.
+
 ### 3. Designed the data flow before the screens: the bank transaction is the entry point, the landlord only validates
 
 The bank statement is the one source a landlord never forgets to produce. It is complete, it is dated, and it is the truth of what was actually paid. So instead of asking people to type expenses, I built the product around the transaction: the landlord imports a statement, and the product turns each line into a proposal to confirm. Two ways in, both leading to the same list. **Automatic**: upload a PDF statement, any bank, the product reads it, checks that opening balance plus movements equals the closing balance, and shows the lines before creating anything. Tested on LCL, Boursorama, Trade Republic and Raiffeisen statements, 91 operations out of 91 restored. **Manual**: one entry typed by hand, for the cash payment or the old invoice that never went through this account.
