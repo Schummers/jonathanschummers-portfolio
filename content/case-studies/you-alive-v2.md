@@ -40,7 +40,7 @@ We went with H1, H2, H4 and H5. I would have tested H3 first, one page and sever
 ![phone: Creative ad A, 7.10% CTR](/images/Experiences/You%20Alive/you-alive-research-ad-a.webp)
 ![phone: Creative ad B, 6.73% CTR](/images/Experiences/You%20Alive/you-alive-research-ad-b.webp)
 ![phone: Creative ad C, 5.91% CTR](/images/Experiences/You%20Alive/you-alive-research-ad-c.webp)
-![scroll: alive.blackdotads.com | Round 1 landing page, AI-built by the client, with a branding unrelated to the creative ads](/images/Experiences/You%20Alive/you-alive-research-round1-landing-scroll.webp)
+![scroll: Round 1 landing page | Round 1 landing page, AI-built by the client, with a branding unrelated to the creative ads](/images/Experiences/You%20Alive/you-alive-research-round1-landing-scroll.webp)
 
 stats:
 - **836** Visitors
