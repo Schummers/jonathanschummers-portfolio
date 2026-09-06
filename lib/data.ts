@@ -77,23 +77,6 @@ export const projects: Project[] = [
     mockupType: "browser",
   },
   {
-    slug: "you-alive",
-    title:
-      "Built an instrumented fake-door test for a founder's Meta-ads idea: three ad-matched landing variants, one tracking chain from Pixel to Notion, and a template to run the next test without a designer",
-    description:
-      "A fake-door test of a digital legacy product on Meta ads: three design variants matched to their ads, one measurement chain across Meta Pixel, Conversions API, PostHog and Notion, and the honest read of the data that closed the test and became a public template.",
-    company: "You Alive",
-    tags: ["7 weeks", "Fake-door test", "Meta Pixel + CAPI + PostHog", "Template extracted"],
-    image: "/images/Hero/you-alive-hero.webp",
-    images: [
-      "/images/Hero/you-alive/a-hero.webp",
-      "/images/Hero/you-alive/b-hero.webp",
-      "/images/Hero/you-alive/c-hero.webp",
-    ],
-    type: "compact",
-    mockupType: "iphone",
-  },
-  {
     slug: "malaama",
     title:
       "Designing and building the website for an NGO empowering girls' education in Mauritania",
@@ -104,5 +87,17 @@ export const projects: Project[] = [
     browserUrl: "malaama.org",
     mockupType: "browser",
     externalUrl: "https://malaama.org",
+  },
+  {
+    slug: "you-alive",
+    title:
+      "Built an instrumented fake-door test for a founder's Meta-ads idea: three ad-matched landing variants, one tracking chain from Pixel to Notion, and a template to run the next test without a designer",
+    description:
+      "A fake-door test of a digital legacy product on Meta ads: three design variants matched to their ads, one measurement chain across Meta Pixel, Conversions API, PostHog and Notion, and the honest read of the data that closed the test and became a public template.",
+    company: "Fake-door website design",
+    tags: ["7 weeks", "Fake-door test", "Meta Pixel + CAPI + PostHog", "Template extracted"],
+    image: "/images/Hero/you-alive-card.webp",
+    type: "featured",
+    mockupType: "mobile-grid",
   },
 ];

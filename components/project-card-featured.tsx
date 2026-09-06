@@ -3,12 +3,13 @@ import Image from "next/image";
 import { Tag } from "@/components/tag";
 import { BrowserFrame } from "@/components/browser-frame";
 import { BforBankShowcase } from "@/components/bforbank-showcase";
+import { YouAliveShowcase } from "@/components/you-alive-showcase";
 import type { Project } from "@/lib/data";
 import { PUBLISHED_SLUGS } from "@/lib/case-studies";
 
 function FeaturedImage({ project }: { project: Project }) {
   if (project.mockupType === "mobile-grid") {
-    return <BforBankShowcase />;
+    return project.slug === "you-alive" ? <YouAliveShowcase size="card" /> : <BforBankShowcase />;
   }
 
   if (!project.image) return null;

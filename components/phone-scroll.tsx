@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/16/solid";
 import { cn } from "@/lib/cn";
 import { IPhoneFrame } from "./iphone-frame";
 import { SegmentedControl } from "./segmented-control";
@@ -20,8 +21,8 @@ const CAPTION_CLASS =
 
 /* Vitesse de descente et de remontee, en px/s, pause en haut et en bas, et
    delai avant que l'auto-scroll reprenne apres un geste de l'utilisateur. */
-const DOWN_SPEED = 55;
-const UP_SPEED = 240;
+const DOWN_SPEED = 24;
+const UP_SPEED = 110;
 const HOLD_MS = 1400;
 const IDLE_MS = 5000;
 
@@ -124,9 +125,10 @@ export function PhoneScroll({ items }: { items: PhoneScrollItem[] }) {
                     href={it.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-link hover-supported:text-text-primary transition-colors"
+                    className="inline-flex items-center gap-xs text-link hover-supported:text-text-primary transition-colors"
                   >
                     {it.caption}
+                    <ArrowTopRightOnSquareIcon aria-hidden="true" className="size-3.5 shrink-0" />
                   </a>
                 ) : (
                   it.caption
