@@ -135,7 +135,7 @@ flow:
 
 ## What we delivered
 
-- **3 live design variants** on shared copy, each matched to the ad sending its traffic, hand-built from the strongest parts of 40+ generated iterations.
+- **3 live design variants** on shared copy, each matched to the ad sending its traffic, hand-built from the strongest parts of 40+ generated iterations: [variant A](https://you-alive-showcase.vercel.app/a), [variant B](https://you-alive-showcase.vercel.app/b), [variant C](https://you-alive-showcase.vercel.app/c).
 - **A full measurement chain**: Meta Pixel plus Conversions API deduplicated by event id, PostHog EU behind a first-party proxy with session replay, Notion as the leads base with variant, UTM and country per lead.
 - **A PostHog dashboard** split by variant: funnel, visitors, pricing reach, country, device, median visit duration, handed to the client with the raw data at close.
 - **A roadmap** with the five hypotheses, what round 2 tested, what it deferred, and the reason behind each cut.

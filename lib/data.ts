@@ -84,7 +84,7 @@ export const projects: Project[] = [
     tags: ["7 weeks", "Fake-door test", "Meta Pixel + CAPI + PostHog", "Template extracted"],
     image: "/images/Hero/you-alive-hero.webp",
     type: "compact",
-    browserUrl: "You Alive",
+    browserUrl: "you-alive-showcase.vercel.app",
     mockupType: "browser",
   },
   {
