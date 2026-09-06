@@ -21,7 +21,7 @@ export function IPhoneFrame({ children, className, homeBar = false }: IPhoneFram
       {homeBar && (
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute bottom-2 left-1/2 z-10 h-1 w-1/3 -translate-x-1/2 rounded-full bg-black"
+          className="iphone-home-bar pointer-events-none absolute left-1/2 z-10 -translate-x-1/2 rounded-full bg-black"
         />
       )}
     </div>

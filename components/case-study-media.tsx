@@ -4,6 +4,7 @@ import { IPhoneFrame } from "./iphone-frame";
 import { BrowserFrame } from "./browser-frame";
 import { CaseStudyImageGrid } from "./case-study-image-grid";
 import { PhoneScroll } from "./phone-scroll";
+import { AutoScrollViewport } from "./auto-scroll-viewport";
 
 interface ImageItem {
   alt: string;
@@ -12,7 +13,8 @@ interface ImageItem {
 
 /* Conventions Markdown, lues sur le alt des images d'une etape :
    - `phone: <legende>`            → rangee d'iPhones (jusqu'a 3), legende dessous
-   - `scroll: <url> | <legende>`   → navigateur qui scrolle en boucle, legende dessous
+   - `scroll: <url> | <legende>`   → navigateur dont la page scrolle toute seule
+     (AutoScrollViewport, l'utilisateur reprend la main), legende dessous
    - `phone-scroll: <label> | <legende> | <url>` → jusqu'a 3 iPhones dont
      l'ecran scrolle tout seul, l'utilisateur reprend la main ; un seul sur
      mobile, avec un segmented control qui porte les labels ; l'url est
@@ -87,15 +89,15 @@ export function CaseStudyMedia({ images }: { images: ImageItem[] }) {
       {scroll && (
         <figure className={phones.length > 0 ? "mt-md" : "mt-lg"}>
           <BrowserFrame url={scrollUrl}>
-            <div className="case-scroll-viewport h-120 overflow-hidden">
+            <AutoScrollViewport className="h-120" label={`${scrollCaption}, scrollable`}>
               <Image
                 src={scroll.src}
                 alt={scrollCaption}
                 width={640}
                 height={2175}
-                className="case-scroll-img w-full h-auto block"
+                className="w-full h-auto block"
               />
-            </div>
+            </AutoScrollViewport>
           </BrowserFrame>
           {scrollCaption && <figcaption className={CAPTION_CLASS}>{scrollCaption}</figcaption>}
         </figure>
