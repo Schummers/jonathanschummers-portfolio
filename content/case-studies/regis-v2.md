@@ -113,7 +113,7 @@ The last piece was not in my plan. Beta users said the same thing in different w
 
 ### 5. Ran it on the family portfolio first: every 2025 and 2026 figure is in, and the 2025 return is being prepared from it
 
-![row: The tax page on mobile, designed in the Regis system, and page 1 of the 190/210 F it fills](/images/Experiences/Regis/regis-app-tax-report-to-form.webp)
+![row: The tax page on mobile, designed in the Regis system, and page 1 of the 190/210 F it fills](/images/Experiences/Regis/regis-app-tax-page-to-form.webp)
 
 Regis is in alpha on the family portfolio. I migrated the archive with scripts, straight into the database: more than **256 bank lines** for 2025 and 2026, **721 invoices** going back to 1985, **678 entries**, each one linked to its property and its tax line. The 2025 return will be prepared from them: for every property at the real-cost regime, the amounts come out per line of the 190/210 F, ready to copy. No tax figure and no filled form, by design.
 

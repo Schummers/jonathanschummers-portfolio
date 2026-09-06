@@ -11,7 +11,7 @@
 > `claude/regis-etape-4`:
 > - `regis-app-tax-report.webp` (780 × 1688), the tax page on mobile, in the app's own layout. Same
 >   filename step 3.8 already points to, so it fills that placeholder as is.
-> - `regis-app-tax-report-to-form.webp` (2496 × 1832), the phone, an arrow,
+> - `regis-app-tax-page-to-form.webp` (2496 × 1832), the phone, an arrow,
 >   page 1 of the 190/210 F at the same height. For this step.
 >
 > Both are **designs** rendered from HTML in the Regis tokens
