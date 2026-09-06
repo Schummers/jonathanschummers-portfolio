@@ -26,7 +26,13 @@ In my family, a rental portfolio built over thirty years was managed the way mos
 
 ## How I solved this problem
 
-### 1. Chose the first brick: the one obligation every landlord faces every year, shippable in a month
+### 1. Ran workshops and interviews with landlords to map the problems and find where the opportunity was
+
+Rental management is five trades at once: tax, law, finance, maintenance, tenants. I did not know them well, so the first weeks went into questions. Interviews with landlords, workshops with my parents, who had run the family portfolio for thirty years. I also read up on the tax return, the rent cap and the capital gain rules.
+
+The goal was to know enough to scope an MVP, not to master every detail: enough to find problems painful enough that people would pay to solve them. I organised the research into a user journey of a landlord's year, then clustered the opportunities into a backlog and prioritised the business and user problems. The backlog said where to look. Accounting and documents held by far the most tickets, and they were the one domain where a remote digital tool could do the whole job and where my skills counted most. Maintenance and tenants need someone on site, and they are not my field.
+
+### 2. Chose the first brick: the one obligation every landlord faces every year, shippable in a month
 
 Rental management is many trades at once: tax, law, finance, works, tenants. Before writing a line of code I ran workshops with people who do it for a living and interviews with landlords, enough to frame a first release, not more. Two things came out.
 
@@ -36,7 +42,7 @@ Rental management is many trades at once: tax, law, finance, works, tenants. Bef
 
 Then I sliced the vision by obligation. A Luxembourg landlord has three: the yearly return, the rent cap, the resale gain. The return won because everyone must do it, every year, and because preparing it produces what every later brick depends on: a validated record of every invoice and transaction, per property, accumulating year after year. Value this year, foundation for the rest.
 
-### 2. Designed the data flow before the screens: the bank transaction is the entry point, the landlord only validates
+### 3. Designed the data flow before the screens: the bank transaction is the entry point, the landlord only validates
 
 The bank statement is the one source a landlord never forgets to produce. It is complete, it is dated, and it is the truth of what was actually paid. So instead of asking people to type expenses, I built the product around the transaction: the landlord imports a statement, and the product turns each line into a proposal to confirm. Two ways in, both leading to the same list. **Automatic**: upload a PDF statement, any bank, the product reads it, checks that opening balance plus movements equals the closing balance, and shows the lines before creating anything. Tested on LCL, Boursorama, Trade Republic and Raiffeisen statements, 91 operations out of 91 restored. **Manual**: one entry typed by hand, for the cash payment or the old invoice that never went through this account.
 
@@ -72,7 +78,7 @@ flow:
 
 What the landlord ends up with is one entry created by a transaction, enriched by an invoice, the three linked together, attached to a property and to a category that already knows its line on the tax form. That is the data the tax report is built from.
 
-### 3. Kept a human in control of every figure that commits the landlord: an engine that matches before it creates, duplicates caught at import, anomalies shown rather than hidden
+### 4. Kept a human in control of every figure that commits the landlord: an engine that matches before it creates, duplicates caught at import, anomalies shown rather than hidden
 
 The first architecture decision of the project, written as an ADR on 24 June 2026, structures everything in this step. A number that commits the landlord, an amount, a total, a tax line, is always computed by deterministic code and persisted. The language model extracts, formats, proposes and explains with sources, and never has authority on a figure. The chain is always the same: non-deterministic extraction, human validation, clean data, deterministic calculation. It sounds like a constraint and it is what makes the automation trustworthy: the engine below contains no AI at all.
 
@@ -90,11 +96,11 @@ Access is scoped the same way the data is: every table is protected by row-level
 
 The last piece was not in my plan. Beta users said the same thing in different words: I am afraid of doing something stupid and not being able to tell. So I added an **activity** timeline on every entry: who changed what, the value before and the value after, whether the actor was a person, the import or the assistant, and when. Written only by the application, never editable, it replaced the "created on, modified on" footer that answered none of those questions. It is also what makes validation reversible without fear: an entry can go back from validated to "to validate" until it is locked by a tax report, and the timeline keeps the trace.
 
-### 4. Put it in my parents' hands, then in twenty landlords' hands
+### 5. Put it in my parents' hands, then in twenty landlords' hands
 
 TBD
 
-### 5. What I know, what I do not, and what comes next
+### 6. What I know, what I do not, and what comes next
 
 TBD
 
