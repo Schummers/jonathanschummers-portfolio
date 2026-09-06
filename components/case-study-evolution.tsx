@@ -17,11 +17,23 @@ export interface EvolutionFrame {
 
 const AUTO_MS = 3000;
 
+/* `stack` : iPhone entre deux fleches, legende centree dessous, a la largeur
+   du bloc fleches + iPhone. `side` : iPhone a gauche, les etapes a droite,
+   toutes lisibles, l'active en text-primary, les autres en text-secondary ;
+   cliquer une etape change l'ecran. Sur mobile `side` s'empile. */
+export type EvolutionLayout = "stack" | "side";
+
 /* Le meme ecran a chaque commit, dans un seul iPhone. Avance seul toutes les
    3 s tant que le bloc est visible et que personne n'a touche aux fleches ;
    un clic passe en manuel pour de bon. Pas de lecture auto si le visiteur
    prefere moins de mouvement. */
-export function CaseStudyEvolution({ frames }: { frames: EvolutionFrame[] }) {
+export function CaseStudyEvolution({
+  frames,
+  layout = "stack",
+}: {
+  frames: EvolutionFrame[];
+  layout?: EvolutionLayout;
+}) {
   const root = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const [auto, setAuto] = useState(true);
@@ -58,8 +70,74 @@ export function CaseStudyEvolution({ frames }: { frames: EvolutionFrame[] }) {
 
   const frame = frames[active];
 
+  const phone = (
+    <div className="w-full max-w-64 max-md:max-w-52">
+      {/* Toutes les images sont montees, seule l'active est visible :
+          pas de rechargement, la transition reste nette. */}
+      <IPhoneFrame homeBar>
+        <div className="relative aspect-[390/693]">
+          {frames.map((f, i) => (
+            <Image
+              key={i}
+              src={f.src}
+              alt={`${f.label}: ${f.points.join(", ")}`}
+              width={390}
+              height={693}
+              priority={i === 0}
+              className={cn(
+                "absolute inset-0 w-full h-auto block transition-opacity duration-[var(--dur-slow)] ease-out",
+                i === active ? "opacity-100" : "opacity-0"
+              )}
+            />
+          ))}
+        </div>
+      </IPhoneFrame>
+    </div>
+  );
+
+  if (layout === "side") {
+    return (
+      <div ref={root} className="flex items-center gap-xl max-md:flex-col max-md:items-start max-md:gap-md">
+        <div className="w-64 shrink-0 max-md:w-52 max-md:self-center">{phone}</div>
+        <ol className="flex flex-col gap-md" aria-live="polite">
+          {frames.map((f, i) => {
+            const on = i === active;
+            return (
+              <li key={i}>
+                <button
+                  type="button"
+                  onClick={() => go(i)}
+                  aria-current={on ? "step" : undefined}
+                  className={cn(
+                    "text-left font-display text-h4 font-bold transition-colors duration-[var(--dur-base)]",
+                    on ? "text-text-primary" : "text-text-secondary hover-supported:text-text-primary"
+                  )}
+                >
+                  {f.label}
+                </button>
+                <ul className="mt-2xs space-y-2xs">
+                  {f.points.map((pt, j) => (
+                    <li
+                      key={j}
+                      className={cn(
+                        "font-body text-body-sm leading-body pl-md relative before:absolute before:left-0 before:top-[0.65em] before:size-1 before:rounded-full before:bg-current transition-colors duration-[var(--dur-base)]",
+                        on ? "text-text-primary" : "text-text-secondary"
+                      )}
+                    >
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    );
+  }
+
   return (
-    <div ref={root}>
+    <div ref={root} className="mx-auto w-fit">
       <div className="flex items-center justify-center gap-md max-md:gap-sm">
         <Button
           variant="outline"
@@ -70,28 +148,7 @@ export function CaseStudyEvolution({ frames }: { frames: EvolutionFrame[] }) {
         >
           <ChevronLeftIcon className="size-5" />
         </Button>
-        <div className="w-full max-w-64 max-md:max-w-52">
-          {/* Toutes les images sont montees, seule l'active est visible :
-              pas de rechargement, la transition reste nette. */}
-          <IPhoneFrame homeBar>
-            <div className="relative aspect-[390/693]">
-              {frames.map((f, i) => (
-                <Image
-                  key={i}
-                  src={f.src}
-                  alt={`${f.label}: ${f.points.join(", ")}`}
-                  width={390}
-                  height={693}
-                  priority={i === 0}
-                  className={cn(
-                    "absolute inset-0 w-full h-auto block transition-opacity duration-[var(--dur-slow)] ease-out",
-                    i === active ? "opacity-100" : "opacity-0"
-                  )}
-                />
-              ))}
-            </div>
-          </IPhoneFrame>
-        </div>
+        {phone}
         <Button
           variant="outline"
           onClick={() => go(active + 1)}
@@ -103,9 +160,9 @@ export function CaseStudyEvolution({ frames }: { frames: EvolutionFrame[] }) {
         </Button>
       </div>
 
-      {/* Legende sous l'ecran : titre du commit puis trois lignes courtes,
-          tout centre, pas plus large que l'iPhone au-dessus. */}
-      <div className="mx-auto mt-sm w-full max-w-64 max-md:max-w-52" aria-live="polite">
+      {/* Legende sous l'ecran : titre puis trois lignes courtes, centrees,
+          a la largeur du bloc fleches + iPhone. */}
+      <div className="mt-sm" aria-live="polite">
         <ol className="flex justify-center gap-xs" aria-hidden="true">
           {frames.map((_, i) => (
             <li

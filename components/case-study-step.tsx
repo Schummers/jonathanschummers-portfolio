@@ -1,7 +1,11 @@
 import type { CaseStudyStep as StepData } from "@/lib/case-studies";
-import { CaseStudyContent } from "./case-study-content";
+import { CaseStudyContent, renderInline } from "./case-study-content";
 import { CaseStudyMedia } from "./case-study-media";
-import { CaseStudyEvolution, type EvolutionFrame } from "./case-study-evolution";
+import {
+  CaseStudyEvolution,
+  type EvolutionFrame,
+  type EvolutionLayout,
+} from "./case-study-evolution";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
 
 interface CaseStudyStepProps {
@@ -27,6 +31,11 @@ interface Picks {
   items: Pick[];
 }
 
+interface FlowPhase {
+  name: string;
+  text: string;
+}
+
 type Image = { alt: string; src: string };
 
 type Segment =
@@ -34,8 +43,9 @@ type Segment =
   | { kind: "images"; images: Image[] }
   | { kind: "stats"; stats: Stat[] }
   | { kind: "picks"; picks: Picks }
+  | { kind: "flow"; phases: FlowPhase[] }
   | { kind: "table"; rows: string[][] }
-  | { kind: "evolution"; frames: EvolutionFrame[] };
+  | { kind: "evolution"; frames: EvolutionFrame[]; layout: EvolutionLayout };
 
 /* Conventions Markdown, lues bloc par bloc (blocs separes par une ligne
    vide) et rendues a l'endroit ou elles sont ecrites :
@@ -45,9 +55,12 @@ type Segment =
      la nouvelle ;
    - `picks: <legende>` suivi de bullets `- [ ] rejetee` / `- [x] retenue`
      devient une liste d'options barrees, une seule cochee, sur fond surface ;
+   - `flow:` suivi de bullets `- **Nom**: ce que fait la phase` devient une
+     bande de phases numerotees, cartes sur fond surface, 3 par ligne sur
+     desktop, 2 sur mobile ;
    - `table:` suivi de lignes `| a | b |` devient un tableau, premiere ligne
      en en-tete, ligne `|---|` ignoree, scroll horizontal sur mobile ;
-   - `evolution:` suivi, par etat, d'une ligne `- <commit> | <src>` puis de
+   - `evolution:` (ou `evolution: side`, iPhone a gauche et etapes a droite) suivi, par etat, d'une ligne `- <commit> | <src>` puis de
      puces indentees `  - <ce que j'ai change>`, devient la timeline dans un
      iPhone (`CaseStudyEvolution`). */
 function parseSegments(content: string): Segment[] {
@@ -95,6 +108,17 @@ function parseSegments(content: string): Segment[] {
       continue;
     }
 
+    if (trimmed.startsWith("flow:")) {
+      const phases: FlowPhase[] = [];
+      for (const line of lines.slice(1)) {
+        const m = line.match(/^- \*\*([^*]+)\*\*:?\s*(.*)$/);
+        if (m) phases.push({ name: m[1], text: m[2] });
+      }
+      flushText();
+      segments.push({ kind: "flow", phases });
+      continue;
+    }
+
     if (trimmed.startsWith("table:")) {
       const rows = lines
         .slice(1)
@@ -112,6 +136,8 @@ function parseSegments(content: string): Segment[] {
     }
 
     if (trimmed.startsWith("evolution:")) {
+      const layout: EvolutionLayout =
+        lines[0].replace(/^evolution:\s*/, "").trim() === "side" ? "side" : "stack";
       const frames: EvolutionFrame[] = [];
       for (const line of lines.slice(1)) {
         const head = line.match(/^- (.+?)\s*\|\s*(\S+)$/);
@@ -123,7 +149,7 @@ function parseSegments(content: string): Segment[] {
         if (point && frames.length) frames[frames.length - 1].points.push(point[1]);
       }
       flushText();
-      segments.push({ kind: "evolution", frames });
+      segments.push({ kind: "evolution", frames, layout });
       continue;
     }
 
@@ -185,7 +211,7 @@ export function CaseStudyStep({
           if (!seg.frames.length) return null;
           return (
             <div key={i} className={gap}>
-              <CaseStudyEvolution frames={seg.frames} />
+              <CaseStudyEvolution frames={seg.frames} layout={seg.layout} />
             </div>
           );
         }
@@ -229,6 +255,27 @@ export function CaseStudyStep({
                 </figcaption>
               )}
             </figure>
+          );
+        }
+
+        if (seg.kind === "flow") {
+          if (!seg.phases.length) return null;
+          return (
+            <ol key={i} className={`${gap} grid grid-cols-3 gap-sm max-md:grid-cols-2`}>
+              {seg.phases.map((ph, j) => (
+                <li key={j} className="bg-surface px-md py-md flex flex-col gap-xs">
+                  <span className="flex size-7 items-center justify-center rounded-full bg-bg font-display text-label font-bold text-text-primary">
+                    {j + 1}
+                  </span>
+                  <p className="font-display text-h4 font-bold tracking-h4 text-text-primary">
+                    {ph.name}
+                  </p>
+                  <p className="font-body text-body-sm leading-body text-text-secondary">
+                    {renderInline(ph.text)}
+                  </p>
+                </li>
+              ))}
+            </ol>
           );
         }
 

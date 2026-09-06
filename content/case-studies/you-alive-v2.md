@@ -69,15 +69,29 @@ With the copy frozen, design was the only thing left to vary. One day generating
 Then three days by hand on 9 of them: strip the AI slop look, fix hierarchy, spacing, rhythm and contrast, dose the animations, and assemble three candidates per creative. A round of feedback from her, one more pass. Since this was a fake-door test, none of it was engineered: no design system, no components, no code review. Vibe-coded on purpose, quick and dirty on a basic UI style guide, because the page only had to live long enough to answer one question.
 
 evolution:
-- Best AI generated iteration | /images/Experiences/You%20Alive/you-alive-design-evo-1.webp
+- 1. Start from AI iterations | /images/Experiences/You%20Alive/you-alive-design-evo-1.webp
   - Cards used for everything, so nothing stands out
   - No visual hierarchy, no vertical rhythm
   - Motion too heavy, animations on every element
-- Commit 2: hierarchy | /images/Experiences/You%20Alive/you-alive-design-evo-2.webp
+- 2. Fix the hierarchy | /images/Experiences/You%20Alive/you-alive-design-evo-2.webp
   - Body text set flush left
   - Section eyebrows to structure the page
   - One heading style, a single type scale
-- Commit 3: rhythm and contrast | /images/Experiences/You%20Alive/you-alive-design-evo-3.webp
+- 3. Fix the rhythm | /images/Experiences/You%20Alive/you-alive-design-evo-3.webp
+  - Alternating section backgrounds to separate content
+  - Consistent spacing rules between sections and paragraphs
+  - Cards kept for a few blocks only, the rest set on the background
+
+evolution: side
+- 1. Start from AI iterations | /images/Experiences/You%20Alive/you-alive-design-evo-1.webp
+  - Cards used for everything, so nothing stands out
+  - No visual hierarchy, no vertical rhythm
+  - Motion too heavy, animations on every element
+- 2. Fix the hierarchy | /images/Experiences/You%20Alive/you-alive-design-evo-2.webp
+  - Body text set flush left
+  - Section eyebrows to structure the page
+  - One heading style, a single type scale
+- 3. Fix the rhythm | /images/Experiences/You%20Alive/you-alive-design-evo-3.webp
   - Alternating section backgrounds to separate content
   - Consistent spacing rules between sections and paragraphs
   - Cards kept for a few blocks only, the rest set on the background
@@ -105,11 +119,21 @@ table:
 | Clicked the fake door | 1.1% | 29% | 6% | 29% | 38% |
 | Emails | 0 | 4 | 0 | 0 | 4 |
 
-### 5. Closed the test and turned the kit into a template anyone can reuse
+### 5. Turned the repo and everything we learned into a system that guides non-designers and non-devs to a fully wired fake-door site
 
-The conversion-versus-traffic question moved to the client's other product, where volume was easier to get, and it settled there: conversion ads bring leads, traffic ads bring clicks. You Alive went on hold by agreement. What survived is the machine: the tracking, the design contract, the gallery and the docs, extracted into the public GitHub template meta-ads-website with a 6-phase setup skill. The client, or anyone, can generate new variants from it without a designer.
+She tests product ideas for a living, so the useful deliverable was never one landing page. It was the ability to make the next one without me. I took the repo apart and kept only what was not You Alive: the tracking chain, the design contract, the gallery, the CRO research from the whole mission. Everything product-specific went out. What remained became a public GitHub template, [meta-ads-website](https://github.com/Schummers/meta-ads-website), with a setup skill that drives it.
 
-![Contact sheet of the 26 generated candidates, the 3 finalists outlined](/images/Experiences/You%20Alive/you-alive-research-bakeoff.webp)
+The skill works in six phases and assumes she is not technical. She answers questions and pastes keys, the agent does the rest.
+
+flow:
+- **Bootstrap**: installs, builds, runs the site locally, explains the plan in plain language.
+- **Interview**: asks about the product, the audience, the pain, the offer, the proof, the tone.
+- **Copy**: writes the answers into the site and iterates the wording with her until it sounds like her.
+- **Connections**: walks her through PostHog, the Meta Pixel and Conversions API, and the Notion base where the leads land.
+- **Designs**: generates several directions she sorts in the gallery with a heart or a bin.
+- **Ship**: picks the finalists, deploys to Vercel, excludes her own traffic, and hands over to the ads.
+
+The tracking is already wired underneath and marked do not touch, so a page generated next month reports into the same funnel as the ones we ran. Her next campaign starts with a site and its measurement, not with a designer.
 
 ## What we delivered
 
