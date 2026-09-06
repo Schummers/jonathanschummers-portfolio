@@ -40,7 +40,6 @@ const SECTION_MAP: Record<string, { id: string; label: string }> = {
   "Target & Method": { id: "how", label: "How I solved this problem" },
   // Delivered group
   "What we delivered": { id: "delivered", label: "What we delivered" },
-  "What I cut": { id: "delivered", label: "What we delivered" },
   "Product Team": { id: "delivered", label: "What we delivered" },
   "Personal Development": { id: "delivered", label: "What we delivered" },
   Reflections: { id: "delivered", label: "What we delivered" },
@@ -176,7 +175,7 @@ export default async function CaseStudyPage({
         <BackBar />
 
         {/* Hero */}
-        {slug === "bforbank" ? (
+        {project?.showcase === "bforbank" ? (
           <section className="border-b border-border">
             {/* bforbank-only fluid grid: clamp(8px,1.5vw,24px) keeps the 7-column
                 IPhoneFrame strip visually balanced across viewports without
@@ -205,7 +204,7 @@ export default async function CaseStudyPage({
               ))}
             </div>
           </section>
-        ) : slug === "you-alive" ? (
+        ) : project?.showcase === "you-alive" ? (
           <section className="border-b border-border px-xl py-xl max-md:px-md max-md:py-md">
             <YouAliveShowcase />
           </section>

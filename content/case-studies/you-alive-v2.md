@@ -19,7 +19,7 @@ People who want their loved ones notified, and their digital life handled, if so
 
 ### Key results
 
-- **5 emails in one day**, after 0 in the previous 4, from a single line of micro-copy above the email field on a $2/day campaign, the only change we made
+- **Bounce from 96% to 45%, fake-door clicks from 1.1% to 29%** with three variants matched to their ads, but 4 emails, 1.3% of visitors, under the 5 to 10% a fake door needs: the value proposition did not convince
 - **Closed as no traction** in agreement with the client, once the data showed very cheap traffic that never converts, instead of iterating on a page that was not the problem
 - **New variants without a designer**: the client can now clone the public template and launch a new design with the tracking already wired
 
