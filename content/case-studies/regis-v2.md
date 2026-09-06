@@ -123,7 +123,7 @@ Go to market strategy in two steps:
 
 ### 6. What comes next: learn from the first landlords during the closed beta, then test the hypotheses that decide the market before building anything else
 
-Two loops run from the closed beta onwards. **Learn from use**: user tests with the first landlords, and the PostHog funnel with session replay, to see where they drop before their first tax report. **Test the hypotheses**: thirty interviews with Luxembourg landlords, then fake doors on paid traffic for the questions an interview cannot settle. Eight questions, one method each, in the order they get answered.
+Two loops run from the closed beta onwards. **Learn from use**: user tests with the first landlords, and the PostHog funnel with session replay, to see where they drop before their first tax report. **Test the hypotheses**: thirty interviews with Luxembourg landlords, then fake doors on paid traffic for the questions an interview cannot settle. Eight questions, the methods that answer each one, in the order they get answered.
 
 ![row: The eight hypotheses that decide the market, and how each one gets tested](/images/Experiences/Regis/regis-next-hypotheses.webp)
 
