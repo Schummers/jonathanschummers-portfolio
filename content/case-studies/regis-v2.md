@@ -125,7 +125,7 @@ Go to market strategy in two steps:
 
 From the closed beta on, two things run side by side. User tests and the PostHog funnel with the first landlords, to see where they get stuck. Then interviews and fake doors for the questions use alone cannot answer.
 
-![row: The hypotheses that decide the next step, and how each one gets tested](/images/Experiences/Regis/regis-next-hypotheses-v2.webp)
+![row: The hypotheses that decide the next step, and how each one gets tested](/images/Experiences/Regis/regis-next-hypotheses-matrix.webp)
 
 ## What we delivered
 
