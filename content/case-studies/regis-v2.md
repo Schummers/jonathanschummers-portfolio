@@ -37,19 +37,25 @@ The goal was to know enough to scope an MVP, not to master every detail: enough 
 
 ### 2. For the MVP I sliced the vision where value and foundation overlap: capture every invoice and bank line as structured data for the tax return, the one job every landlord has to do every year, and build the data layer for the next features
 
-Rental management is many trades at once: tax, law, finance, works, tenants. Before writing a line of code I ran workshops with people who do it for a living and interviews with landlords, enough to frame a first release, not more. Two things came out.
+Scoping started with the pain, not the feature list.
 
-- **Two problems, not one.** A peak once a year, the tax return, strong and dated. And a daily mental load, every invoice that arrives and has to be put somewhere and not forgotten. The peak is the way in, the load is the reason to stay.
+- **One problem, two faces:** the peak, once a year, the night before the tax return, strong, dated, mandatory. And the daily load, every new invoice, every letter, every small repair that has to be filed somewhere and not forgotten, heavier with each property. Nobody buys less mental load. Everybody buys a deadline that hurts. The peak is the way in, the load is the reason to stay.
 
-- **The pain depends on the segment, not the product.** Ten properties over thirty years is a painkiller. One property for three years, a rent that comes in, no wish to be bothered: that person wants to delegate, not a tool. I wrote them down as excluded.
+- **Painkiller or vitamin, the segment decides:** for one property held three years, a rent that comes in and no wish to be bothered, this is a vitamin, and that person delegates rather than buys a tool. For someone with several properties held for decades, the pile grows every year, and the ones who already spend their evenings on a spreadsheet per property have proven the need exists. That is the customer I kept, and it makes the target narrower than "landlords at the real-cost regime": several properties, held for long, and the wish to do it properly by themselves.
 
-Then I sliced the vision by obligation. A Luxembourg landlord has three: the yearly return, the rent cap, the resale gain. The return won because everyone must do it, every year, and because preparing it produces what every later brick depends on: a validated record of every invoice and transaction, per property, accumulating year after year. Value this year, foundation for the rest.
+- **Luxembourg, too small a market?** The country counts about 28 000 private landlords, a floor from cadastral data (Observatoire de l'Habitat, report 23, April 2026). That is why no rental tool is localised for Luxembourg tax, and it is also why the question is open: many of those 28 000 hand everything to an accountant and have no idea of their yield or of what their properties are worth. A pivot to France or another larger market is a real question, for later. Before chasing a crowded market where the product might never break through, I wanted an MVP that is already useful to my family and to me. That is the reason to start with Luxembourg, and the goal for this cycle is validation: twenty paying landlords, and interviews to find out how many of the 28 000 match the target.
 
 stack:
 - **MVP slice** Tax return | Amounts per line of form 190, every figure linked to its document. | Capture in ten seconds, enrich later, value from the first report. | The one job every landlord has to do every year.
 - **Next** Finance path: Rent cap, 5 % of invested capital; Capital gain, resale gain report; Yield and valuation per property | Tenant path: Tenant and contractor messages; Reminders, unpaid rent, formal notice; Lease creation and templates
 - **Vision** Specialised B2B agents that execute the work | Tax, legal and trade agents with the landlord's whole context. They answer a tenant, brief a plumber from the tenant's message, review a lease. | Property managers run their day through it.
 = **Structured data layer, built by the MVP, read by everything after** Every invoice and bank line captured as it arrives, extracted, validated, linked to a property and a category. Accumulates year after year. The slice pays this year and lays the foundation at the same time.
+
+- **The bet behind the base:** with language models, the value of software moved from the interface to the structured data it makes people produce. An interface can be generated for one problem and thrown away. What stays is the data schema and the business rules inside it. If data is the asset, the landlord has to produce some before getting value, so I treated that as design, not onboarding: capture in ten seconds, enrich later, value from the first report.
+
+- **What it becomes once the data is there:** an assistant that knows a landlord's portfolio beats any generic model, because it holds the context nobody else has. Later, agents that execute rather than answer: reply to a tenant, brief a plumber from the tenant's message, review a lease against Luxembourg law, prepare the return. The first brick is the one that makes that context exist.
+
+That left a scope one person could ship in a dense month, summer 2026.
 
 ### 3. Designed the data flow before the screens: the bank transaction is the entry point, the landlord only validates
 
