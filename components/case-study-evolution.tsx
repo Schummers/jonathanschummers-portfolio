@@ -103,7 +103,9 @@ export function CaseStudyEvolution({ frames }: { frames: EvolutionFrame[] }) {
         </Button>
       </div>
 
-      <div className="mx-auto mt-sm max-w-96" aria-live="polite">
+      {/* Legende sous l'ecran : titre du commit puis trois lignes courtes,
+          tout centre, pas plus large que l'iPhone au-dessus. */}
+      <div className="mx-auto mt-sm w-full max-w-64 max-md:max-w-52" aria-live="polite">
         <ol className="flex justify-center gap-xs" aria-hidden="true">
           {frames.map((_, i) => (
             <li
@@ -115,19 +117,19 @@ export function CaseStudyEvolution({ frames }: { frames: EvolutionFrame[] }) {
             />
           ))}
         </ol>
-        <p className="mt-xs text-center font-body text-caption font-semibold text-text-primary">
+        <p className="mt-md text-center font-display text-h4 font-bold text-text-primary">
           {frame.label}
         </p>
-        <ul className="mx-auto mt-2xs w-fit space-y-2xs">
+        <div className="mt-xs space-y-2xs">
           {frame.points.map((pt, i) => (
-            <li
+            <p
               key={i}
-              className="font-body text-body-sm leading-body text-text-secondary pl-md relative before:absolute before:left-0 before:top-[0.65em] before:size-1 before:rounded-full before:bg-text-secondary"
+              className="text-center font-body text-body-sm leading-body text-text-secondary"
             >
               {pt}
-            </li>
+            </p>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   );
