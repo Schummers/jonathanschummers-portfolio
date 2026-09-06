@@ -1,6 +1,7 @@
 import type { CaseStudyStep as StepData } from "@/lib/case-studies";
 import { CaseStudyContent } from "./case-study-content";
 import { CaseStudyMedia } from "./case-study-media";
+import { CaseStudyEvolution, type EvolutionFrame } from "./case-study-evolution";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
 
 interface CaseStudyStepProps {
@@ -30,7 +31,19 @@ interface Picks {
      mini-cards, rendue apres les medias de l'etape.
    - `picks: <legende>` suivi de bullets `- [ ] rejetee` / `- [x] retenue`
      devient une liste d'options barrees, une seule cochee, sur fond surface.
-   Les deux sont extraits quel que soit leur emplacement dans le texte. */
+   Les deux sont extraits quel que soit leur emplacement dans le texte.
+   - `evolution:` suivi de lignes `- <commit> | <ce que j'ai change> | <src>`
+     devient la timeline dans un iPhone (`CaseStudyEvolution`), rendue la ou
+     le bloc est ecrit, comme un groupe d'images. */
+function parseEvolution(block: string): EvolutionFrame[] {
+  const frames: EvolutionFrame[] = [];
+  for (const line of block.split("\n").slice(1)) {
+    const m = line.match(/^- (.+?)\s*\|\s*(.+?)\s*\|\s*(\S+)$/);
+    if (m) frames.push({ label: m[1], caption: m[2], src: decodeURIComponent(m[3]) });
+  }
+  return frames;
+}
+
 function splitBlocks(content: string): {
   text: string;
   stats: Stat[];
@@ -79,9 +92,18 @@ export function CaseStudyStep({
 
   /* Le contenu alterne texte et groupes d'images (lignes `![alt](src)`
      conservees par le parser). Chaque groupe est rendu la ou il est ecrit. */
-  const segments: { text: string; images: typeof step.images }[] = [];
+  const segments: {
+    text: string;
+    images: typeof step.images;
+    evolution?: EvolutionFrame[];
+  }[] = [];
   let cur = { text: "", images: [] as typeof step.images };
   for (const block of text.split("\n\n")) {
+    if (block.trim().startsWith("evolution:")) {
+      segments.push({ ...cur, evolution: parseEvolution(block.trim()) });
+      cur = { text: "", images: [] };
+      continue;
+    }
     const lines = block.trim().split("\n");
     const imgs = lines
       .map((l) => l.match(/^!\[([^\]]*)\]\(([^)]+)\)$/))
@@ -109,6 +131,9 @@ export function CaseStudyStep({
         <div key={i} className={i === 0 ? "mt-xs" : "mt-lg"}>
           {seg.text && <CaseStudyContent text={seg.text} />}
           <CaseStudyMedia images={seg.images} />
+          {seg.evolution && seg.evolution.length > 0 && (
+            <CaseStudyEvolution frames={seg.evolution} />
+          )}
         </div>
       ))}
       {picks && picks.items.length > 0 && (
