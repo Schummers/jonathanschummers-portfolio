@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { CaseStudyStep as StepData } from "@/lib/case-studies";
+import { stripImageLines, type CaseStudyStep as StepData } from "@/lib/case-studies";
 import { CaseStudyContent } from "./case-study-content";
 import { CaseStudyImageGrid } from "./case-study-image-grid";
 
@@ -29,7 +29,7 @@ export function CaseStudyContext({ steps, slug }: CaseStudyContextProps) {
       {problem && (
         <div>
           <p className={LABEL_CLASS}>Problem</p>
-          <CaseStudyContent text={problem.content} leadingClass="mt-xs" />
+          <CaseStudyContent text={stripImageLines(problem.content)} leadingClass="mt-xs" />
           <CaseStudyImageGrid images={problem.images} />
         </div>
       )}
@@ -39,14 +39,14 @@ export function CaseStudyContext({ steps, slug }: CaseStudyContextProps) {
           {audience && (
             <div>
               <p className={LABEL_CLASS}>Target audience</p>
-              <CaseStudyContent text={audience.content} leadingClass="mt-xs" />
+              <CaseStudyContent text={stripImageLines(audience.content)} leadingClass="mt-xs" />
               <CaseStudyImageGrid images={audience.images} />
             </div>
           )}
           {team && (
             <div>
               <p className={LABEL_CLASS}>Team</p>
-              <CaseStudyContent text={team.content} leadingClass="mt-xs" />
+              <CaseStudyContent text={stripImageLines(team.content)} leadingClass="mt-xs" />
               <CaseStudyImageGrid images={team.images} />
             </div>
           )}
@@ -56,7 +56,7 @@ export function CaseStudyContext({ steps, slug }: CaseStudyContextProps) {
       {keyResults && (
         <div className="mt-xl bg-surface px-md py-md">
           <p className={LABEL_CLASS}>Key results</p>
-          <CaseStudyContent text={keyResults.content} leadingClass="mt-xs" />
+          <CaseStudyContent text={stripImageLines(keyResults.content)} leadingClass="mt-xs" />
 
           {slug === "bforbank" && (
             <div className="mt-md">
