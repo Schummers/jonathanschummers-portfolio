@@ -140,3 +140,7 @@ The sites and the data the founder needed to decide whether to keep investigatin
 - **3 live design variants** on shared copy, each matched to the ad sending its traffic.
 - **One measurement chain**, Meta Pixel and Conversions API to PostHog and Notion, read in a dashboard split by variant.
 - **A system to run the next test without a designer**: a GitHub template with a 6-phase setup skill. Copy, tracking and designs come out wired.
+
+![phone-scroll: A | Variant A, matched to ad A, live page | https://you-alive-showcase.vercel.app/a](/images/Experiences/You%20Alive/you-alive-app-variant-a-mobile.webp)
+![phone-scroll: B | Variant B, matched to ad B, live page | https://you-alive-showcase.vercel.app/b](/images/Experiences/You%20Alive/you-alive-app-variant-b-mobile.webp)
+![phone-scroll: C | Variant C, matched to ad C, live page | https://you-alive-showcase.vercel.app/c](/images/Experiences/You%20Alive/you-alive-app-variant-c-mobile.webp)

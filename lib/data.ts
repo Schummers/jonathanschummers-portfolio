@@ -5,6 +5,8 @@ export interface Project {
   company?: string;
   tags: string[];
   image?: string;
+  /* Ecrans pour le mockup `iphone` : jusqu'a trois captures mobiles. */
+  images?: string[];
   type: "featured" | "compact";
   hidden?: boolean;
   browserUrl?: string;
@@ -83,9 +85,13 @@ export const projects: Project[] = [
     company: "You Alive",
     tags: ["7 weeks", "Fake-door test", "Meta Pixel + CAPI + PostHog", "Template extracted"],
     image: "/images/Hero/you-alive-hero.webp",
+    images: [
+      "/images/Hero/you-alive/a-hero.webp",
+      "/images/Hero/you-alive/b-hero.webp",
+      "/images/Hero/you-alive/c-hero.webp",
+    ],
     type: "compact",
-    browserUrl: "you-alive-showcase.vercel.app",
-    mockupType: "browser",
+    mockupType: "iphone",
   },
   {
     slug: "malaama",

@@ -3,6 +3,7 @@ import { ArrowDownIcon } from "@heroicons/react/16/solid";
 import { IPhoneFrame } from "./iphone-frame";
 import { BrowserFrame } from "./browser-frame";
 import { CaseStudyImageGrid } from "./case-study-image-grid";
+import { PhoneScroll } from "./phone-scroll";
 
 interface ImageItem {
   alt: string;
@@ -12,6 +13,10 @@ interface ImageItem {
 /* Conventions Markdown, lues sur le alt des images d'une etape :
    - `phone: <legende>`            → rangee d'iPhones (jusqu'a 3), legende dessous
    - `scroll: <url> | <legende>`   → navigateur qui scrolle en boucle, legende dessous
+   - `phone-scroll: <label> | <legende> | <url>` → jusqu'a 3 iPhones dont
+     l'ecran scrolle tout seul, l'utilisateur reprend la main ; un seul sur
+     mobile, avec un segmented control qui porte les labels ; l'url est
+     optionnelle et fait de la legende un lien
    - `row: <legende>`              → image pleine largeur, empilee, legende dessous
    Les autres images passent par la grille habituelle. Une fleche vers le bas
    s'insere entre les iPhones et le navigateur quand l'etape a les deux. */
@@ -22,12 +27,19 @@ const CAPTION_CLASS =
 export function CaseStudyMedia({ images }: { images: ImageItem[] }) {
   if (images.length === 0) return null;
 
+  const phoneScrolls = images
+    .filter((i) => i.alt.startsWith("phone-scroll:"))
+    .map((i) => {
+      const [label, caption = "", href = ""] = i.alt.replace(/^phone-scroll:\s*/, "").split("|");
+      return { src: i.src, label: label.trim(), caption: caption.trim(), href: href.trim() || undefined };
+    });
   const phones = images.filter((i) => i.alt.startsWith("phone:"));
   const scroll = images.find((i) => i.alt.startsWith("scroll:"));
   const rows = images.filter((i) => i.alt.startsWith("row:"));
   const rest = images.filter(
     (i) =>
       !i.alt.startsWith("phone:") &&
+      !i.alt.startsWith("phone-scroll:") &&
       !i.alt.startsWith("scroll:") &&
       !i.alt.startsWith("row:")
   );
@@ -42,6 +54,8 @@ export function CaseStudyMedia({ images }: { images: ImageItem[] }) {
 
   return (
     <>
+      {phoneScrolls.length > 0 && <PhoneScroll items={phoneScrolls} />}
+
       {phones.length > 0 && (
         <div className="mt-lg grid grid-cols-3 gap-md max-md:gap-sm">
           {phones.map((img, i) => {

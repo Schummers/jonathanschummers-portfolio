@@ -393,3 +393,31 @@ body {
   .case-scroll-img { animation: none; }
   .case-scroll-viewport { overflow-y: auto; }
 }
+
+/* Ecran d'iPhone qui scrolle (components/phone-scroll.tsx). Le ratio est
+   celui d'un iPhone 390x844 ; l'auto-scroll est en JS, la barre reste fine
+   pour signaler que l'ecran repond a la molette et au doigt. */
+.case-phone-viewport {
+  aspect-ratio: 390 / 844;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* Bande d'iPhones en colonnes decalees (components/phone-stack-showcase.tsx).
+   Chaque colonne porte ses deux decalages en variables CSS ; au survol, les
+   colonnes glissent lentement vers leur seconde position. */
+.phone-stack [data-stack-col] {
+  transform: translateY(var(--stack-y, 0px));
+  transition: transform 12s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+@media (hover: hover) {
+  .phone-stack:hover [data-stack-col] {
+    transform: translateY(var(--stack-y-hover, 0px));
+  }
+}
+.phone-stack-fade-top {
+  background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 20%, transparent 100%);
+}
+.phone-stack-fade-bottom {
+  background: linear-gradient(to top, var(--bg) 0%, var(--bg) 20%, transparent 100%);
+}
