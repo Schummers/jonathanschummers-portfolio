@@ -27,18 +27,15 @@ export const projects: Project[] = [
     mockupType: "browser-scroll",
   },
   {
-    slug: "valoris",
+    slug: "regis",
     title:
-      "Designing and building a rental management SaaS for Luxembourg legal compliance",
+      "Turned a yearly tax-return scramble into a weekly habit: a rental tax SaaS for Luxembourg landlords, built first for my own family",
     description:
-      "Solo-built property management platform automating legal documentation: tax declarations, rent control tracking, and resale reporting. OCR-powered document processing that auto-fills ~72% of required fields for tax filings.",
-    company: "Valoris",
-    tags: ["Product Builder", "Cursor / Claude Code", "Entrepreneurship"],
-    image: "/images/Experiences/Smartintegrity/Principal.webp",
+      "Solo-built SaaS that captures invoices and bank statements as they arrive, keeps a human in control of every figure, and prepares the Luxembourg form 190 per property. Built for a thirty-year family portfolio first, now in beta with twenty landlords.",
+    company: "Regis",
+    tags: ["Side project", "Solo founder", "Continuous capture", "Luxembourg tax"],
+    image: "/images/Hero/regis-hero.webp",
     type: "featured",
-    hidden: true,
-    browserUrl: "valoris.lu",
-    mockupType: "browser",
   },
   {
     slug: "bforbank",

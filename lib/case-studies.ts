@@ -113,7 +113,7 @@ export function getCaseStudy(slug: string): CaseStudy | null {
 }
 
 /* Only these slugs generate public pages */
-export const PUBLISHED_SLUGS = ["bforbank", "nod", "spie-bat", "smartintegrity"];
+export const PUBLISHED_SLUGS = ["regis", "bforbank", "nod", "spie-bat", "smartintegrity"];
 
 export function getAllCaseStudySlugs(): string[] {
   return PUBLISHED_SLUGS;
