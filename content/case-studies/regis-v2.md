@@ -26,9 +26,15 @@ In my family, a rental portfolio built over thirty years was managed the way mos
 
 ## How I solved this problem
 
-### 1. Cut a broad product vision down to one obligation, solvable in about thirty days
+### 1. Chose the first brick: the one obligation every landlord faces every year, shippable in a month
 
-The vision is wide on purpose: finance and tax, tenants and leases, works, and an assistant that knows Luxembourg law better than a generic model because it runs on the landlord's own clean data. Far too much for a first release. So I sliced it by obligation rather than by feature. A Luxembourg landlord has three: the yearly return, the rent cap, the resale gain. An obligation beats a need, people simply have to do it. The yearly return won because it is the only one everyone faces every year, and because preparing it produces the thing every later brick depends on: a validated, documented record of every invoice and transaction, accumulating year after year. Value now, foundation for the rest.
+Rental management is many trades at once: tax, law, finance, works, tenants. Before writing a line of code I ran workshops with people who do it for a living and interviews with landlords, enough to frame a first release, not more. Two things came out.
+
+- **Two problems, not one.** A peak once a year, the tax return, strong and dated. And a daily mental load, every invoice that arrives and has to be put somewhere and not forgotten. The peak is the way in, the load is the reason to stay.
+
+- **The pain depends on the segment, not the product.** Ten properties over thirty years is a painkiller. One property for three years, a rent that comes in, no wish to be bothered: that person wants to delegate, not a tool. I wrote them down as excluded.
+
+Then I sliced the vision by obligation. A Luxembourg landlord has three: the yearly return, the rent cap, the resale gain. The return won because everyone must do it, every year, and because preparing it produces what every later brick depends on: a validated record of every invoice and transaction, per property, accumulating year after year. Value this year, foundation for the rest.
 
 ### 2. Designed the data flow before the screens: the bank transaction is the entry point, the landlord only validates
 

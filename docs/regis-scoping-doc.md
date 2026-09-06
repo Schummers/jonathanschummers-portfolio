@@ -27,6 +27,14 @@ prêt pour le 190 » ? La première dit la fréquence, la seconde dit le livrabl
 
 ## 2. Problème
 
+**Comment le problème a été cadré.** La gestion locative est pluri-thématique
+par nature (fiscal, juridique, financier, travaux, locataires). L'entrée dans
+le domaine s'est faite par des ateliers avec des experts du métier et des
+entretiens avec des investisseurs immobiliers, sous le nom Valoris, avant
+l'application : jobs to be done, business problems, user journey, scope,
+backlog (exports dans `agency/regis premices/`, à traiter). Assez de research
+pour cadrer le MVP, pas plus.
+
 **Persona.** Le bailleur particulier qui gère seul, multi-biens (3 à 15 biens
 selon le PRD, une dizaine sur plus de trente ans dans le cas familial), avec une
 part significative de 55 ans et plus (registre vouvoiement, adéquation aux 55+
@@ -54,14 +62,32 @@ Le point commun : les trois s'appuient sur les mêmes pièces, accumulées sur
 trente ans, et la première est la seule qui tombe chaque année pour tout le
 monde.
 
-**Fréquence.** Le pic est annuel (la déclaration), mais l'accumulation est
-continue : une facture par semaine, un relevé par mois, par bien.
+**Fréquence × intensité : deux problèmes, pas un.**
 
-**Intensité.** Antidouleur, pas vitamine : c'est une obligation légale avec
-sanction en cas de contrôle, et un coût réel (le comptable, 300 à 600 €/an pour
-une liasse simple, 400 à 1 000 € en LMNP). La rentabilité et la valorisation
-sont des vitamines : intéressantes, pas obligatoires, et pas pour tous les
-bailleurs.
+| | Le pic | Le quotidien |
+|---|---|---|
+| Quand | Une fois par an, la déclaration | À chaque dépense, chaque courrier reçu |
+| Fréquence | Faible | Haute |
+| Intensité | Forte, datée, obligatoire | Faible unité par unité |
+| Ce que c'est | Une échéance | De la charge mentale (« je la range où, je ne dois pas l'oublier, ce mois-ci je documente, le mois prochain non ») |
+
+Le pic est le coin d'entrée, la charge mentale est la raison de rester.
+Personne n'achète « moins de charge mentale », tout le monde achète une
+échéance obligatoire qui fait mal.
+
+**Vitamine ou antidouleur : c'est le segment qui décide, pas le produit.** Deux
+variables : nombre de biens × ancienneté de détention, parce que les papiers
+s'accumulent. Pour une dizaine de biens sur trente ans, c'est un antidouleur
+(obligation légale, sanction en cas de contrôle, comptable à 300 à 1 000 €/an).
+Pour le bon père de famille avec un bien depuis trois ans, qui touche son
+loyer et ne veut pas être embêté, c'est une vitamine : il ne veut pas un outil,
+il veut déléguer. **Ce profil est un anti-ICP, nommé comme exclu**, pas compté
+dans le marché. La rentabilité et la valorisation restent des vitamines pour
+tout le monde.
+
+**Contournements manuels observés** (le meilleur signal de fréquence et
+d'intensité) : le classeur, l'Excel par bien, la pile en attente, la note
+« ne pas oublier ». Personne ne monte un tableur par bien pour une vitamine.
 
 ---
 
@@ -160,16 +186,30 @@ juin. Quel mois on raconte ?
 
 ## 5. Go-to-market
 
-- **ICP** : bailleur particulier luxembourgeois, gère seul, plusieurs biens,
-  déclare au réel (l'abattement forfaitaire 35 % plafonné rend le calcul inutile
-  pour une partie des mono-biens : part réelle inconnue, hypothèse ouverte).
-- **Canal** : prescripteurs en tête (fiduciaires, comptables, ULPI, groupes de
-  propriétaires), Meta ads LU en complément et jamais seul (28 000 bailleurs,
-  sous le seuil où Meta optimise, CPM parmi les plus chers d'Europe). Logique du
-  prescripteur : le comptable est déjà assis entre Regis et le bailleur ; on lui
-  livre un dossier propre qu'il termine, il gagne du temps sur un client peu
-  rentable et recommande. **Non documenté dans le repo** : le comptable y est
-  un ancrage prix, pas un apporteur. Écrit dans le goal seulement.
+- **ICP, borne haute** : bailleur particulier luxembourgeois, gère seul,
+  plusieurs biens, déclare au réel. C'est large, et ce n'est pas l'ICP.
+- **ICP, le vrai discriminant** (réalisé en entretiens) : la disposition à
+  prendre le sujet en main, plutôt que de laisser traîner en se disant « ça
+  doit être quelque part dans un classeur ». Le régime réel est une borne, pas
+  un filtre. Problème : un critère comportemental n'est pas listable, et « ICP
+  introuvable » est un motif de kill. Il faut un **attribut proxy observable**.
+  Candidats à tester : tient déjà un tableur, a plus de deux biens, détient
+  depuis plus de dix ans, est passé au réel volontairement, a changé de
+  gestionnaire récemment, est actif dans une communauté de bailleurs. Le test :
+  peut-on dresser demain matin une liste de 50 noms à partir d'attributs
+  visibles de l'extérieur ? **[À TRANCHER]** : lequel de ces proxys on affiche.
+- **Souffrant et décideur** : ici la même personne, sauf dans le cas familial
+  où le souffrant (la génération qui range) et le décideur (celle qui détient)
+  diffèrent. Le MVP est conçu pour le souffrant.
+- **Canal** : le réseau pour les bêta-testeurs et pour les 20 premiers noms.
+  Pour le MVP, deux lectures en tension. Jonathan : la pub, parce que c'est du
+  B2C. La méthode : pas de pub tant que le filtre comportemental n'a pas de nom,
+  sinon on paie pour découvrir son ICP à un jour par semaine ; d'abord trois
+  canaux nommables, communautés et associations de propriétaires LU,
+  fiduciaires et comptables comme prescripteurs (ils touchent le client au
+  moment du pic), le réseau. Le goal dit déjà « jamais Meta seul » (28 000
+  bailleurs, sous le seuil où Meta optimise, CPM parmi les plus chers). **[À
+  TRANCHER]** : ce que la case study affiche comme canal du MVP.
 - **Motion** : self-serve, un inconnu s'inscrit seul, sort son rapport et paie.
 - **Modèle et unité de valeur** : abonnement 8,99 €/mois par famille, biens
   illimités. L'unité de valeur est la liasse annuelle, pas le nombre de biens
@@ -210,12 +250,25 @@ juin. Quel mois on raconte ?
   français (2044), objego et immocloud dans l'Anlage V allemande (deep research
   du 2026-08-24, vault). Le repo ne contient pas d'analyse concurrentielle LU :
   le constat vient du vault, pas du code.
-- **Ce que les autres n'ont pas compris** : la valeur n'est pas dans l'OCR (tout
-  le monde l'aura) ni dans l'IA comme promesse, mais dans la donnée validée,
-  accumulée sur des années, rattachée aux rubriques fiscales locales. La
-  déclaration annuelle est le prétexte qui force l'habitude ; le loyer maximal
-  et la plus-value, qui exigent les mêmes pièces sur trente ans, sont ce que
-  cette donnée paie ensuite.
+- **Ce que les autres n'ont pas compris, le pari** : à l'ère des LLM, la valeur
+  d'un software n'est plus dans l'interface, elle est dans la donnée structurée
+  qu'il fait produire. L'interface est devenue jetable (on génère une page pour
+  un problème précis, on la jette), donc elle ne protège plus rien. Ce qui
+  reste, c'est le schéma de données et les règles métier encodées dedans.
+  Avant, le produit était l'interface et la donnée le déchet ; maintenant la
+  donnée est le produit et l'interface le déchet. À deux niveaux : côté
+  utilisateur, le software est le moyen par lequel son patrimoine devient un
+  contexte exploitable, et plus il l'utilise plus l'assistant est pertinent
+  parce qu'il a le contexte que personne d'autre n'a ; côté éditeur, on
+  structure le corpus métier (juridique, fiscal, investissement, propre au
+  Luxembourg) qui rend les agents compétents là où un modèle générique reste
+  vague. L'OCR, tout le monde l'aura. La déclaration annuelle est le prétexte
+  qui force l'habitude ; le loyer maximal et la plus-value sont ce que cette
+  donnée paie ensuite.
+- **Le paradoxe d'amorçage** : si la donnée est l'actif, l'utilisateur doit en
+  produire avant d'avoir de la valeur. C'est là que ce type de produit meurt.
+  Traité comme une question de design (capture en dix secondes, enrichissement
+  différé, valeur dès le premier rapport), pas comme un détail d'onboarding.
 - **La bascule techno** : l'extraction de documents par LLM rend enfin possible
   la capture au fil de l'eau à coût marginal (0,8 crédit par page), là où la
   saisie manuelle tuait l'habitude. Mais la même techno hallucine, d'où la
@@ -247,22 +300,31 @@ bien.
 
 ## 9. Hypothèses, ce qu'il faut croire pour que ça marche
 
-1. Un bailleur préfère photographier une facture et valider une extraction
+Les partis pris et les risques acceptés, chacun avec son test en rubrique 10.
+
+1. **Le discriminant est comportemental, pas fiscal**, et il existe un attribut
+   observable qui le prédit. Le doute le plus fort de Jonathan : l'ICP LU réel
+   est bien plus petit que « les bailleurs au réel », parce qu'il faut vouloir
+   prendre le sujet en main. La plus urgente.
+2. **Le pic fiscal est un coin d'entrée suffisant** pour faire entrer le produit,
+   et la charge mentale quotidienne suffit à faire rester.
+3. **Un bailleur particulier accepte de produire de la donnée structurée avant
+   d'en tirer de la valeur** (le paradoxe d'amorçage), si la capture prend moins
+   de temps que de poser le papier sur la pile.
+4. **L'ICP luxembourgeois est assez grand** une fois le filtre comportemental
+   appliqué, pour un goal de validation (20 payants), pas de revenu.
+5. **Le schéma de données conçu pour le B2C sert aussi le B2B** (agences de
+   gestion locative, où la donnée exploitable par des agents vaut plus). Un
+   autre ICP, un autre problème, un autre produit : tenu en hypothèse, pas en
+   étape.
+6. Un bailleur préfère photographier une facture et valider une extraction
    plutôt que saisir un formulaire (hypothèse fondatrice du PRD, juin 2026).
-2. La capture au fil de l'eau devient une habitude si elle prend moins de temps
-   que de poser le papier dans la pile. Non mesuré.
-3. Le bailleur multi-biens au réel paie 8,99 €/mois pour ne plus subir la
-   panique annuelle. Zéro payant hors bêta à ce jour.
-4. Un bailleur de 55 ans et plus peut utiliser le produit seul, sur desktop. À
-   vérifier, tranches d'âge non filtrées volontairement.
-5. Le cas simple (mono-bien, ou forfait 35 %) trouve aussi une valeur. Construit
-   pour le cas dur, valeur pour le cas simple non prouvée.
-6. La validation humaine à chaque étape est perçue comme de la confiance, pas
-   comme de la friction. À observer.
-7. Le comptable accepte de recevoir un dossier Regis et le recommande. Aucun
+7. Un bailleur de 55 ans et plus utilise le produit seul, la capture sur mobile,
+   la validation sur desktop.
+8. La validation humaine à chaque étape et la frontière déterministe sont
+   perçues comme de la confiance, pas comme de la friction.
+9. Le comptable accepte de recevoir un dossier Regis et le recommande. Aucun
    contact pris.
-8. La frontière déterministe suffit à ce que le bailleur fasse confiance aux
-   montants du rapport. Non testé face à un utilisateur externe.
 
 ---
 
@@ -270,6 +332,10 @@ bien.
 
 | Question | Méthode | Auprès de qui | État |
 |---|---|---|---|
+| Quel attribut observable prédit « veut prendre le sujet en main » ? (H1) | Croiser les 30 entretiens avec tableur, nombre de biens, ancienneté ; puis dresser une liste de 50 noms | Bailleurs LU du réseau, communautés de propriétaires | À faire, avant toute pub |
+| Le pic fiscal fait-il entrer, la charge mentale fait-elle rester ? (H2) | Activation au premier rapport, puis captures par mois après | Inscrits bêta | Instrumenté, pas de données |
+| Combien de captures avant la première valeur perçue ? (H3, amorçage) | Temps jusqu'au premier rapport, abandon avant | Inscrits bêta | À définir |
+| Une agence paierait-elle pour de la donnée structurée exploitable par des agents ? (H5) | Trois appels en une demi-journée, pas plus tant que le B2C n'est pas validé | Agences de gestion locative LU | Non ouvert |
 | La première brique tient-elle entre les mains de quelqu'un d'autre que l'auteur ? | Bêta, observation des décrochages, feedback | Une vingtaine de personnes, famille et connaissances LU, depuis fin août 2026 | En cours |
 | Quelles parties de la vision intéressent vraiment (fiscal, loyer max, valorisation, agent IA) ? | 30 entretiens qualitatifs | Bailleurs LU, recrutés nominativement | À faire |
 | Le wedge LU tient-il face au marché FR, dix fois plus grand et déjà servi par Qlower ? | Fake door, deux audiences | Trafic froid Meta LU et FR | Préparé, jamais lancé |
@@ -283,14 +349,15 @@ bien.
 
 ## Catégorie d'idée (Hexa)
 
-**Catégorie 1, problem-solution fit**, avec une composante 2. Le problème est
-ressenti et nommé (chaque bailleur LU sait qu'il doit remplir un 190 et
-redoute le classeur), les solutions sont absentes (rien de localisé LU) ou
-mauvaises (Excel, comptable). La bascule techno (extraction LLM) rend la
-capture continue possible, mais elle n'est pas l'innovation : c'est la
-localisation et la donnée. Conséquence pour la validation : les entretiens
-suffisent à confirmer la douleur ; le risque est ailleurs, dans la taille du
-marché et le go-to-market.
+Deux lectures, à assumer ensemble. Le **wedge** (déclaration LU, rien de
+localisé, Excel et comptable comme contournements) est de **catégorie 1**,
+problem-solution fit : la douleur est nommée, les entretiens suffisent à la
+confirmer, le risque est dans la taille du marché et le GTM. Le **pari** (la
+donnée est le produit, l'interface est jetable, l'assistant vaut par le
+contexte) est de **catégorie 2**, bascule techno : le risque n'est pas la
+désirabilité, c'est la fenêtre de tir, et la question de validation devient
+« qu'est-ce qui vous retient d'utiliser ce que vous utilisez aujourd'hui ».
+La case study raconte le wedge en étape 1 et le pari en étape 5.
 
 ## Le triplet
 
