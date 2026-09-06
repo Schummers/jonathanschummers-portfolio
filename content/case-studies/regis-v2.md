@@ -22,7 +22,10 @@ In my family, a rental portfolio built over thirty years was managed the way mos
 
 ### Key results
 
-- TBD, to be written from the beta data (step 4)
+- **In daily use** by my family since summer 2026: the whole flow, from the bank statement to the tax line, runs on our real data
+- **251 bank transactions** sorted by the engine, **482 entries** booked or queued, **679 invoices** extracted from thirty years of binders
+- **2025 return** prepared from the data for every property at the real-cost regime, amounts per line of the 190/210 F
+- **askregis.fr** live, ready for the market tests
 
 ## How I solved this problem
 
@@ -129,4 +132,16 @@ From the closed beta on, two things run side by side. User tests and the PostHog
 
 ## What we delivered
 
-- TBD
+- **Web app** in production at app.askregis.fr: Next.js, Supabase, Mistral OCR, Stripe, PostHog
+- **The full flow**, working end to end: statement import from any bank, PDF or CSV, reconciliation engine and rules, one-click validation, entries linked to their transactions and documents, activity trail
+- **Search** across entries, documents, properties and people, filtered by property
+- **Design system** in monochrome with one action colour, light and dark, anti-drift lint in pre-commit
+- **Website** askregis.fr: landing in four variants, market and AI emphasis, Pixel and CAPI wired, ready for the fake-door tests
+- **Beta access** by code, three months of the Essentiel plan per family, Stripe checkout live
+
+![phone: Entries, light](/images/Experiences/Regis/regis-app-entries-light.webp)
+![phone: One entry, its transaction and its details, light](/images/Experiences/Regis/regis-app-entry-light.webp)
+![phone: Search across entries, documents, properties and people, light](/images/Experiences/Regis/regis-app-search-light.webp)
+![phone: Entries, dark](/images/Experiences/Regis/regis-app-entries-dark.webp)
+![phone: One entry, dark](/images/Experiences/Regis/regis-app-entry-dark.webp)
+![phone: Search, dark](/images/Experiences/Regis/regis-app-search-dark.webp)
