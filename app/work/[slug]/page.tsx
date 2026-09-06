@@ -8,6 +8,7 @@ import { CaseStudyToc } from "@/components/case-study-toc";
 import { CaseStudyHeader } from "@/components/case-study-header";
 import { CaseStudyMedia } from "@/components/case-study-media";
 import { YouAliveShowcase } from "@/components/you-alive-showcase";
+import { RegisShowcase } from "@/components/regis-showcase";
 import { CaseStudyContext } from "@/components/case-study-context";
 import { CaseStudyStep } from "@/components/case-study-step";
 import { CaseStudyContent } from "@/components/case-study-content";
@@ -15,7 +16,7 @@ import { CaseStudyImageGrid } from "@/components/case-study-image-grid";
 import { Button } from "@/components/button";
 import { Footer } from "@/components/footer";
 import { ArrowUpRightIcon } from "@heroicons/react/16/solid";
-import { getCaseStudy, getAllCaseStudySlugs } from "@/lib/case-studies";
+import { getCaseStudy, getAllCaseStudySlugs, stripImageLines } from "@/lib/case-studies";
 import type { CaseStudyStep as StepData } from "@/lib/case-studies";
 import { projects } from "@/lib/data";
 import { IPhoneFrame } from "@/components/iphone-frame";
@@ -208,6 +209,10 @@ export default async function CaseStudyPage({
           <section className="border-b border-border px-xl py-xl max-md:px-md max-md:py-md">
             <YouAliveShowcase />
           </section>
+        ) : project?.showcase === "regis" ? (
+          <section className="border-b border-border px-xl py-xl max-md:px-md max-md:py-md">
+            <RegisShowcase />
+          </section>
         ) : (
           <section className="border-b border-border px-xl py-xl max-md:px-md max-md:py-md">
             <Image
@@ -326,7 +331,7 @@ export default async function CaseStudyPage({
                                     {step.heading}
                                   </h3>
                                   <div className="mt-xs">
-                                    <CaseStudyContent text={step.content} />
+                                    <CaseStudyContent text={stripImageLines(step.content)} />
                                   </div>
                                   <div className="mt-lg flex gap-xl justify-center">
                                     <figure className="flex flex-col">

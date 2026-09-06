@@ -60,41 +60,31 @@ stack:
 
 That left a scope one person could ship in a dense month, summer 2026.
 
-### 3. Designed the data flow before the screens: the bank transaction is the entry point, the landlord only validates
+### 3. Designed and developed the data pipeline and the user flow that turn bank lines and invoices into a tax return
 
-The bank statement is the one source a landlord never forgets to produce. It is complete, it is dated, and it is the truth of what was actually paid. So instead of asking people to type expenses, I built the product around the transaction: the landlord imports a statement, and the product turns each line into a proposal to confirm. Two ways in, both leading to the same list. **Automatic**: upload a PDF statement, any bank, the product reads it, checks that opening balance plus movements equals the closing balance, and shows the lines before creating anything. Tested on LCL, Boursorama, Trade Republic and Raiffeisen statements, 91 operations out of 91 restored. **Manual**: one entry typed by hand, for the cash payment or the old invoice that never went through this account.
+The bank already knows the date, the amount and who was paid. So the product starts there: it proposes, the landlord validates, and the invoice fills what the bank could not know. Every figure in the return stays linked to what proves it.
 
-One rule shapes the whole data model, and it took a day of design to settle. There are **two truths, at two levels**. The bank transaction is the truth of the cash: immutable once imported, never edited, never deleted. The entry, an expense or an income, is the declared truth, the one that will go on the tax form. The transaction generates the entry and stays linked to it, but if the two ever disagree on an amount or a date, the declared entry wins and the gap is shown as information, never treated as an error. That is what lets a landlord correct a category or a date without ever touching the bank line.
+#### 3.1 Bank transactions arrive automatically, already sorted, and the landlord validates and categorises each one in one gesture
 
-![phone: Bank view after an import: 2 lines imported out of 3, one duplicate skipped, one internal transfer detected](/images/Experiences/Regis/regis-app-import-mobile.webp)
-![phone: Entries view, one line per expense or income, the dot carries the status](/images/Experiences/Regis/regis-app-ledger-desktop.webp)
+Every movement arrives sorted: transfers set aside, rents matched to the lease, the rest proposed with a category. Nothing is written without a click.
 
-The list is where the automation shows. When a statement comes in, the reconciliation engine has already run on every line (how it decides is step 3), so transactions arrive in one of four states: **to reconcile** when nothing was found, **to validate** when the engine has posed a proposal and waits for a click, **reconciled** when the entry exists, by hand or automatically, and **classified** for the internal transfer or the personal line that will never become an entry. I rewrote the whole status system around one question: does an action wait for the user, yes or no. Only two labels are orange, "to reconcile" and "to validate", and the label always starts with "to" plus a verb, so the action is in the name. Everything done is a past participle in grey. Shape carries the meaning as much as colour: a ring for nothing expected, a full disc for an action, a triangle for an anomaly, a padlock for a locked entry. And a status is computed from the data, never from the clock: nothing turns orange because it is old. The inbox on the home page is simply the union of every orange or red item across transactions, entries and documents, sorted with anomalies first.
+![pair: Lines already sorted, two orange states only: to reconcile, to validate](/images/Experiences/Regis/regis-app-bank-list.webp)
+![pair: Bank line read-only on top, proposal editable under it, one button](/images/Experiences/Regis/regis-app-transaction-validate.webp)
 
-table:
-| Status | Meaning | Who acts |
-|---|---|---|
-| To reconcile | Nothing found, nothing linked | The landlord builds the match |
-| To validate | A proposal is posed, or a linked entry is still unconfirmed | One click, or edit then confirm |
-| Reconciled, Reconciled (auto) | An entry exists and covers the amount | Nobody |
-| Classified | Internal transfer or ignored, out of the books | Nobody, reversible |
+#### 3.2 The ledger entry, what actually gets declared, shows the transaction and the document behind every figure
 
-The transaction detail is a mobile page, because that is where the validation happens, in the evening, one thumb. The header repeats the bank line as is: signed amount, raw label, date, source account, and it cannot be edited. Under it, the proposal: property, category, type, counterparty, all shown as the same fields the entry will carry, all editable on the spot with a picker. One sticky button at the bottom, "Create the entry", validates the fields and creates the entry in a single gesture, so the landlord never validates a proposal and then edits the result. The proposed label is rewritten from the bank noise into something a human can read in a list: "Sud Gaz · Boiler maintenance" instead of "PRLV SUD GAZ SARL". For recurring lines, a rent or a monthly charge, "Also validate similar entries" confirms every proposal from the same contract at once, matched on tenant, category and property, and deliberately not on amount, because an indexed rent moves a few euros from one month to the next.
+In a spreadsheet, a figure is just a figure. Here every one of them shows what it covers, what proved it and who changed it. Trust comes from provenance, not from a locked screen.
 
-Once created, the entry is the object the landlord will live with, and its page is built to answer four questions in one glance. Is it linked to a transaction, and to which amount? Is a document attached? Which category, which property? What is its status? Three statuses only: **to validate**, **validated**, and **locked** once the entry has fed a tax report, after which it is read-only and shows a padlock. The page opens on the amount, then the linked transactions with their lettered amounts next to the entry amount, then the documents, then the details, the tax line, and the activity. Every link is one tap away: open the transaction, add a document, compare the numbers. Under the hood the link is many-to-many both ways. One entry can be paid by two transactions, a tenant paying in two halves, and one transaction can be split into several entries, a building charge shared across two flats or a rent that is really rent plus recoverable charges. Splitting is a single verb in the interface, "Ventilate", and it creates ordinary entries, no parent record, no special case.
+![pair: Status, property, category, and what is attached: a transaction, a document](/images/Experiences/Regis/regis-app-entries-cards.webp)
+![pair-scroll: The linked transaction, the document, the tax line, and who changed what](/images/Experiences/Regis/regis-app-entry-detail.webp)
 
-Then the invoice shows up, a week or a month later, in an email or a drawer. The landlord uploads it and the product finds the entry it belongs to. Analysis is never automatic: it costs credits, so it is one explicit click with the price on the button. Extraction is a proposal with a confidence score, and the landlord validates, corrects or rejects. If the engine finds a matching entry, by amount and date first, then by supplier tokens, the screen asks one question: is this invoice that transaction? Yes creates nothing new: the entry is enriched, and the document is linked to the entry and, through it, to the transaction. The enrichment follows one rule I wrote once and applied to all three ways a document can meet an entry. Core fields, amount and date, are **never** overwritten from a document: a difference there questions the match itself, not the value. Peripheral fields, supplier, VAT rate, invoice reference, payment date, trade, are filled **only if empty**, never replaced. The document never has authority, the declared entry keeps it.
+#### 3.3 The invoice arrives later and enriches the entry, without overwriting a single figure
 
-![row: The assistant structures the invoice, every figure stays linked to its document, one click to validate](/images/Experiences/Regis/regis-app-structuration-facture.webp)
+An invoice knows what a bank line never will: the supplier, the VAT, the reference, what the work was. It renames the entry and fills those fields, and never overwrites an amount or a date.
 
-flow:
-- **Statement**: PDF uploaded, balances checked, lines previewed, nothing created yet.
-- **Transaction**: immutable bank line, already routed by the engine to a property and a category, or left to reconcile.
-- **Entry**: created from the transaction in one gesture, validated by the landlord, the only thing that goes on the tax form.
-- **Document**: uploaded later, analysed on request, matched to the entry, fills what the bank could not know, VAT and invoice reference.
-- **Tax report**: every validated entry, linked to a property and a category mapped to a form 190 line, is what the report reads. Step 4.
+![pair: Analysis on request, price on the button, nothing written before you confirm](/images/Experiences/Regis/regis-app-document-upload.webp)
+![pair-scroll: Renamed, supplier and VAT filled in, amount and date untouched](/images/Experiences/Regis/regis-app-entry-activity.webp)
 
-What the landlord ends up with is one entry created by a transaction, enriched by an invoice, the three linked together, attached to a property and to a category that already knows its line on the tax form. That is the data the tax report is built from.
 
 ### 4. Kept a human in control of every figure that commits the landlord: an engine that matches before it creates, duplicates caught at import, anomalies shown rather than hidden
 

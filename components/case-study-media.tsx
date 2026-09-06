@@ -7,6 +7,7 @@ import { BrowserFrame } from "./browser-frame";
 import { CaseStudyImageGrid } from "./case-study-image-grid";
 import { CaseStudyCaption } from "./case-study-caption";
 import { PhoneScroll, type PhoneScrollItem } from "./phone-scroll";
+import { PhonePair, type PhonePairItem } from "./phone-pair";
 import { AutoScrollViewport } from "./auto-scroll-viewport";
 
 type MediaFigure = { src: string; caption: string };
@@ -15,6 +16,7 @@ type MediaFigure = { src: string; caption: string };
    `parseMediaDirective`, `lib/case-studies.ts`) :
    - `phone-scroll` → jusqu'a 3 iPhones dont l'ecran scrolle tout seul
    - `phone`        → rangee d'iPhones, legende dessous
+   - `pair`         → deux iPhones, fleche entre eux, titre et legende
    - `scroll`       → navigateur dont la page scrolle toute seule
    - `row`          → image pleine largeur, empilee
    - `grid`         → la grille habituelle
@@ -28,10 +30,11 @@ export function CaseStudyMedia({ images }: { images: CaseStudyImage[] }) {
   const items = images.map((img) => ({ src: img.src, alt: img.alt, d: parseMediaDirective(img.alt) }));
   const scrollFirst = items[0]?.d.kind === "scroll";
   const phoneItems = items.filter((it) => it.d.kind === "phone" || it.d.kind === "phone-scroll");
-  const pairs = phoneItems.length > 0 && phoneItems.every((it) => "pair" in it.d && it.d.pair);
+  const twoPerRow = phoneItems.length > 0 && phoneItems.every((it) => "pair" in it.d && it.d.pair);
 
   const phoneScrolls: PhoneScrollItem[] = [];
   const phones: MediaFigure[] = [];
+  const pairs: PhonePairItem[] = [];
   const rows: MediaFigure[] = [];
   const grid: CaseStudyImage[] = [];
   let scroll: (MediaFigure & { url: string }) | undefined;
@@ -39,6 +42,7 @@ export function CaseStudyMedia({ images }: { images: CaseStudyImage[] }) {
   for (const { src, alt, d } of items) {
     if (d.kind === "phone-scroll") phoneScrolls.push({ src, label: d.label, caption: d.caption, href: d.href });
     else if (d.kind === "phone") phones.push({ src, caption: d.caption });
+    else if (d.kind === "pair") pairs.push({ src, title: d.title, caption: d.caption, scroll: d.scroll });
     else if (d.kind === "scroll") scroll ??= { src, url: d.url, caption: d.caption };
     else if (d.kind === "row") rows.push({ src, caption: d.caption });
     else grid.push({ src, alt }); // la grille relit `plain:` elle-meme
@@ -65,8 +69,14 @@ export function CaseStudyMedia({ images }: { images: CaseStudyImage[] }) {
     <>
       {scrollFirst && browserFigure}
 
+      {pairs.length > 0 && (
+        <div className="mt-md">
+          <PhonePair items={pairs} />
+        </div>
+      )}
+
       {phones.length > 0 && (
-        <div className={cn("mt-lg grid gap-md max-md:gap-sm", pairs ? "grid-cols-2" : "grid-cols-3")}>
+        <div className={cn("mt-lg grid gap-md max-md:gap-sm", twoPerRow ? "grid-cols-2" : "grid-cols-3")}>
           {phones.map((img, i) => (
             <figure key={i}>
               <IPhoneFrame homeBar>
@@ -84,7 +94,7 @@ export function CaseStudyMedia({ images }: { images: CaseStudyImage[] }) {
         </div>
       )}
 
-      {phoneScrolls.length > 0 && <PhoneScroll items={phoneScrolls} cols={pairs ? 2 : 3} />}
+      {phoneScrolls.length > 0 && <PhoneScroll items={phoneScrolls} cols={twoPerRow ? 2 : 3} />}
 
       {phones.length > 0 && scroll && !scrollFirst && (
         <div className="mt-md flex justify-center text-text-tertiary" aria-hidden="true">

@@ -10,8 +10,9 @@ export interface Project {
   browserUrl?: string;
   mockupType?: "browser" | "browser-scroll" | "mobile-grid";
   /* Mise en scene dediee (hero de la page et image de la carte featured),
-     a la place de l'image : `bforbank-showcase.tsx`, `you-alive-showcase.tsx`. */
-  showcase?: "bforbank" | "you-alive";
+     a la place de l'image : `bforbank-showcase.tsx`, `you-alive-showcase.tsx`,
+     `regis-showcase.tsx` (hero seulement, la carte garde son image). */
+  showcase?: "bforbank" | "you-alive" | "regis";
   externalUrl?: string;
 }
 
@@ -39,6 +40,7 @@ export const projects: Project[] = [
     tags: ["Side project", "Solo founder", "Continuous capture", "Luxembourg tax"],
     image: "/images/Hero/regis-hero.webp",
     type: "featured",
+    showcase: "regis",
   },
   {
     slug: "bforbank",
