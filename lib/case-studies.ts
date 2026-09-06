@@ -38,25 +38,28 @@ export interface CaseStudySection {
    Seul endroit qui connait ces prefixes : les composants recoivent la
    directive deja lue. */
 export type MediaDirective =
-  | { kind: "phone"; caption: string }
+  | { kind: "phone"; caption: string; pair: boolean }
   | { kind: "scroll"; url: string; caption: string }
-  | { kind: "phone-scroll"; label: string; caption: string; href?: string }
+  | { kind: "phone-scroll"; label: string; caption: string; href?: string; pair: boolean }
   | { kind: "row"; caption: string }
   | { kind: "grid"; alt: string; caption: string };
 
 export function parseMediaDirective(alt: string): MediaDirective {
-  const m = alt.match(/^(phone-scroll|phone|scroll|row|plain):\s*(.*)$/);
+  const m = alt.match(/^(phone-scroll-pair|phone-scroll|phone-pair|phone|scroll|row|plain):\s*(.*)$/);
   if (!m) return { kind: "grid", alt, caption: alt };
   const [, prefix, rest] = m;
   const parts = rest.split("|").map((p) => p.trim());
   switch (prefix) {
     case "phone":
-      return { kind: "phone", caption: rest.trim() };
+    case "phone-pair":
+      return { kind: "phone", caption: rest.trim(), pair: prefix === "phone-pair" };
     case "scroll":
       return { kind: "scroll", url: parts[0] ?? "", caption: parts[1] ?? "" };
     case "phone-scroll":
+    case "phone-scroll-pair":
       return {
         kind: "phone-scroll",
+        pair: prefix === "phone-scroll-pair",
         label: parts[0] ?? "",
         caption: parts[1] ?? "",
         href: parts[2] || undefined,

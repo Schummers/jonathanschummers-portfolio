@@ -140,7 +140,7 @@ From the closed beta on, two things run side by side. User tests and the PostHog
 - **Beta access** by code, three months of the Essentiel plan per family, Stripe checkout live
 
 ![scroll: https://www.askregis.fr | askregis.fr, the website, four variants ready for the fake doors](/images/Experiences/Regis/regis-website-desktop.webp)
-![phone: Entries, dark](/images/Experiences/Regis/regis-app-entries-dark.webp)
-![phone: Entries, light](/images/Experiences/Regis/regis-app-entries-light.webp)
-![phone-scroll: Dark | One entry, complete: transaction, invoice, VAT, tax line and activity, dark](/images/Experiences/Regis/regis-app-entry-rich-dark.webp)
-![phone-scroll: Light | The same entry, light](/images/Experiences/Regis/regis-app-entry-rich-light.webp)
+![phone-pair: Entries, dark](/images/Experiences/Regis/regis-app-entries-dark.webp)
+![phone-pair: Entries, light](/images/Experiences/Regis/regis-app-entries-light.webp)
+![phone-scroll-pair: Dark | One entry, complete: transaction, invoice, VAT, tax line and activity, dark](/images/Experiences/Regis/regis-app-entry-rich-dark.webp)
+![phone-scroll-pair: Light | The same entry, light](/images/Experiences/Regis/regis-app-entry-rich-light.webp)
