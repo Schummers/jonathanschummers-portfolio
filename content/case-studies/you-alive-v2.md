@@ -85,12 +85,12 @@ evolution:
 ### 4. The new design moved every metric except the one that mattered, 1.3% emails: the value proposition did not convince
 
 stats:
-- **~~836~~ 312** Visitors
+- **~~836~~ 319** Visitors
 - **~~96%~~ 45%** Bounce rate
-- **~~1.1%~~ 36%** Clicked the fake door
+- **~~1.1%~~ 29%** Clicked the fake door
 - **~~0%~~ 1.3%** Emails on the waitlist
 
-Pixel and Conversions API on the Buy click, PostHog for the funnel and the replays, Notion for the leads: for the first time every step from the ad to the email field had a number. Four days at $2 a day, and the numbers moved, all of them. CTR tripled. Bounce fell from 96% to 45%. A third of visitors clicked toward the fake door, against 1% before, with variant C ahead everywhere. Then 4 emails, none from the target market. Four hypotheses tested, four numbers improved, one screen unchanged: the one where people decide the product is worth an email. That was H3, the value proposition, the hypothesis we had deferred.
+Pixel and Conversions API on the Buy click, PostHog for the funnel and the replays, Notion for the leads: for the first time every step from the ad to the email field had a number. Four days at $2 a day, and the numbers moved, all of them. CTR tripled. Bounce fell from 96% to 45%. Three visitors in ten clicked toward the fake door, against 1% before, with variant C ahead everywhere. Then 4 emails, none from the target market. Four hypotheses tested, four numbers improved, one screen unchanged: the one where people decide the product is worth an email. That was H3, the value proposition, the hypothesis we had deferred.
 
 table:
 | | Round 1 | Round 2 | A | B | C |
@@ -98,10 +98,10 @@ table:
 | Meta impressions | 20,410 | 2,146 | 265 | 1,110 | 771 |
 | Link clicks | 1,023 | 346 | 32 | 191 | 123 |
 | CTR | 5.0% | 16% | 12% | 17% | 16% |
-| Visitors on the page | 836 | 312 | 42 | 119 | 151 |
+| Visitors on the page | 836 | 319 | 52 | 119 | 148 |
 | Bounce rate | 96% | 45% | 59% | 50% | 36% |
-| Clicked the fake door | 1.1% | 36% | 8% | 24% | 32% |
-| Emails | 0 | 4, 1.3% | 0 | 0 | 4, 2.6% |
+| Clicked the fake door | 1.1% | 29% | 6% | 29% | 38% |
+| Emails | 0 | 4 | 0 | 0 | 4 |
 
 ### 5. Closed the test and turned the kit into a template anyone can reuse
 
