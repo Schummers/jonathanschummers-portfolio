@@ -10,8 +10,9 @@ export interface Project {
   browserUrl?: string;
   mockupType?: "browser" | "browser-scroll" | "mobile-grid";
   /* Mise en scene dediee (hero de la page et image de la carte featured),
-     a la place de l'image : `bforbank-showcase.tsx`, `you-alive-showcase.tsx`. */
-  showcase?: "bforbank" | "you-alive";
+     a la place de l'image : `bforbank-showcase.tsx`, `you-alive-showcase.tsx`,
+     `regis-showcase.tsx` (hero seulement, la carte garde son image). */
+  showcase?: "bforbank" | "you-alive" | "regis";
   externalUrl?: string;
 }
 
@@ -30,18 +31,16 @@ export const projects: Project[] = [
     mockupType: "browser-scroll",
   },
   {
-    slug: "valoris",
+    slug: "regis",
     title:
-      "Designing and building a rental management SaaS for Luxembourg legal compliance",
+      "Built a rental tax SaaS for Luxembourg landlords on one rule: capture every invoice as it arrives, never scramble at tax return time again",
     description:
-      "Solo-built property management platform automating legal documentation: tax declarations, rent control tracking, and resale reporting. OCR-powered document processing that auto-fills ~72% of required fields for tax filings.",
-    company: "Valoris",
-    tags: ["Product Builder", "Cursor / Claude Code", "Entrepreneurship"],
-    image: "/images/Experiences/Smartintegrity/Principal.webp",
+      "Solo-built SaaS that captures invoices and bank statements as they arrive, keeps a human in control of every figure, and prepares the Luxembourg form 190 per property. Built for a thirty-year family portfolio first, now in beta with twenty landlords.",
+    company: "Regis",
+    tags: ["Side project", "Solo founder", "Continuous capture", "Luxembourg tax"],
+    image: "/images/Hero/regis-hero.webp",
     type: "featured",
-    hidden: true,
-    browserUrl: "valoris.lu",
-    mockupType: "browser",
+    showcase: "regis",
   },
   {
     slug: "bforbank",

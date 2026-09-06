@@ -8,6 +8,7 @@ import { CaseStudyToc } from "@/components/case-study-toc";
 import { CaseStudyHeader } from "@/components/case-study-header";
 import { CaseStudyMedia } from "@/components/case-study-media";
 import { YouAliveShowcase } from "@/components/you-alive-showcase";
+import { RegisShowcase } from "@/components/regis-showcase";
 import { CaseStudyContext } from "@/components/case-study-context";
 import { CaseStudyStep } from "@/components/case-study-step";
 import { CaseStudyContent } from "@/components/case-study-content";
@@ -207,6 +208,10 @@ export default async function CaseStudyPage({
         ) : project?.showcase === "you-alive" ? (
           <section className="border-b border-border px-xl py-xl max-md:px-md max-md:py-md">
             <YouAliveShowcase />
+          </section>
+        ) : project?.showcase === "regis" ? (
+          <section className="border-b border-border px-xl py-xl max-md:px-md max-md:py-md">
+            <RegisShowcase />
           </section>
         ) : (
           <section className="border-b border-border px-xl py-xl max-md:px-md max-md:py-md">

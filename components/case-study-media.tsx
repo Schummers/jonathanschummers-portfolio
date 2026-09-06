@@ -6,12 +6,14 @@ import { BrowserFrame } from "./browser-frame";
 import { CaseStudyImageGrid } from "./case-study-image-grid";
 import { CaseStudyCaption } from "./case-study-caption";
 import { PhoneScroll, type PhoneScrollItem } from "./phone-scroll";
+import { PhonePair, type PhonePairItem } from "./phone-pair";
 import { AutoScrollViewport } from "./auto-scroll-viewport";
 
 /* Repartit les images d'une etape selon la directive de leur alt (lue par
    `parseMediaDirective`, `lib/case-studies.ts`) :
    - `phone-scroll` → jusqu'a 3 iPhones dont l'ecran scrolle tout seul
    - `phone`        → rangee d'iPhones, legende dessous
+   - `pair`         → deux iPhones, fleche entre eux, titre et legende
    - `scroll`       → navigateur dont la page scrolle toute seule
    - `row`          → image pleine largeur, empilee
    - `grid`         → la grille habituelle
@@ -24,6 +26,7 @@ export function CaseStudyMedia({ images }: { images: CaseStudyImage[] }) {
 
   const phoneScrolls: PhoneScrollItem[] = [];
   const phones: { src: string; caption: string }[] = [];
+  const pairs: PhonePairItem[] = [];
   const rows: { src: string; caption: string }[] = [];
   const grid: CaseStudyImage[] = [];
   let scroll: { src: string; url: string; caption: string } | undefined;
@@ -31,6 +34,7 @@ export function CaseStudyMedia({ images }: { images: CaseStudyImage[] }) {
   for (const { src, alt, d } of items) {
     if (d.kind === "phone-scroll") phoneScrolls.push({ src, label: d.label, caption: d.caption, href: d.href });
     else if (d.kind === "phone") phones.push({ src, caption: d.caption });
+    else if (d.kind === "pair") pairs.push({ src, title: d.title, caption: d.caption, scroll: d.scroll });
     else if (d.kind === "scroll") scroll ??= { src, url: d.url, caption: d.caption };
     else if (d.kind === "row") rows.push({ src, caption: d.caption });
     else grid.push({ src, alt }); // la grille relit `plain:` elle-meme
@@ -39,6 +43,12 @@ export function CaseStudyMedia({ images }: { images: CaseStudyImage[] }) {
   return (
     <>
       {phoneScrolls.length > 0 && <PhoneScroll items={phoneScrolls} />}
+
+      {pairs.length > 0 && (
+        <div className="mt-md">
+          <PhonePair items={pairs} />
+        </div>
+      )}
 
       {phones.length > 0 && (
         <div className="mt-lg grid grid-cols-3 gap-md max-md:gap-sm">
