@@ -57,7 +57,7 @@ type Segment =
      devient une liste d'options barrees, une seule cochee, sur fond surface ;
    - `flow:` suivi de bullets `- **Nom**: ce que fait la phase` devient une
      bande de phases numerotees, cartes sur fond surface, 3 par ligne sur
-     desktop, 2 sur mobile ;
+     desktop, une par ligne sur mobile avec le numero a gauche ;
    - `table:` suivi de lignes `| a | b |` devient un tableau, premiere ligne
      en en-tete, ligne `|---|` ignoree, scroll horizontal sur mobile ;
    - `evolution:` (ou `evolution: side`, iPhone a gauche et etapes a droite) suivi, par etat, d'une ligne `- <commit> | <src>` puis de
@@ -261,18 +261,23 @@ export function CaseStudyStep({
         if (seg.kind === "flow") {
           if (!seg.phases.length) return null;
           return (
-            <ol key={i} className={`${gap} grid grid-cols-3 gap-sm max-md:grid-cols-2`}>
+            <ol key={i} className={`${gap} grid grid-cols-3 gap-sm max-md:grid-cols-1`}>
               {seg.phases.map((ph, j) => (
-                <li key={j} className="bg-surface px-md py-md flex flex-col gap-xs">
-                  <span className="flex size-7 items-center justify-center rounded-full bg-bg font-display text-label font-bold text-text-primary">
+                <li
+                  key={j}
+                  className="bg-surface px-md py-md flex flex-col gap-xs max-md:flex-row max-md:gap-sm"
+                >
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-bg font-display text-label font-bold text-text-primary">
                     {j + 1}
                   </span>
-                  <p className="font-display text-h4 font-bold tracking-h4 text-text-primary">
-                    {ph.name}
-                  </p>
-                  <p className="font-body text-body-sm leading-body text-text-secondary">
-                    {renderInline(ph.text)}
-                  </p>
+                  <div className="flex flex-col gap-xs">
+                    <p className="font-display text-h4 font-bold tracking-h4 text-text-primary">
+                      {ph.name}
+                    </p>
+                    <p className="font-body text-body-sm leading-body text-text-secondary">
+                      {renderInline(ph.text)}
+                    </p>
+                  </div>
                 </li>
               ))}
             </ol>
