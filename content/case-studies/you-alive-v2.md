@@ -82,7 +82,7 @@ evolution:
   - Consistent spacing rules between sections and paragraphs
   - Cards kept for a few blocks only, the rest set on the background
 
-### 4. Results: the value proposition did not resonate with the market, 1.3% emails, while every other metric improved
+### 4. The new design moved every metric except the one that mattered, 1.3% emails: the value proposition did not convince the market
 
 stats:
 - **~~836~~ 312** Visitors
