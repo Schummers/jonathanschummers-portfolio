@@ -11,7 +11,7 @@ export interface Project {
   mockupType?: "browser" | "browser-scroll" | "mobile-grid";
   /* browser-scroll only: duration of the hover scroll, in ms. Nod scrolls
      about 120px in 10s ; a taller capture needs a longer duration to keep
-     the same pixel speed (Regis: 2150px, 180s). */
+     the same pixel speed (Regis: 2150px, 164s). */
   scrollDurationMs?: number;
   /* Mise en scene dediee (hero de la page et image de la carte featured),
      a la place de l'image : `bforbank-showcase.tsx`, `you-alive-showcase.tsx`,
@@ -38,7 +38,7 @@ export const projects: Project[] = [
     type: "featured",
     browserUrl: "askregis.fr",
     mockupType: "browser-scroll",
-    scrollDurationMs: 180000,
+    scrollDurationMs: 164000,
     showcase: "regis",
   },
   {
