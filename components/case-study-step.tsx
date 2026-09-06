@@ -32,14 +32,20 @@ interface Picks {
    - `picks: <legende>` suivi de bullets `- [ ] rejetee` / `- [x] retenue`
      devient une liste d'options barrees, une seule cochee, sur fond surface.
    Les deux sont extraits quel que soit leur emplacement dans le texte.
-   - `evolution:` suivi de lignes `- <commit> | <ce que j'ai change> | <src>`
-     devient la timeline dans un iPhone (`CaseStudyEvolution`), rendue la ou
-     le bloc est ecrit, comme un groupe d'images. */
+   - `evolution:` suivi, par etat, d'une ligne `- <commit> | <src>` puis de
+     puces indentees `  - <ce que j'ai change>`, devient la timeline dans un
+     iPhone (`CaseStudyEvolution`), rendue la ou le bloc est ecrit, comme un
+     groupe d'images. */
 function parseEvolution(block: string): EvolutionFrame[] {
   const frames: EvolutionFrame[] = [];
   for (const line of block.split("\n").slice(1)) {
-    const m = line.match(/^- (.+?)\s*\|\s*(.+?)\s*\|\s*(\S+)$/);
-    if (m) frames.push({ label: m[1], caption: m[2], src: decodeURIComponent(m[3]) });
+    const head = line.match(/^- (.+?)\s*\|\s*(\S+)$/);
+    if (head) {
+      frames.push({ label: head[1], src: decodeURIComponent(head[2]), points: [] });
+      continue;
+    }
+    const point = line.match(/^\s+- (.+)$/);
+    if (point && frames.length > 0) frames[frames.length - 1].points.push(point[1]);
   }
   return frames;
 }

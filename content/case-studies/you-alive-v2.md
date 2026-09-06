@@ -69,9 +69,18 @@ With the copy frozen, design was the only thing left to vary. One day generating
 Then three days by hand on 9 of them: strip the AI slop look, fix hierarchy, spacing, rhythm and contrast, dose the animations, and assemble three candidates per creative. A round of feedback from her, one more pass. Since this was a fake-door test, none of it was engineered: no design system, no components, no code review. Vibe-coded on purpose, quick and dirty on a basic UI style guide, because the page only had to live long enough to answer one question.
 
 evolution:
-- AI generated, final copy dropped in | What the generator gave me once the real words were in: everything centred, one rounded card after another, no way to tell one section from the next. | /images/Experiences/You%20Alive/you-alive-design-evo-1.webp
-- Commit 2: heroes, CTAs and hierarchy | I set the text to the left, gave every section an eyebrow and one heading style, and widened the measure so paragraphs read as paragraphs. | /images/Experiences/You%20Alive/you-alive-design-evo-2.webp
-- Commit 3: rhythm and contrast | I alternated the section backgrounds, unified the vertical rhythm, darkened the body text and rewrote the section titles to say something. | /images/Experiences/You%20Alive/you-alive-design-evo-3.webp
+- Best AI generated iteration | /images/Experiences/You%20Alive/you-alive-design-evo-1.webp
+  - Cards used for everything, so nothing stands out
+  - No visual hierarchy, no vertical rhythm
+  - Motion too heavy, animations on every element
+- Commit 2: hierarchy | /images/Experiences/You%20Alive/you-alive-design-evo-2.webp
+  - Body text set flush left
+  - Section eyebrows to structure the page
+  - One heading style, a single type scale
+- Commit 3: rhythm and contrast | /images/Experiences/You%20Alive/you-alive-design-evo-3.webp
+  - Alternating section backgrounds to separate content
+  - Consistent spacing rules between sections and paragraphs
+  - Cards kept for a few blocks only, the rest set on the background
 
 ### 4. Diagnosed 4 days at zero in PostHog and moved the count to 5 with one line of copy
 

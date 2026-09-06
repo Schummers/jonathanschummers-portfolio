@@ -11,8 +11,8 @@ export interface EvolutionFrame {
   src: string;
   /* Court : le commit ou l'etat (« AI generated », « Commit 2, hierarchy »). */
   label: string;
-  /* Ce que j'ai change a cette etape, une phrase. */
-  caption: string;
+  /* Ce que j'ai change a cette etape, une puce par point. */
+  points: string[];
 }
 
 const AUTO_MS = 3000;
@@ -79,7 +79,7 @@ export function CaseStudyEvolution({ frames }: { frames: EvolutionFrame[] }) {
                 <Image
                   key={i}
                   src={f.src}
-                  alt={f.caption}
+                  alt={`${f.label}: ${f.points.join(", ")}`}
                   width={390}
                   height={693}
                   priority={i === 0}
@@ -103,7 +103,7 @@ export function CaseStudyEvolution({ frames }: { frames: EvolutionFrame[] }) {
         </Button>
       </div>
 
-      <div className="mx-auto mt-sm max-w-96 text-center" aria-live="polite">
+      <div className="mx-auto mt-sm max-w-96" aria-live="polite">
         <ol className="flex justify-center gap-xs" aria-hidden="true">
           {frames.map((_, i) => (
             <li
@@ -115,12 +115,19 @@ export function CaseStudyEvolution({ frames }: { frames: EvolutionFrame[] }) {
             />
           ))}
         </ol>
-        <p className="mt-xs font-body text-caption font-semibold text-text-primary">
+        <p className="mt-xs text-center font-body text-caption font-semibold text-text-primary">
           {frame.label}
         </p>
-        <p className="mt-2xs font-body text-body-sm leading-body text-text-secondary">
-          {frame.caption}
-        </p>
+        <ul className="mx-auto mt-2xs w-fit space-y-2xs">
+          {frame.points.map((pt, i) => (
+            <li
+              key={i}
+              className="font-body text-body-sm leading-body text-text-secondary pl-md relative before:absolute before:left-0 before:top-[0.65em] before:size-1 before:rounded-full before:bg-text-secondary"
+            >
+              {pt}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
