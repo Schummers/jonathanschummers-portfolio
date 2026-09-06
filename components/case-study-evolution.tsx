@@ -17,10 +17,21 @@ export interface EvolutionFrame {
 
 const AUTO_MS = 3000;
 
-/* `stack` : iPhone entre deux fleches, legende centree dessous, a la largeur
-   du bloc fleches + iPhone. `side` : iPhone a gauche, les etapes a droite,
-   toutes lisibles, l'active en text-primary, les autres en text-secondary ;
-   cliquer une etape change l'ecran. Sur mobile `side` s'empile. */
+/* Deux layouts, choisis dans le Markdown par la premiere ligne du bloc :
+
+   - `evolution:` (defaut) → `stack` : iPhone entre deux fleches, points de
+     pagination, legende centree dessous a la largeur du bloc fleches + iPhone.
+     C'est le layout retenu pour You Alive, etape 3 (decision de Jonathan le
+     2026-09-06).
+   - `evolution: side` → `side` : iPhone a gauche, les etapes a droite en
+     colonne, toutes lisibles, l'active en text-primary, les autres en
+     text-secondary, fleches au-dessus de trois cards a stroke qui partagent
+     la hauteur de l'iPhone ; cliquer une etape change l'ecran. Sur mobile
+     `side` s'empile. Construit et verifie en dev (commits `84f5a5d`,
+     `11d7ffe`), puis mis de cote : garde ici pour une autre case study, il
+     suffit d'ecrire `evolution: side` au-dessus des etats.
+
+   Les deux partagent les frames, l'avance auto et le passage en manuel. */
 export type EvolutionLayout = "stack" | "side";
 
 /* Le meme ecran a chaque commit, dans un seul iPhone. Avance seul toutes les

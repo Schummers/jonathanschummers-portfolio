@@ -82,20 +82,6 @@ evolution:
   - Consistent spacing rules between sections and paragraphs
   - Cards kept for a few blocks only, the rest set on the background
 
-evolution: side
-- 1. Start from AI iterations | /images/Experiences/You%20Alive/you-alive-design-evo-1.webp
-  - Cards used for everything, so nothing stands out
-  - No visual hierarchy, no vertical rhythm
-  - Motion too heavy, animations on every element
-- 2. Fix the hierarchy | /images/Experiences/You%20Alive/you-alive-design-evo-2.webp
-  - Body text set flush left
-  - Section eyebrows to structure the page
-  - One heading style, a single type scale
-- 3. Fix the rhythm | /images/Experiences/You%20Alive/you-alive-design-evo-3.webp
-  - Alternating section backgrounds to separate content
-  - Consistent spacing rules between sections and paragraphs
-  - Cards kept for a few blocks only, the rest set on the background
-
 ### 4. The new design moved every metric except the one that mattered, 1.3% emails: the value proposition did not convince
 
 stats:
