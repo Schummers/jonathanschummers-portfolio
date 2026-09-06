@@ -86,27 +86,9 @@ An invoice knows what a bank line never will: the supplier, the VAT, the referen
 ![pair-scroll: Renamed, supplier and VAT filled in, amount and date untouched](/images/Experiences/Regis/regis-app-entry-activity.webp)
 
 
-### 4. Kept a human in control of every figure that commits the landlord: an engine that matches before it creates, duplicates caught at import, anomalies shown rather than hidden
+### 4. Regis is in alpha on our family portfolio to prepare the 2025 tax return: 251 bank transactions, 679 invoices extracted, 482 entries booked or queued
 
-The first architecture decision of the project, written as an ADR on 24 June 2026, structures everything in this step. A number that commits the landlord, an amount, a total, a tax line, is always computed by deterministic code and persisted. The language model extracts, formats, proposes and explains with sources, and never has authority on a figure. The chain is always the same: non-deterministic extraction, human validation, clean data, deterministic calculation. It sounds like a constraint and it is what makes the automation trustworthy: the engine below contains no AI at all.
-
-The reconciliation engine runs on every imported line, in a fixed order, and creates an entry only as a last resort. First it looks for **something that already exists**: an open rent instalment generated from a lease, an unlinked entry with the same amount within a date window, an orphan document. Then it evaluates the **rules**, first match wins by priority. Only if nothing matches does it propose a creation. Matching before creating is the real defence against the duplicate every landlord knows, the invoice typed in April and the bank debit imported in May for the same boiler. The signals are ranked by how much I trust them, and the ranking is the opposite of the intuitive one: the transfer reference configured on the lease first, then the counterparty IBAN, then a fuzzy name match, and last the amount plus a date window. Amount alone is the weakest signal, because two tenants can pay the same rent on the same day. A rent is recognised when the payer is the tenant of the property, the amount equals the expected rent, and the date falls between the 25th of the previous month and the 10th of the next. Anything else, a partial payment, an odd date, a tenant paying a deposit refund, is routed to the property but left as a suggestion, because the deviation is precisely the signal a human should look at.
-
-Automatic exists only where confidence is total. Each rule carries an auto switch, off by default: on, the rule creates and validates the entry without anyone; off, it only suggests. Bank fees, personal tax advances and rent matched to an exact instalment run automatically from day one, everything else starts as a suggestion and earns its switch after a few correct validations. A rule the engine learns from two identical corrections is proposed, never created on its own, and every rule is visible and editable in a settings screen. No black box: the landlord can read why a line was routed where it was. Internal transfers follow the same logic. A counterparty IBAN that belongs to one of the family's own accounts classifies the line automatically. A name alone, or a bank category like "internal movements", only suggests, because a surname is ambiguous when a tenant shares it.
-
-Duplicates are caught at import, before any of this runs. Every line gets a fingerprint, account, date, amount and normalised label, and a line already present is marked as a duplicate and skipped, so re-importing last month's statement by mistake creates nothing. When the source provides its own identifier, it is used instead. The PDF path adds a check the CSV path could not: opening balance plus the sum of the lines must equal the closing balance, and the screen says so in plain words. Passed, with the sum shown. Failed, with the gap in euros. Or impossible, when the file is a movements export rather than a real periodic statement, a case Raiffeisen produces, named on the screen rather than failing silently.
-
-![phone: The balance check at import: passed, failed with the gap in euros, or impossible for this kind of file](/images/Experiences/Regis/regis-app-balance-check-mobile.webp)
-
-The same philosophy applies to what the interface shows about consistency. An anomaly is derived from the data at display time, never stored, and it sits on top of a status rather than replacing it: an entry can be validated and still carry a red triangle for a missing date. A transaction is reconciled if and only if the lettered amounts add up to its amount, otherwise it reads "Lettered 900 € of 1,200 €" and stays orange. On an invoice, the net amount and VAT are shown only when they add up to the total; when they do not, which happens on every scanned bundle of several invoices, they are hidden rather than flagged, because a doubtful number costs more than an absent one and a warning on half the documents would become wallpaper. The one figure that commits the landlord, the total, is the one the landlord validated.
-
-Access is scoped the same way the data is: every table is protected by row-level security on the family, the tenant that owns the properties, and the transaction table cannot be edited or deleted by anyone once written. What the assistant writes goes through a separate proposal table first, which doubles as a log of everything the model ever suggested.
-
-The last piece was not in my plan. Beta users said the same thing in different words: I am afraid of doing something stupid and not being able to tell. So I added an **activity** timeline on every entry: who changed what, the value before and the value after, whether the actor was a person, the import or the assistant, and when. Written only by the application, never editable, it replaced the "created on, modified on" footer that answered none of those questions. It is also what makes validation reversible without fear: an entry can go back from validated to "to validate" until it is locked by a tax report, and the timeline keeps the trace.
-
-### 5. Regis is in alpha on our family portfolio to prepare the 2025 tax return: 251 bank transactions, 679 invoices extracted, 482 entries booked or queued
-
-![row: The tax page, in development, and the 190/210 F it fills in, the Luxembourg annex for rental income](/images/Experiences/Regis/regis-app-tax-page-to-form.webp)
+![figure: The tax page, in development, and the 190/210 F it fills in, the Luxembourg annex for rental income](/images/Experiences/Regis/regis-app-tax-page-to-form.webp)
 
 Go to market strategy in two steps:
 
@@ -114,11 +96,11 @@ Go to market strategy in two steps:
 
 - **Open beta.** The 190/210 F changed this year, four pages instead of two and a merged form, so content on how to fill it in. Then ads in October and November, when landlords sit down with the pile, before the 31 December deadline.
 
-### 6. What comes next: learn from the first landlords during the closed beta, then test the crucial hypotheses before building the next step
+### 5. What comes next: learn from the first landlords during the closed beta, then test the crucial hypotheses before building the next step
 
 From the closed beta on, two things run side by side. User tests and the PostHog funnel with the first landlords, to see where they get stuck. Then interviews and fake doors for the questions use alone cannot answer.
 
-![row: The hypotheses that decide the next step, and how each one gets tested](/images/Experiences/Regis/regis-next-hypotheses-matrix.webp)
+![figure: The hypotheses that decide the next step, and how each one gets tested](/images/Experiences/Regis/regis-next-hypotheses-matrix.webp)
 
 ## What we delivered
 
