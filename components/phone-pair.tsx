@@ -16,7 +16,7 @@ export interface PhonePairItem {
 
 /* Deux iPhones cales sur les bords du texte, une fleche entre les deux : un
    avant et un apres, ou deux ecrans d'un meme geste. Titre au-dessus (meme
-   style que le nom d'une phase), legende dessous, tous deux a gauche.
+   style que le titre d'une carte du bloc pipeline), legende dessous, tous deux a gauche.
    Pas de barre d'accueil iOS : les captures d'app sont plein ecran et la
    barre les couperait. Sur mobile les deux s'empilent, la fleche tourne. */
 export function PhonePair({ items }: { items: PhonePairItem[] }) {
@@ -30,7 +30,7 @@ export function PhonePair({ items }: { items: PhonePairItem[] }) {
             </span>
           )}
           <figure className="flex w-72 flex-col gap-xs max-md:w-64">
-            <p className="flex h-14 items-end font-display text-h4 font-bold leading-h4 tracking-h4 text-text-primary">{it.title}</p>
+            <p className="flex h-10 items-end font-display text-body-sm font-bold leading-body-sm text-text-primary">{it.title}</p>
             <IPhoneFrame>
               {it.scroll ? (
                 <AutoScrollViewport className="case-phone-viewport" label={`${it.caption}, scrollable`}>

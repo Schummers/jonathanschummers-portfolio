@@ -62,7 +62,6 @@ That left a scope one person could ship in a dense month, summer 2026.
 The bank already knows the date, the amount and who was paid. So the product starts there: it proposes, the landlord validates, and the invoice fills what the bank could not know. Every figure in the return stays linked to what proves it.
 
 pipeline:
-= How the landlord interacts | How the database is organised
 - **Sets up a property and its lease** once | bien; bail; personne; compte_bancaire
 ->
 - **Bank lines arrive, already sorted** automatic | transaction; iban_interne; echeance; regle; saisie_assistee
@@ -72,27 +71,28 @@ pipeline:
 - **Invoices enrich the entries** when they arrive | document; consommation_ia
 ->
 - **Exports the tax return per property** every year | categorie_depense; no table, computed from the entries
+= Top of each card, what the landlord does. Under the line, the tables that step writes, and the link to the next.
 
 #### 3.1 The bank line triggers the entry
 
 Every movement arrives sorted: transfers set aside, rents matched to the lease, the rest proposed with a category. Nothing is written without a click.
 
-![pair: The bank view | Lines already sorted, two orange states only: to reconcile, to validate](/images/Experiences/Regis/regis-app-bank-list.webp)
-![pair: Validate and categorise in one gesture | Bank line read-only on top, proposal editable under it, one button](/images/Experiences/Regis/regis-app-transaction-validate.webp)
+![pair: Bank transactions arrive, already sorted | Lines already sorted, two orange states only: to reconcile, to validate](/images/Experiences/Regis/regis-app-bank-list.webp)
+![pair: One line validated and categorised in one gesture | Bank line read-only on top, proposal editable under it, one button](/images/Experiences/Regis/regis-app-transaction-validate.webp)
 
 #### 3.2 The ledger entry, what actually gets declared
 
 In a spreadsheet, a figure is just a figure. Here every one of them shows what it covers, what proved it and who changed it. Trust comes from provenance, not from a locked screen.
 
-![pair: Entries in cards | Status, property, category, and what is attached: a transaction, a document](/images/Experiences/Regis/regis-app-entries-cards.webp)
-![pair-scroll: One entry | The linked transaction, the document, the tax line, and who changed what](/images/Experiences/Regis/regis-app-entry-detail.webp)
+![pair: Entries, one card per expense or income | Status, property, category, and what is attached: a transaction, a document](/images/Experiences/Regis/regis-app-entries-cards.webp)
+![pair-scroll: One entry, everything it is linked to | The linked transaction, the document, the tax line, and who changed what](/images/Experiences/Regis/regis-app-entry-detail.webp)
 
 #### 3.3 The invoice enriches the entry
 
 An invoice knows what a bank line never will: the supplier, the VAT, the reference, what the work was. It renames the entry and fills those fields, and never overwrites an amount or a date.
 
-![pair: Upload | Analysis on request, price on the button, nothing written before you confirm](/images/Experiences/Regis/regis-app-document-upload.webp)
-![pair-scroll: The entry, enriched | Renamed, supplier and VAT filled in, amount and date untouched](/images/Experiences/Regis/regis-app-entry-activity.webp)
+![pair: The invoice, analysed on request | Analysis on request, price on the button, nothing written before you confirm](/images/Experiences/Regis/regis-app-document-upload.webp)
+![pair-scroll: The same entry, enriched by the invoice | Renamed, supplier and VAT filled in, amount and date untouched](/images/Experiences/Regis/regis-app-entry-activity.webp)
 
 
 ### 4. Put it in my parents' hands, then in twenty landlords' hands
