@@ -21,7 +21,7 @@ export interface PhoneScrollItem {
 /* Jusqu'a trois iPhones dont l'ecran scrolle tout seul (AutoScrollViewport :
    l'utilisateur reprend la main, reprise apres 5 s). Sous md, un seul iPhone
    et un segmented control. */
-export function PhoneScroll({ items }: { items: PhoneScrollItem[] }) {
+export function PhoneScroll({ items, cols = 3 }: { items: PhoneScrollItem[]; cols?: 2 | 3 }) {
   const [active, setActive] = useState(0);
 
   return (
@@ -34,7 +34,7 @@ export function PhoneScroll({ items }: { items: PhoneScrollItem[] }) {
           onChange={setActive}
         />
       </div>
-      <div className="grid grid-cols-3 gap-md max-md:grid-cols-1">
+      <div className={cn("grid gap-md max-md:grid-cols-1", cols === 2 ? "grid-cols-2" : "grid-cols-3")}>
         {items.map((it, i) => (
           <figure
             key={it.src}

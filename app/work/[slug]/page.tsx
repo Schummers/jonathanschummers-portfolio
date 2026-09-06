@@ -290,7 +290,7 @@ export default async function CaseStudyPage({
 
                           {/* Section-level images — skip for bforbank delivered (shown in iPhone grid below) */}
                           {!(slug === "bforbank" && group.id === "delivered") && (
-                            <CaseStudyMedia images={sub.images} />
+                            <CaseStudyMedia images={sub.images} pairs={group.id === "delivered"} />
                           )}
 
                           {/* BforBank: iPhone grid in delivered section */}
