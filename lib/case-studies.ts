@@ -33,6 +33,9 @@ export interface CaseStudySection {
      label court du segmented control mobile, url optionnelle (la legende
      devient un lien)
    - `row: <legende>`                             → image pleine largeur
+   - `pair: <titre> | <legende>`                  → deux iPhones cote a cote,
+     fleche entre les deux, titre au-dessus, sans barre d'accueil
+   - `pair-scroll: <titre> | <legende>`           → idem, l'ecran scrolle
    - `plain: <alt>`                               → grille, sans legende affichee
    - sinon                                        → grille, le alt sert de legende
    Seul endroit qui connait ces prefixes : les composants recoivent la
@@ -42,10 +45,11 @@ export type MediaDirective =
   | { kind: "scroll"; url: string; caption: string }
   | { kind: "phone-scroll"; label: string; caption: string; href?: string }
   | { kind: "row"; caption: string }
+  | { kind: "pair"; title: string; caption: string; scroll: boolean }
   | { kind: "grid"; alt: string; caption: string };
 
 export function parseMediaDirective(alt: string): MediaDirective {
-  const m = alt.match(/^(phone-scroll|phone|scroll|row|plain):\s*(.*)$/);
+  const m = alt.match(/^(phone-scroll|phone|scroll|row|plain|pair-scroll|pair):\s*(.*)$/);
   if (!m) return { kind: "grid", alt, caption: alt };
   const [, prefix, rest] = m;
   const parts = rest.split("|").map((p) => p.trim());
@@ -63,6 +67,14 @@ export function parseMediaDirective(alt: string): MediaDirective {
       };
     case "row":
       return { kind: "row", caption: rest.trim() };
+    case "pair":
+    case "pair-scroll":
+      return {
+        kind: "pair",
+        title: parts[0] ?? "",
+        caption: parts[1] ?? "",
+        scroll: prefix === "pair-scroll",
+      };
     default:
       return { kind: "grid", alt: rest.trim(), caption: "" };
   }

@@ -57,95 +57,42 @@ stack:
 
 That left a scope one person could ship in a dense month, summer 2026.
 
-### 3. Built the flow from the bank line to the tax line: the product sorts, the landlord validates, and every figure stays linked to what proves it
+### 3. Designed and developed the data pipeline and the user flow that turn bank lines and invoices into a tax return
 
-One bank line, followed from the statement to the tax form. Each sub-step shows what the landlord sees and what the data becomes underneath.
+The bank already knows the date, the amount and who was paid. So the product starts there: it proposes, the landlord validates, and the invoice fills what the bank could not know. Every figure in the return stays linked to what proves it.
 
-flow:
-- **Statement**: the bank feeds the account, or a PDF is uploaded. Balances checked, duplicates skipped.
-- **Transaction**: immutable cash line, sorted by the engine: transfer, existing entry, rent or rule.
-- **Entry**: created from the line in one gesture, validated by the landlord, the only thing that gets declared.
-- **Document**: analysed on request, matched to the entry, fills what the bank could not know.
-- **Tax report**: every validated entry, linked to a property and to a category mapped to a form line, read and frozen per year.
+pipeline:
+= What the landlord does | What the data becomes
+- **Sets up a property and its lease** once | bien; bail; personne; compte_bancaire
+->
+- **Bank lines arrive, already sorted** automatic, any bank | transaction; iban_interne; echeance; regle; saisie_assistee
+-> lettrage
+- **Validates each ledger entry** one click | depense; revenu; activite
+-> document_ecriture
+- **Invoices enrich the entries** when they arrive | document; consommation_ia
+->
+- **Reads the tax return per property** every year | categorie_depense; computed on read, frozen per year
 
-#### 3.1 Start from the bank account: an automatic trigger, and data that is reliable by construction
+#### 3.1 The bank line triggers the entry
 
-Regis starts from the bank account, connected to the bank or fed with a PDF statement, any bank. Either way the trigger is automatic: every movement lands in the app as an event, and the landlord never types an amount. The data is reliable by construction, because the bank already knows it: date, signed amount, raw label, counterparty and its IBAN when the bank gives it. Before anything is created, the product shows the lines it read. Two checks run first. Opening balance plus movements must equal the closing balance, and the screen says so in plain words: passed, failed with the gap in euros, or impossible when the file is a movements export rather than a real statement. And every line gets a fingerprint, account, date, amount and normalised label, so re-importing last month by mistake creates nothing. Tested on LCL, Boursorama, Trade Republic and Raiffeisen statements, 91 operations out of 91 restored.
+Every movement arrives sorted: transfers set aside, rents matched to the lease, the rest proposed with a category. Nothing is written without a click.
 
-![phone: The statement read, five lines, balance check passed](/images/Experiences/Regis/regis-app-import-apercu.webp)
-![phone: Import done, the engine has already sorted the lines](/images/Experiences/Regis/regis-app-import-result.webp)
+![pair: The bank view | Lines already sorted, two orange states only: to reconcile, to validate](/images/Experiences/Regis/regis-app-bank-list.webp)
+![pair: Validate and categorise in one gesture | Bank line read-only on top, proposal editable under it, one button](/images/Experiences/Regis/regis-app-transaction-validate.webp)
 
-**In the data**: one transaction row per line, with a fingerprint, immutable once written. Never edited, never deleted. It is the truth of the cash, and nothing else in the product is allowed to be.
+#### 3.2 The ledger entry, what actually gets declared
 
-#### 3.2 The engine sorts every line before anyone looks at it
+In a spreadsheet, a figure is just a figure. Here every one of them shows what it covers, what proved it and who changed it. Trust comes from provenance, not from a locked screen.
 
-Reading a statement line is the boring part, so the product does it first, in a fixed order and with no AI at all. First, internal transfers: a counterparty IBAN that belongs to one of the family's own accounts is classified out of the books. Then a deduplication pass: does an entry already exist for this, an invoice typed in April for the boiler debited in May? Same direction, same amount within 3 %, a date in the window, and it proposes to link rather than create. Only then the prediction pass: is this a rent, matched to an instalment from the lease, or does a rule apply? Linking before creating is what kills the duplicate every landlord knows. I borrowed the order from QuickBooks and the rule engine from Actual Budget: first match wins by priority, and each rule carries its own auto switch.
+![pair: Entries in cards | Status, property, category, and what is attached: a transaction, a document](/images/Experiences/Regis/regis-app-entries-cards.webp)
+![pair-scroll: One entry | The linked transaction, the document, the tax line, and who changed what](/images/Experiences/Regis/regis-app-entry-detail.webp)
 
-A rule reads like a sentence. The one below is real, from the family portfolio, and it suggests rather than applies: the same insurer covers several properties, so the property is read from the label and the landlord confirms.
+#### 3.3 The invoice enriches the entry
 
-flow:
-- **If**: the counterparty IBAN is Foyer Assurances.
-- **Then**: category "Owner insurance", tax line D of form 190, property from the label.
-- **Mode**: suggest. The landlord confirms in one click. Bank fees and rent matched to an exact instalment run in automatic mode from day one.
+An invoice knows what a bank line never will: the supplier, the VAT, the reference, what the work was. It renames the entry and fills those fields, and never overwrites an amount or a date.
 
-![phone: The same rule in the product, condition on the counterparty IBAN, automatic mode off](/images/Experiences/Regis/regis-app-rule-foyer.webp)
-
-The signals are ranked by how much I trust them, and the ranking is the opposite of the intuitive one: the transfer reference set on the lease, then the counterparty IBAN, then a fuzzy name, and last the amount plus a date window. Amount alone is the weakest signal, because two tenants can pay the same rent on the same day. Automatic exists only where confidence is total. Everything else starts as a suggestion and earns its switch after a few correct validations; a rule learned from two identical corrections is proposed, never created on its own.
-
-**In the data**: nothing is created yet. The transaction carries a status, and a proposal sits next to it in a separate table: property, category, type, the label rewritten. That table doubles as a log of everything the product ever suggested.
-
-#### 3.3 The bank view: three states, one question
-
-So the landlord opens the bank view and finds the lines already sorted. I rewrote the whole status system around one question: does an action wait for me, yes or no. Only two labels are orange, "to reconcile" and "to validate", and the label always starts with "to" plus a verb, so the action is in the name. Everything done is a past participle in grey. Shape carries the meaning as much as colour: a full disc for an action, a ring for nothing expected, a triangle for an anomaly, a padlock for a locked entry. And a status is computed from the data, never from the clock: nothing turns orange because it is old. The inbox on the home page is the union of every orange or red item, anomalies first.
-
-table:
-| Status | Meaning | Who acts |
-|---|---|---|
-| To reconcile | Nothing found, nothing linked | The landlord builds the match |
-| To validate | A proposal is posed and waits for a click | One click, or edit then confirm |
-| Reconciled, Reconciled (auto) | An entry exists and covers the amount | Nobody |
-| Classified | Internal transfer or ignored, out of the books | Nobody, reversible |
-
-![phone: The bank view after the engine ran: reconciled, classified, to validate, to reconcile](/images/Experiences/Regis/regis-app-bank-list.webp)
-
-#### 3.4 Validate a line in one gesture, without losing control
-
-The landlord opens a line "to validate". The header repeats the bank line as is, signed amount, raw label, date, account, and it cannot be edited. Under it, the proposal: property, category, type, counterparty, all shown as the fields the entry will carry, all editable on the spot with a picker. One sticky button, "Create the entry", validates the fields and creates the entry in a single gesture, so nobody validates a proposal and then edits the result. The label is rewritten from the bank noise into something readable in a list, "Sud Gaz · Boiler maintenance" instead of "PRLV SUD GAZ SARL". For recurring lines, "Also validate similar entries" confirms every proposal from the same contract at once, matched on tenant, category and property, and deliberately not on amount, because an indexed rent moves a few euros from one month to the next. The page is mobile first, because that is where the validation happens, in the evening, one thumb.
-
-![phone: A transaction to validate: the bank line read-only on top, the proposed entry under it, one button](/images/Experiences/Regis/regis-app-transaction-validate.webp)
-
-**In the data**: the entry is created, an expense or an income, and a link row joins it to the transaction with the amount covered. The transaction turns "reconciled". The entry is "validated" because a human said so.
-
-#### 3.5 The entry, the object the landlord lives with
-
-Entries have their own view, in cards, one per expense or income, with the status, the property, the category and whether a transaction and a document are attached. Open one and the page answers four questions in one glance: linked to which transaction and for how much, document attached or not, which category and property, what status. Three statuses only: to validate, validated, and locked once the entry has fed a tax report, after which it is read-only. The link runs both ways and many-to-many. A tenant paying in two halves is two transactions on one entry. A building charge shared across two flats is one transaction split into two entries, a single verb in the interface, "Ventilate", and no special record behind it.
-
-![phone: Entries in cards: status, category, property, linked transaction and document at a glance](/images/Experiences/Regis/regis-app-entries-cards.webp)
-
-![phone-scroll: Entry | The entry page: linked transaction, document, VAT read from the invoice, the tax line, the activity](/images/Experiences/Regis/regis-app-entry-detail.webp)
-
-**In the data**: two truths at two levels. The transaction is the cash, the entry is what will be declared. If the two ever disagree on an amount or a date, the entry wins and the gap is shown as information, never as an error. That is what lets the landlord correct a category or a date without ever touching the bank line.
-
-#### 3.6 The invoice arrives later and completes the entry instead of duplicating it
-
-A week or a month later, the invoice shows up. The landlord uploads it. Analysis is never automatic, it costs credits, so it is one explicit click with the price on the button. Extraction is a proposal with a confidence score, and the deduplication pass from 3.2 runs again, this time from the document side: it finds the entry the bank line already created and proposes to complete it. The enrichment follows one rule, applied to the three ways a document can meet an entry. Core fields, amount and date, are never overwritten from a document: a difference there questions the match, not the value. Peripheral fields the bank could not know, supplier, VAT rate and amount, invoice reference, payment date, trade, are filled only if empty, never replaced. The document never has authority. And when the net and VAT do not add up to the total, which happens on every scanned bundle of invoices, they are hidden rather than flagged: a doubtful number costs more than an absent one.
-
-![phone: The uploaded statement of charges, analysis on request, price on the button](/images/Experiences/Regis/regis-app-document-upload.webp)
-![phone: The entry found: amount and date match, the invoice fills the reference and the trade, nothing is overwritten](/images/Experiences/Regis/regis-app-document-match.webp)
-
-**In the data**: the document is linked to the entry, many-to-many too, one invoice for two flats or two documents for one entry. The entry now carries what only the invoice knew.
-
-#### 3.7 Everything linked, and a history for the fear of breaking something
-
-The entry page now shows the transaction, the document, the property, the category, and the tax line the category maps to. The last section is the activity: who changed what, the value before and after, whether the actor was a person, the import or the assistant, and when. Written only by the application, never editable. My first users asked for it in almost the same words, "I am afraid of doing something stupid and not being able to tell", and it is what makes validation reversible without fear: an entry can go back to "to validate" until a tax report locks it, and the trace stays.
-
-![phone-scroll: Entry | The same entry once the document is attached: transaction, document, tax line, and the activity with each actor](/images/Experiences/Regis/regis-app-entry-activity.webp)
-
-#### 3.8 The tax report, per property, from data that was validated all year
-
-The last screen reads what the year produced: for one property, every validated entry grouped by line of form 190, each amount clickable back to its entry, its transaction and its document, and what is still missing named next to the line it blocks. The calculation is deterministic and recomputed on every read; the version the landlord files is frozen with the inputs that produced it, and the entries behind it are locked. No tax figure, no filled form: the amounts per line, ready for the form or for the accountant.
-
-![row: The tax report for one property, amounts per line of form 190, each linked to its proof](/images/Experiences/Regis/regis-app-tax-report.webp)
+![pair: Upload | Analysis on request, price on the button, nothing written before you confirm](/images/Experiences/Regis/regis-app-document-upload.webp)
+![pair-scroll: The entry, enriched | Renamed, supplier and VAT filled in, amount and date untouched](/images/Experiences/Regis/regis-app-entry-activity.webp)
 
 
 ### 4. Put it in my parents' hands, then in twenty landlords' hands
