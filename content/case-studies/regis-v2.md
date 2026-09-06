@@ -111,7 +111,7 @@ Access is scoped the same way the data is: every table is protected by row-level
 
 The last piece was not in my plan. Beta users said the same thing in different words: I am afraid of doing something stupid and not being able to tell. So I added an **activity** timeline on every entry: who changed what, the value before and the value after, whether the actor was a person, the import or the assistant, and when. Written only by the application, never editable, it replaced the "created on, modified on" footer that answered none of those questions. It is also what makes validation reversible without fear: an entry can go back from validated to "to validate" until it is locked by a tax report, and the timeline keeps the trace.
 
-### 5. Regis is in alpha on our family portfolio to prepare the 2025 tax return: 256 bank transactions, 679 invoices and 823 entries migrated
+### 5. Regis is in alpha on our family portfolio to prepare the 2025 tax return: 251 bank transactions, 679 invoices extracted, 482 entries booked or queued
 
 ![row: The tax page, in development, and the 190/210 F it fills in, the Luxembourg annex for rental income](/images/Experiences/Regis/regis-app-tax-page-to-form.webp)
 
